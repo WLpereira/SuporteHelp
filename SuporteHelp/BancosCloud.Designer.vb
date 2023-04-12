@@ -32,29 +32,33 @@ Partial Class BancosCloud
         AlterarBtn = New Button()
         ServidorLbl = New Label()
         ServidorCloudTxb = New TextBox()
+        SelecionarBancoLbl = New Label()
         SuspendLayout()
         ' 
         ' UsernameTxb
         ' 
-        UsernameTxb.Location = New Point(165, 124)
+        UsernameTxb.BorderStyle = BorderStyle.FixedSingle
+        UsernameTxb.Location = New Point(23, 93)
         UsernameTxb.Margin = New Padding(3, 4, 3, 4)
         UsernameTxb.Name = "UsernameTxb"
-        UsernameTxb.Size = New Size(241, 27)
+        UsernameTxb.Size = New Size(197, 27)
         UsernameTxb.TabIndex = 1
         ' 
         ' SenhaTxb
         ' 
-        SenhaTxb.Location = New Point(165, 186)
+        SenhaTxb.BackColor = Color.White
+        SenhaTxb.BorderStyle = BorderStyle.FixedSingle
+        SenhaTxb.Location = New Point(23, 149)
         SenhaTxb.Margin = New Padding(3, 4, 3, 4)
         SenhaTxb.Name = "SenhaTxb"
-        SenhaTxb.Size = New Size(241, 27)
+        SenhaTxb.Size = New Size(172, 27)
         SenhaTxb.TabIndex = 2
         ' 
         ' LoginUsuarioLbl
         ' 
         LoginUsuarioLbl.AutoSize = True
         LoginUsuarioLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        LoginUsuarioLbl.Location = New Point(165, 97)
+        LoginUsuarioLbl.Location = New Point(23, 66)
         LoginUsuarioLbl.Name = "LoginUsuarioLbl"
         LoginUsuarioLbl.Size = New Size(70, 23)
         LoginUsuarioLbl.TabIndex = 3
@@ -64,11 +68,12 @@ Partial Class BancosCloud
         ' 
         SenhaLoginLbl.AutoSize = True
         SenhaLoginLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaLoginLbl.Location = New Point(165, 159)
+        SenhaLoginLbl.ForeColor = Color.Red
+        SenhaLoginLbl.Location = New Point(23, 122)
         SenhaLoginLbl.Name = "SenhaLoginLbl"
-        SenhaLoginLbl.Size = New Size(58, 23)
+        SenhaLoginLbl.Size = New Size(307, 23)
         SenhaLoginLbl.TabIndex = 5
-        SenhaLoginLbl.Text = "Senha"
+        SenhaLoginLbl.Text = "SENHA ""SA"" ORIGINAL DA EMPRESA"
         ' 
         ' LimparCloudBtn
         ' 
@@ -85,17 +90,18 @@ Partial Class BancosCloud
         ' 
         ConectarClodBtn.Anchor = AnchorStyles.None
         ConectarClodBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        ConectarClodBtn.Location = New Point(224, 240)
+        ConectarClodBtn.Location = New Point(23, 184)
         ConectarClodBtn.Margin = New Padding(5, 4, 5, 4)
         ConectarClodBtn.Name = "ConectarClodBtn"
-        ConectarClodBtn.Size = New Size(105, 36)
+        ConectarClodBtn.Size = New Size(139, 36)
         ConectarClodBtn.TabIndex = 0
         ConectarClodBtn.Text = "Conectar "
+        ConectarClodBtn.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' MostrarServidorCbx
         ' 
         MostrarServidorCbx.FormattingEnabled = True
-        MostrarServidorCbx.Location = New Point(165, 295)
+        MostrarServidorCbx.Location = New Point(285, 192)
         MostrarServidorCbx.Name = "MostrarServidorCbx"
         MostrarServidorCbx.Size = New Size(241, 28)
         MostrarServidorCbx.TabIndex = 6
@@ -115,7 +121,7 @@ Partial Class BancosCloud
         ' 
         ServidorLbl.AutoSize = True
         ServidorLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorLbl.Location = New Point(250, 24)
+        ServidorLbl.Location = New Point(23, 12)
         ServidorLbl.Name = "ServidorLbl"
         ServidorLbl.Size = New Size(79, 23)
         ServidorLbl.TabIndex = 9
@@ -123,11 +129,22 @@ Partial Class BancosCloud
         ' 
         ' ServidorCloudTxb
         ' 
-        ServidorCloudTxb.Location = New Point(165, 51)
+        ServidorCloudTxb.BorderStyle = BorderStyle.FixedSingle
+        ServidorCloudTxb.Location = New Point(23, 39)
         ServidorCloudTxb.Margin = New Padding(3, 4, 3, 4)
         ServidorCloudTxb.Name = "ServidorCloudTxb"
         ServidorCloudTxb.Size = New Size(241, 27)
         ServidorCloudTxb.TabIndex = 8
+        ' 
+        ' SelecionarBancoLbl
+        ' 
+        SelecionarBancoLbl.AutoSize = True
+        SelecionarBancoLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        SelecionarBancoLbl.Location = New Point(341, 166)
+        SelecionarBancoLbl.Name = "SelecionarBancoLbl"
+        SelecionarBancoLbl.Size = New Size(145, 23)
+        SelecionarBancoLbl.TabIndex = 10
+        SelecionarBancoLbl.Text = "Selecionar Banco"
         ' 
         ' BancosCloud
         ' 
@@ -136,6 +153,7 @@ Partial Class BancosCloud
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = LimparCloudBtn
         ClientSize = New Size(582, 403)
+        Controls.Add(SelecionarBancoLbl)
         Controls.Add(ServidorLbl)
         Controls.Add(ServidorCloudTxb)
         Controls.Add(AlterarBtn)
@@ -169,4 +187,5 @@ Partial Class BancosCloud
     Friend WithEvents AlterarBtn As Button
     Friend WithEvents ServidorLbl As Label
     Friend WithEvents ServidorCloudTxb As TextBox
+    Friend WithEvents SelecionarBancoLbl As Label
 End Class
