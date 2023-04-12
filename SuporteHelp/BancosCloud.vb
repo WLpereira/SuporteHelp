@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Windows.Forms
 
-Public Class LoginDialog
+Public Class BancosCloud
 
     Private Sub ConectarClodBtn_Click(sender As Object, e As EventArgs) Handles ConectarClodBtn.Click
         Dim servidor As String = ServidorCloudTxb.Text

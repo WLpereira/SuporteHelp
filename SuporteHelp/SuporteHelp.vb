@@ -103,8 +103,15 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub CriptoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CriptoToolStripMenuItem.Click
-        Dim Cripto As New Cripto()
-        Cripto.Show()
+        Dim caminho As String = "\\172.16.1.100\usuario\Marcos Aurelio\Crypto.exe"
+
+        If System.IO.File.Exists(caminho) Then
+            Dim psi As New ProcessStartInfo(caminho)
+            psi.UseShellExecute = True
+            Process.Start(psi)
+        Else
+            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+        End If
     End Sub
 
 
@@ -147,8 +154,8 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub CloudBtn_Click(sender As Object, e As EventArgs) Handles CloudBtn.Click
-        Dim LoginDialog As New LoginDialog()
-        LoginDialog.Show()
+        Dim BancosCloud As New BancosCloud()
+        BancosCloud.Show()
     End Sub
 
     Private Sub HomologacaoBtn_Click(sender As Object, e As EventArgs) Handles HomologacaoBtn.Click

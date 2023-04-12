@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class LoginDialog
+Partial Class BancosCloud
     Inherits System.Windows.Forms.Form
 
     'Descartar substituições de formulário para limpar a lista de componentes.
@@ -129,7 +129,7 @@ Partial Class LoginDialog
         ServidorCloudTxb.Size = New Size(241, 27)
         ServidorCloudTxb.TabIndex = 8
         ' 
-        ' LoginDialog
+        ' BancosCloud
         ' 
         AcceptButton = ConectarClodBtn
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -150,7 +150,7 @@ Partial Class LoginDialog
         Margin = New Padding(5, 4, 5, 4)
         MaximizeBox = False
         MinimizeBox = False
-        Name = "LoginDialog"
+        Name = "BancosCloud"
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterParent
         Text = "Bancos Cloud"
