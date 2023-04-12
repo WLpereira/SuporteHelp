@@ -3,15 +3,66 @@ Imports System.Windows.Forms
 
 Public Class LoginDialog
 
-    Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.Close()
+    Private Sub ConectarClodBtn_Click(sender As Object, e As EventArgs) Handles ConectarClodBtn.Click
+        Dim servidor As String = ServidorCloudTxb.Text
+        Dim usuario As String = UsernameTxb.Text
+        Dim senha As String = SenhaTxb.Text
+
+        ' Aqui você deve implementar a lógica para conectar ao servidor com os dados fornecidos '
+        ' e trazer o resultado para popular o ComboBox '
+        ' Exemplo: '
+
+        Dim connStr As String = $"Server={servidor};Database=master;User Id={usuario};Password={senha};"
+        Dim conexao As SqlConnection = New SqlConnection(connStr)
+        Try
+            conexao.Open()
+            Dim cmd As SqlCommand = New SqlCommand("SELECT name FROM sys.databases", conexao)
+            Dim reader As SqlDataReader = cmd.ExecuteReader()
+            While reader.Read()
+                MostrarServidorCbx.Items.Add(reader("name"))
+            End While
+            MessageBox.Show("Conexão realizada com sucesso!")
+        Catch ex As Exception
+            MessageBox.Show($"Erro ao conectar ao servidor: {ex.Message}")
+        Finally
+            conexao.Close()
+        End Try
     End Sub
 
-    Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
-        Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Close()
+    Private Sub LimparCloudBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LimparCloudBtn.Click, LimparCloudBtn.Click
+        ServidorCloudTxb.Text = ""
+        UsernameTxb.Text = ""
+        SenhaTxb.Text = ""
+        MostrarServidorCbx.Items.Clear()
     End Sub
 
+    Private Sub AlterarBtn_Click(sender As Object, e As EventArgs) Handles AlterarBtn.Click
+        ' Verifica se um banco de dados foi selecionado '
+        If MostrarServidorCbx.SelectedIndex = -1 Then
+            MessageBox.Show("Por favor, selecione um banco de dados para atualizar.")
+            Return
+        End If
 
+        Dim banco As String = MostrarServidorCbx.SelectedItem.ToString()
+        Dim servidor As String = ServidorCloudTxb.Text
+        Dim usuario As String = UsernameTxb.Text
+        Dim senha As String = SenhaTxb.Text
+
+        Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
+        Dim conexao As SqlConnection = New SqlConnection(connStr)
+
+        ' Aqui você deve implementar a lógica para executar a consulta UPDATE '
+        ' Substitua a consulta abaixo pela consulta real que você deseja executar '
+        Dim consulta As String = "ALTER USER [sa] WITH PASSWORD=N'dp'"
+        Try
+            conexao.Open()
+            Dim cmd As SqlCommand = New SqlCommand(consulta, conexao)
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Atualização concluída com sucesso!")
+        Catch ex As Exception
+            MessageBox.Show($"Erro ao atualizar o banco de dados: {ex.Message}")
+        Finally
+            conexao.Close()
+        End Try
+    End Sub
 End Class

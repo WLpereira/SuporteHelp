@@ -26,33 +26,37 @@ Partial Class LoginDialog
         SenhaTxb = New TextBox()
         LoginUsuarioLbl = New Label()
         SenhaLoginLbl = New Label()
-        TableLayoutPanel1 = New TableLayoutPanel()
-        OK_Button = New Button()
-        Cancel_Button = New Button()
-        TableLayoutPanel1.SuspendLayout()
+        LimparCloudBtn = New Button()
+        ConectarClodBtn = New Button()
+        MostrarServidorCbx = New ComboBox()
+        AlterarBtn = New Button()
+        ServidorLbl = New Label()
+        ServidorCloudTxb = New TextBox()
         SuspendLayout()
         ' 
         ' UsernameTxb
         ' 
-        UsernameTxb.Location = New Point(81, 40)
+        UsernameTxb.Location = New Point(165, 124)
+        UsernameTxb.Margin = New Padding(3, 4, 3, 4)
         UsernameTxb.Name = "UsernameTxb"
-        UsernameTxb.Size = New Size(211, 23)
+        UsernameTxb.Size = New Size(241, 27)
         UsernameTxb.TabIndex = 1
         ' 
         ' SenhaTxb
         ' 
-        SenhaTxb.Location = New Point(81, 86)
+        SenhaTxb.Location = New Point(165, 186)
+        SenhaTxb.Margin = New Padding(3, 4, 3, 4)
         SenhaTxb.Name = "SenhaTxb"
-        SenhaTxb.Size = New Size(211, 23)
+        SenhaTxb.Size = New Size(241, 27)
         SenhaTxb.TabIndex = 2
         ' 
         ' LoginUsuarioLbl
         ' 
         LoginUsuarioLbl.AutoSize = True
         LoginUsuarioLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        LoginUsuarioLbl.Location = New Point(81, 22)
+        LoginUsuarioLbl.Location = New Point(165, 97)
         LoginUsuarioLbl.Name = "LoginUsuarioLbl"
-        LoginUsuarioLbl.Size = New Size(55, 17)
+        LoginUsuarioLbl.Size = New Size(70, 23)
         LoginUsuarioLbl.TabIndex = 3
         LoginUsuarioLbl.Text = "Usuario"
         ' 
@@ -60,71 +64,96 @@ Partial Class LoginDialog
         ' 
         SenhaLoginLbl.AutoSize = True
         SenhaLoginLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaLoginLbl.Location = New Point(81, 66)
+        SenhaLoginLbl.Location = New Point(165, 159)
         SenhaLoginLbl.Name = "SenhaLoginLbl"
-        SenhaLoginLbl.Size = New Size(45, 17)
+        SenhaLoginLbl.Size = New Size(58, 23)
         SenhaLoginLbl.TabIndex = 5
         SenhaLoginLbl.Text = "Senha"
         ' 
-        ' TableLayoutPanel1
+        ' LimparCloudBtn
         ' 
-        TableLayoutPanel1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        TableLayoutPanel1.ColumnCount = 2
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.Controls.Add(OK_Button, 0, 0)
-        TableLayoutPanel1.Controls.Add(Cancel_Button, 1, 0)
-        TableLayoutPanel1.Location = New Point(98, 115)
-        TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
-        TableLayoutPanel1.Name = "TableLayoutPanel1"
-        TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.Size = New Size(170, 33)
-        TableLayoutPanel1.TabIndex = 0
+        LimparCloudBtn.Anchor = AnchorStyles.None
+        LimparCloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LimparCloudBtn.Location = New Point(26, 335)
+        LimparCloudBtn.Margin = New Padding(5, 4, 5, 4)
+        LimparCloudBtn.Name = "LimparCloudBtn"
+        LimparCloudBtn.Size = New Size(87, 36)
+        LimparCloudBtn.TabIndex = 1
+        LimparCloudBtn.Text = "Limpar"
         ' 
-        ' OK_Button
+        ' ConectarClodBtn
         ' 
-        OK_Button.Anchor = AnchorStyles.None
-        OK_Button.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        OK_Button.Location = New Point(4, 3)
-        OK_Button.Margin = New Padding(4, 3, 4, 3)
-        OK_Button.Name = "OK_Button"
-        OK_Button.Size = New Size(77, 27)
-        OK_Button.TabIndex = 0
-        OK_Button.Text = "OK"
+        ConectarClodBtn.Anchor = AnchorStyles.None
+        ConectarClodBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        ConectarClodBtn.Location = New Point(224, 240)
+        ConectarClodBtn.Margin = New Padding(5, 4, 5, 4)
+        ConectarClodBtn.Name = "ConectarClodBtn"
+        ConectarClodBtn.Size = New Size(105, 36)
+        ConectarClodBtn.TabIndex = 0
+        ConectarClodBtn.Text = "Conectar "
         ' 
-        ' Cancel_Button
+        ' MostrarServidorCbx
         ' 
-        Cancel_Button.Anchor = AnchorStyles.None
-        Cancel_Button.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        Cancel_Button.Location = New Point(89, 3)
-        Cancel_Button.Margin = New Padding(4, 3, 4, 3)
-        Cancel_Button.Name = "Cancel_Button"
-        Cancel_Button.Size = New Size(77, 27)
-        Cancel_Button.TabIndex = 1
-        Cancel_Button.Text = "Cancelar"
+        MostrarServidorCbx.FormattingEnabled = True
+        MostrarServidorCbx.Location = New Point(165, 295)
+        MostrarServidorCbx.Name = "MostrarServidorCbx"
+        MostrarServidorCbx.Size = New Size(241, 28)
+        MostrarServidorCbx.TabIndex = 6
+        ' 
+        ' AlterarBtn
+        ' 
+        AlterarBtn.Anchor = AnchorStyles.None
+        AlterarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        AlterarBtn.Location = New Point(224, 346)
+        AlterarBtn.Margin = New Padding(5, 4, 5, 4)
+        AlterarBtn.Name = "AlterarBtn"
+        AlterarBtn.Size = New Size(105, 36)
+        AlterarBtn.TabIndex = 7
+        AlterarBtn.Text = "Alterar"
+        ' 
+        ' ServidorLbl
+        ' 
+        ServidorLbl.AutoSize = True
+        ServidorLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        ServidorLbl.Location = New Point(250, 24)
+        ServidorLbl.Name = "ServidorLbl"
+        ServidorLbl.Size = New Size(79, 23)
+        ServidorLbl.TabIndex = 9
+        ServidorLbl.Text = "Servidor"
+        ' 
+        ' ServidorCloudTxb
+        ' 
+        ServidorCloudTxb.Location = New Point(165, 51)
+        ServidorCloudTxb.Margin = New Padding(3, 4, 3, 4)
+        ServidorCloudTxb.Name = "ServidorCloudTxb"
+        ServidorCloudTxb.Size = New Size(241, 27)
+        ServidorCloudTxb.TabIndex = 8
         ' 
         ' LoginDialog
         ' 
-        AcceptButton = OK_Button
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AcceptButton = ConectarClodBtn
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        CancelButton = Cancel_Button
-        ClientSize = New Size(384, 211)
+        CancelButton = LimparCloudBtn
+        ClientSize = New Size(582, 403)
+        Controls.Add(ServidorLbl)
+        Controls.Add(ServidorCloudTxb)
+        Controls.Add(AlterarBtn)
+        Controls.Add(MostrarServidorCbx)
+        Controls.Add(ConectarClodBtn)
         Controls.Add(SenhaLoginLbl)
+        Controls.Add(LimparCloudBtn)
         Controls.Add(LoginUsuarioLbl)
         Controls.Add(SenhaTxb)
         Controls.Add(UsernameTxb)
-        Controls.Add(TableLayoutPanel1)
         FormBorderStyle = FormBorderStyle.FixedDialog
-        Margin = New Padding(4, 3, 4, 3)
+        Margin = New Padding(5, 4, 5, 4)
         MaximizeBox = False
         MinimizeBox = False
         Name = "LoginDialog"
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterParent
-        Text = "Permissão"
-        TableLayoutPanel1.ResumeLayout(False)
+        Text = "Bancos Cloud"
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -134,5 +163,10 @@ Partial Class LoginDialog
     Friend WithEvents SenhaLoginLbl As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents OK_Button As Button
-    Friend WithEvents Cancel_Button As Button
+    Friend WithEvents LimparCloudBtn As Button
+    Friend WithEvents ConectarClodBtn As Button
+    Friend WithEvents MostrarServidorCbx As ComboBox
+    Friend WithEvents AlterarBtn As Button
+    Friend WithEvents ServidorLbl As Label
+    Friend WithEvents ServidorCloudTxb As TextBox
 End Class
