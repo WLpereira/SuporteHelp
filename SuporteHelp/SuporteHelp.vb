@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
 
@@ -258,7 +259,15 @@ Public Class SuporteHelp
                 connection.Open()
 
                 ' Execute o comando SQL de atualização para o banco de dados selecionado e o nome de usuário da linha selecionada ou com o cursor sobre ela
-                Dim commandText As String = $"delete Modulo_Check"
+                Dim commandText As String = $"TRUNCATE TABLE Modulo_Check;
+                IF OBJECT_ID('[dbo].[temp_limpa_modulo_check]') IS NULL
+                BEGIN
+                EXEC ('CREATE TRIGGER [dbo].[temp_limpa_modulo_check]
+                ON [dbo].[Modulo_Check]
+                FOR INSERT, UPDATE
+                AS
+                 DELETE FROM modulo_check');
+                END"
                 Dim command As New SqlCommand(commandText, connection)
                 command.ExecuteNonQuery()
 
@@ -324,5 +333,6 @@ Public Class SuporteHelp
         Dim Packs As String = "\\172.16.1.100\suporte\SoftInst\dpSistemasWin"
         Process.Start("explorer.exe", Packs)
     End Sub
+
 End Class
 
