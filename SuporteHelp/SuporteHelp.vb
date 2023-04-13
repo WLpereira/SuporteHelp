@@ -50,6 +50,12 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub PesquisarBtn_Click(sender As Object, e As EventArgs) Handles PesquisarBtn.Click
+
+        If ServidorTxb.Text.Trim() = "" Or NomeConectarTxb.Text.Trim() = "" Or SenhaTxb.Text.Trim() = "" Then
+            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+            Return
+        End If
+
         ' Desabilita o botão de pesquisa
         PesquisarBtn.Enabled = False
 
@@ -87,6 +93,10 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub LimparBtn_Click(sender As Object, e As EventArgs) Handles LimparBtn.Click
+        If ServidorTxb.Text.Trim() = "" Or NomeConectarTxb.Text.Trim() = "" Or SenhaTxb.Text.Trim() = "" Then
+            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+            Return
+        End If
 
         PesquisarBtn.Enabled = True
         ' Limpa o campo de pesquisa
