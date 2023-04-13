@@ -23,7 +23,7 @@ Public Class SuporteHelp
                 MessageBox.Show("Conexão estabelecida com sucesso, Selecione o Banco!")
 
                 ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                Dim comando As New SqlCommand("SELECT name FROM sys.databases", conexaoBD)
+                Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases", conexaoBD)
                 Dim leitor As SqlDataReader = comando.ExecuteReader()
 
                 ' Cria uma DataTable para armazenar os resultados da consulta
@@ -121,10 +121,10 @@ Public Class SuporteHelp
         ' Verifique se uma linha foi selecionada no DataGridView ou se o cursor está sobre uma linha
         If ListadeServidorDtg.CurrentRow IsNot Nothing Then
             ' Obtenha o nome do banco de dados selecionado
-            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("name").Value.ToString()
+            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
             ' Obtenha o valor da coluna de nome de usuário da linha selecionada ou com o cursor sobre ela
-            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("name").Value.ToString()
+            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
             ' Crie uma string de conexão com base nas informações fornecidas pelo usuário
             Dim builder As New SqlConnectionStringBuilder()
@@ -163,10 +163,10 @@ Public Class SuporteHelp
         ' Verifique se uma linha foi selecionada no DataGridView ou se o cursor está sobre uma linha
         If ListadeServidorDtg.CurrentRow IsNot Nothing Then
             ' Obtenha o nome do banco de dados selecionado
-            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("name").Value.ToString()
+            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
             ' Obtenha o valor da coluna de nome de usuário da linha selecionada ou com o cursor sobre ela
-            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("name").Value.ToString()
+            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
             ' Crie uma string de conexão com base nas informações fornecidas pelo usuário
             Dim builder As New SqlConnectionStringBuilder()
@@ -240,10 +240,10 @@ Public Class SuporteHelp
         ' Verifique se uma linha foi selecionada no DataGridView ou se o cursor está sobre uma linha
         If ListadeServidorDtg.CurrentRow IsNot Nothing Then
             ' Obtenha o nome do banco de dados selecionado
-            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("name").Value.ToString()
+            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
             ' Obtenha o valor da coluna de nome de usuário da linha selecionada ou com o cursor sobre ela
-            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("name").Value.ToString()
+            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
             ' Crie uma string de conexão com base nas informações fornecidas pelo usuário
             Dim builder As New SqlConnectionStringBuilder()
