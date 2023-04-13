@@ -271,5 +271,58 @@ Public Class SuporteHelp
             MessageBox.Show("Por favor, selecione uma linha do DataGridView.")
         End If
     End Sub
+
+    Private Sub DDClientsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DDClientsToolStripMenuItem.Click
+        Dim caminho As String = "\\172.16.1.100\usuario\Marcos Aurelio\DDClients.exe"
+
+        If System.IO.File.Exists(caminho) Then
+            Dim psi As New ProcessStartInfo(caminho)
+            psi.UseShellExecute = True
+            Process.Start(psi)
+        Else
+            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+        End If
+    End Sub
+
+    Private Sub CloudCreateUserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloudCreateUserToolStripMenuItem.Click
+        Dim caminho As String = "\\172.16.1.100\usuario\Marcos Aurelio\CloudCreateUser\CreateUserCloud.exe"
+
+        If System.IO.File.Exists(caminho) Then
+            Dim psi As New ProcessStartInfo(caminho)
+            psi.UseShellExecute = True
+            Process.Start(psi)
+        Else
+            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+        End If
+    End Sub
+
+    Private Sub PainelAvaliacoesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PainelAvaliacoesToolStripMenuItem.Click
+        Dim caminho As String = "\\172.16.1.100\usuario\Marcos Aurelio\PainelAvaliacoes.exe"
+
+        If System.IO.File.Exists(caminho) Then
+            Dim psi As New ProcessStartInfo(caminho)
+            psi.UseShellExecute = True
+            Process.Start(psi)
+        Else
+            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+        End If
+    End Sub
+
+    Private Sub HelpDeskToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpDeskToolStripMenuItem.Click
+        Dim caminho As String = "\\172.16.1.100\symphony\Install\pDpiHpd.exe"
+
+        If System.IO.File.Exists(caminho) Then
+            Dim psi As New ProcessStartInfo(caminho)
+            psi.UseShellExecute = True
+            Process.Start(psi)
+        Else
+            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Dim Packs As String = "\\172.16.1.100\suporte\SoftInst\dpSistemasWin"
+        Process.Start("explorer.exe", Packs)
+    End Sub
 End Class
 

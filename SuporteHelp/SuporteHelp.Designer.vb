@@ -33,6 +33,11 @@ Partial Class SuporteHelp
         FerramentasToolStripMenuItem = New ToolStripMenuItem()
         ValidarEmailToolStripMenuItem = New ToolStripMenuItem()
         CriptoToolStripMenuItem = New ToolStripMenuItem()
+        DDClientsToolStripMenuItem = New ToolStripMenuItem()
+        CloudCreateUserToolStripMenuItem = New ToolStripMenuItem()
+        PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
+        HelpDeskToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripMenuItem1 = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -61,7 +66,7 @@ Partial Class SuporteHelp
         ServidorConectarLbl.AutoSize = True
         ServidorConectarLbl.Location = New Point(115, 35)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
-        ServidorConectarLbl.Size = New Size(125, 17)
+        ServidorConectarLbl.Size = New Size(163, 23)
         ServidorConectarLbl.TabIndex = 0
         ServidorConectarLbl.Text = "Informe o Servidor"
         ' 
@@ -70,7 +75,7 @@ Partial Class SuporteHelp
         UsuarioConectarLbl.AutoSize = True
         UsuarioConectarLbl.Location = New Point(316, 35)
         UsuarioConectarLbl.Name = "UsuarioConectarLbl"
-        UsuarioConectarLbl.Size = New Size(55, 17)
+        UsuarioConectarLbl.Size = New Size(70, 23)
         UsuarioConectarLbl.TabIndex = 1
         UsuarioConectarLbl.Text = "Usuario"
         ' 
@@ -79,7 +84,7 @@ Partial Class SuporteHelp
         SenhaConectarLbl.AutoSize = True
         SenhaConectarLbl.Location = New Point(566, 35)
         SenhaConectarLbl.Name = "SenhaConectarLbl"
-        SenhaConectarLbl.Size = New Size(45, 17)
+        SenhaConectarLbl.Size = New Size(58, 23)
         SenhaConectarLbl.TabIndex = 2
         SenhaConectarLbl.Text = "Senha"
         ' 
@@ -87,51 +92,82 @@ Partial Class SuporteHelp
         ' 
         ServidorTxb.Location = New Point(115, 55)
         ServidorTxb.Name = "ServidorTxb"
-        ServidorTxb.Size = New Size(195, 25)
+        ServidorTxb.Size = New Size(195, 29)
         ServidorTxb.TabIndex = 4
         ' 
         ' NomeConectarTxb
         ' 
         NomeConectarTxb.Location = New Point(316, 55)
         NomeConectarTxb.Name = "NomeConectarTxb"
-        NomeConectarTxb.Size = New Size(244, 25)
+        NomeConectarTxb.Size = New Size(244, 29)
         NomeConectarTxb.TabIndex = 5
         ' 
         ' SenhaTxb
         ' 
         SenhaTxb.Location = New Point(566, 55)
         SenhaTxb.Name = "SenhaTxb"
-        SenhaTxb.Size = New Size(177, 25)
+        SenhaTxb.Size = New Size(177, 29)
         SenhaTxb.TabIndex = 6
         ' 
         ' MenuStrip1
         ' 
+        MenuStrip1.ImageScalingSize = New Size(20, 20)
         MenuStrip1.Items.AddRange(New ToolStripItem() {FerramentasToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(934, 25)
+        MenuStrip1.Size = New Size(934, 31)
         MenuStrip1.TabIndex = 8
         MenuStrip1.Text = "MenuStrip1"
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
-        FerramentasToolStripMenuItem.Size = New Size(96, 21)
+        FerramentasToolStripMenuItem.Size = New Size(123, 27)
         FerramentasToolStripMenuItem.Text = "Ferramentas"
         ' 
         ' ValidarEmailToolStripMenuItem
         ' 
         ValidarEmailToolStripMenuItem.Name = "ValidarEmailToolStripMenuItem"
-        ValidarEmailToolStripMenuItem.Size = New Size(162, 22)
+        ValidarEmailToolStripMenuItem.Size = New Size(228, 28)
         ValidarEmailToolStripMenuItem.Text = "Validar E-mail"
         ' 
         ' CriptoToolStripMenuItem
         ' 
         CriptoToolStripMenuItem.Name = "CriptoToolStripMenuItem"
-        CriptoToolStripMenuItem.Size = New Size(162, 22)
+        CriptoToolStripMenuItem.Size = New Size(228, 28)
         CriptoToolStripMenuItem.Text = "Cripto"
+        ' 
+        ' DDClientsToolStripMenuItem
+        ' 
+        DDClientsToolStripMenuItem.Name = "DDClientsToolStripMenuItem"
+        DDClientsToolStripMenuItem.Size = New Size(228, 28)
+        DDClientsToolStripMenuItem.Text = "DDClients"
+        ' 
+        ' CloudCreateUserToolStripMenuItem
+        ' 
+        CloudCreateUserToolStripMenuItem.Name = "CloudCreateUserToolStripMenuItem"
+        CloudCreateUserToolStripMenuItem.Size = New Size(228, 28)
+        CloudCreateUserToolStripMenuItem.Text = "CloudCreateUser"
+        ' 
+        ' PainelAvaliacoesToolStripMenuItem
+        ' 
+        PainelAvaliacoesToolStripMenuItem.Name = "PainelAvaliacoesToolStripMenuItem"
+        PainelAvaliacoesToolStripMenuItem.Size = New Size(228, 28)
+        PainelAvaliacoesToolStripMenuItem.Text = "PainelAvaliacoes"
+        ' 
+        ' HelpDeskToolStripMenuItem
+        ' 
+        HelpDeskToolStripMenuItem.Name = "HelpDeskToolStripMenuItem"
+        HelpDeskToolStripMenuItem.Size = New Size(228, 28)
+        HelpDeskToolStripMenuItem.Text = "HelpDesk"
+        ' 
+        ' ToolStripMenuItem1
+        ' 
+        ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        ToolStripMenuItem1.Size = New Size(228, 28)
+        ToolStripMenuItem1.Text = "Pasta de Packs "
         ' 
         ' PictureBox2
         ' 
@@ -156,7 +192,7 @@ Partial Class SuporteHelp
         BancoCloudLbl.AutoSize = True
         BancoCloudLbl.Location = New Point(20, 208)
         BancoCloudLbl.Name = "BancoCloudLbl"
-        BancoCloudLbl.Size = New Size(229, 17)
+        BancoCloudLbl.Size = New Size(298, 23)
         BancoCloudLbl.TabIndex = 12
         BancoCloudLbl.Text = "Banco do CLOUD, executar Primeiro"
         ' 
@@ -165,7 +201,7 @@ Partial Class SuporteHelp
         UsuarioSenhaLbl.AutoSize = True
         UsuarioSenhaLbl.Location = New Point(59, 306)
         UsuarioSenhaLbl.Name = "UsuarioSenhaLbl"
-        UsuarioSenhaLbl.Size = New Size(146, 17)
+        UsuarioSenhaLbl.Size = New Size(188, 23)
         UsuarioSenhaLbl.TabIndex = 13
         UsuarioSenhaLbl.Text = "Usuario: SA Senha: DP"
         ' 
@@ -174,7 +210,7 @@ Partial Class SuporteHelp
         HomologacaoLbl.AutoSize = True
         HomologacaoLbl.Location = New Point(47, 404)
         HomologacaoLbl.Name = "HomologacaoLbl"
-        HomologacaoLbl.Size = New Size(167, 17)
+        HomologacaoLbl.Size = New Size(217, 23)
         HomologacaoLbl.TabIndex = 14
         HomologacaoLbl.Text = "Trocar para Homologação"
         ' 
@@ -183,7 +219,7 @@ Partial Class SuporteHelp
         MOduloCheckLbl.AutoSize = True
         MOduloCheckLbl.Location = New Point(20, 508)
         MOduloCheckLbl.Name = "MOduloCheckLbl"
-        MOduloCheckLbl.Size = New Size(235, 17)
+        MOduloCheckLbl.Size = New Size(308, 23)
         MOduloCheckLbl.TabIndex = 15
         MOduloCheckLbl.Text = "Deletar Modulo Check e criar Trigger"
         ' 
@@ -256,7 +292,7 @@ Partial Class SuporteHelp
         ' 
         PesquisaTxb.Location = New Point(506, 149)
         PesquisaTxb.Name = "PesquisaTxb"
-        PesquisaTxb.Size = New Size(301, 25)
+        PesquisaTxb.Size = New Size(301, 29)
         PesquisaTxb.TabIndex = 22
         ' 
         ' PesquisaLbl
@@ -264,7 +300,7 @@ Partial Class SuporteHelp
         PesquisaLbl.AutoSize = True
         PesquisaLbl.Location = New Point(570, 129)
         PesquisaLbl.Name = "PesquisaLbl"
-        PesquisaLbl.Size = New Size(165, 17)
+        PesquisaLbl.Size = New Size(210, 23)
         PesquisaLbl.TabIndex = 21
         PesquisaLbl.Text = "Pesquisa Banco de Dados"
         ' 
@@ -299,6 +335,7 @@ Partial Class SuporteHelp
         ListadeServidorDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         ListadeServidorDtg.Location = New Point(363, 227)
         ListadeServidorDtg.Name = "ListadeServidorDtg"
+        ListadeServidorDtg.RowHeadersWidth = 51
         ListadeServidorDtg.RowTemplate.Height = 25
         ListadeServidorDtg.Size = New Size(571, 311)
         ListadeServidorDtg.TabIndex = 25
@@ -318,7 +355,7 @@ Partial Class SuporteHelp
         ' 
         ' SuporteHelp
         ' 
-        AutoScaleDimensions = New SizeF(8F, 17F)
+        AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(934, 611)
         Controls.Add(ConectarBtn)
@@ -385,4 +422,9 @@ Partial Class SuporteHelp
     Friend WithEvents LimparBtn As Button
     Friend WithEvents ListadeServidorDtg As DataGridView
     Friend WithEvents ConectarBtn As Button
+    Friend WithEvents DDClientsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CloudCreateUserToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PainelAvaliacoesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpDeskToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class
