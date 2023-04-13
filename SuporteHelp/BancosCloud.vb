@@ -33,7 +33,7 @@ Public Class BancosCloud
         ServidorCloudTxb.Text = ""
         UsernameTxb.Text = ""
         SenhaTxb.Text = ""
-        MostrarServidorCbx.Items.Clear()
+        SenhaOriginalTxb.Text = ""
     End Sub
 
     Private Sub AlterarBtn_Click(sender As Object, e As EventArgs) Handles AlterarBtn.Click
@@ -46,7 +46,7 @@ Public Class BancosCloud
         Dim banco As String = MostrarServidorCbx.SelectedItem.ToString()
         Dim servidor As String = ServidorCloudTxb.Text
         Dim usuario As String = UsernameTxb.Text
-        Dim senha As String = SenhaTxb.Text
+        Dim senha As String = SenhaOriginalTxb.Text
 
         Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
         Dim conexao As SqlConnection = New SqlConnection(connStr)
@@ -64,5 +64,9 @@ Public Class BancosCloud
         Finally
             conexao.Close()
         End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
     End Sub
 End Class
