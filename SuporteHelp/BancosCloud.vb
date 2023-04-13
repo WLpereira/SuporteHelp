@@ -8,6 +8,12 @@ Public Class BancosCloud
         Dim usuario As String = UsernameTxb.Text
         Dim senha As String = SenhaTxb.Text
 
+        ' Verifica se os campos estão preenchidos
+        If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
+            MessageBox.Show("Preencha todos os campos antes de conectar ao servidor.")
+            Return ' Sai do método
+        End If
+
         ' Aqui você deve implementar a lógica para conectar ao servidor com os dados fornecidos '
         ' e trazer o resultado para popular o ComboBox '
         ' Exemplo: '
