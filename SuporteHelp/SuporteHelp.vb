@@ -10,6 +10,12 @@ Public Class SuporteHelp
         Dim usuario As String = NomeConectarTxb.Text
         Dim senha As String = SenhaTxb.Text
 
+        '' Verifica se todos os campos foram preenchidos
+        If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
+            MessageBox.Show("Preencha todos os campos antes de conectar.")
+            Return
+        End If
+
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
@@ -44,6 +50,9 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub PesquisarBtn_Click(sender As Object, e As EventArgs) Handles PesquisarBtn.Click
+        ' Desabilita o botão de pesquisa
+        PesquisarBtn.Enabled = False
+
         Dim searchTerm As String = PesquisaTxb.Text.Trim()
 
         ' Obtém o DataTable associado ao DataGridView
@@ -78,6 +87,8 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub LimparBtn_Click(sender As Object, e As EventArgs) Handles LimparBtn.Click
+
+        PesquisarBtn.Enabled = True
         ' Limpa o campo de pesquisa
         PesquisaTxb.Text = ""
 
