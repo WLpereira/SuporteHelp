@@ -50,9 +50,9 @@ Public Class SuporteHelp
         Dim dt As DataTable = DirectCast(ListadeServidorDtg.DataSource, DataTable)
 
         ' Verifica se a coluna "NomeBanco" já existe no DataTable
-        If Not dt.Columns.Contains("name") Then
+        If Not dt.Columns.Contains("Nome") Then
             ' Cria uma nova coluna "NomeBanco"
-            dt.Columns.Add("name", GetType(String))
+            dt.Columns.Add("Nome", GetType(String))
 
             ' Define o valor da nova coluna para cada linha do DataTable
             For Each row As DataRow In dt.Rows
@@ -63,7 +63,7 @@ Public Class SuporteHelp
         End If
 
         ' Define o filtro de pesquisa
-        dt.DefaultView.RowFilter = $"name LIKE '%{searchTerm}%'"
+        dt.DefaultView.RowFilter = $"Nome LIKE '%{searchTerm}%'"
 
         ' Verifica se foram encontradas linhas correspondentes à pesquisa
         If dt.DefaultView.Count > 0 Then
