@@ -22,7 +22,7 @@ Public Class BancosCloud
         Dim conexao As SqlConnection = New SqlConnection(connStr)
         Try
             conexao.Open()
-            Dim cmd As SqlCommand = New SqlCommand("SELECT name FROM sys.databases", conexao)
+            Dim cmd As SqlCommand = New SqlCommand("SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')", conexao)
             Dim reader As SqlDataReader = cmd.ExecuteReader()
             While reader.Read()
                 MostrarServidorCbx.Items.Add(reader("name"))
