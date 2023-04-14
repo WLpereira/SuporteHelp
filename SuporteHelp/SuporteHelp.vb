@@ -362,6 +362,7 @@ Public Class SuporteHelp
             Dim psi As New ProcessStartInfo(caminho)
             psi.UseShellExecute = True
             Process.Start(psi)
+            MessageBox.Show("Desconectado")
         Else
             MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
         End If
