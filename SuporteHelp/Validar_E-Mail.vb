@@ -24,6 +24,10 @@ Public Class Validar_E_Mail
     End Sub
 
     Private Sub ValidarSmtpBtn_Click(sender As Object, e As EventArgs) Handles ValidarSmtpBtn.Click
+        If String.IsNullOrEmpty(SmtpTxb.Text) OrElse String.IsNullOrEmpty(PortaTxb.Text) OrElse String.IsNullOrEmpty(EmailTxb.Text) OrElse String.IsNullOrEmpty(SenhaEmailTxb.Text) Then
+            MessageBox.Show("Preencha todos os campos antes de prosseguir.")
+            Return
+        End If
         Dim smtp As String = SmtpTxb.Text
         Dim porta As Integer = Convert.ToInt32(PortaTxb.Text)
 
