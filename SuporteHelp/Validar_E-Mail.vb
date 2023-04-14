@@ -16,7 +16,7 @@ Public Class Validar_E_Mail
         smtp.Credentials = New System.Net.NetworkCredential(EmailTxb.Text, SenhaEmailTxb.Text)
         smtp.EnableSsl = True ' habilita SSL/TLS
         Try
-            smtp.Send(EmailTxb.Text, "washington.pereira@dataplace.com.br", "Teste de conexão SMTP", "Este é um teste de conexão SMTP DATAPLACE.")
+            smtp.Send(EmailTxb.Text, EmailTxb.Text, "Teste de conexão SMTP", "Este é um teste de conexão SMTP DATAPLACE.")
             MessageBox.Show("Conexão SMTP bem-sucedida.")
             SmtpTxb.Clear()
             PortaTxb.Clear()
