@@ -354,5 +354,17 @@ Public Class SuporteHelp
         Dim Packs As String = "\\172.16.1.100\suporte\SoftInst\dpSistemasWin"
         Process.Start("explorer.exe", Packs)
     End Sub
+
+    Private Sub LogoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoToolStripMenuItem.Click
+        Dim caminho As String = "\\172.16.1.100\suporte\Support Services\Tools\Script\VBS\Logoff.vbs"
+
+        If System.IO.File.Exists(caminho) Then
+            Dim psi As New ProcessStartInfo(caminho)
+            psi.UseShellExecute = True
+            Process.Start(psi)
+        Else
+            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+        End If
+    End Sub
 End Class
 

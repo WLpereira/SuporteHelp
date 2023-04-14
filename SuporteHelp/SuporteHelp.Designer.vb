@@ -55,6 +55,7 @@ Partial Class SuporteHelp
         LimparBtn = New Button()
         ListadeServidorDtg = New DataGridView()
         ConectarBtn = New Button()
+        LogoToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -121,7 +122,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1, LogoToolStripMenuItem})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -130,43 +131,43 @@ Partial Class SuporteHelp
         ' ValidarEmailToolStripMenuItem
         ' 
         ValidarEmailToolStripMenuItem.Name = "ValidarEmailToolStripMenuItem"
-        ValidarEmailToolStripMenuItem.Size = New Size(228, 28)
+        ValidarEmailToolStripMenuItem.Size = New Size(312, 28)
         ValidarEmailToolStripMenuItem.Text = "Validar E-mail"
         ' 
         ' CriptoToolStripMenuItem
         ' 
         CriptoToolStripMenuItem.Name = "CriptoToolStripMenuItem"
-        CriptoToolStripMenuItem.Size = New Size(228, 28)
+        CriptoToolStripMenuItem.Size = New Size(312, 28)
         CriptoToolStripMenuItem.Text = "Cripto"
         ' 
         ' DDClientsToolStripMenuItem
         ' 
         DDClientsToolStripMenuItem.Name = "DDClientsToolStripMenuItem"
-        DDClientsToolStripMenuItem.Size = New Size(228, 28)
+        DDClientsToolStripMenuItem.Size = New Size(312, 28)
         DDClientsToolStripMenuItem.Text = "DDClients"
         ' 
         ' CloudCreateUserToolStripMenuItem
         ' 
         CloudCreateUserToolStripMenuItem.Name = "CloudCreateUserToolStripMenuItem"
-        CloudCreateUserToolStripMenuItem.Size = New Size(228, 28)
+        CloudCreateUserToolStripMenuItem.Size = New Size(312, 28)
         CloudCreateUserToolStripMenuItem.Text = "CloudCreateUser"
         ' 
         ' PainelAvaliacoesToolStripMenuItem
         ' 
         PainelAvaliacoesToolStripMenuItem.Name = "PainelAvaliacoesToolStripMenuItem"
-        PainelAvaliacoesToolStripMenuItem.Size = New Size(228, 28)
+        PainelAvaliacoesToolStripMenuItem.Size = New Size(312, 28)
         PainelAvaliacoesToolStripMenuItem.Text = "PainelAvaliacoes"
         ' 
         ' HelpDeskToolStripMenuItem
         ' 
         HelpDeskToolStripMenuItem.Name = "HelpDeskToolStripMenuItem"
-        HelpDeskToolStripMenuItem.Size = New Size(228, 28)
+        HelpDeskToolStripMenuItem.Size = New Size(312, 28)
         HelpDeskToolStripMenuItem.Text = "HelpDesk"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(228, 28)
+        ToolStripMenuItem1.Size = New Size(312, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
         ' 
         ' PictureBox2
@@ -353,6 +354,12 @@ Partial Class SuporteHelp
         ConectarBtn.TextAlign = ContentAlignment.MiddleRight
         ConectarBtn.UseVisualStyleBackColor = True
         ' 
+        ' LogoToolStripMenuItem
+        ' 
+        LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
+        LogoToolStripMenuItem.Size = New Size(312, 28)
+        LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
@@ -428,4 +435,5 @@ Partial Class SuporteHelp
     Friend WithEvents PainelAvaliacoesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpDeskToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents LogoToolStripMenuItem As ToolStripMenuItem
 End Class
