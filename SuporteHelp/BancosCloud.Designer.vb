@@ -22,6 +22,7 @@ Partial Class BancosCloud
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(BancosCloud))
         UsernameTxb = New TextBox()
         SenhaTxb = New TextBox()
         LoginUsuarioLbl = New Label()
@@ -194,7 +195,7 @@ Partial Class BancosCloud
         ' BancosCloud
         ' 
         AcceptButton = ConectarClodBtn
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = LimparCloudBtn
         ClientSize = New Size(582, 403)
@@ -213,6 +214,7 @@ Partial Class BancosCloud
         Controls.Add(SenhaTxb)
         Controls.Add(UsernameTxb)
         FormBorderStyle = FormBorderStyle.FixedDialog
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(5, 4, 5, 4)
         MaximizeBox = False
         MinimizeBox = False

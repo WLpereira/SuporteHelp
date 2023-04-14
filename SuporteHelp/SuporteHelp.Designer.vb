@@ -383,6 +383,7 @@ Partial Class SuporteHelp
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         Name = "SuporteHelp"
         Text = "SuporteHelp"
