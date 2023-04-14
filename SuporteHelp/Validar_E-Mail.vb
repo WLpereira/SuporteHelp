@@ -6,6 +6,10 @@ Public Class Validar_E_Mail
     End Sub
 
     Private Sub ValidarEmailBtn_Click(sender As Object, e As EventArgs) Handles ValidarEmailBtn.Click
+        If String.IsNullOrEmpty(SmtpTxb.Text) OrElse String.IsNullOrEmpty(PortaTxb.Text) OrElse String.IsNullOrEmpty(EmailTxb.Text) OrElse String.IsNullOrEmpty(SenhaEmailTxb.Text) Then
+            MessageBox.Show("Preencha todos os campos antes de prosseguir.")
+            Return
+        End If
         Dim smtp As New System.Net.Mail.SmtpClient()
         smtp.Host = SmtpTxb.Text
         smtp.Port = Convert.ToInt32(PortaTxb.Text)
@@ -24,7 +28,7 @@ Public Class Validar_E_Mail
     End Sub
 
     Private Sub ValidarSmtpBtn_Click(sender As Object, e As EventArgs) Handles ValidarSmtpBtn.Click
-        If String.IsNullOrEmpty(SmtpTxb.Text) OrElse String.IsNullOrEmpty(PortaTxb.Text) OrElse String.IsNullOrEmpty(EmailTxb.Text) OrElse String.IsNullOrEmpty(SenhaEmailTxb.Text) Then
+        If String.IsNullOrEmpty(SmtpTxb.Text) OrElse String.IsNullOrEmpty(PortaTxb.Text) Then
             MessageBox.Show("Preencha todos os campos antes de prosseguir.")
             Return
         End If
@@ -38,6 +42,8 @@ Public Class Validar_E_Mail
             MessageBox.Show("Conexão SMTP válida.")
             SmtpTxb.Clear()
             PortaTxb.Clear()
+            SenhaEmailTxb.Clear()
+            EmailTxb.Clear()
         Catch ex As Exception
             MessageBox.Show("Não foi possível se conectar ao servidor SMTP: " + ex.Message)
         Finally
