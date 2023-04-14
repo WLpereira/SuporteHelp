@@ -38,6 +38,7 @@ Partial Class SuporteHelp
         PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
         HelpDeskToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
+        LogoToolStripMenuItem = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -55,7 +56,6 @@ Partial Class SuporteHelp
         LimparBtn = New Button()
         ListadeServidorDtg = New DataGridView()
         ConectarBtn = New Button()
-        LogoToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -122,7 +122,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1, LogoToolStripMenuItem})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -169,6 +169,12 @@ Partial Class SuporteHelp
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(312, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
+        ' 
+        ' LogoToolStripMenuItem
+        ' 
+        LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
+        LogoToolStripMenuItem.Size = New Size(312, 28)
+        LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
         ' 
         ' PictureBox2
         ' 
@@ -353,12 +359,6 @@ Partial Class SuporteHelp
         ConectarBtn.Text = "Conectar"
         ConectarBtn.TextAlign = ContentAlignment.MiddleRight
         ConectarBtn.UseVisualStyleBackColor = True
-        ' 
-        ' LogoToolStripMenuItem
-        ' 
-        LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
-        LogoToolStripMenuItem.Size = New Size(312, 28)
-        LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
         ' 
         ' SuporteHelp
         ' 
