@@ -39,4 +39,12 @@ Public Class Sugestao
             MessageBox.Show("Erro ao enviar o e-mail: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub LimparTextoBtn_Click(sender As Object, e As EventArgs) Handles LimparTextoBtn.Click
+        TextoEmailRtb.Clear()
+    End Sub
+
+    Private Sub SairTextoBtn_Click(sender As Object, e As EventArgs) Handles SairTextoBtn.Click
+        Me.Close()
+    End Sub
 End Class
