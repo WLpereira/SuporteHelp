@@ -113,6 +113,7 @@ Partial Class ValidarGtin
         Controls.Add(SairGtinbtn)
         Controls.Add(CodigoImg)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        MaximizeBox = False
         Name = "ValidarGtin"
         StartPosition = FormStartPosition.CenterScreen
         Text = "ValidarGtin"

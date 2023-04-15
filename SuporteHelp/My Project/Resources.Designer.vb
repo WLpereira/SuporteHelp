@@ -83,6 +83,16 @@ Namespace My.Resources
         '''<summary>
         '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property download_folder_file_icon_219533() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("download_folder_file_icon_219533", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property icons8_broom_with_a_lot_of_dust_30() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-broom-with-a-lot-of-dust-30", resourceCulture)
@@ -256,6 +266,17 @@ Namespace My.Resources
         Friend ReadOnly Property icons8_usuário_30() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-usuário-30", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_228998() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_"& _ 
+                        "228998", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
