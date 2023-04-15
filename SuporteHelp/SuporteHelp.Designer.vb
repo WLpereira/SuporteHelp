@@ -59,6 +59,7 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
+        ValidarGtinToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -125,7 +126,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(96, 21)
@@ -397,6 +398,12 @@ Partial Class SuporteHelp
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
         ' 
+        ' ValidarGtinToolStripMenuItem
+        ' 
+        ValidarGtinToolStripMenuItem.Name = "ValidarGtinToolStripMenuItem"
+        ValidarGtinToolStripMenuItem.Size = New Size(243, 22)
+        ValidarGtinToolStripMenuItem.Text = "Validar Gtin"
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(8F, 17F)
@@ -481,4 +488,5 @@ Partial Class SuporteHelp
     Friend WithEvents GerarRegbtn As Button
     Friend WithEvents GerarRegLbl As Label
     Friend WithEvents SugestaoBtn As Button
+    Friend WithEvents ValidarGtinToolStripMenuItem As ToolStripMenuItem
 End Class

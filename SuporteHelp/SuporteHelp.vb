@@ -411,5 +411,11 @@ Public Class SuporteHelp
         Dim sugestao As New sugestao()
         sugestao.Show()
     End Sub
+
+    Private Sub ValidarGtinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ValidarGtinToolStripMenuItem.Click
+
+        Dim ValidarGtin As New ValidarGtin()
+        ValidarGtin.Show()
+    End Sub
 End Class
 
