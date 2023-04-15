@@ -5,6 +5,12 @@ Imports DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing
 
 Public Class Sugestao
     Private Sub EnviarBtn_Click(sender As Object, e As EventArgs) Handles EnviarBtn.Click
+        ' Verifica se o campo de texto está vazio
+        If String.IsNullOrEmpty(TextoEmailRtb.Text) Then
+            MessageBox.Show("O campo de texto do e-mail está vazio. Preencha antes de enviar.")
+            Return
+        End If
+
         ' Cria um objeto de mensagem de e-mail
         Dim mail As New MailMessage()
 
@@ -28,6 +34,7 @@ Public Class Sugestao
         Try
             smtp.Send(mail)
             MessageBox.Show("E-mail enviado com sucesso!")
+            TextoEmailRtb.Clear()
         Catch ex As Exception
             MessageBox.Show("Erro ao enviar o e-mail: " & ex.Message)
         End Try
