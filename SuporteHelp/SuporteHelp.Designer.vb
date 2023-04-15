@@ -57,6 +57,8 @@ Partial Class SuporteHelp
         ListadeServidorDtg = New DataGridView()
         ConectarBtn = New Button()
         GerarRegbtn = New Button()
+        GerarRegLbl = New Label()
+        SugestãoBtn = New Button()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -288,7 +290,7 @@ Partial Class SuporteHelp
         Button1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Button1.Image = CType(resources.GetObject("Button1.Image"), Image)
         Button1.ImageAlign = ContentAlignment.MiddleRight
-        Button1.Location = New Point(786, 561)
+        Button1.Location = New Point(786, 699)
         Button1.Name = "Button1"
         Button1.Size = New Size(118, 38)
         Button1.TabIndex = 20
@@ -345,7 +347,7 @@ Partial Class SuporteHelp
         ListadeServidorDtg.Name = "ListadeServidorDtg"
         ListadeServidorDtg.RowHeadersWidth = 51
         ListadeServidorDtg.RowTemplate.Height = 25
-        ListadeServidorDtg.Size = New Size(571, 311)
+        ListadeServidorDtg.Size = New Size(571, 434)
         ListadeServidorDtg.TabIndex = 25
         ' 
         ' ConectarBtn
@@ -363,18 +365,44 @@ Partial Class SuporteHelp
         ' 
         ' GerarRegbtn
         ' 
-        GerarRegbtn.Location = New Point(232, 140)
+        GerarRegbtn.Image = My.Resources.Resources.icons8_dsn_30
+        GerarRegbtn.ImageAlign = ContentAlignment.MiddleLeft
+        GerarRegbtn.Location = New Point(69, 649)
         GerarRegbtn.Name = "GerarRegbtn"
-        GerarRegbtn.Size = New Size(75, 23)
+        GerarRegbtn.Size = New Size(118, 37)
         GerarRegbtn.TabIndex = 27
         GerarRegbtn.Text = "Gerar ODBC"
+        GerarRegbtn.TextAlign = ContentAlignment.MiddleRight
         GerarRegbtn.UseVisualStyleBackColor = True
+        ' 
+        ' GerarRegLbl
+        ' 
+        GerarRegLbl.AutoSize = True
+        GerarRegLbl.Location = New Point(45, 615)
+        GerarRegLbl.Name = "GerarRegLbl"
+        GerarRegLbl.Size = New Size(169, 17)
+        GerarRegLbl.TabIndex = 28
+        GerarRegLbl.Text = "Gerar ODBC, Arquivo .Reg"
+        ' 
+        ' SugestãoBtn
+        ' 
+        SugestãoBtn.Image = My.Resources.Resources.icons8_sugestão_30
+        SugestãoBtn.ImageAlign = ContentAlignment.MiddleLeft
+        SugestãoBtn.Location = New Point(378, 699)
+        SugestãoBtn.Name = "SugestãoBtn"
+        SugestãoBtn.Size = New Size(197, 38)
+        SugestãoBtn.TabIndex = 29
+        SugestãoBtn.Text = "Sugestão de Melhoria"
+        SugestãoBtn.TextAlign = ContentAlignment.MiddleRight
+        SugestãoBtn.UseVisualStyleBackColor = True
         ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(8F, 17F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(934, 611)
+        ClientSize = New Size(934, 749)
+        Controls.Add(SugestãoBtn)
+        Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
         Controls.Add(ConectarBtn)
         Controls.Add(ListadeServidorDtg)
@@ -403,6 +431,7 @@ Partial Class SuporteHelp
         Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
+        MaximizeBox = False
         Name = "SuporteHelp"
         Text = "SuporteHelp"
         MenuStrip1.ResumeLayout(False)
@@ -448,4 +477,6 @@ Partial Class SuporteHelp
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents LogoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GerarRegbtn As Button
+    Friend WithEvents GerarRegLbl As Label
+    Friend WithEvents SugestãoBtn As Button
 End Class
