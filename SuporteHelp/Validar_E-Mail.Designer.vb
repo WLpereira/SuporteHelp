@@ -44,10 +44,9 @@ Partial Class Validar_E_Mail
         ValidarSmtpBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ValidarSmtpBtn.Image = CType(resources.GetObject("ValidarSmtpBtn.Image"), Image)
         ValidarSmtpBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ValidarSmtpBtn.Location = New Point(41, 265)
-        ValidarSmtpBtn.Margin = New Padding(3, 4, 3, 4)
+        ValidarSmtpBtn.Location = New Point(36, 199)
         ValidarSmtpBtn.Name = "ValidarSmtpBtn"
-        ValidarSmtpBtn.Size = New Size(168, 51)
+        ValidarSmtpBtn.Size = New Size(147, 38)
         ValidarSmtpBtn.TabIndex = 27
         ValidarSmtpBtn.Text = "Validar SMTP"
         ValidarSmtpBtn.TextAlign = ContentAlignment.MiddleRight
@@ -58,10 +57,9 @@ Partial Class Validar_E_Mail
         ValidarEmailBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ValidarEmailBtn.Image = CType(resources.GetObject("ValidarEmailBtn.Image"), Image)
         ValidarEmailBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ValidarEmailBtn.Location = New Point(216, 265)
-        ValidarEmailBtn.Margin = New Padding(3, 4, 3, 4)
+        ValidarEmailBtn.Location = New Point(189, 199)
         ValidarEmailBtn.Name = "ValidarEmailBtn"
-        ValidarEmailBtn.Size = New Size(226, 51)
+        ValidarEmailBtn.Size = New Size(198, 38)
         ValidarEmailBtn.TabIndex = 28
         ValidarEmailBtn.Text = "Validar SMTP e E-mail"
         ValidarEmailBtn.TextAlign = ContentAlignment.MiddleRight
@@ -72,10 +70,9 @@ Partial Class Validar_E_Mail
         Button2.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Button2.Image = CType(resources.GetObject("Button2.Image"), Image)
         Button2.ImageAlign = ContentAlignment.MiddleLeft
-        Button2.Location = New Point(510, 348)
-        Button2.Margin = New Padding(3, 4, 3, 4)
+        Button2.Location = New Point(446, 261)
         Button2.Name = "Button2"
-        Button2.Size = New Size(135, 51)
+        Button2.Size = New Size(118, 38)
         Button2.TabIndex = 29
         Button2.Text = "Sair"
         Button2.TextAlign = ContentAlignment.MiddleRight
@@ -83,27 +80,25 @@ Partial Class Validar_E_Mail
         ' 
         ' PortaTxb
         ' 
-        PortaTxb.Location = New Point(238, 80)
-        PortaTxb.Margin = New Padding(3, 4, 3, 4)
+        PortaTxb.Location = New Point(208, 60)
         PortaTxb.Name = "PortaTxb"
-        PortaTxb.Size = New Size(103, 27)
+        PortaTxb.Size = New Size(91, 23)
         PortaTxb.TabIndex = 33
         ' 
         ' SmtpTxb
         ' 
-        SmtpTxb.Location = New Point(14, 80)
-        SmtpTxb.Margin = New Padding(3, 4, 3, 4)
+        SmtpTxb.Location = New Point(12, 60)
         SmtpTxb.Name = "SmtpTxb"
-        SmtpTxb.Size = New Size(167, 27)
+        SmtpTxb.Size = New Size(147, 23)
         SmtpTxb.TabIndex = 32
         ' 
         ' SmtpLbl
         ' 
         SmtpLbl.AutoSize = True
         SmtpLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        SmtpLbl.Location = New Point(14, 53)
+        SmtpLbl.Location = New Point(12, 40)
         SmtpLbl.Name = "SmtpLbl"
-        SmtpLbl.Size = New Size(56, 23)
+        SmtpLbl.Size = New Size(43, 17)
         SmtpLbl.TabIndex = 30
         SmtpLbl.Text = "SMTP"
         ' 
@@ -111,9 +106,9 @@ Partial Class Validar_E_Mail
         ' 
         PortaLbl.AutoSize = True
         PortaLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        PortaLbl.Location = New Point(238, 53)
+        PortaLbl.Location = New Point(208, 40)
         PortaLbl.Name = "PortaLbl"
-        PortaLbl.Size = New Size(65, 23)
+        PortaLbl.Size = New Size(50, 17)
         PortaLbl.TabIndex = 34
         PortaLbl.Text = "PORTA"
         ' 
@@ -121,45 +116,42 @@ Partial Class Validar_E_Mail
         ' 
         SenhaEmailLbl.AutoSize = True
         SenhaEmailLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaEmailLbl.Location = New Point(392, 175)
+        SenhaEmailLbl.Location = New Point(343, 131)
         SenhaEmailLbl.Name = "SenhaEmailLbl"
-        SenhaEmailLbl.Size = New Size(67, 23)
+        SenhaEmailLbl.Size = New Size(51, 17)
         SenhaEmailLbl.TabIndex = 38
         SenhaEmailLbl.Text = "SENHA"
         ' 
         ' SenhaEmailTxb
         ' 
-        SenhaEmailTxb.Location = New Point(392, 201)
-        SenhaEmailTxb.Margin = New Padding(3, 4, 3, 4)
+        SenhaEmailTxb.Location = New Point(343, 151)
         SenhaEmailTxb.Name = "SenhaEmailTxb"
-        SenhaEmailTxb.Size = New Size(220, 27)
+        SenhaEmailTxb.Size = New Size(193, 23)
         SenhaEmailTxb.TabIndex = 37
         ' 
         ' EmailTxb
         ' 
-        EmailTxb.Location = New Point(14, 201)
-        EmailTxb.Margin = New Padding(3, 4, 3, 4)
+        EmailTxb.Location = New Point(12, 151)
         EmailTxb.Name = "EmailTxb"
-        EmailTxb.Size = New Size(327, 27)
+        EmailTxb.Size = New Size(287, 23)
         EmailTxb.TabIndex = 36
         ' 
         ' EmailLbl
         ' 
         EmailLbl.AutoSize = True
         EmailLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        EmailLbl.Location = New Point(14, 175)
+        EmailLbl.Location = New Point(12, 131)
         EmailLbl.Name = "EmailLbl"
-        EmailLbl.Size = New Size(68, 23)
+        EmailLbl.Size = New Size(52, 17)
         EmailLbl.TabIndex = 35
         EmailLbl.Text = "E-MAIL"
         ' 
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.icons8_mensagem_64
-        PictureBox1.Location = New Point(510, 60)
-        PictureBox1.Margin = New Padding(3, 4, 3, 4)
+        PictureBox1.Location = New Point(446, 45)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(75, 88)
+        PictureBox1.Size = New Size(66, 66)
         PictureBox1.TabIndex = 39
         PictureBox1.TabStop = False
         ' 
@@ -168,10 +160,9 @@ Partial Class Validar_E_Mail
         LimparBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparBtn.Image = CType(resources.GetObject("LimparBtn.Image"), Image)
         LimparBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparBtn.Location = New Point(449, 265)
-        LimparBtn.Margin = New Padding(3, 4, 3, 4)
+        LimparBtn.Location = New Point(393, 199)
         LimparBtn.Name = "LimparBtn"
-        LimparBtn.Size = New Size(122, 51)
+        LimparBtn.Size = New Size(107, 38)
         LimparBtn.TabIndex = 40
         LimparBtn.Text = "Limpar"
         LimparBtn.TextAlign = ContentAlignment.MiddleRight
@@ -179,9 +170,9 @@ Partial Class Validar_E_Mail
         ' 
         ' Validar_E_Mail
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(667, 415)
+        ClientSize = New Size(584, 311)
         Controls.Add(LimparBtn)
         Controls.Add(PictureBox1)
         Controls.Add(SenhaEmailLbl)
@@ -196,8 +187,9 @@ Partial Class Validar_E_Mail
         Controls.Add(ValidarEmailBtn)
         Controls.Add(ValidarSmtpBtn)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        Margin = New Padding(3, 4, 3, 4)
+        MaximizeBox = False
         Name = "Validar_E_Mail"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Validar_E-mail"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)

@@ -406,5 +406,10 @@ Public Class SuporteHelp
         MessageBox.Show("Arquivo .reg gerado com sucesso na área de trabalho.")
 
     End Sub
+
+    Private Sub SugestaoBtn_Click(sender As Object, e As EventArgs) Handles SugestaoBtn.Click
+        Dim sugestao As New sugestao()
+        sugestao.Show()
+    End Sub
 End Class
 

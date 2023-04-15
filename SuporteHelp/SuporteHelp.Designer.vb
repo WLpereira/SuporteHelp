@@ -58,7 +58,7 @@ Partial Class SuporteHelp
         ConectarBtn = New Button()
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
-        SugestãoBtn = New Button()
+        SugestaoBtn = New Button()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -345,6 +345,7 @@ Partial Class SuporteHelp
         ListadeServidorDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         ListadeServidorDtg.Location = New Point(384, 227)
         ListadeServidorDtg.Name = "ListadeServidorDtg"
+        ListadeServidorDtg.ReadOnly = True
         ListadeServidorDtg.RowHeadersWidth = 51
         ListadeServidorDtg.RowTemplate.Height = 25
         ListadeServidorDtg.Size = New Size(538, 334)
@@ -384,24 +385,24 @@ Partial Class SuporteHelp
         GerarRegLbl.TabIndex = 28
         GerarRegLbl.Text = "Gerar ODBC, Arquivo .Reg"
         ' 
-        ' SugestãoBtn
+        ' SugestaoBtn
         ' 
-        SugestãoBtn.Image = My.Resources.Resources.icons8_sugestão_30
-        SugestãoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SugestãoBtn.Location = New Point(396, 567)
-        SugestãoBtn.Name = "SugestãoBtn"
-        SugestãoBtn.Size = New Size(197, 38)
-        SugestãoBtn.TabIndex = 29
-        SugestãoBtn.Text = "Sugestão de Melhoria"
-        SugestãoBtn.TextAlign = ContentAlignment.MiddleRight
-        SugestãoBtn.UseVisualStyleBackColor = True
+        SugestaoBtn.Image = My.Resources.Resources.icons8_sugestão_30
+        SugestaoBtn.ImageAlign = ContentAlignment.MiddleLeft
+        SugestaoBtn.Location = New Point(396, 567)
+        SugestaoBtn.Name = "SugestaoBtn"
+        SugestaoBtn.Size = New Size(197, 38)
+        SugestaoBtn.TabIndex = 29
+        SugestaoBtn.Text = "Sugestão de Melhoria"
+        SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
+        SugestaoBtn.UseVisualStyleBackColor = True
         ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(8F, 17F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(934, 611)
-        Controls.Add(SugestãoBtn)
+        Controls.Add(SugestaoBtn)
         Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
         Controls.Add(ConectarBtn)
@@ -479,5 +480,5 @@ Partial Class SuporteHelp
     Friend WithEvents LogoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GerarRegbtn As Button
     Friend WithEvents GerarRegLbl As Label
-    Friend WithEvents SugestãoBtn As Button
+    Friend WithEvents SugestaoBtn As Button
 End Class
