@@ -23,23 +23,25 @@ Partial Class ValidarGtin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(ValidarGtin))
-        PictureBox1 = New PictureBox()
+        CodigoImg = New PictureBox()
         SairGtinbtn = New Button()
         LimparGtinBtn = New Button()
         ValidarGtinTxb = New TextBox()
         ValidarBtn = New Button()
         Label1 = New Label()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(CodigoImg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' PictureBox1
+        ' CodigoImg
         ' 
-        PictureBox1.Image = My.Resources.Resources.bar_code_22177
-        PictureBox1.Location = New Point(248, 12)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(258, 246)
-        PictureBox1.TabIndex = 1
-        PictureBox1.TabStop = False
+        CodigoImg.BorderStyle = BorderStyle.FixedSingle
+        CodigoImg.Cursor = Cursors.Hand
+        CodigoImg.Image = My.Resources.Resources.bar_code_22177
+        CodigoImg.Location = New Point(248, 12)
+        CodigoImg.Name = "CodigoImg"
+        CodigoImg.Size = New Size(243, 246)
+        CodigoImg.TabIndex = 1
+        CodigoImg.TabStop = False
         ' 
         ' SairGtinbtn
         ' 
@@ -103,23 +105,23 @@ Partial Class ValidarGtin
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(484, 261)
+        ClientSize = New Size(494, 261)
         Controls.Add(Label1)
         Controls.Add(ValidarBtn)
         Controls.Add(ValidarGtinTxb)
         Controls.Add(LimparGtinBtn)
         Controls.Add(SairGtinbtn)
-        Controls.Add(PictureBox1)
+        Controls.Add(CodigoImg)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        MaximizeBox = False
         Name = "ValidarGtin"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "ValidarGtin"
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(CodigoImg, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents CodigoImg As PictureBox
     Friend WithEvents SairGtinbtn As Button
     Friend WithEvents LimparGtinBtn As Button
     Friend WithEvents ValidarGtinTxb As TextBox

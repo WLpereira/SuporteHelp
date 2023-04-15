@@ -48,4 +48,15 @@
             ValidarGtinTxb.Clear()
         End If
     End Sub
+
+    Private Sub CodigoImg_Click(sender As Object, e As EventArgs) Handles CodigoImg.Click
+        MessageBox.Show("O GTIN (Global Trade Item Number) é um código numérico de barras utilizado para identificar produtos e embalagens
+ em transações comerciais. Para ser considerado válido, o GTIN deve seguir um padrão específico
+ de numeração e ter um dígito verificador válido, que é calculado a partir dos outros dígitos do código.
+
+O GTIN pode ter 8, 12, 13 ou 14 dígitos, dependendo do tipo de código utilizado. Além disso, cada dígito do GTIN 
+possui um peso que é utilizado no cálculo do dígito verificador. Para validar um GTIN, é necessário calcular
+ o dígito verificador a partir dos dígitos do código, somando os produtos dos dígitos pelo seu peso e verificando
+ se o resultado é um múltiplo de 10. Se o dígito verificador for igual ao dígito do GTIN, o código é considerado válido.")
+    End Sub
 End Class
