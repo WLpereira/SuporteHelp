@@ -4,6 +4,7 @@ Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
 
 Public Class SuporteHelp
+
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorTxb.Text

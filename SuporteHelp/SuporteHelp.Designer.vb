@@ -200,7 +200,7 @@ Partial Class SuporteHelp
         ' BancoCloudLbl
         ' 
         BancoCloudLbl.AutoSize = True
-        BancoCloudLbl.Location = New Point(20, 208)
+        BancoCloudLbl.Location = New Point(41, 221)
         BancoCloudLbl.Name = "BancoCloudLbl"
         BancoCloudLbl.Size = New Size(229, 17)
         BancoCloudLbl.TabIndex = 12
@@ -209,7 +209,7 @@ Partial Class SuporteHelp
         ' UsuarioSenhaLbl
         ' 
         UsuarioSenhaLbl.AutoSize = True
-        UsuarioSenhaLbl.Location = New Point(59, 306)
+        UsuarioSenhaLbl.Location = New Point(77, 295)
         UsuarioSenhaLbl.Name = "UsuarioSenhaLbl"
         UsuarioSenhaLbl.Size = New Size(146, 17)
         UsuarioSenhaLbl.TabIndex = 13
@@ -218,7 +218,7 @@ Partial Class SuporteHelp
         ' HomologacaoLbl
         ' 
         HomologacaoLbl.AutoSize = True
-        HomologacaoLbl.Location = New Point(47, 404)
+        HomologacaoLbl.Location = New Point(68, 362)
         HomologacaoLbl.Name = "HomologacaoLbl"
         HomologacaoLbl.Size = New Size(167, 17)
         HomologacaoLbl.TabIndex = 14
@@ -227,7 +227,7 @@ Partial Class SuporteHelp
         ' MOduloCheckLbl
         ' 
         MOduloCheckLbl.AutoSize = True
-        MOduloCheckLbl.Location = New Point(20, 508)
+        MOduloCheckLbl.Location = New Point(35, 429)
         MOduloCheckLbl.Name = "MOduloCheckLbl"
         MOduloCheckLbl.Size = New Size(235, 17)
         MOduloCheckLbl.TabIndex = 15
@@ -238,7 +238,7 @@ Partial Class SuporteHelp
         CloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         CloudBtn.Image = My.Resources.Resources.icons8_restauração_de_backup_em_nuvem_30
         CloudBtn.ImageAlign = ContentAlignment.MiddleLeft
-        CloudBtn.Location = New Point(69, 237)
+        CloudBtn.Location = New Point(90, 241)
         CloudBtn.Name = "CloudBtn"
         CloudBtn.Size = New Size(118, 38)
         CloudBtn.TabIndex = 16
@@ -251,7 +251,7 @@ Partial Class SuporteHelp
         UsuarioSenhaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         UsuarioSenhaBtn.Image = My.Resources.Resources.icons8_usuário_30
         UsuarioSenhaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        UsuarioSenhaBtn.Location = New Point(69, 344)
+        UsuarioSenhaBtn.Location = New Point(90, 315)
         UsuarioSenhaBtn.Name = "UsuarioSenhaBtn"
         UsuarioSenhaBtn.Size = New Size(118, 38)
         UsuarioSenhaBtn.TabIndex = 17
@@ -264,7 +264,7 @@ Partial Class SuporteHelp
         HomologacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         HomologacaoBtn.Image = My.Resources.Resources.icons8_nota_fiscal_electrónica_30
         HomologacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        HomologacaoBtn.Location = New Point(69, 438)
+        HomologacaoBtn.Location = New Point(90, 382)
         HomologacaoBtn.Name = "HomologacaoBtn"
         HomologacaoBtn.Size = New Size(118, 38)
         HomologacaoBtn.TabIndex = 18
@@ -277,7 +277,7 @@ Partial Class SuporteHelp
         ModuloCheckBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ModuloCheckBtn.Image = My.Resources.Resources.icons8_delete_key_30
         ModuloCheckBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ModuloCheckBtn.Location = New Point(69, 543)
+        ModuloCheckBtn.Location = New Point(90, 449)
         ModuloCheckBtn.Name = "ModuloCheckBtn"
         ModuloCheckBtn.Size = New Size(118, 38)
         ModuloCheckBtn.TabIndex = 19
@@ -290,7 +290,7 @@ Partial Class SuporteHelp
         Button1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Button1.Image = CType(resources.GetObject("Button1.Image"), Image)
         Button1.ImageAlign = ContentAlignment.MiddleRight
-        Button1.Location = New Point(786, 699)
+        Button1.Location = New Point(804, 567)
         Button1.Name = "Button1"
         Button1.Size = New Size(118, 38)
         Button1.TabIndex = 20
@@ -343,11 +343,11 @@ Partial Class SuporteHelp
         ' ListadeServidorDtg
         ' 
         ListadeServidorDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeServidorDtg.Location = New Point(363, 227)
+        ListadeServidorDtg.Location = New Point(384, 227)
         ListadeServidorDtg.Name = "ListadeServidorDtg"
         ListadeServidorDtg.RowHeadersWidth = 51
         ListadeServidorDtg.RowTemplate.Height = 25
-        ListadeServidorDtg.Size = New Size(571, 434)
+        ListadeServidorDtg.Size = New Size(538, 334)
         ListadeServidorDtg.TabIndex = 25
         ' 
         ' ConectarBtn
@@ -367,7 +367,7 @@ Partial Class SuporteHelp
         ' 
         GerarRegbtn.Image = My.Resources.Resources.icons8_dsn_30
         GerarRegbtn.ImageAlign = ContentAlignment.MiddleLeft
-        GerarRegbtn.Location = New Point(69, 649)
+        GerarRegbtn.Location = New Point(90, 524)
         GerarRegbtn.Name = "GerarRegbtn"
         GerarRegbtn.Size = New Size(118, 37)
         GerarRegbtn.TabIndex = 27
@@ -378,7 +378,7 @@ Partial Class SuporteHelp
         ' GerarRegLbl
         ' 
         GerarRegLbl.AutoSize = True
-        GerarRegLbl.Location = New Point(45, 615)
+        GerarRegLbl.Location = New Point(66, 504)
         GerarRegLbl.Name = "GerarRegLbl"
         GerarRegLbl.Size = New Size(169, 17)
         GerarRegLbl.TabIndex = 28
@@ -388,7 +388,7 @@ Partial Class SuporteHelp
         ' 
         SugestãoBtn.Image = My.Resources.Resources.icons8_sugestão_30
         SugestãoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SugestãoBtn.Location = New Point(378, 699)
+        SugestãoBtn.Location = New Point(396, 567)
         SugestãoBtn.Name = "SugestãoBtn"
         SugestãoBtn.Size = New Size(197, 38)
         SugestãoBtn.TabIndex = 29
@@ -400,7 +400,7 @@ Partial Class SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(8F, 17F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(934, 749)
+        ClientSize = New Size(934, 611)
         Controls.Add(SugestãoBtn)
         Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
@@ -433,6 +433,7 @@ Partial Class SuporteHelp
         MainMenuStrip = MenuStrip1
         MaximizeBox = False
         Name = "SuporteHelp"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "SuporteHelp"
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
