@@ -367,5 +367,43 @@ Public Class SuporteHelp
             MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
         End If
     End Sub
+
+    Private Sub GerarRegbtn_Click(sender As Object, e As EventArgs) Handles GerarRegbtn.Click
+        ' Verifica se foi selecionada uma célula na coluna "Nome"
+        If ListadeServidorDtg.SelectedCells.Count = 0 OrElse ListadeServidorDtg.SelectedCells(0).OwningColumn.Name <> "Nome" Then
+            MessageBox.Show("Selecione um banco na tabela antes de prosseguir.")
+            Return
+        End If
+
+        ' Obtém o nome do banco selecionado na ListadeServidorDtg
+        Dim nomeBanco As String = "SYM_" & ListadeServidorDtg.SelectedCells(0).Value.ToString()
+
+        ' Obtém o conteúdo do campo ServidorTxb
+        Dim servidor As String = ServidorTxb.Text
+
+        ' Define o conteúdo do arquivo .reg a ser gerado
+        Dim regContent As String = "Windows Registry Editor Version 5.00" & vbCrLf & vbCrLf &
+        "[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI]" & vbCrLf & vbCrLf &
+        "[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\ODBC Data Sources]" & vbCrLf &
+        """" & nomeBanco & """=" & """SQL Server""" & vbCrLf & vbCrLf &
+        "[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\ODBC File DSN]" & vbCrLf &
+        """DefaultDSNDir""=""C:\\Program Files\\Common Files\\ODBC\\Data Sources""" & vbCrLf & vbCrLf &
+        "[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\" & nomeBanco & "]" & vbCrLf &
+        """Driver""=""C:\\WINDOWS\\System32\\SQLSRV32.dll""" & vbCrLf &
+        """Server""=""" & servidor & """" & vbCrLf &
+        """Database""=""" & ListadeServidorDtg.SelectedCells(0).Value.ToString() & """" & vbCrLf &
+        """LastUser""=""sa"""
+
+        ' Define o caminho do arquivo .reg a ser salvo na área de trabalho
+        Dim desktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+        Dim regFilePath As String = desktopPath & "\" & nomeBanco & ".reg"
+
+        ' Salva o conteúdo do arquivo .reg no caminho definido
+        System.IO.File.WriteAllText(regFilePath, regContent)
+
+        ' Exibe mensagem de sucesso e limpa os campos
+        MessageBox.Show("Arquivo .reg gerado com sucesso na área de trabalho.")
+
+    End Sub
 End Class
 
