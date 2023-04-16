@@ -358,6 +358,7 @@ Partial Class Tabela_Coluna
         Controls.Add(PesquisatabelaTxb)
         Controls.Add(PesquisarTabelaColunaLbl)
         Controls.Add(SairTabelaColuna)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "Tabela_Coluna"
         StartPosition = FormStartPosition.CenterScreen
