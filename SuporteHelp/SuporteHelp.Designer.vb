@@ -149,6 +149,7 @@ Partial Class SuporteHelp
         ' 
         ' ProcurarTabelaOuColunaNoBDToolStripMenuItem
         ' 
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Image = My.Resources.Resources.icons8_servidor_64
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Name = "ProcurarTabelaOuColunaNoBDToolStripMenuItem"
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(285, 26)
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Text = "Procurar Tabela ou Coluna no BD"
