@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports DocumentFormat.OpenXml.Office2010.Excel
 
 Public Class Tabela_Coluna
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
@@ -254,5 +255,42 @@ Public Class Tabela_Coluna
 
         ' Chama o evento "Click" do botão "conectar"
         MostrarColunasBtn.PerformClick()
+    End Sub
+
+    Private Sub PesquisartodasBtn_Click(sender As Object, e As EventArgs) Handles PesquisartodasBtn.Click
+        ' Verifica se o filtro não é vazio
+        If Not String.IsNullOrEmpty(PesquisartodasTxb.Text) Then
+            Try
+                ' Cria uma conexão com o banco de dados selecionado
+                Using conexaoBD As New SqlConnection($"Server={ServidorTabelaTxb.Text};User Id={NomeConectarTabelaTxb.Text};Password={SenhaTabelaTxb.Text};Database={SelecionarBancoBbx.SelectedItem.ToString()}")
+                    ' Abre a conexão com o banco de dados
+                    conexaoBD.Open()
+
+                    ' Executa o comando SQL com o filtro de busca
+                    Dim comando As New SqlCommand($"SELECT T.name AS Tabela, C.name AS Coluna FROM sys.sysobjects AS T (NOLOCK) INNER JOIN sys.all_columns AS C (NOLOCK) ON T.id = C.object_id AND T.XTYPE = 'U' WHERE C.NAME LIKE '%{PesquisartodasTxb.Text}%' ORDER BY T.name ASC", conexaoBD)
+                    Dim leitor As SqlDataReader = comando.ExecuteReader()
+
+                    ' Cria uma DataTable para armazenar os resultados da consulta
+                    Dim dt As New DataTable()
+                    dt.Load(leitor)
+
+                    ' Define as colunas apropriadas no DataGridView ResultadoDgv
+                    ListarTodasDgv.AutoGenerateColumns = False
+                    ListarTodasDgv.Columns.Add("Tabela", "Tabela")
+                    ListarTodasDgv.Columns("Tabela").DataPropertyName = "Tabela"
+                    ListarTodasDgv.Columns.Add("Coluna", "Coluna")
+                    ListarTodasDgv.Columns("Coluna").DataPropertyName = "Coluna"
+
+                    ' Popula o DataGridView com os resultados da consulta
+                    ListarTodasDgv.DataSource = dt
+
+                    ' Fecha o leitor de dados
+                    leitor.Close()
+                End Using
+            Catch ex As Exception
+                ' Exibe uma mensagem de erro caso ocorra uma exceção
+                MessageBox.Show("Erro ao executar comando: " & ex.Message)
+            End Try
+        End If
     End Sub
 End Class

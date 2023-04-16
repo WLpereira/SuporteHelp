@@ -44,8 +44,14 @@ Partial Class Tabela_Coluna
         ProcurarColunaTxb = New TextBox()
         ProcurarColunaLbl = New Label()
         MostrarColunasBtn = New Button()
+        ListarTodasDgv = New DataGridView()
+        LimparTodasBtn = New Button()
+        PesquisartodasBtn = New Button()
+        PesquisartodasTxb = New TextBox()
+        PesquisarColunaNobancoLbl = New Label()
         CType(ListadeTabelaDtg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ListarColunaDvg, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ListarTodasDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' SairTabelaColuna
@@ -267,11 +273,70 @@ Partial Class Tabela_Coluna
         MostrarColunasBtn.TextAlign = ContentAlignment.TopCenter
         MostrarColunasBtn.UseVisualStyleBackColor = True
         ' 
+        ' ListarTodasDgv
+        ' 
+        ListarTodasDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ListarTodasDgv.Location = New Point(666, 132)
+        ListarTodasDgv.Name = "ListarTodasDgv"
+        ListarTodasDgv.ReadOnly = True
+        ListarTodasDgv.RowHeadersWidth = 51
+        ListarTodasDgv.RowTemplate.Height = 25
+        ListarTodasDgv.Size = New Size(245, 316)
+        ListarTodasDgv.TabIndex = 49
+        ' 
+        ' LimparTodasBtn
+        ' 
+        LimparTodasBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LimparTodasBtn.Image = CType(resources.GetObject("LimparTodasBtn.Image"), Image)
+        LimparTodasBtn.ImageAlign = ContentAlignment.MiddleLeft
+        LimparTodasBtn.Location = New Point(810, 97)
+        LimparTodasBtn.Name = "LimparTodasBtn"
+        LimparTodasBtn.Size = New Size(101, 34)
+        LimparTodasBtn.TabIndex = 48
+        LimparTodasBtn.Text = "Limpar"
+        LimparTodasBtn.TextAlign = ContentAlignment.MiddleRight
+        LimparTodasBtn.UseVisualStyleBackColor = True
+        ' 
+        ' PesquisartodasBtn
+        ' 
+        PesquisartodasBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        PesquisartodasBtn.Image = CType(resources.GetObject("PesquisartodasBtn.Image"), Image)
+        PesquisartodasBtn.ImageAlign = ContentAlignment.MiddleLeft
+        PesquisartodasBtn.Location = New Point(665, 94)
+        PesquisartodasBtn.Name = "PesquisartodasBtn"
+        PesquisartodasBtn.Size = New Size(102, 34)
+        PesquisartodasBtn.TabIndex = 47
+        PesquisartodasBtn.Text = "Pesquisar"
+        PesquisartodasBtn.TextAlign = ContentAlignment.MiddleRight
+        PesquisartodasBtn.UseVisualStyleBackColor = True
+        ' 
+        ' PesquisartodasTxb
+        ' 
+        PesquisartodasTxb.Location = New Point(666, 68)
+        PesquisartodasTxb.Name = "PesquisartodasTxb"
+        PesquisartodasTxb.Size = New Size(245, 23)
+        PesquisartodasTxb.TabIndex = 46
+        ' 
+        ' PesquisarColunaNobancoLbl
+        ' 
+        PesquisarColunaNobancoLbl.AutoSize = True
+        PesquisarColunaNobancoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        PesquisarColunaNobancoLbl.Location = New Point(681, 49)
+        PesquisarColunaNobancoLbl.Name = "PesquisarColunaNobancoLbl"
+        PesquisarColunaNobancoLbl.Size = New Size(214, 15)
+        PesquisarColunaNobancoLbl.TabIndex = 50
+        PesquisarColunaNobancoLbl.Text = "Pesquisar coluna em TODAS TABELAS"
+        ' 
         ' Tabela_Coluna
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(934, 561)
+        Controls.Add(PesquisarColunaNobancoLbl)
+        Controls.Add(ListarTodasDgv)
+        Controls.Add(LimparTodasBtn)
+        Controls.Add(PesquisartodasBtn)
+        Controls.Add(PesquisartodasTxb)
         Controls.Add(MostrarColunasBtn)
         Controls.Add(ProcurarColunaLbl)
         Controls.Add(ListarColunaDvg)
@@ -299,6 +364,7 @@ Partial Class Tabela_Coluna
         Text = "Tabela_Coluna"
         CType(ListadeTabelaDtg, ComponentModel.ISupportInitialize).EndInit()
         CType(ListarColunaDvg, ComponentModel.ISupportInitialize).EndInit()
+        CType(ListarTodasDgv, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -324,4 +390,9 @@ Partial Class Tabela_Coluna
     Friend WithEvents ProcurarColunaTxb As TextBox
     Friend WithEvents ProcurarColunaLbl As Label
     Friend WithEvents MostrarColunasBtn As Button
+    Friend WithEvents ListarTodasDgv As DataGridView
+    Friend WithEvents LimparTodasBtn As Button
+    Friend WithEvents PesquisartodasBtn As Button
+    Friend WithEvents PesquisartodasTxb As TextBox
+    Friend WithEvents PesquisarColunaNobancoLbl As Label
 End Class
