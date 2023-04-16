@@ -193,7 +193,7 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub PesquisarColunaBtn_Click(sender As Object, e As EventArgs) Handles PesquisarColunaBtn.Click
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Then
+        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Or ProcurarColunaTxb.Text.Trim() = "" Then
             MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
             Return
         End If
@@ -235,7 +235,7 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub LimparColunaBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaBtn.Click
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Then
+        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Or ProcurarColunaTxb.Text.Trim() = "" Then
             MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
             Return
         End If
@@ -258,6 +258,7 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub PesquisartodasBtn_Click(sender As Object, e As EventArgs) Handles PesquisartodasBtn.Click
+
         ' Verifica se o filtro não é vazio
         If Not String.IsNullOrEmpty(PesquisartodasTxb.Text) Then
             Try
@@ -292,5 +293,16 @@ Public Class Tabela_Coluna
                 MessageBox.Show("Erro ao executar comando: " & ex.Message)
             End Try
         End If
+    End Sub
+
+    Private Sub LimparTodasBtn_Click(sender As Object, e As EventArgs) Handles LimparTodasBtn.Click
+        ListarTodasDgv.DataSource = Nothing
+        ListarTodasDgv.Columns.Clear()
+        PesquisartodasTxb.Clear()
+
+    End Sub
+
+    Private Sub Tabela_Coluna_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
