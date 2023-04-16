@@ -418,5 +418,28 @@ Public Class SuporteHelp
         ValidarGtin.Show()
     End Sub
 
+    Private Sub ProcurarTabelaOuColunaNoBDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProcurarTabelaOuColunaNoBDToolStripMenuItem.Click
+        Dim Tabela_Coluna As New Tabela_Coluna()
+        Tabela_Coluna.Show()
+    End Sub
+
+    Private Sub SenhaTxb_TextChanged(sender As Object, e As EventArgs) Handles SenhaTxb.TextChanged
+
+    End Sub
+
+    Private Sub NomeConectarTxb_TextChanged(sender As Object, e As EventArgs) Handles NomeConectarTxb.TextChanged
+    End Sub
+
+    Private Sub ServidorTxb_TextChanged(sender As Object, e As EventArgs) Handles ServidorTxb.TextChanged
+    End Sub
+
+    Private Sub SenhaConectarLbl_Click(sender As Object, e As EventArgs) Handles SenhaConectarLbl.Click
+    End Sub
+
+    Private Sub UsuarioConectarLbl_Click(sender As Object, e As EventArgs) Handles UsuarioConectarLbl.Click
+    End Sub
+
+    Private Sub ServidorConectarLbl_Click(sender As Object, e As EventArgs) Handles ServidorConectarLbl.Click
+    End Sub
 End Class
 

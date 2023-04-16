@@ -33,6 +33,7 @@ Partial Class SuporteHelp
         FerramentasToolStripMenuItem = New ToolStripMenuItem()
         ValidarEmailToolStripMenuItem = New ToolStripMenuItem()
         ValidarGtinToolStripMenuItem = New ToolStripMenuItem()
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem = New ToolStripMenuItem()
         CriptoToolStripMenuItem = New ToolStripMenuItem()
         DDClientsToolStripMenuItem = New ToolStripMenuItem()
         CloudCreateUserToolStripMenuItem = New ToolStripMenuItem()
@@ -126,7 +127,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(96, 21)
@@ -136,63 +137,69 @@ Partial Class SuporteHelp
         ' 
         ValidarEmailToolStripMenuItem.Image = My.Resources.Resources.icons8_mensagem_64
         ValidarEmailToolStripMenuItem.Name = "ValidarEmailToolStripMenuItem"
-        ValidarEmailToolStripMenuItem.Size = New Size(243, 22)
+        ValidarEmailToolStripMenuItem.Size = New Size(285, 26)
         ValidarEmailToolStripMenuItem.Text = "Validar E-mail"
         ' 
         ' ValidarGtinToolStripMenuItem
         ' 
         ValidarGtinToolStripMenuItem.Image = My.Resources.Resources._3702397_barcode_code_scan_scanner_108737
         ValidarGtinToolStripMenuItem.Name = "ValidarGtinToolStripMenuItem"
-        ValidarGtinToolStripMenuItem.Size = New Size(243, 22)
+        ValidarGtinToolStripMenuItem.Size = New Size(285, 26)
         ValidarGtinToolStripMenuItem.Text = "Validar Gtin"
+        ' 
+        ' ProcurarTabelaOuColunaNoBDToolStripMenuItem
+        ' 
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Name = "ProcurarTabelaOuColunaNoBDToolStripMenuItem"
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(285, 26)
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Text = "Procurar Tabela ou Coluna no BD"
         ' 
         ' CriptoToolStripMenuItem
         ' 
         CriptoToolStripMenuItem.Image = My.Resources.Resources.icons8_senha_30
         CriptoToolStripMenuItem.Name = "CriptoToolStripMenuItem"
-        CriptoToolStripMenuItem.Size = New Size(243, 22)
+        CriptoToolStripMenuItem.Size = New Size(285, 26)
         CriptoToolStripMenuItem.Text = "Cripto"
         ' 
         ' DDClientsToolStripMenuItem
         ' 
         DDClientsToolStripMenuItem.Image = My.Resources.Resources.icons8_usuário_30
         DDClientsToolStripMenuItem.Name = "DDClientsToolStripMenuItem"
-        DDClientsToolStripMenuItem.Size = New Size(243, 22)
+        DDClientsToolStripMenuItem.Size = New Size(285, 26)
         DDClientsToolStripMenuItem.Text = "DDClients"
         ' 
         ' CloudCreateUserToolStripMenuItem
         ' 
         CloudCreateUserToolStripMenuItem.Image = My.Resources.Resources.icons8_nuvem_60
         CloudCreateUserToolStripMenuItem.Name = "CloudCreateUserToolStripMenuItem"
-        CloudCreateUserToolStripMenuItem.Size = New Size(243, 22)
+        CloudCreateUserToolStripMenuItem.Size = New Size(285, 26)
         CloudCreateUserToolStripMenuItem.Text = "CloudCreateUser"
         ' 
         ' LogoToolStripMenuItem
         ' 
         LogoToolStripMenuItem.Image = My.Resources.Resources.icons8_saída_de_emergência_30
         LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
-        LogoToolStripMenuItem.Size = New Size(243, 22)
+        LogoToolStripMenuItem.Size = New Size(285, 26)
         LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
         ' 
         ' PainelAvaliacoesToolStripMenuItem
         ' 
         PainelAvaliacoesToolStripMenuItem.Image = My.Resources.Resources.icons8_sugestão_30
         PainelAvaliacoesToolStripMenuItem.Name = "PainelAvaliacoesToolStripMenuItem"
-        PainelAvaliacoesToolStripMenuItem.Size = New Size(243, 22)
+        PainelAvaliacoesToolStripMenuItem.Size = New Size(285, 26)
         PainelAvaliacoesToolStripMenuItem.Text = "PainelAvaliacoes"
         ' 
         ' HelpDeskToolStripMenuItem
         ' 
         HelpDeskToolStripMenuItem.Image = My.Resources.Resources.person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_228998
         HelpDeskToolStripMenuItem.Name = "HelpDeskToolStripMenuItem"
-        HelpDeskToolStripMenuItem.Size = New Size(243, 22)
+        HelpDeskToolStripMenuItem.Size = New Size(285, 26)
         HelpDeskToolStripMenuItem.Text = "HelpDesk"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Image = My.Resources.Resources.download_folder_file_icon_219533
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(243, 22)
+        ToolStripMenuItem1.Size = New Size(285, 26)
         ToolStripMenuItem1.Text = "Pasta de Packs "
         ' 
         ' PictureBox2
@@ -498,4 +505,5 @@ Partial Class SuporteHelp
     Friend WithEvents GerarRegLbl As Label
     Friend WithEvents SugestaoBtn As Button
     Friend WithEvents ValidarGtinToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
 End Class
