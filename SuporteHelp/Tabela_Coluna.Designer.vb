@@ -59,7 +59,7 @@ Partial Class Tabela_Coluna
         SairTabelaColuna.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SairTabelaColuna.Image = CType(resources.GetObject("SairTabelaColuna.Image"), Image)
         SairTabelaColuna.ImageAlign = ContentAlignment.MiddleRight
-        SairTabelaColuna.Location = New Point(804, 511)
+        SairTabelaColuna.Location = New Point(804, 514)
         SairTabelaColuna.Name = "SairTabelaColuna"
         SairTabelaColuna.Size = New Size(118, 38)
         SairTabelaColuna.TabIndex = 21
@@ -70,12 +70,12 @@ Partial Class Tabela_Coluna
         ' ListadeTabelaDtg
         ' 
         ListadeTabelaDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeTabelaDtg.Location = New Point(12, 132)
+        ListadeTabelaDtg.Location = New Point(23, 166)
         ListadeTabelaDtg.Name = "ListadeTabelaDtg"
         ListadeTabelaDtg.ReadOnly = True
         ListadeTabelaDtg.RowHeadersWidth = 51
         ListadeTabelaDtg.RowTemplate.Height = 25
-        ListadeTabelaDtg.Size = New Size(245, 316)
+        ListadeTabelaDtg.Size = New Size(245, 339)
         ListadeTabelaDtg.TabIndex = 30
         ' 
         ' LimparTabelaBtn
@@ -83,7 +83,7 @@ Partial Class Tabela_Coluna
         LimparTabelaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparTabelaBtn.Image = CType(resources.GetObject("LimparTabelaBtn.Image"), Image)
         LimparTabelaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTabelaBtn.Location = New Point(156, 97)
+        LimparTabelaBtn.Location = New Point(167, 126)
         LimparTabelaBtn.Name = "LimparTabelaBtn"
         LimparTabelaBtn.Size = New Size(101, 34)
         LimparTabelaBtn.TabIndex = 29
@@ -96,7 +96,7 @@ Partial Class Tabela_Coluna
         PesquisarTabelaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarTabelaBtn.Image = CType(resources.GetObject("PesquisarTabelaBtn.Image"), Image)
         PesquisarTabelaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarTabelaBtn.Location = New Point(11, 94)
+        PesquisarTabelaBtn.Location = New Point(22, 123)
         PesquisarTabelaBtn.Name = "PesquisarTabelaBtn"
         PesquisarTabelaBtn.Size = New Size(102, 34)
         PesquisarTabelaBtn.TabIndex = 28
@@ -106,7 +106,7 @@ Partial Class Tabela_Coluna
         ' 
         ' PesquisatabelaTxb
         ' 
-        PesquisatabelaTxb.Location = New Point(12, 68)
+        PesquisatabelaTxb.Location = New Point(23, 97)
         PesquisatabelaTxb.Name = "PesquisatabelaTxb"
         PesquisatabelaTxb.Size = New Size(245, 23)
         PesquisatabelaTxb.TabIndex = 27
@@ -115,7 +115,7 @@ Partial Class Tabela_Coluna
         ' 
         PesquisarTabelaColunaLbl.AutoSize = True
         PesquisarTabelaColunaLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabelaColunaLbl.Location = New Point(85, 50)
+        PesquisarTabelaColunaLbl.Location = New Point(96, 79)
         PesquisarTabelaColunaLbl.Name = "PesquisarTabelaColunaLbl"
         PesquisarTabelaColunaLbl.Size = New Size(97, 15)
         PesquisarTabelaColunaLbl.TabIndex = 26
@@ -209,12 +209,12 @@ Partial Class Tabela_Coluna
         ' ListarColunaDvg
         ' 
         ListarColunaDvg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListarColunaDvg.Location = New Point(385, 132)
+        ListarColunaDvg.Location = New Point(396, 166)
         ListarColunaDvg.Name = "ListarColunaDvg"
         ListarColunaDvg.ReadOnly = True
         ListarColunaDvg.RowHeadersWidth = 51
         ListarColunaDvg.RowTemplate.Height = 25
-        ListarColunaDvg.Size = New Size(245, 316)
+        ListarColunaDvg.Size = New Size(245, 339)
         ListarColunaDvg.TabIndex = 43
         ' 
         ' LimparColunaBtn
@@ -222,7 +222,7 @@ Partial Class Tabela_Coluna
         LimparColunaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparColunaBtn.Image = CType(resources.GetObject("LimparColunaBtn.Image"), Image)
         LimparColunaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparColunaBtn.Location = New Point(529, 97)
+        LimparColunaBtn.Location = New Point(540, 126)
         LimparColunaBtn.Name = "LimparColunaBtn"
         LimparColunaBtn.Size = New Size(101, 34)
         LimparColunaBtn.TabIndex = 42
@@ -235,7 +235,7 @@ Partial Class Tabela_Coluna
         PesquisarColunaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarColunaBtn.Image = CType(resources.GetObject("PesquisarColunaBtn.Image"), Image)
         PesquisarColunaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarColunaBtn.Location = New Point(384, 94)
+        PesquisarColunaBtn.Location = New Point(395, 123)
         PesquisarColunaBtn.Name = "PesquisarColunaBtn"
         PesquisarColunaBtn.Size = New Size(102, 34)
         PesquisarColunaBtn.TabIndex = 41
@@ -245,7 +245,7 @@ Partial Class Tabela_Coluna
         ' 
         ' ProcurarColunaTxb
         ' 
-        ProcurarColunaTxb.Location = New Point(385, 68)
+        ProcurarColunaTxb.Location = New Point(396, 97)
         ProcurarColunaTxb.Name = "ProcurarColunaTxb"
         ProcurarColunaTxb.Size = New Size(245, 23)
         ProcurarColunaTxb.TabIndex = 40
@@ -254,7 +254,7 @@ Partial Class Tabela_Coluna
         ' 
         ProcurarColunaLbl.AutoSize = True
         ProcurarColunaLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        ProcurarColunaLbl.Location = New Point(461, 50)
+        ProcurarColunaLbl.Location = New Point(472, 79)
         ProcurarColunaLbl.Name = "ProcurarColunaLbl"
         ProcurarColunaLbl.Size = New Size(99, 15)
         ProcurarColunaLbl.TabIndex = 44
@@ -265,7 +265,7 @@ Partial Class Tabela_Coluna
         MostrarColunasBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         MostrarColunasBtn.Image = CType(resources.GetObject("MostrarColunasBtn.Image"), Image)
         MostrarColunasBtn.ImageAlign = ContentAlignment.BottomCenter
-        MostrarColunasBtn.Location = New Point(260, 165)
+        MostrarColunasBtn.Location = New Point(271, 222)
         MostrarColunasBtn.Name = "MostrarColunasBtn"
         MostrarColunasBtn.Size = New Size(120, 58)
         MostrarColunasBtn.TabIndex = 45
@@ -276,12 +276,12 @@ Partial Class Tabela_Coluna
         ' ListarTodasDgv
         ' 
         ListarTodasDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListarTodasDgv.Location = New Point(666, 132)
+        ListarTodasDgv.Location = New Point(677, 166)
         ListarTodasDgv.Name = "ListarTodasDgv"
         ListarTodasDgv.ReadOnly = True
         ListarTodasDgv.RowHeadersWidth = 51
         ListarTodasDgv.RowTemplate.Height = 25
-        ListarTodasDgv.Size = New Size(245, 316)
+        ListarTodasDgv.Size = New Size(245, 339)
         ListarTodasDgv.TabIndex = 49
         ' 
         ' LimparTodasBtn
@@ -289,7 +289,7 @@ Partial Class Tabela_Coluna
         LimparTodasBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparTodasBtn.Image = CType(resources.GetObject("LimparTodasBtn.Image"), Image)
         LimparTodasBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTodasBtn.Location = New Point(810, 97)
+        LimparTodasBtn.Location = New Point(821, 126)
         LimparTodasBtn.Name = "LimparTodasBtn"
         LimparTodasBtn.Size = New Size(101, 34)
         LimparTodasBtn.TabIndex = 48
@@ -302,7 +302,7 @@ Partial Class Tabela_Coluna
         PesquisartodasBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisartodasBtn.Image = CType(resources.GetObject("PesquisartodasBtn.Image"), Image)
         PesquisartodasBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisartodasBtn.Location = New Point(665, 94)
+        PesquisartodasBtn.Location = New Point(676, 123)
         PesquisartodasBtn.Name = "PesquisartodasBtn"
         PesquisartodasBtn.Size = New Size(102, 34)
         PesquisartodasBtn.TabIndex = 47
@@ -312,7 +312,7 @@ Partial Class Tabela_Coluna
         ' 
         ' PesquisartodasTxb
         ' 
-        PesquisartodasTxb.Location = New Point(666, 68)
+        PesquisartodasTxb.Location = New Point(677, 97)
         PesquisartodasTxb.Name = "PesquisartodasTxb"
         PesquisartodasTxb.Size = New Size(245, 23)
         PesquisartodasTxb.TabIndex = 46
@@ -321,7 +321,7 @@ Partial Class Tabela_Coluna
         ' 
         PesquisarColunaNobancoLbl.AutoSize = True
         PesquisarColunaNobancoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarColunaNobancoLbl.Location = New Point(681, 49)
+        PesquisarColunaNobancoLbl.Location = New Point(692, 78)
         PesquisarColunaNobancoLbl.Name = "PesquisarColunaNobancoLbl"
         PesquisarColunaNobancoLbl.Size = New Size(214, 15)
         PesquisarColunaNobancoLbl.TabIndex = 50
