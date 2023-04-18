@@ -36,7 +36,9 @@ Partial Class Validar_E_Mail
         EmailLbl = New Label()
         PictureBox1 = New PictureBox()
         LimparBtn = New Button()
+        MostrarSenhaBtn = New PictureBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(MostrarSenhaBtn, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' ValidarSmtpBtn
@@ -121,7 +123,7 @@ Partial Class Validar_E_Mail
         ' 
         SenhaEmailLbl.AutoSize = True
         SenhaEmailLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaEmailLbl.Location = New Point(392, 175)
+        SenhaEmailLbl.Location = New Point(351, 175)
         SenhaEmailLbl.Name = "SenhaEmailLbl"
         SenhaEmailLbl.Size = New Size(67, 23)
         SenhaEmailLbl.TabIndex = 38
@@ -129,11 +131,12 @@ Partial Class Validar_E_Mail
         ' 
         ' SenhaEmailTxb
         ' 
-        SenhaEmailTxb.Location = New Point(392, 201)
+        SenhaEmailTxb.Location = New Point(351, 201)
         SenhaEmailTxb.Margin = New Padding(3, 4, 3, 4)
         SenhaEmailTxb.Name = "SenhaEmailTxb"
         SenhaEmailTxb.Size = New Size(220, 27)
         SenhaEmailTxb.TabIndex = 37
+        SenhaEmailTxb.UseSystemPasswordChar = True
         ' 
         ' EmailTxb
         ' 
@@ -177,11 +180,22 @@ Partial Class Validar_E_Mail
         LimparBtn.TextAlign = ContentAlignment.MiddleRight
         LimparBtn.UseVisualStyleBackColor = True
         ' 
+        ' MostrarSenhaBtn
+        ' 
+        MostrarSenhaBtn.BorderStyle = BorderStyle.FixedSingle
+        MostrarSenhaBtn.Image = CType(resources.GetObject("MostrarSenhaBtn.Image"), Image)
+        MostrarSenhaBtn.Location = New Point(577, 204)
+        MostrarSenhaBtn.Name = "MostrarSenhaBtn"
+        MostrarSenhaBtn.Size = New Size(30, 24)
+        MostrarSenhaBtn.TabIndex = 41
+        MostrarSenhaBtn.TabStop = False
+        ' 
         ' Validar_E_Mail
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(667, 415)
+        Controls.Add(MostrarSenhaBtn)
         Controls.Add(LimparBtn)
         Controls.Add(PictureBox1)
         Controls.Add(SenhaEmailLbl)
@@ -203,6 +217,7 @@ Partial Class Validar_E_Mail
         StartPosition = FormStartPosition.CenterScreen
         Text = "Validar_E-mail"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(MostrarSenhaBtn, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -220,4 +235,5 @@ Partial Class Validar_E_Mail
     Friend WithEvents EmailLbl As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents LimparBtn As Button
+    Friend WithEvents MostrarSenhaBtn As PictureBox
 End Class

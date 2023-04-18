@@ -57,4 +57,14 @@ Public Class Validar_E_Mail
         SenhaEmailTxb.Text = ""
         EmailTxb.Text = ""
     End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles MostrarSenhaBtn.Click
+        If SenhaEmailTxb.UseSystemPasswordChar Then
+            SenhaEmailTxb.UseSystemPasswordChar = False
+            MostrarSenhaBtn.Text = "Ocultar senha"
+        Else
+            SenhaEmailTxb.UseSystemPasswordChar = True
+            MostrarSenhaBtn.Text = "Mostrar senha"
+        End If
+    End Sub
 End Class
