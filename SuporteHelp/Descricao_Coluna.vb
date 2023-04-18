@@ -160,4 +160,77 @@ Public Class Descricao_Coluna
         ' Chama o evento "Click" do botão "conectar"
         ConectarBtn.PerformClick()
     End Sub
+
+    Private Sub PesquisarDescricaoBtn_Click(sender As Object, e As EventArgs) Handles PesquisarDescricaoBtn.Click
+        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
+            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+            Return
+        End If
+
+        ' Desabilita o botão de pesquisa
+        PesquisarDescricaoBtn.Enabled = False
+        PesquisarColunaBtn.Enabled = False
+        LimparColunaBtn.Enabled = False
+        PesquisarInformacaoBtn.Enabled = False
+        LimparInformacaoBtn.Enabled = False
+
+        Dim searchTerm As String = PesquisarDescricaotxb.Text.Trim()
+
+        ' Obtém o DataTable associado ao DataGridView
+        Dim dt As DataTable = DirectCast(MostarDetalheColunaDGV.DataSource, DataTable)
+
+        ' Verifica se a coluna "NomeBanco" já existe no DataTable
+        If Not dt.Columns.Contains("Descricao") Then
+            ' Cria uma nova coluna "NomeBanco"
+            dt.Columns.Add("Descricao", GetType(String))
+
+            ' Define o valor da nova coluna para cada linha do DataTable
+            For Each row As DataRow In dt.Rows
+                ' Aqui você pode definir o valor da coluna "NomeBanco" para cada linha,
+                ' dependendo dos valores de outras colunas, por exemplo:
+                ' row("NomeBanco") = row("Nome") & " (" & row("CodigoBanco") & ")"
+            Next
+        End If
+
+        ' Define o filtro de pesquisa
+        dt.DefaultView.RowFilter = $"Descricao LIKE '%{searchTerm}%'"
+
+        ' Verifica se foram encontradas linhas correspondentes à pesquisa
+        If dt.DefaultView.Count > 0 Then
+            MessageBox.Show($"{dt.DefaultView.Count} Descrição não encontrada.")
+
+            ' Exibe somente as linhas correspondentes ao filtro de pesquisa
+            MostarDetalheColunaDGV.DataSource = dt.DefaultView.ToTable()
+        Else
+            ' Exibe uma mensagem de erro caso nenhum banco de dados seja encontrado
+            MessageBox.Show("Nenhuma Descrição encontrada.")
+        End If
+    End Sub
+
+    Private Sub LimparDescricaoBtn_Click(sender As Object, e As EventArgs) Handles LimparDescricaoBtn.Click
+        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
+            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+            Return
+        End If
+
+        PesquisarDescricaoBtn.Enabled = True
+        PesquisarColunaBtn.Enabled = True
+        LimparColunaBtn.Enabled = True
+        PesquisarInformacaoBtn.Enabled = True
+        LimparInformacaoBtn.Enabled = True
+        ' Limpa o campo de pesquisa
+        PesquisarDescricaotxb.Text = ""
+
+        ' Obtém o DataTable associado ao DataGridView
+        Dim dt As DataTable = DirectCast(MostarDetalheColunaDGV.DataSource, DataTable)
+
+        ' Remove o filtro de pesquisa
+        dt.DefaultView.RowFilter = ""
+
+        ' Define o DataSource do DataGridView com o DataTable atualizado
+        MostarDetalheColunaDGV.DataSource = dt
+
+        ' Chama o evento "Click" do botão "conectar"
+        ConectarBtn.PerformClick()
+    End Sub
 End Class
