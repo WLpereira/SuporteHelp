@@ -57,4 +57,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="SairTabelaColuna.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAARFJREFUSEvF1zFKxHAQxeGALqK9dpaeQE+joKho5TG8g3gDOxvtxFuIjR7BXVhL
+        Ff1NEViT9xB3JuTB183kwZ9NNmnIMWb4LjbFEWyGKG1FuY1aqGSjhivZqOFKNmq4ko0azvrCI55hoxaz
+        TrCOFdioxawt3OAWE8ioxawLbOMVtlwtZn3iAFH+gnus4VfUYoUo34ctV0tVPhCRx64WFs1xht0ltemV
+        q7JFl9jBFa6T4rjjmlHeK+oarfgd59iDOsq/tPn3UWekflzL6t5Odxj8duo+QHqlEbWYNdojcxOj/Emc
+        YgOrsFGLWfEi8IAn2KjFSjZquJKNGq5ko4Yr2cRnhlqo8Aab+LAaojxKDyHSND/Vi6tHnlgjbQAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
 </root>
