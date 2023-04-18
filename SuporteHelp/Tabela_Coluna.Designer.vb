@@ -282,7 +282,7 @@ Partial Class Tabela_Coluna
         MostrarColunasBtn.Location = New Point(310, 296)
         MostrarColunasBtn.Margin = New Padding(3, 4, 3, 4)
         MostrarColunasBtn.Name = "MostrarColunasBtn"
-        MostrarColunasBtn.Size = New Size(137, 77)
+        MostrarColunasBtn.Size = New Size(137, 90)
         MostrarColunasBtn.TabIndex = 45
         MostrarColunasBtn.Text = "Mostrar Colunas"
         MostrarColunasBtn.TextAlign = ContentAlignment.TopCenter
