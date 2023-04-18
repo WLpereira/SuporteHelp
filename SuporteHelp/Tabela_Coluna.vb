@@ -47,6 +47,9 @@ Public Class Tabela_Coluna
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoBbx.DataSource = listaBancos
+                ' Desabilita o botão de pesquisa
+                PesquisarColunaBtn.Enabled = False
+                LimparColunaBtn.Enabled = False
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
@@ -158,8 +161,12 @@ Public Class Tabela_Coluna
             MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
             Return
         End If
+        ' Desabilita o botão de pesquisa
+        PesquisarColunaBtn.Enabled = True
+        LimparColunaBtn.Enabled = True
         ' Captura o nome da tabela selecionada
         Dim nomeTabela As String = ListadeTabelaDtg.CurrentRow.Cells("Nome_da_Tabela").Value.ToString()
+
 
         Try
             ' Cria uma conexão com o banco de dados selecionado
