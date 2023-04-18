@@ -72,7 +72,7 @@ Partial Class SuporteHelp
         ServidorConectarLbl.AutoSize = True
         ServidorConectarLbl.Location = New Point(115, 35)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
-        ServidorConectarLbl.Size = New Size(125, 17)
+        ServidorConectarLbl.Size = New Size(163, 23)
         ServidorConectarLbl.TabIndex = 0
         ServidorConectarLbl.Text = "Informe o Servidor"
         ' 
@@ -81,7 +81,7 @@ Partial Class SuporteHelp
         UsuarioConectarLbl.AutoSize = True
         UsuarioConectarLbl.Location = New Point(316, 35)
         UsuarioConectarLbl.Name = "UsuarioConectarLbl"
-        UsuarioConectarLbl.Size = New Size(55, 17)
+        UsuarioConectarLbl.Size = New Size(70, 23)
         UsuarioConectarLbl.TabIndex = 1
         UsuarioConectarLbl.Text = "Usuario"
         ' 
@@ -90,7 +90,7 @@ Partial Class SuporteHelp
         SenhaConectarLbl.AutoSize = True
         SenhaConectarLbl.Location = New Point(566, 35)
         SenhaConectarLbl.Name = "SenhaConectarLbl"
-        SenhaConectarLbl.Size = New Size(45, 17)
+        SenhaConectarLbl.Size = New Size(58, 23)
         SenhaConectarLbl.TabIndex = 2
         SenhaConectarLbl.Text = "Senha"
         ' 
@@ -98,21 +98,21 @@ Partial Class SuporteHelp
         ' 
         ServidorTxb.Location = New Point(115, 55)
         ServidorTxb.Name = "ServidorTxb"
-        ServidorTxb.Size = New Size(195, 25)
+        ServidorTxb.Size = New Size(195, 29)
         ServidorTxb.TabIndex = 4
         ' 
         ' NomeConectarTxb
         ' 
         NomeConectarTxb.Location = New Point(316, 55)
         NomeConectarTxb.Name = "NomeConectarTxb"
-        NomeConectarTxb.Size = New Size(244, 25)
+        NomeConectarTxb.Size = New Size(244, 29)
         NomeConectarTxb.TabIndex = 5
         ' 
         ' SenhaTxb
         ' 
         SenhaTxb.Location = New Point(566, 55)
         SenhaTxb.Name = "SenhaTxb"
-        SenhaTxb.Size = New Size(177, 25)
+        SenhaTxb.Size = New Size(177, 29)
         SenhaTxb.TabIndex = 6
         ' 
         ' MenuStrip1
@@ -121,7 +121,7 @@ Partial Class SuporteHelp
         MenuStrip1.Items.AddRange(New ToolStripItem() {FerramentasToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(934, 25)
+        MenuStrip1.Size = New Size(958, 31)
         MenuStrip1.TabIndex = 8
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -130,77 +130,77 @@ Partial Class SuporteHelp
         FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
-        FerramentasToolStripMenuItem.Size = New Size(96, 21)
+        FerramentasToolStripMenuItem.Size = New Size(123, 27)
         FerramentasToolStripMenuItem.Text = "Ferramentas"
         ' 
         ' ValidarEmailToolStripMenuItem
         ' 
         ValidarEmailToolStripMenuItem.Image = My.Resources.Resources.icons8_mensagem_64
         ValidarEmailToolStripMenuItem.Name = "ValidarEmailToolStripMenuItem"
-        ValidarEmailToolStripMenuItem.Size = New Size(285, 26)
+        ValidarEmailToolStripMenuItem.Size = New Size(358, 28)
         ValidarEmailToolStripMenuItem.Text = "Validar E-mail"
         ' 
         ' ValidarGtinToolStripMenuItem
         ' 
         ValidarGtinToolStripMenuItem.Image = My.Resources.Resources._3702397_barcode_code_scan_scanner_108737
         ValidarGtinToolStripMenuItem.Name = "ValidarGtinToolStripMenuItem"
-        ValidarGtinToolStripMenuItem.Size = New Size(285, 26)
+        ValidarGtinToolStripMenuItem.Size = New Size(358, 28)
         ValidarGtinToolStripMenuItem.Text = "Validar Gtin"
         ' 
         ' ProcurarTabelaOuColunaNoBDToolStripMenuItem
         ' 
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Image = My.Resources.Resources.icons8_servidor_64
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Name = "ProcurarTabelaOuColunaNoBDToolStripMenuItem"
-        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(285, 26)
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(358, 28)
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Text = "Procurar Tabela ou Coluna no BD"
         ' 
         ' CriptoToolStripMenuItem
         ' 
         CriptoToolStripMenuItem.Image = My.Resources.Resources.icons8_senha_30
         CriptoToolStripMenuItem.Name = "CriptoToolStripMenuItem"
-        CriptoToolStripMenuItem.Size = New Size(285, 26)
+        CriptoToolStripMenuItem.Size = New Size(358, 28)
         CriptoToolStripMenuItem.Text = "Cripto"
         ' 
         ' DDClientsToolStripMenuItem
         ' 
         DDClientsToolStripMenuItem.Image = My.Resources.Resources.icons8_usuário_30
         DDClientsToolStripMenuItem.Name = "DDClientsToolStripMenuItem"
-        DDClientsToolStripMenuItem.Size = New Size(285, 26)
+        DDClientsToolStripMenuItem.Size = New Size(358, 28)
         DDClientsToolStripMenuItem.Text = "DDClients"
         ' 
         ' CloudCreateUserToolStripMenuItem
         ' 
         CloudCreateUserToolStripMenuItem.Image = My.Resources.Resources.icons8_nuvem_60
         CloudCreateUserToolStripMenuItem.Name = "CloudCreateUserToolStripMenuItem"
-        CloudCreateUserToolStripMenuItem.Size = New Size(285, 26)
+        CloudCreateUserToolStripMenuItem.Size = New Size(358, 28)
         CloudCreateUserToolStripMenuItem.Text = "CloudCreateUser"
         ' 
         ' LogoToolStripMenuItem
         ' 
         LogoToolStripMenuItem.Image = My.Resources.Resources.icons8_saída_de_emergência_30
         LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
-        LogoToolStripMenuItem.Size = New Size(285, 26)
+        LogoToolStripMenuItem.Size = New Size(358, 28)
         LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
         ' 
         ' PainelAvaliacoesToolStripMenuItem
         ' 
         PainelAvaliacoesToolStripMenuItem.Image = My.Resources.Resources.icons8_sugestão_30
         PainelAvaliacoesToolStripMenuItem.Name = "PainelAvaliacoesToolStripMenuItem"
-        PainelAvaliacoesToolStripMenuItem.Size = New Size(285, 26)
+        PainelAvaliacoesToolStripMenuItem.Size = New Size(358, 28)
         PainelAvaliacoesToolStripMenuItem.Text = "PainelAvaliacoes"
         ' 
         ' HelpDeskToolStripMenuItem
         ' 
         HelpDeskToolStripMenuItem.Image = My.Resources.Resources.person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_228998
         HelpDeskToolStripMenuItem.Name = "HelpDeskToolStripMenuItem"
-        HelpDeskToolStripMenuItem.Size = New Size(285, 26)
+        HelpDeskToolStripMenuItem.Size = New Size(358, 28)
         HelpDeskToolStripMenuItem.Text = "HelpDesk"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Image = My.Resources.Resources.download_folder_file_icon_219533
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(285, 26)
+        ToolStripMenuItem1.Size = New Size(358, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
         ' 
         ' PictureBox2
@@ -226,7 +226,7 @@ Partial Class SuporteHelp
         BancoCloudLbl.AutoSize = True
         BancoCloudLbl.Location = New Point(41, 221)
         BancoCloudLbl.Name = "BancoCloudLbl"
-        BancoCloudLbl.Size = New Size(229, 17)
+        BancoCloudLbl.Size = New Size(298, 23)
         BancoCloudLbl.TabIndex = 12
         BancoCloudLbl.Text = "Banco do CLOUD, executar Primeiro"
         ' 
@@ -235,7 +235,7 @@ Partial Class SuporteHelp
         UsuarioSenhaLbl.AutoSize = True
         UsuarioSenhaLbl.Location = New Point(77, 295)
         UsuarioSenhaLbl.Name = "UsuarioSenhaLbl"
-        UsuarioSenhaLbl.Size = New Size(146, 17)
+        UsuarioSenhaLbl.Size = New Size(188, 23)
         UsuarioSenhaLbl.TabIndex = 13
         UsuarioSenhaLbl.Text = "Usuario: SA Senha: DP"
         ' 
@@ -244,7 +244,7 @@ Partial Class SuporteHelp
         HomologacaoLbl.AutoSize = True
         HomologacaoLbl.Location = New Point(68, 362)
         HomologacaoLbl.Name = "HomologacaoLbl"
-        HomologacaoLbl.Size = New Size(167, 17)
+        HomologacaoLbl.Size = New Size(217, 23)
         HomologacaoLbl.TabIndex = 14
         HomologacaoLbl.Text = "Trocar para Homologação"
         ' 
@@ -253,7 +253,7 @@ Partial Class SuporteHelp
         MOduloCheckLbl.AutoSize = True
         MOduloCheckLbl.Location = New Point(35, 429)
         MOduloCheckLbl.Name = "MOduloCheckLbl"
-        MOduloCheckLbl.Size = New Size(235, 17)
+        MOduloCheckLbl.Size = New Size(308, 23)
         MOduloCheckLbl.TabIndex = 15
         MOduloCheckLbl.Text = "Deletar Modulo Check e criar Trigger"
         ' 
@@ -326,7 +326,7 @@ Partial Class SuporteHelp
         ' 
         PesquisaTxb.Location = New Point(506, 149)
         PesquisaTxb.Name = "PesquisaTxb"
-        PesquisaTxb.Size = New Size(301, 25)
+        PesquisaTxb.Size = New Size(301, 29)
         PesquisaTxb.TabIndex = 22
         ' 
         ' PesquisaLbl
@@ -334,7 +334,7 @@ Partial Class SuporteHelp
         PesquisaLbl.AutoSize = True
         PesquisaLbl.Location = New Point(570, 129)
         PesquisaLbl.Name = "PesquisaLbl"
-        PesquisaLbl.Size = New Size(165, 17)
+        PesquisaLbl.Size = New Size(210, 23)
         PesquisaLbl.TabIndex = 21
         PesquisaLbl.Text = "Pesquisa Banco de Dados"
         ' 
@@ -405,7 +405,7 @@ Partial Class SuporteHelp
         GerarRegLbl.AutoSize = True
         GerarRegLbl.Location = New Point(66, 504)
         GerarRegLbl.Name = "GerarRegLbl"
-        GerarRegLbl.Size = New Size(169, 17)
+        GerarRegLbl.Size = New Size(222, 23)
         GerarRegLbl.TabIndex = 28
         GerarRegLbl.Text = "Gerar ODBC, Arquivo .Reg"
         ' 
@@ -423,9 +423,9 @@ Partial Class SuporteHelp
         ' 
         ' SuporteHelp
         ' 
-        AutoScaleDimensions = New SizeF(8F, 17F)
+        AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(934, 611)
+        ClientSize = New Size(958, 611)
         Controls.Add(SugestaoBtn)
         Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
@@ -454,6 +454,7 @@ Partial Class SuporteHelp
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        FormBorderStyle = FormBorderStyle.Fixed3D
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         MaximizeBox = False

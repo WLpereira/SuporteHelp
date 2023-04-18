@@ -37,9 +37,10 @@ Partial Class ValidarGtin
         CodigoImg.BorderStyle = BorderStyle.FixedSingle
         CodigoImg.Cursor = Cursors.Hand
         CodigoImg.Image = My.Resources.Resources.bar_code_22177
-        CodigoImg.Location = New Point(248, 12)
+        CodigoImg.Location = New Point(283, 16)
+        CodigoImg.Margin = New Padding(3, 4, 3, 4)
         CodigoImg.Name = "CodigoImg"
-        CodigoImg.Size = New Size(243, 246)
+        CodigoImg.Size = New Size(277, 327)
         CodigoImg.TabIndex = 1
         CodigoImg.TabStop = False
         ' 
@@ -48,9 +49,10 @@ Partial Class ValidarGtin
         SairGtinbtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SairGtinbtn.Image = My.Resources.Resources.icons8_saída_de_emergência_30
         SairGtinbtn.ImageAlign = ContentAlignment.MiddleLeft
-        SairGtinbtn.Location = New Point(160, 194)
+        SairGtinbtn.Location = New Point(183, 259)
+        SairGtinbtn.Margin = New Padding(3, 4, 3, 4)
         SairGtinbtn.Name = "SairGtinbtn"
-        SairGtinbtn.Size = New Size(82, 39)
+        SairGtinbtn.Size = New Size(94, 52)
         SairGtinbtn.TabIndex = 2
         SairGtinbtn.Text = "Sair"
         SairGtinbtn.TextAlign = ContentAlignment.MiddleRight
@@ -61,9 +63,10 @@ Partial Class ValidarGtin
         LimparGtinBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparGtinBtn.Image = My.Resources.Resources.icons8_broom_with_a_lot_of_dust_30
         LimparGtinBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparGtinBtn.Location = New Point(7, 194)
+        LimparGtinBtn.Location = New Point(8, 259)
+        LimparGtinBtn.Margin = New Padding(3, 4, 3, 4)
         LimparGtinBtn.Name = "LimparGtinBtn"
-        LimparGtinBtn.Size = New Size(85, 39)
+        LimparGtinBtn.Size = New Size(97, 52)
         LimparGtinBtn.TabIndex = 3
         LimparGtinBtn.Text = "Limpar"
         LimparGtinBtn.TextAlign = ContentAlignment.MiddleRight
@@ -73,9 +76,10 @@ Partial Class ValidarGtin
         ' 
         ValidarGtinTxb.BorderStyle = BorderStyle.FixedSingle
         ValidarGtinTxb.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        ValidarGtinTxb.Location = New Point(7, 64)
+        ValidarGtinTxb.Location = New Point(8, 85)
+        ValidarGtinTxb.Margin = New Padding(3, 4, 3, 4)
         ValidarGtinTxb.Name = "ValidarGtinTxb"
-        ValidarGtinTxb.Size = New Size(235, 23)
+        ValidarGtinTxb.Size = New Size(268, 27)
         ValidarGtinTxb.TabIndex = 4
         ' 
         ' ValidarBtn
@@ -83,9 +87,10 @@ Partial Class ValidarGtin
         ValidarBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
         ValidarBtn.Image = My.Resources.Resources._3702397_barcode_code_scan_scanner_108737
         ValidarBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ValidarBtn.Location = New Point(60, 115)
+        ValidarBtn.Location = New Point(69, 153)
+        ValidarBtn.Margin = New Padding(3, 4, 3, 4)
         ValidarBtn.Name = "ValidarBtn"
-        ValidarBtn.Size = New Size(126, 35)
+        ValidarBtn.Size = New Size(144, 47)
         ValidarBtn.TabIndex = 5
         ValidarBtn.Text = "VALIDAR"
         ValidarBtn.TextAlign = ContentAlignment.MiddleRight
@@ -95,24 +100,26 @@ Partial Class ValidarGtin
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(44, 34)
+        Label1.Location = New Point(50, 45)
         Label1.Name = "Label1"
-        Label1.Size = New Size(159, 21)
+        Label1.Size = New Size(200, 28)
         Label1.TabIndex = 6
         Label1.Text = "VALIDAR GTIN/EAN"
         ' 
         ' ValidarGtin
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(494, 261)
+        ClientSize = New Size(565, 348)
         Controls.Add(Label1)
         Controls.Add(ValidarBtn)
         Controls.Add(ValidarGtinTxb)
         Controls.Add(LimparGtinBtn)
         Controls.Add(SairGtinbtn)
         Controls.Add(CodigoImg)
+        FormBorderStyle = FormBorderStyle.Fixed3D
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         Name = "ValidarGtin"
         StartPosition = FormStartPosition.CenterScreen
