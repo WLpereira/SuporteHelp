@@ -446,5 +446,6 @@ Public Class SuporteHelp
         Dim Descricao_Coluna As New Descricao_Coluna()
         Descricao_Coluna.Show()
     End Sub
+
 End Class
 

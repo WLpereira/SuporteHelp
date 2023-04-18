@@ -38,9 +38,10 @@ Partial Class Sugestao
         TextoEmailRtb.BorderStyle = BorderStyle.FixedSingle
         TextoEmailRtb.Cursor = Cursors.IBeam
         TextoEmailRtb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        TextoEmailRtb.Location = New Point(99, 72)
+        TextoEmailRtb.Location = New Point(113, 96)
+        TextoEmailRtb.Margin = New Padding(3, 4, 3, 4)
         TextoEmailRtb.Name = "TextoEmailRtb"
-        TextoEmailRtb.Size = New Size(385, 309)
+        TextoEmailRtb.Size = New Size(439, 411)
         TextoEmailRtb.TabIndex = 0
         TextoEmailRtb.Text = ""
         ' 
@@ -49,9 +50,9 @@ Partial Class Sugestao
         SugestaoLbl.AutoSize = True
         SugestaoLbl.Font = New Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         SugestaoLbl.ForeColor = Color.Black
-        SugestaoLbl.Location = New Point(81, 22)
+        SugestaoLbl.Location = New Point(93, 29)
         SugestaoLbl.Name = "SugestaoLbl"
-        SugestaoLbl.Size = New Size(443, 30)
+        SugestaoLbl.Size = New Size(572, 37)
         SugestaoLbl.TabIndex = 1
         SugestaoLbl.Text = "Contribua para a melhoria da ferramenta!"
         ' 
@@ -60,9 +61,10 @@ Partial Class Sugestao
         EnviarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         EnviarBtn.Image = My.Resources.Resources.icons8_mail_30
         EnviarBtn.ImageAlign = ContentAlignment.MiddleLeft
-        EnviarBtn.Location = New Point(25, 395)
+        EnviarBtn.Location = New Point(29, 527)
+        EnviarBtn.Margin = New Padding(3, 4, 3, 4)
         EnviarBtn.Name = "EnviarBtn"
-        EnviarBtn.Size = New Size(151, 54)
+        EnviarBtn.Size = New Size(173, 72)
         EnviarBtn.TabIndex = 2
         EnviarBtn.Text = "Enviar Sugestão"
         EnviarBtn.TextAlign = ContentAlignment.MiddleRight
@@ -73,9 +75,10 @@ Partial Class Sugestao
         LimparTextoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparTextoBtn.Image = My.Resources.Resources.icons8_broom_with_a_lot_of_dust_30
         LimparTextoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTextoBtn.Location = New Point(239, 395)
+        LimparTextoBtn.Location = New Point(273, 527)
+        LimparTextoBtn.Margin = New Padding(3, 4, 3, 4)
         LimparTextoBtn.Name = "LimparTextoBtn"
-        LimparTextoBtn.Size = New Size(98, 54)
+        LimparTextoBtn.Size = New Size(112, 72)
         LimparTextoBtn.TabIndex = 3
         LimparTextoBtn.Text = "Limpar"
         LimparTextoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -86,9 +89,10 @@ Partial Class Sugestao
         SairTextoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SairTextoBtn.Image = My.Resources.Resources.icons8_saída_de_emergência_30
         SairTextoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SairTextoBtn.Location = New Point(449, 395)
+        SairTextoBtn.Location = New Point(513, 527)
+        SairTextoBtn.Margin = New Padding(3, 4, 3, 4)
         SairTextoBtn.Name = "SairTextoBtn"
-        SairTextoBtn.Size = New Size(96, 54)
+        SairTextoBtn.Size = New Size(110, 72)
         SairTextoBtn.TabIndex = 4
         SairTextoBtn.Text = "Sair"
         SairTextoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -97,25 +101,28 @@ Partial Class Sugestao
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources._4288592bulbideaknowledgelightreadthinking_115764_115749
-        PictureBox1.Location = New Point(12, 12)
+        PictureBox1.Location = New Point(14, 16)
+        PictureBox1.Margin = New Padding(3, 4, 3, 4)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(50, 54)
+        PictureBox1.Size = New Size(57, 72)
         PictureBox1.TabIndex = 5
         PictureBox1.TabStop = False
         ' 
         ' Sugestao
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.InactiveCaption
-        ClientSize = New Size(584, 461)
+        ClientSize = New Size(667, 615)
         Controls.Add(PictureBox1)
         Controls.Add(SairTextoBtn)
         Controls.Add(LimparTextoBtn)
         Controls.Add(EnviarBtn)
         Controls.Add(SugestaoLbl)
         Controls.Add(TextoEmailRtb)
+        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         Name = "Sugestao"
         StartPosition = FormStartPosition.CenterScreen
