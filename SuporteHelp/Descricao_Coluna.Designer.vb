@@ -339,6 +339,7 @@ Partial Class Descricao_Coluna
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "Descricao_Coluna"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Descricao_Coluna"
         CType(MostarDetalheColunaDGV, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
