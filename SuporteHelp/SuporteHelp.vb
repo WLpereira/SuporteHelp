@@ -17,6 +17,12 @@ Public Class SuporteHelp
             Return
         End If
 
+        ' Verifica se o servidor informado não é um dos servidores bloqueados
+        If servidor = "cloud.informo.com.br,9898" OrElse servidor = "cloud.informo.com.br,9586" Then
+            MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
+            Return
+        End If
+
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
