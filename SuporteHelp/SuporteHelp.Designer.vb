@@ -61,6 +61,7 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
+        DescriçãoDasColunasToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +128,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -421,6 +422,12 @@ Partial Class SuporteHelp
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
         ' 
+        ' DescriçãoDasColunasToolStripMenuItem
+        ' 
+        DescriçãoDasColunasToolStripMenuItem.Name = "DescriçãoDasColunasToolStripMenuItem"
+        DescriçãoDasColunasToolStripMenuItem.Size = New Size(358, 28)
+        DescriçãoDasColunasToolStripMenuItem.Text = "Descrição das Colunas"
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
@@ -508,4 +515,5 @@ Partial Class SuporteHelp
     Friend WithEvents SugestaoBtn As Button
     Friend WithEvents ValidarGtinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
 End Class

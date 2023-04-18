@@ -441,5 +441,10 @@ Public Class SuporteHelp
 
     Private Sub ServidorConectarLbl_Click(sender As Object, e As EventArgs) Handles ServidorConectarLbl.Click
     End Sub
+
+    Private Sub DescriçãoDasColunasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DescriçãoDasColunasToolStripMenuItem.Click
+        Dim Descricao_Coluna As New Descricao_Coluna()
+        Descricao_Coluna.Show()
+    End Sub
 End Class
 
