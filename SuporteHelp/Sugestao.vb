@@ -15,8 +15,8 @@ Public Class Sugestao
         Dim mail As New MailMessage()
 
         ' Define o remetente e o destinatário
-        mail.From = New MailAddress("washington.pereira@dataplace.com.br")
-        mail.To.Add("sugestaosuportehelp@outlook.com")
+        mail.From = New MailAddress("sugestaosuportehelp@outlook.com")
+        mail.To.Add("washington.pereira@dataplace.com.br")
 
         ' Define o assunto e o corpo do e-mail
         mail.Subject = "Sugestão para SuporteHelp"
