@@ -1,12 +1,14 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Windows.Controls
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class Usuario_Original
 
     Private Sub ConectarUsuarioBtn_Click(sender As Object, e As EventArgs) Handles ConectarUsuarioBtn.Click
         ' Desabilita o botão de pesquisa
-        ExecutarTodosUsuariosBtn.Enabled = False
-        SelecionarUsuarioCbx.Enabled = False
-        ExecutarUsuarioEspecificoBtn.Enabled = False
+        'ExecutarTodosUsuariosBtn.Enabled = False
+        'SelecionarUsuarioCbx.Enabled = False
+        'ExecutarUsuarioEspecificoBtn.Enabled = False
 
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorUsuarioTxb.Text
@@ -61,5 +63,67 @@ Public Class Usuario_Original
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
+    End Sub
+
+    Private Sub ExecutarTodosUsuariosBtn_Click(sender As Object, e As EventArgs) Handles ExecutarTodosUsuariosBtn.Click
+        'Define a string de conexão ao servidor de banco de dados
+        Dim servidor As String = ServidorUsuarioTxb.Text
+        Dim usuario As String = NomeusuarioTxb.Text
+        Dim senha As String = SenhaUsusarioTxb.Text
+
+
+        'Obtém o nome do banco de dados selecionado no combobox
+        Dim dbName As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
+
+        'Cria a string de conexão ao banco de dados
+        Dim connString As String = $"Server={servidor};Database={dbName};User ID={usuario};Password={senha}"
+
+        'Cria uma conexão com o banco de dados
+        Dim conn As New SqlConnection(connString)
+
+        Try
+            'Abre a conexão com o banco de dados
+            conn.Open()
+
+            'Cria um objeto SqlCommand para executar o comando SQL
+            Dim cmd As New SqlCommand("declare @usuario as nvarchar(30)
+                declare @senha   as nvarchar(30)
+                
+                declare oCursor cursor
+                
+                for
+                	select	username, 
+                			senha 
+                	  from	usuario
+                
+                open oCursor
+                
+                fetch next from oCursor into @usuario, @senha
+                	
+                	while @@fetch_status = 0
+                		begin
+                			print @usuario + ' - ' + @senha
+                			exec sp_change_users_login 'Auto_Fix', @usuario, null, @senha
+                	
+                			fetch next from oCursor into @usuario, @senha
+                		end
+                close oCursor
+                deallocate oCursor", conn)
+
+            'Executa o comando SQL e obtém o número de linhas afetadas
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+
+            'Exibe uma mensagem de sucesso com o número de linhas afetadas
+            MessageBox.Show(String.Format("{0} linhas afetadas.", rowsAffected))
+
+        Catch ex As Exception
+            'Exibe uma mensagem de erro caso ocorra uma exceção
+            MessageBox.Show(ex.Message)
+
+        Finally
+            'Fecha a conexão com o banco de dados
+            conn.Close()
+
+        End Try
     End Sub
 End Class
