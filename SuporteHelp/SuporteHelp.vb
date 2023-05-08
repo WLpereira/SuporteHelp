@@ -453,5 +453,9 @@ Public Class SuporteHelp
         Descricao_Coluna.Show()
     End Sub
 
+    Private Sub LogarComUsuarioOriginalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogarComUsuarioOriginalToolStripMenuItem.Click
+        Dim usuario_original As New Usuario_Original()
+        usuario_original.Show()
+    End Sub
 End Class
 
