@@ -155,7 +155,7 @@ Partial Class Usuario_Original
         Button1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Button1.Image = CType(resources.GetObject("Button1.Image"), Image)
         Button1.ImageAlign = ContentAlignment.MiddleRight
-        Button1.Location = New Point(703, 260)
+        Button1.Location = New Point(703, 248)
         Button1.Name = "Button1"
         Button1.Size = New Size(117, 43)
         Button1.TabIndex = 51

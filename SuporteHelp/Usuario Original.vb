@@ -1,7 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Usuario_Original
+
     Private Sub ConectarUsuarioBtn_Click(sender As Object, e As EventArgs) Handles ConectarUsuarioBtn.Click
+        ' Desabilita o botão de pesquisa
+        ExecutarTodosUsuariosBtn.Enabled = False
+        SelecionarUsuarioCbx.Enabled = False
+        ExecutarUsuarioEspecificoBtn.Enabled = False
+
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorUsuarioTxb.Text
         Dim usuario As String = NomeusuarioTxb.Text
@@ -44,7 +50,7 @@ Public Class Usuario_Original
                 SelecionarBancoUsuarioBbx.DataSource = listaBancos
                 ' Desabilita o botão de pesquisa
                 ' ExecutarTodosUsuariosBtn.Enabled = False
-                'SelecionarUsuarioCbx.Enabled = False
+                ' SelecionarUsuarioCbx.Enabled = False
                 ' ExecutarUsuarioEspecificoBtn.Enabled = False
             End Using
         Catch ex As Exception
