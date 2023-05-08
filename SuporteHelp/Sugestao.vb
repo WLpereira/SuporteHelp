@@ -15,7 +15,7 @@ Public Class Sugestao
         Dim mail As New MailMessage()
 
         ' Define o remetente e o destinatário
-        mail.From = New MailAddress("wluispereira.dataplace@gmail.com")
+        mail.From = New MailAddress("washington.pereira@dataplace.com.br")
         mail.To.Add("wluispereira.dataplace@gmail.com")
 
         ' Define o assunto e o corpo do e-mail
