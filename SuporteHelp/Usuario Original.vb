@@ -7,10 +7,6 @@ Public Class Usuario_Original
         Dim usuario As String = NomeusuarioTxb.Text
         Dim senha As String = SenhaUsusarioTxb.Text
 
-        ' Desabilita o botão de pesquisa
-        ExecutarTodosUsuariosBtn.Enabled = False
-        SelecionarUsuarioCbx.Enabled = False
-        ExecutarUsuarioEspecificoBtn.Enabled = False
         '' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
@@ -46,7 +42,10 @@ Public Class Usuario_Original
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoUsuarioBbx.DataSource = listaBancos
-
+                ' Desabilita o botão de pesquisa
+                ' ExecutarTodosUsuariosBtn.Enabled = False
+                'SelecionarUsuarioCbx.Enabled = False
+                ' ExecutarUsuarioEspecificoBtn.Enabled = False
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
