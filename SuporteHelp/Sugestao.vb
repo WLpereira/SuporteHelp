@@ -15,8 +15,8 @@ Public Class Sugestao
         Dim mail As New MailMessage()
 
         ' Define o remetente e o destinatário
-        mail.From = New MailAddress("washington.pereira@dataplace.com.br")
-        mail.To.Add("washington.pereira@dataplace.com.br")
+        mail.From = New MailAddress("wluispereira.dataplace@gmail.com")
+        mail.To.Add("wluispereira.dataplace@gmail.com")
 
         ' Define o assunto e o corpo do e-mail
         mail.Subject = "Sugestão para SuporteHelp"
@@ -28,7 +28,7 @@ Public Class Sugestao
         smtp.DeliveryMethod = SmtpDeliveryMethod.Network
         smtp.UseDefaultCredentials = False
         smtp.EnableSsl = True
-        smtp.Credentials = New NetworkCredential("washington.pereira@dataplace.com.br", "Wlpdataplace123")
+        smtp.Credentials = New NetworkCredential("wluispereira.dataplace@gmail.com", "Wlpdataplace123")
 
         ' Envia o e-mail
         Try
