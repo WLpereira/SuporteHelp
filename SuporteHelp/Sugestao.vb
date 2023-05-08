@@ -28,7 +28,7 @@ Public Class Sugestao
         smtp.DeliveryMethod = SmtpDeliveryMethod.Network
         smtp.UseDefaultCredentials = False
         smtp.EnableSsl = True
-        smtp.Credentials = New NetworkCredential("sugestaosuportehelp@outlook.com", "Suporte@dataplace2023")
+        smtp.Credentials = New NetworkCredential("sugestaosuportehelp@outlook.com", "Suportehelp@123")
 
         ' Envia o e-mail
         Try
