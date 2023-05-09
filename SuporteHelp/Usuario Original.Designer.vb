@@ -38,6 +38,7 @@ Partial Class Usuario_Original
         SelecionarUsuarioCbx = New ComboBox()
         SelecionarUsuarioLbl = New Label()
         ExecutarUsuarioEspecificoBtn = New Button()
+        SenhaSaTxb = New TextBox()
         SuspendLayout()
         ' 
         ' SelecionarBancoUsuarioLbl
@@ -133,7 +134,7 @@ Partial Class Usuario_Original
         ' ExecutarTodosUsuariosBtn
         ' 
         ExecutarTodosUsuariosBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        ExecutarTodosUsuariosBtn.Location = New Point(92, 154)
+        ExecutarTodosUsuariosBtn.Location = New Point(89, 196)
         ExecutarTodosUsuariosBtn.Name = "ExecutarTodosUsuariosBtn"
         ExecutarTodosUsuariosBtn.Size = New Size(111, 37)
         ExecutarTodosUsuariosBtn.TabIndex = 49
@@ -144,7 +145,7 @@ Partial Class Usuario_Original
         ' 
         ExecutarTodosLbl.AutoSize = True
         ExecutarTodosLbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        ExecutarTodosLbl.Location = New Point(23, 117)
+        ExecutarTodosLbl.Location = New Point(20, 159)
         ExecutarTodosLbl.Name = "ExecutarTodosLbl"
         ExecutarTodosLbl.Size = New Size(281, 23)
         ExecutarTodosLbl.TabIndex = 50
@@ -192,11 +193,19 @@ Partial Class Usuario_Original
         ExecutarUsuarioEspecificoBtn.Text = "Executar"
         ExecutarUsuarioEspecificoBtn.UseVisualStyleBackColor = True
         ' 
+        ' SenhaSaTxb
+        ' 
+        SenhaSaTxb.Location = New Point(89, 113)
+        SenhaSaTxb.Name = "SenhaSaTxb"
+        SenhaSaTxb.Size = New Size(125, 27)
+        SenhaSaTxb.TabIndex = 55
+        ' 
         ' Usuario_Original
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(832, 303)
+        Controls.Add(SenhaSaTxb)
         Controls.Add(ExecutarUsuarioEspecificoBtn)
         Controls.Add(SelecionarUsuarioLbl)
         Controls.Add(SelecionarUsuarioCbx)
@@ -233,4 +242,5 @@ Partial Class Usuario_Original
     Friend WithEvents SelecionarUsuarioCbx As ComboBox
     Friend WithEvents SelecionarUsuarioLbl As Label
     Friend WithEvents ExecutarUsuarioEspecificoBtn As Button
+    Friend WithEvents SenhaSaTxb As TextBox
 End Class

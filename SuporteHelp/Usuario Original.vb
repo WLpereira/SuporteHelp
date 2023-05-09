@@ -66,27 +66,24 @@ Public Class Usuario_Original
     End Sub
 
     Private Sub ExecutarTodosUsuariosBtn_Click(sender As Object, e As EventArgs) Handles ExecutarTodosUsuariosBtn.Click
-        'Define a string de conexão ao servidor de banco de dados
+
+        ' Verifica se um banco de dados foi selecionado '
+        If SelecionarBancoUsuarioBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Por favor, selecione um banco de dados para atualizar.")
+            Return
+        End If
+
+        Dim banco As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
         Dim servidor As String = ServidorUsuarioTxb.Text
         Dim usuario As String = NomeusuarioTxb.Text
         Dim senha As String = SenhaUsusarioTxb.Text
 
+        Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
+        Dim conexao As SqlConnection = New SqlConnection(connStr)
 
-        'Obtém o nome do banco de dados selecionado no combobox
-        Dim dbName As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
-
-        'Cria a string de conexão ao banco de dados
-        Dim connString As String = $"Server={servidor};Database={dbName};User ID={usuario};Password={senha}"
-
-        'Cria uma conexão com o banco de dados
-        Dim conn As New SqlConnection(connString)
-
-        Try
-            'Abre a conexão com o banco de dados
-            conn.Open()
-
-            'Cria um objeto SqlCommand para executar o comando SQL
-            Dim cmd As New SqlCommand("declare @usuario as nvarchar(30)
+        ' Aqui você deve implementar a lógica para executar a consulta UPDATE '
+        ' Substitua a consulta abaixo pela consulta real que você deseja executar '
+        Dim consulta As String = "declare @usuario as nvarchar(30)
                 declare @senha   as nvarchar(30)
                 
                 declare oCursor cursor
@@ -108,22 +105,17 @@ Public Class Usuario_Original
                 			fetch next from oCursor into @usuario, @senha
                 		end
                 close oCursor
-                deallocate oCursor", conn)
-
-            'Executa o comando SQL e obtém o número de linhas afetadas
-            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-
-            'Exibe uma mensagem de sucesso com o número de linhas afetadas
-            MessageBox.Show(String.Format("{0} linhas afetadas.", rowsAffected))
-
+                deallocate oCursor"
+        Try
+            conexao.Open()
+            Dim cmd As SqlCommand = New SqlCommand(consulta, conexao)
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Atualização concluída com sucesso!")
         Catch ex As Exception
-            'Exibe uma mensagem de erro caso ocorra uma exceção
-            MessageBox.Show(ex.Message)
-
+            MessageBox.Show($"Erro ao atualizar o banco de dados: {ex.Message}")
         Finally
-            'Fecha a conexão com o banco de dados
-            conn.Close()
-
+            conexao.Close()
         End Try
     End Sub
+
 End Class
