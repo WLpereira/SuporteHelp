@@ -164,4 +164,60 @@ Public Class Usuario_Original
             MessageBox.Show("Erro ao carregar usuários: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub ExecutarUsuarioEspecificoBtn_Click(sender As Object, e As EventArgs) Handles ExecutarUsuarioEspecificoBtn.Click
+
+        ' Verifica se um banco de dados foi selecionado '
+        If SelecionarBancoUsuarioBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Por favor, selecione um banco de dados para atualizar.")
+            Return
+        End If
+
+        Dim banco As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
+        Dim servidor As String = ServidorUsuarioTxb.Text
+        Dim usuario As String = NomeusuarioTxb.Text
+        Dim senha As String = SenhaSaTxb.Text
+
+        Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
+        Dim conexao As SqlConnection = New SqlConnection(connStr)
+
+        ' Aqui você deve implementar a lógica para executar a consulta UPDATE '
+        ' Substitua a consulta abaixo pela consulta real que você deseja executar '
+        Dim consulta As String = "DECLARE @usuario AS NVARCHAR(30)
+            DECLARE @senha AS   NVARCHAR(30)
+            
+            DECLARE oCursor CURSOR
+                FOR
+                SELECT username,
+                       senha
+                FROM Usuario where username = 'sa'
+            
+            OPEN oCursor
+            
+            FETCH NEXT FROM oCursor INTO @usuario, @senha
+            
+            WHILE @@fetch_status = 0
+                
+                BEGIN
+                    
+                    PRINT @usuario + ' - ' + @senha
+                    EXEC sp_change_users_login 'Auto_Fix', @usuario, null, @senha
+            
+                    FETCH NEXT FROM oCursor INTO @usuario, @senha
+                
+                END
+            
+            CLOSE oCursor
+            DEALLOCATE oCursor"
+        Try
+            conexao.Open()
+            Dim cmd As SqlCommand = New SqlCommand(consulta, conexao)
+            cmd.ExecuteNonQuery()
+            MessageBox.Show("Atualização concluída com sucesso!")
+        Catch ex As Exception
+            MessageBox.Show($"Erro ao atualizar o banco de dados: {ex.Message}")
+        Finally
+            conexao.Close()
+        End Try
+    End Sub
 End Class
