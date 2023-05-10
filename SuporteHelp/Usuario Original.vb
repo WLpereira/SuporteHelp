@@ -76,7 +76,7 @@ Public Class Usuario_Original
         Dim banco As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
         Dim servidor As String = ServidorUsuarioTxb.Text
         Dim usuario As String = NomeusuarioTxb.Text
-        Dim senha As String = SenhaUsusarioTxb.Text
+        Dim senha As String = SenhaSaTxb.Text
 
         Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
         Dim conexao As SqlConnection = New SqlConnection(connStr)

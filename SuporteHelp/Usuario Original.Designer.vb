@@ -39,6 +39,7 @@ Partial Class Usuario_Original
         SelecionarUsuarioLbl = New Label()
         ExecutarUsuarioEspecificoBtn = New Button()
         SenhaSaTxb = New TextBox()
+        SenhaSALbl = New Label()
         SuspendLayout()
         ' 
         ' SelecionarBancoUsuarioLbl
@@ -134,7 +135,7 @@ Partial Class Usuario_Original
         ' ExecutarTodosUsuariosBtn
         ' 
         ExecutarTodosUsuariosBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        ExecutarTodosUsuariosBtn.Location = New Point(89, 196)
+        ExecutarTodosUsuariosBtn.Location = New Point(95, 221)
         ExecutarTodosUsuariosBtn.Name = "ExecutarTodosUsuariosBtn"
         ExecutarTodosUsuariosBtn.Size = New Size(111, 37)
         ExecutarTodosUsuariosBtn.TabIndex = 49
@@ -145,7 +146,7 @@ Partial Class Usuario_Original
         ' 
         ExecutarTodosLbl.AutoSize = True
         ExecutarTodosLbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        ExecutarTodosLbl.Location = New Point(20, 159)
+        ExecutarTodosLbl.Location = New Point(23, 184)
         ExecutarTodosLbl.Name = "ExecutarTodosLbl"
         ExecutarTodosLbl.Size = New Size(281, 23)
         ExecutarTodosLbl.TabIndex = 50
@@ -177,7 +178,7 @@ Partial Class Usuario_Original
         ' 
         SelecionarUsuarioLbl.AutoSize = True
         SelecionarUsuarioLbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        SelecionarUsuarioLbl.Location = New Point(414, 117)
+        SelecionarUsuarioLbl.Location = New Point(408, 117)
         SelecionarUsuarioLbl.Name = "SelecionarUsuarioLbl"
         SelecionarUsuarioLbl.Size = New Size(157, 23)
         SelecionarUsuarioLbl.TabIndex = 53
@@ -195,16 +196,28 @@ Partial Class Usuario_Original
         ' 
         ' SenhaSaTxb
         ' 
-        SenhaSaTxb.Location = New Point(89, 113)
+        SenhaSaTxb.Location = New Point(92, 138)
         SenhaSaTxb.Name = "SenhaSaTxb"
         SenhaSaTxb.Size = New Size(125, 27)
         SenhaSaTxb.TabIndex = 55
+        ' 
+        ' SenhaSALbl
+        ' 
+        SenhaSALbl.AutoSize = True
+        SenhaSALbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        SenhaSALbl.ForeColor = Color.Red
+        SenhaSALbl.Location = New Point(108, 112)
+        SenhaSALbl.Name = "SenhaSALbl"
+        SenhaSALbl.Size = New Size(85, 23)
+        SenhaSALbl.TabIndex = 56
+        SenhaSALbl.Text = "Senha SA"
         ' 
         ' Usuario_Original
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(832, 303)
+        Controls.Add(SenhaSALbl)
         Controls.Add(SenhaSaTxb)
         Controls.Add(ExecutarUsuarioEspecificoBtn)
         Controls.Add(SelecionarUsuarioLbl)
@@ -243,4 +256,5 @@ Partial Class Usuario_Original
     Friend WithEvents SelecionarUsuarioLbl As Label
     Friend WithEvents ExecutarUsuarioEspecificoBtn As Button
     Friend WithEvents SenhaSaTxb As TextBox
+    Friend WithEvents SenhaSALbl As Label
 End Class

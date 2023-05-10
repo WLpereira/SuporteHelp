@@ -42,6 +42,7 @@ Partial Class SuporteHelp
         PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
         HelpDeskToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
+        LogarComUsuarioOriginalToolStripMenuItem = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -62,7 +63,7 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
-        LogarComUsuarioOriginalToolStripMenuItem = New ToolStripMenuItem()
+        VerificarServidoresBtn = New Button()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -211,6 +212,12 @@ Partial Class SuporteHelp
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(358, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
+        ' 
+        ' LogarComUsuarioOriginalToolStripMenuItem
+        ' 
+        LogarComUsuarioOriginalToolStripMenuItem.Name = "LogarComUsuarioOriginalToolStripMenuItem"
+        LogarComUsuarioOriginalToolStripMenuItem.Size = New Size(358, 28)
+        LogarComUsuarioOriginalToolStripMenuItem.Text = "Logar com usuario original"
         ' 
         ' PictureBox2
         ' 
@@ -431,17 +438,21 @@ Partial Class SuporteHelp
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
         ' 
-        ' LogarComUsuarioOriginalToolStripMenuItem
+        ' VerificarServidoresBtn
         ' 
-        LogarComUsuarioOriginalToolStripMenuItem.Name = "LogarComUsuarioOriginalToolStripMenuItem"
-        LogarComUsuarioOriginalToolStripMenuItem.Size = New Size(358, 28)
-        LogarComUsuarioOriginalToolStripMenuItem.Text = "Logar com usuario original"
+        VerificarServidoresBtn.Location = New Point(189, 157)
+        VerificarServidoresBtn.Name = "VerificarServidoresBtn"
+        VerificarServidoresBtn.Size = New Size(94, 29)
+        VerificarServidoresBtn.TabIndex = 30
+        VerificarServidoresBtn.Text = "Button2"
+        VerificarServidoresBtn.UseVisualStyleBackColor = True
         ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 753)
+        Controls.Add(VerificarServidoresBtn)
         Controls.Add(SugestaoBtn)
         Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
@@ -526,4 +537,5 @@ Partial Class SuporteHelp
     Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LogarComUsuarioOriginalToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerificarServidoresBtn As Button
 End Class

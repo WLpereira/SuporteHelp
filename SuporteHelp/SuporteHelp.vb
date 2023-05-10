@@ -457,5 +457,23 @@ Public Class SuporteHelp
         Dim usuario_original As New Usuario_Original()
         usuario_original.Show()
     End Sub
+
+    Private Sub VerificarServidoresBtn_Click(sender As Object, e As EventArgs) Handles VerificarServidoresBtn.Click
+        ' Cria uma instância do SQL Server Browser
+        Dim sqlBrowser As New SqlDataSourceEnumerator()
+
+        ' Obtém uma lista de instâncias compartilhadas disponíveis na rede
+        Dim instances As DataTable = sqlBrowser.GetDataSources()
+
+        ' Exibe a lista de instâncias compartilhadas
+        For Each instance As DataRow In instances.Rows
+            Console.WriteLine(instance("ServerName") & "\" & instance("InstanceName"))
+        Next
+
+        ' Exibe uma mensagem informando que a verificação foi concluída
+        MessageBox.Show("Verificação de instâncias compartilhadas concluída.")
+
+    End Sub
+
 End Class
 
