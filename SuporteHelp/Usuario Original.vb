@@ -87,8 +87,7 @@ Public Class Usuario_Original
         Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
         Dim conexao As SqlConnection = New SqlConnection(connStr)
 
-        ' Aqui você deve implementar a lógica para executar a consulta UPDATE '
-        ' Substitua a consulta abaixo pela consulta real que você deseja executar '
+        ' Query '
         Dim consulta As String = "declare @usuario as nvarchar(30)
                 declare @senha   as nvarchar(30)
                 
@@ -178,17 +177,16 @@ Public Class Usuario_Original
             MessageBox.Show("Por favor, selecione um banco de dados para atualizar.")
             Return
         End If
-
-        Dim banco As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
         Dim servidor As String = ServidorUsuarioTxb.Text
-        Dim usuario As String = NomeusuarioTxb.Text
-        Dim senha As String = SenhaSaTxb.Text
+        Dim usuario As String = "sa" ' Usuário com permissões elevadas
+        Dim senha As String = SenhaSaTxb.Text ' Senha do usuário "sa"
+        Dim dbName As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
 
-        Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
-        Dim conexao As SqlConnection = New SqlConnection(connStr)
+        Dim connString As String = $"Server={servidor};Database={dbName};User ID={usuario};Password={senha}"
 
-        ' Aqui você deve implementar a lógica para executar a consulta UPDATE '
-        ' Substitua a consulta abaixo pela consulta real que você deseja executar '
+        Dim conexao As SqlConnection = New SqlConnection(connString)
+
+        'Query para usuario orfão '
         Dim consulta As String = "DECLARE @usuario AS NVARCHAR(30)
             DECLARE @senha AS   NVARCHAR(30)
             
@@ -219,9 +217,9 @@ Public Class Usuario_Original
             conexao.Open()
             Dim cmd As SqlCommand = New SqlCommand(consulta, conexao)
             cmd.ExecuteNonQuery()
-            MessageBox.Show("Atualização concluída com sucesso!")
+            MessageBox.Show("Executado com sucesso!")
         Catch ex As Exception
-            MessageBox.Show($"Erro ao atualizar o banco de dados: {ex.Message}")
+            MessageBox.Show($"Erro ao atualizar os usuarios: {ex.Message}")
         Finally
             conexao.Close()
         End Try
