@@ -63,7 +63,6 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
-        VerificarServidoresBtn = New Button()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -438,21 +437,11 @@ Partial Class SuporteHelp
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
         ' 
-        ' VerificarServidoresBtn
-        ' 
-        VerificarServidoresBtn.Location = New Point(189, 157)
-        VerificarServidoresBtn.Name = "VerificarServidoresBtn"
-        VerificarServidoresBtn.Size = New Size(94, 29)
-        VerificarServidoresBtn.TabIndex = 30
-        VerificarServidoresBtn.Text = "Button2"
-        VerificarServidoresBtn.UseVisualStyleBackColor = True
-        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 753)
-        Controls.Add(VerificarServidoresBtn)
         Controls.Add(SugestaoBtn)
         Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
@@ -537,5 +526,4 @@ Partial Class SuporteHelp
     Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LogarComUsuarioOriginalToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents VerificarServidoresBtn As Button
 End Class
