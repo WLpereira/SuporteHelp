@@ -383,7 +383,7 @@ Public Class SuporteHelp
         End If
 
         ' Obtém o nome do banco selecionado na ListadeServidorDtg
-        Dim nomeBanco As String = "SYM_" & ListadeServidorDtg.SelectedCells(0).Value.ToString()
+        Dim nomeBanco As String = "SYM_" & ListadeServidorDtg.SelectedCells(0).Value.ToString().Substring(0, Math.Min(ListadeServidorDtg.SelectedCells(0).Value.ToString().Length, 25))
 
         ' Obtém o conteúdo do campo ServidorTxb
         Dim servidor As String = ServidorTxb.Text
