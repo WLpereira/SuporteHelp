@@ -136,7 +136,7 @@ Partial Class Usuario_Original
         ' 
         ExecutarTodosUsuariosBtn.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
         ExecutarTodosUsuariosBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        ExecutarTodosUsuariosBtn.Location = New Point(427, 205)
+        ExecutarTodosUsuariosBtn.Location = New Point(378, 231)
         ExecutarTodosUsuariosBtn.Name = "ExecutarTodosUsuariosBtn"
         ExecutarTodosUsuariosBtn.Size = New Size(293, 37)
         ExecutarTodosUsuariosBtn.TabIndex = 49
@@ -159,7 +159,7 @@ Partial Class Usuario_Original
         ' SelecionarUsuarioCbx
         ' 
         SelecionarUsuarioCbx.FormattingEnabled = True
-        SelecionarUsuarioCbx.Location = New Point(61, 190)
+        SelecionarUsuarioCbx.Location = New Point(67, 231)
         SelecionarUsuarioCbx.Margin = New Padding(3, 4, 3, 4)
         SelecionarUsuarioCbx.Name = "SelecionarUsuarioCbx"
         SelecionarUsuarioCbx.Size = New Size(225, 28)
@@ -171,7 +171,7 @@ Partial Class Usuario_Original
         SelecionarUsuarioLbl.BackColor = SystemColors.Control
         SelecionarUsuarioLbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
         SelecionarUsuarioLbl.ForeColor = Color.Blue
-        SelecionarUsuarioLbl.Location = New Point(92, 163)
+        SelecionarUsuarioLbl.Location = New Point(99, 191)
         SelecionarUsuarioLbl.Name = "SelecionarUsuarioLbl"
         SelecionarUsuarioLbl.Size = New Size(157, 23)
         SelecionarUsuarioLbl.TabIndex = 53
@@ -182,7 +182,7 @@ Partial Class Usuario_Original
         ExecutarUsuarioEspecificoBtn.BackColor = Color.Blue
         ExecutarUsuarioEspecificoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
         ExecutarUsuarioEspecificoBtn.ForeColor = Color.White
-        ExecutarUsuarioEspecificoBtn.Location = New Point(20, 238)
+        ExecutarUsuarioEspecificoBtn.Location = New Point(26, 279)
         ExecutarUsuarioEspecificoBtn.Name = "ExecutarUsuarioEspecificoBtn"
         ExecutarUsuarioEspecificoBtn.Size = New Size(320, 37)
         ExecutarUsuarioEspecificoBtn.TabIndex = 54
@@ -191,7 +191,8 @@ Partial Class Usuario_Original
         ' 
         ' SenhaSaTxb
         ' 
-        SenhaSaTxb.Location = New Point(185, 114)
+        SenhaSaTxb.BorderStyle = BorderStyle.FixedSingle
+        SenhaSaTxb.Location = New Point(326, 104)
         SenhaSaTxb.Name = "SenhaSaTxb"
         SenhaSaTxb.Size = New Size(125, 27)
         SenhaSaTxb.TabIndex = 55
@@ -201,7 +202,7 @@ Partial Class Usuario_Original
         SenhaSALbl.AutoSize = True
         SenhaSALbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
         SenhaSALbl.ForeColor = Color.Red
-        SenhaSALbl.Location = New Point(61, 79)
+        SenhaSALbl.Location = New Point(202, 69)
         SenhaSALbl.Name = "SenhaSALbl"
         SenhaSALbl.Size = New Size(400, 23)
         SenhaSALbl.TabIndex = 56
@@ -209,8 +210,9 @@ Partial Class Usuario_Original
         ' 
         ' MostrarUsuarioBtn
         ' 
+        MostrarUsuarioBtn.FlatStyle = FlatStyle.System
         MostrarUsuarioBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        MostrarUsuarioBtn.Location = New Point(504, 88)
+        MostrarUsuarioBtn.Location = New Point(295, 137)
         MostrarUsuarioBtn.Name = "MostrarUsuarioBtn"
         MostrarUsuarioBtn.Size = New Size(185, 43)
         MostrarUsuarioBtn.TabIndex = 57
