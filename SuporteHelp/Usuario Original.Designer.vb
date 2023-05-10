@@ -40,6 +40,7 @@ Partial Class Usuario_Original
         ExecutarUsuarioEspecificoBtn = New Button()
         SenhaSaTxb = New TextBox()
         SenhaSALbl = New Label()
+        MostrarUsuarioBtn = New Button()
         SuspendLayout()
         ' 
         ' SelecionarBancoUsuarioLbl
@@ -212,11 +213,21 @@ Partial Class Usuario_Original
         SenhaSALbl.TabIndex = 56
         SenhaSALbl.Text = "Senha SA"
         ' 
+        ' MostrarUsuarioBtn
+        ' 
+        MostrarUsuarioBtn.Location = New Point(330, 94)
+        MostrarUsuarioBtn.Name = "MostrarUsuarioBtn"
+        MostrarUsuarioBtn.Size = New Size(94, 29)
+        MostrarUsuarioBtn.TabIndex = 57
+        MostrarUsuarioBtn.Text = "Button2"
+        MostrarUsuarioBtn.UseVisualStyleBackColor = True
+        ' 
         ' Usuario_Original
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(832, 303)
+        Controls.Add(MostrarUsuarioBtn)
         Controls.Add(SenhaSALbl)
         Controls.Add(SenhaSaTxb)
         Controls.Add(ExecutarUsuarioEspecificoBtn)
@@ -257,4 +268,5 @@ Partial Class Usuario_Original
     Friend WithEvents ExecutarUsuarioEspecificoBtn As Button
     Friend WithEvents SenhaSaTxb As TextBox
     Friend WithEvents SenhaSALbl As Label
+    Friend WithEvents MostrarUsuarioBtn As Button
 End Class

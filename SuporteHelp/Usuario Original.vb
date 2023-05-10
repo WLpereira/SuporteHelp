@@ -118,4 +118,50 @@ Public Class Usuario_Original
         End Try
     End Sub
 
+    Private Sub MostrarUsuarioBtn_Click(sender As Object, e As EventArgs) Handles MostrarUsuarioBtn.Click
+        ' Verifica se um banco de dados foi selecionado '
+        If SelecionarBancoUsuarioBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Por favor, selecione um banco de dados para atualizar.")
+            Return
+        End If
+        Dim banco As String = SelecionarBancoUsuarioBbx.SelectedItem.ToString()
+        Dim servidor As String = ServidorUsuarioTxb.Text
+        Dim usuario As String = NomeusuarioTxb.Text
+        Dim senha As String = SenhaUsusarioTxb.Text
+
+        Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
+        Dim conexao As SqlConnection = New SqlConnection(connStr)
+
+        Try
+            ' Cria uma conexão com o servidor de banco de dados
+            Using conexaoBD As New SqlConnection(connStr)
+                ' Abre a conexão com o servidor
+                conexaoBD.Open()
+
+                ' Exibe uma mensagem de sucesso ao conectar no servidor
+                MessageBox.Show("Conexão estabelecida com sucesso, selecione o usuário!")
+
+                ' Executa uma consulta SQL que retorna todos os usuários do banco de dados selecionado
+                Dim comando As New SqlCommand("SELECT name as 'Usuarios' FROM sysusers WHERE issqluser = 1 AND hasdbaccess = 1", conexaoBD)
+                Dim leitor As SqlDataReader = comando.ExecuteReader()
+
+                ' Cria uma lista para armazenar os nomes dos usuários
+                Dim listarusuario As New List(Of String)
+
+                ' Popula a lista com os nomes dos usuários
+                While leitor.Read()
+                    listarusuario.Add(leitor("Usuarios").ToString())
+                End While
+
+                ' Fecha o leitor de dados
+                leitor.Close()
+
+                ' Popula o combobox com os nomes dos usuários
+                SelecionarUsuarioCbx.DataSource = listarusuario
+            End Using
+        Catch ex As Exception
+            ' Exibe uma mensagem de erro caso ocorra uma exceção
+            MessageBox.Show("Erro ao carregar usuários: " & ex.Message)
+        End Try
+    End Sub
 End Class
