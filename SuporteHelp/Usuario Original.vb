@@ -78,6 +78,12 @@ Public Class Usuario_Original
         Dim usuario As String = NomeusuarioTxb.Text
         Dim senha As String = SenhaSaTxb.Text
 
+        '' Verifica se todos os campos foram preenchidos
+        If String.IsNullOrEmpty(senha) Then
+            MessageBox.Show("Informe a Senha SA do Banco Selecionado.")
+            Return
+        End If
+
         Dim connStr As String = $"Server={servidor};Database={banco};User Id={usuario};Password={senha};"
         Dim conexao As SqlConnection = New SqlConnection(connStr)
 
