@@ -454,7 +454,7 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub VerificarInformaçõesDoBancoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerificarInformaçõesDoBancoToolStripMenuItem.Click
-        Dim Informacao_do_banco As New Informacao_do_banco()
+        Dim Informacao_do_banco As New Informação_do_banco()
         Informacao_do_banco.Show()
     End Sub
 End Class

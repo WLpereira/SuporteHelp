@@ -30,6 +30,9 @@ Partial Class Informação_do_banco
         SenhaInformacaoLbl = New Label()
         UsuarioInformacaoLbl = New Label()
         ServidorInformacaoLbl = New Label()
+        MostrarCaminhoTxb = New TextBox()
+        MostrarCaminhoBtn = New Button()
+        SelecionarBancoInformacaoCbx = New ComboBox()
         SuspendLayout()
         ' 
         ' ConectarInformacaoBtn
@@ -69,7 +72,7 @@ Partial Class Informação_do_banco
         ' SenhaInformacaoLbl
         ' 
         SenhaInformacaoLbl.AutoSize = True
-        SenhaInformacaoLbl.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
+        SenhaInformacaoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         SenhaInformacaoLbl.Location = New Point(468, 30)
         SenhaInformacaoLbl.Name = "SenhaInformacaoLbl"
         SenhaInformacaoLbl.Size = New Size(51, 20)
@@ -79,7 +82,7 @@ Partial Class Informação_do_banco
         ' UsuarioInformacaoLbl
         ' 
         UsuarioInformacaoLbl.AutoSize = True
-        UsuarioInformacaoLbl.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
+        UsuarioInformacaoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         UsuarioInformacaoLbl.Location = New Point(218, 30)
         UsuarioInformacaoLbl.Name = "UsuarioInformacaoLbl"
         UsuarioInformacaoLbl.Size = New Size(63, 20)
@@ -89,18 +92,45 @@ Partial Class Informação_do_banco
         ' ServidorInformacaoLbl
         ' 
         ServidorInformacaoLbl.AutoSize = True
-        ServidorInformacaoLbl.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
+        ServidorInformacaoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorInformacaoLbl.Location = New Point(17, 30)
         ServidorInformacaoLbl.Name = "ServidorInformacaoLbl"
         ServidorInformacaoLbl.Size = New Size(142, 20)
         ServidorInformacaoLbl.TabIndex = 34
         ServidorInformacaoLbl.Text = "Informe o Servidor"
         ' 
+        ' MostrarCaminhoTxb
+        ' 
+        MostrarCaminhoTxb.Location = New Point(96, 148)
+        MostrarCaminhoTxb.Name = "MostrarCaminhoTxb"
+        MostrarCaminhoTxb.Size = New Size(596, 27)
+        MostrarCaminhoTxb.TabIndex = 41
+        ' 
+        ' MostrarCaminhoBtn
+        ' 
+        MostrarCaminhoBtn.Location = New Point(350, 113)
+        MostrarCaminhoBtn.Name = "MostrarCaminhoBtn"
+        MostrarCaminhoBtn.Size = New Size(94, 29)
+        MostrarCaminhoBtn.TabIndex = 42
+        MostrarCaminhoBtn.Text = "Button1"
+        MostrarCaminhoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' SelecionarBancoInformacaoCbx
+        ' 
+        SelecionarBancoInformacaoCbx.FormattingEnabled = True
+        SelecionarBancoInformacaoCbx.Location = New Point(129, 114)
+        SelecionarBancoInformacaoCbx.Name = "SelecionarBancoInformacaoCbx"
+        SelecionarBancoInformacaoCbx.Size = New Size(151, 28)
+        SelecionarBancoInformacaoCbx.TabIndex = 43
+        ' 
         ' Informação_do_banco
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(SelecionarBancoInformacaoCbx)
+        Controls.Add(MostrarCaminhoBtn)
+        Controls.Add(MostrarCaminhoTxb)
         Controls.Add(ConectarInformacaoBtn)
         Controls.Add(SenhaInformacaoTxb)
         Controls.Add(NomeInformacaoTxb)
@@ -121,4 +151,7 @@ Partial Class Informação_do_banco
     Friend WithEvents SenhaInformacaoLbl As Label
     Friend WithEvents UsuarioInformacaoLbl As Label
     Friend WithEvents ServidorInformacaoLbl As Label
+    Friend WithEvents MostrarCaminhoTxb As TextBox
+    Friend WithEvents MostrarCaminhoBtn As Button
+    Friend WithEvents SelecionarBancoInformacaoCbx As ComboBox
 End Class
