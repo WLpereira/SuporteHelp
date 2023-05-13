@@ -42,7 +42,6 @@ Partial Class SuporteHelp
         PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
         HelpDeskToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
-        LogarComUsuarioOriginalToolStripMenuItem = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -129,7 +128,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1, LogarComUsuarioOriginalToolStripMenuItem})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -211,12 +210,6 @@ Partial Class SuporteHelp
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(358, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
-        ' 
-        ' LogarComUsuarioOriginalToolStripMenuItem
-        ' 
-        LogarComUsuarioOriginalToolStripMenuItem.Name = "LogarComUsuarioOriginalToolStripMenuItem"
-        LogarComUsuarioOriginalToolStripMenuItem.Size = New Size(358, 28)
-        LogarComUsuarioOriginalToolStripMenuItem.Text = "Logar com usuario original"
         ' 
         ' PictureBox2
         ' 
@@ -525,5 +518,4 @@ Partial Class SuporteHelp
     Friend WithEvents ValidarGtinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LogarComUsuarioOriginalToolStripMenuItem As ToolStripMenuItem
 End Class
