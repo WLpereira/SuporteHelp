@@ -452,5 +452,10 @@ Public Class SuporteHelp
         Dim Descricao_Coluna As New Descricao_Coluna()
         Descricao_Coluna.Show()
     End Sub
+
+    Private Sub VerificarInformaçõesDoBancoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerificarInformaçõesDoBancoToolStripMenuItem.Click
+        Dim Informacao_do_banco As New Informacao_do_banco()
+        Informacao_do_banco.Show()
+    End Sub
 End Class
 

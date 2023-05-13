@@ -42,6 +42,7 @@ Partial Class SuporteHelp
         PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
         HelpDeskToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
+        VerificarInformaçõesDoBancoToolStripMenuItem = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -62,7 +63,6 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
-        VerificarInformaçõesDoBancoToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -211,6 +211,12 @@ Partial Class SuporteHelp
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(358, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
+        ' 
+        ' VerificarInformaçõesDoBancoToolStripMenuItem
+        ' 
+        VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
+        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(358, 28)
+        VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
         ' 
         ' PictureBox2
         ' 
@@ -430,12 +436,6 @@ Partial Class SuporteHelp
         SugestaoBtn.Text = "Sugestão de Melhoria"
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
-        ' 
-        ' VerificarInformaçõesDoBancoToolStripMenuItem
-        ' 
-        VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
-        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(358, 28)
-        VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
         ' 
         ' SuporteHelp
         ' 
