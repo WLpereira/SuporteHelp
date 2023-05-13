@@ -62,6 +62,7 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
+        VerificarInformaçõesDoBancoToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +129,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1, VerificarInformaçõesDoBancoToolStripMenuItem})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -430,6 +431,12 @@ Partial Class SuporteHelp
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
         ' 
+        ' VerificarInformaçõesDoBancoToolStripMenuItem
+        ' 
+        VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
+        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(358, 28)
+        VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
@@ -518,4 +525,5 @@ Partial Class SuporteHelp
     Friend WithEvents ValidarGtinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerificarInformaçõesDoBancoToolStripMenuItem As ToolStripMenuItem
 End Class
