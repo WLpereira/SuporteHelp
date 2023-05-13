@@ -94,4 +94,42 @@ Public Class Informação_do_banco
 
 
     End Sub
+    Private Sub MostrarinformacaoBtn_Click(sender As Object, e As EventArgs) Handles MostrarinformacaoBtn.Click
+        Dim servidor As String = ServidorInformacaoTxb.Text
+        Dim caminhoTrace As String = MostrarCaminhoTxb.Text
+        Dim nomeBanco As String = NomeBancoTxb.Text
+
+        Dim conexao As New SqlConnection($"Data Source={servidor};Initial Catalog=master;Integrated Security=True;")
+        Dim query As String = $"USE tempdb;
+                            IF OBJECT_ID('dbo.TraceTable', 'U') IS NOT NULL
+                                DROP TABLE dbo.TraceTable;
+                            SELECT *
+                            INTO TraceTable
+                            FROM ::fn_trace_gettable('{caminhoTrace}', default);
+                            SELECT DatabaseID, DatabaseName AS Nome_do_Banco, LoginName AS Login, HostName AS Computador, 
+                                ApplicationName AS Software, ObjectName AS O_que_foi_Criado, TextData AS Historico, StartTime AS DATA,
+                                CASE
+                                    
+                                    WHEN EventClass = 47 THEN 'Database Dropped'
+                                    WHEN EventClass = 115 THEN 'Database Restored'
+                                    ELSE 'NONE'
+                                END AS Evento
+                            FROM tempdb.dbo.TraceTable
+                            WHERE DatabaseName like '%{nomeBanco}%'
+                                AND (EventClass IN ( 47, 115))
+                            ORDER BY StartTime asc;"
+        Dim comando As New SqlCommand(query, conexao)
+        Dim adapter As New SqlDataAdapter(comando)
+        Dim tabela As New DataTable()
+
+        Try
+            conexao.Open()
+            adapter.Fill(tabela)
+            ResultadoDgv.DataSource = tabela
+        Catch ex As Exception
+            MessageBox.Show($"Erro ao executar consulta: {ex.Message}")
+        Finally
+            conexao.Close()
+        End Try
+    End Sub
 End Class

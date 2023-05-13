@@ -33,6 +33,10 @@ Partial Class Informação_do_banco
         MostrarCaminhoTxb = New TextBox()
         MostrarCaminhoBtn = New Button()
         SelecionarBancoInformacaoCbx = New ComboBox()
+        MostrarinformacaoBtn = New Button()
+        ResultadoDgv = New DataGridView()
+        NomeBancoTxb = New TextBox()
+        CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' ConectarInformacaoBtn
@@ -40,7 +44,7 @@ Partial Class Informação_do_banco
         ConectarInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarInformacaoBtn.Image = CType(resources.GetObject("ConectarInformacaoBtn.Image"), Image)
         ConectarInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarInformacaoBtn.Location = New Point(651, 39)
+        ConectarInformacaoBtn.Location = New Point(670, 18)
         ConectarInformacaoBtn.Name = "ConectarInformacaoBtn"
         ConectarInformacaoBtn.Size = New Size(118, 38)
         ConectarInformacaoBtn.TabIndex = 40
@@ -50,21 +54,21 @@ Partial Class Informação_do_banco
         ' 
         ' SenhaInformacaoTxb
         ' 
-        SenhaInformacaoTxb.Location = New Point(468, 50)
+        SenhaInformacaoTxb.Location = New Point(470, 29)
         SenhaInformacaoTxb.Name = "SenhaInformacaoTxb"
         SenhaInformacaoTxb.Size = New Size(177, 27)
         SenhaInformacaoTxb.TabIndex = 39
         ' 
         ' NomeInformacaoTxb
         ' 
-        NomeInformacaoTxb.Location = New Point(218, 50)
+        NomeInformacaoTxb.Location = New Point(220, 29)
         NomeInformacaoTxb.Name = "NomeInformacaoTxb"
         NomeInformacaoTxb.Size = New Size(244, 27)
         NomeInformacaoTxb.TabIndex = 38
         ' 
         ' ServidorInformacaoTxb
         ' 
-        ServidorInformacaoTxb.Location = New Point(17, 50)
+        ServidorInformacaoTxb.Location = New Point(19, 29)
         ServidorInformacaoTxb.Name = "ServidorInformacaoTxb"
         ServidorInformacaoTxb.Size = New Size(195, 27)
         ServidorInformacaoTxb.TabIndex = 37
@@ -73,7 +77,7 @@ Partial Class Informação_do_banco
         ' 
         SenhaInformacaoLbl.AutoSize = True
         SenhaInformacaoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaInformacaoLbl.Location = New Point(468, 30)
+        SenhaInformacaoLbl.Location = New Point(470, 9)
         SenhaInformacaoLbl.Name = "SenhaInformacaoLbl"
         SenhaInformacaoLbl.Size = New Size(51, 20)
         SenhaInformacaoLbl.TabIndex = 36
@@ -83,7 +87,7 @@ Partial Class Informação_do_banco
         ' 
         UsuarioInformacaoLbl.AutoSize = True
         UsuarioInformacaoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        UsuarioInformacaoLbl.Location = New Point(218, 30)
+        UsuarioInformacaoLbl.Location = New Point(220, 9)
         UsuarioInformacaoLbl.Name = "UsuarioInformacaoLbl"
         UsuarioInformacaoLbl.Size = New Size(63, 20)
         UsuarioInformacaoLbl.TabIndex = 35
@@ -93,7 +97,7 @@ Partial Class Informação_do_banco
         ' 
         ServidorInformacaoLbl.AutoSize = True
         ServidorInformacaoLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorInformacaoLbl.Location = New Point(17, 30)
+        ServidorInformacaoLbl.Location = New Point(19, 9)
         ServidorInformacaoLbl.Name = "ServidorInformacaoLbl"
         ServidorInformacaoLbl.Size = New Size(142, 20)
         ServidorInformacaoLbl.TabIndex = 34
@@ -101,33 +105,64 @@ Partial Class Informação_do_banco
         ' 
         ' MostrarCaminhoTxb
         ' 
-        MostrarCaminhoTxb.Location = New Point(96, 148)
+        MostrarCaminhoTxb.Location = New Point(192, 97)
         MostrarCaminhoTxb.Name = "MostrarCaminhoTxb"
         MostrarCaminhoTxb.Size = New Size(596, 27)
         MostrarCaminhoTxb.TabIndex = 41
         ' 
         ' MostrarCaminhoBtn
         ' 
-        MostrarCaminhoBtn.Location = New Point(350, 113)
+        MostrarCaminhoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        MostrarCaminhoBtn.Location = New Point(416, 62)
         MostrarCaminhoBtn.Name = "MostrarCaminhoBtn"
-        MostrarCaminhoBtn.Size = New Size(94, 29)
+        MostrarCaminhoBtn.Size = New Size(169, 29)
         MostrarCaminhoBtn.TabIndex = 42
-        MostrarCaminhoBtn.Text = "Button1"
+        MostrarCaminhoBtn.Text = "Buscar Caminho"
         MostrarCaminhoBtn.UseVisualStyleBackColor = True
         ' 
         ' SelecionarBancoInformacaoCbx
         ' 
         SelecionarBancoInformacaoCbx.FormattingEnabled = True
-        SelecionarBancoInformacaoCbx.Location = New Point(129, 114)
+        SelecionarBancoInformacaoCbx.Location = New Point(814, 25)
         SelecionarBancoInformacaoCbx.Name = "SelecionarBancoInformacaoCbx"
-        SelecionarBancoInformacaoCbx.Size = New Size(151, 28)
+        SelecionarBancoInformacaoCbx.Size = New Size(156, 28)
         SelecionarBancoInformacaoCbx.TabIndex = 43
+        ' 
+        ' MostrarinformacaoBtn
+        ' 
+        MostrarinformacaoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        MostrarinformacaoBtn.Location = New Point(453, 143)
+        MostrarinformacaoBtn.Name = "MostrarinformacaoBtn"
+        MostrarinformacaoBtn.Size = New Size(94, 29)
+        MostrarinformacaoBtn.TabIndex = 44
+        MostrarinformacaoBtn.Text = "Mostrar"
+        MostrarinformacaoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' ResultadoDgv
+        ' 
+        ResultadoDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ResultadoDgv.Location = New Point(12, 235)
+        ResultadoDgv.Name = "ResultadoDgv"
+        ResultadoDgv.RowHeadersWidth = 51
+        ResultadoDgv.RowTemplate.Height = 29
+        ResultadoDgv.Size = New Size(958, 296)
+        ResultadoDgv.TabIndex = 45
+        ' 
+        ' NomeBancoTxb
+        ' 
+        NomeBancoTxb.Location = New Point(439, 178)
+        NomeBancoTxb.Name = "NomeBancoTxb"
+        NomeBancoTxb.Size = New Size(125, 27)
+        NomeBancoTxb.TabIndex = 46
         ' 
         ' Informação_do_banco
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(982, 553)
+        Controls.Add(NomeBancoTxb)
+        Controls.Add(ResultadoDgv)
+        Controls.Add(MostrarinformacaoBtn)
         Controls.Add(SelecionarBancoInformacaoCbx)
         Controls.Add(MostrarCaminhoBtn)
         Controls.Add(MostrarCaminhoTxb)
@@ -140,6 +175,7 @@ Partial Class Informação_do_banco
         Controls.Add(ServidorInformacaoLbl)
         Name = "Informação_do_banco"
         Text = "Informação_do_banco"
+        CType(ResultadoDgv, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -154,4 +190,7 @@ Partial Class Informação_do_banco
     Friend WithEvents MostrarCaminhoTxb As TextBox
     Friend WithEvents MostrarCaminhoBtn As Button
     Friend WithEvents SelecionarBancoInformacaoCbx As ComboBox
+    Friend WithEvents MostrarinformacaoBtn As Button
+    Friend WithEvents ResultadoDgv As DataGridView
+    Friend WithEvents NomeBancoTxb As TextBox
 End Class
