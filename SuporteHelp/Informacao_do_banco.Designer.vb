@@ -135,7 +135,7 @@ Partial Class Informação_do_banco
         ' MostrarinformacaoBtn
         ' 
         MostrarinformacaoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        MostrarinformacaoBtn.Location = New Point(282, 168)
+        MostrarinformacaoBtn.Location = New Point(287, 168)
         MostrarinformacaoBtn.Name = "MostrarinformacaoBtn"
         MostrarinformacaoBtn.Size = New Size(140, 41)
         MostrarinformacaoBtn.TabIndex = 44
