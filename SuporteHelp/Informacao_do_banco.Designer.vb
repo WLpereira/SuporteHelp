@@ -37,6 +37,9 @@ Partial Class Informação_do_banco
         ResultadoDgv = New DataGridView()
         NomeBancoTxb = New TextBox()
         SairInformacaoBancoBtn = New Button()
+        Label1 = New Label()
+        Label2 = New Label()
+        MostrarTodosBtn = New Button()
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -106,7 +109,7 @@ Partial Class Informação_do_banco
         ' 
         ' MostrarCaminhoTxb
         ' 
-        MostrarCaminhoTxb.Location = New Point(192, 97)
+        MostrarCaminhoTxb.Location = New Point(15, 88)
         MostrarCaminhoTxb.Name = "MostrarCaminhoTxb"
         MostrarCaminhoTxb.Size = New Size(596, 27)
         MostrarCaminhoTxb.TabIndex = 41
@@ -114,9 +117,9 @@ Partial Class Informação_do_banco
         ' MostrarCaminhoBtn
         ' 
         MostrarCaminhoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        MostrarCaminhoBtn.Location = New Point(416, 62)
+        MostrarCaminhoBtn.Location = New Point(633, 78)
         MostrarCaminhoBtn.Name = "MostrarCaminhoBtn"
-        MostrarCaminhoBtn.Size = New Size(169, 29)
+        MostrarCaminhoBtn.Size = New Size(169, 37)
         MostrarCaminhoBtn.TabIndex = 42
         MostrarCaminhoBtn.Text = "Buscar Caminho"
         MostrarCaminhoBtn.UseVisualStyleBackColor = True
@@ -132,9 +135,9 @@ Partial Class Informação_do_banco
         ' MostrarinformacaoBtn
         ' 
         MostrarinformacaoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        MostrarinformacaoBtn.Location = New Point(453, 143)
+        MostrarinformacaoBtn.Location = New Point(282, 168)
         MostrarinformacaoBtn.Name = "MostrarinformacaoBtn"
-        MostrarinformacaoBtn.Size = New Size(94, 29)
+        MostrarinformacaoBtn.Size = New Size(140, 41)
         MostrarinformacaoBtn.TabIndex = 44
         MostrarinformacaoBtn.Text = "Mostrar"
         MostrarinformacaoBtn.UseVisualStyleBackColor = True
@@ -151,9 +154,9 @@ Partial Class Informação_do_banco
         ' 
         ' NomeBancoTxb
         ' 
-        NomeBancoTxb.Location = New Point(439, 178)
+        NomeBancoTxb.Location = New Point(40, 176)
         NomeBancoTxb.Name = "NomeBancoTxb"
-        NomeBancoTxb.Size = New Size(125, 27)
+        NomeBancoTxb.Size = New Size(207, 27)
         NomeBancoTxb.TabIndex = 46
         ' 
         ' SairInformacaoBancoBtn
@@ -169,11 +172,45 @@ Partial Class Informação_do_banco
         SairInformacaoBancoBtn.TextAlign = ContentAlignment.MiddleLeft
         SairInformacaoBancoBtn.UseVisualStyleBackColor = True
         ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(76, 153)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(135, 20)
+        Label1.TabIndex = 48
+        Label1.Text = "Buscar por Nome "
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        Label2.ForeColor = Color.Red
+        Label2.Location = New Point(156, 61)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(314, 20)
+        Label2.TabIndex = 49
+        Label2.Text = "Necessario buscar o caminho que o log está"
+        ' 
+        ' MostrarTodosBtn
+        ' 
+        MostrarTodosBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        MostrarTodosBtn.Location = New Point(599, 168)
+        MostrarTodosBtn.Name = "MostrarTodosBtn"
+        MostrarTodosBtn.Size = New Size(283, 41)
+        MostrarTodosBtn.TabIndex = 50
+        MostrarTodosBtn.Text = "Mostrar Todos "
+        MostrarTodosBtn.UseVisualStyleBackColor = True
+        ' 
         ' Informação_do_banco
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(982, 603)
+        Controls.Add(MostrarTodosBtn)
+        Controls.Add(Label2)
+        Controls.Add(Label1)
         Controls.Add(SairInformacaoBancoBtn)
         Controls.Add(NomeBancoTxb)
         Controls.Add(ResultadoDgv)
@@ -210,4 +247,7 @@ Partial Class Informação_do_banco
     Friend WithEvents ResultadoDgv As DataGridView
     Friend WithEvents NomeBancoTxb As TextBox
     Friend WithEvents SairInformacaoBancoBtn As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents MostrarTodosBtn As Button
 End Class

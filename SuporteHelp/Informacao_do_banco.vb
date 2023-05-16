@@ -141,4 +141,48 @@ Public Class Informação_do_banco
     Private Sub SairInformacaoBancoBtn_Click(sender As Object, e As EventArgs) Handles SairInformacaoBancoBtn.Click
         Me.Close()
     End Sub
+
+    Private Sub MostrarTodosBtn_Click(sender As Object, e As EventArgs) Handles MostrarTodosBtn.Click
+        Dim servidor As String = ServidorInformacaoTxb.Text
+        Dim caminhoTrace As String = MostrarCaminhoTxb.Text
+        Dim nomeBanco As String = NomeBancoTxb.Text
+
+        Dim conexao As New SqlConnection($"Data Source={servidor};Initial Catalog=master;User Id=sa;Password=dp;")
+
+        Try
+            conexao.Open()
+
+            ' Criar a tabela TraceTable '
+            Dim createTableQuery As String = "USE tempdb; " &
+                                         "IF OBJECT_ID('dbo.TraceTable', 'U') IS NOT NULL " &
+                                         "    DROP TABLE dbo.TraceTable; " &
+                                         "SELECT * " &
+                                         "INTO TraceTable " &
+                                         $"FROM ::fn_trace_gettable('{caminhoTrace}', default);"
+            Dim createTableCommand As New SqlCommand(createTableQuery, conexao)
+            createTableCommand.ExecuteNonQuery()
+
+            ' Consulta para obter as informações desejadas '
+            Dim selectQuery As String = "SELECT DatabaseID, DatabaseName AS Nome_do_Banco, LoginName AS Login, HostName AS Computador, " &
+                            "       ApplicationName AS Software, StartTime AS DATA,TextData AS HISTORICO, " &
+                            "       CASE " &
+                            "           WHEN EventClass = 47 THEN 'Database Dropped' " &
+                            "           WHEN EventClass = 115 THEN 'Database Restored' " &
+                            "           ELSE 'NONE' " &
+                            "       END AS EventType " &
+                            "FROM tempdb.dbo.TraceTable " &
+                            $"WHERE DatabaseName LIKE '%{nomeBanco}%' AND EventClass IN (47, 115) AND ApplicationName = 'Microsoft SQL Server Management Studio' " &
+                            "ORDER BY StartTime DESC;"
+
+            Dim selectCommand As New SqlCommand(selectQuery, conexao)
+            Dim adapter As New SqlDataAdapter(selectCommand)
+            Dim tabela As New DataTable()
+            adapter.Fill(tabela)
+            ResultadoDgv.DataSource = tabela
+        Catch ex As Exception
+            MessageBox.Show($"Erro ao executar consulta: {ex.Message}")
+        Finally
+            conexao.Close()
+        End Try
+    End Sub
 End Class
