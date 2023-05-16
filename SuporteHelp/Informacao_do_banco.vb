@@ -132,7 +132,7 @@ Public Class Informação_do_banco
             adapter.Fill(tabela)
             ResultadoDgv.DataSource = tabela
         Catch ex As Exception
-            MessageBox.Show($"Erro ao executa consulta: {ex.Message}")
+            MessageBox.Show($"Erro ao executar consulta: {ex.Message}")
         Finally
             conexao.Close()
         End Try
