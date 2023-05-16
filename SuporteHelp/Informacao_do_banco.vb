@@ -95,9 +95,19 @@ Public Class Informação_do_banco
 
     End Sub
     Private Sub MostrarinformacaoBtn_Click(sender As Object, e As EventArgs) Handles MostrarinformacaoBtn.Click
+
+
         Dim servidor As String = ServidorInformacaoTxb.Text
         Dim caminhoTrace As String = MostrarCaminhoTxb.Text
         Dim nomeBanco As String = NomeBancoTxb.Text
+
+        ' Verificar se o campo NomeBancoTxb está preenchido '
+        If String.IsNullOrEmpty(nomeBanco) OrElse String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(caminhoTrace) Then
+            MessageBox.Show("Por favor, preencha os campos.")
+            Return
+        End If
+
+
 
         Dim conexao As New SqlConnection($"Data Source={servidor};Initial Catalog=master;User Id=sa;Password=dp;")
 
@@ -146,6 +156,12 @@ Public Class Informação_do_banco
         Dim servidor As String = ServidorInformacaoTxb.Text
         Dim caminhoTrace As String = MostrarCaminhoTxb.Text
         Dim nomeBanco As String = NomeBancoTxb.Text
+
+        ' Verificar se o campo NomeBancoTxb está preenchido '
+        If String.IsNullOrEmpty(caminhoTrace) Then
+            MessageBox.Show("Por favor, preencha os campos.")
+            Return
+        End If
 
         Dim conexao As New SqlConnection($"Data Source={servidor};Initial Catalog=master;User Id=sa;Password=dp;")
 
