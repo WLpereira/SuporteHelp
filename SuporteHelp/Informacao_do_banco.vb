@@ -137,4 +137,8 @@ Public Class Informação_do_banco
             conexao.Close()
         End Try
     End Sub
+
+    Private Sub SairInformacaoBancoBtn_Click(sender As Object, e As EventArgs) Handles SairInformacaoBancoBtn.Click
+        Me.Close()
+    End Sub
 End Class

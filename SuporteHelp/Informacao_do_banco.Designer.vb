@@ -36,6 +36,7 @@ Partial Class Informação_do_banco
         MostrarinformacaoBtn = New Button()
         ResultadoDgv = New DataGridView()
         NomeBancoTxb = New TextBox()
+        SairInformacaoBancoBtn = New Button()
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -155,11 +156,25 @@ Partial Class Informação_do_banco
         NomeBancoTxb.Size = New Size(125, 27)
         NomeBancoTxb.TabIndex = 46
         ' 
+        ' SairInformacaoBancoBtn
+        ' 
+        SairInformacaoBancoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        SairInformacaoBancoBtn.Image = CType(resources.GetObject("SairInformacaoBancoBtn.Image"), Image)
+        SairInformacaoBancoBtn.ImageAlign = ContentAlignment.MiddleRight
+        SairInformacaoBancoBtn.Location = New Point(837, 553)
+        SairInformacaoBancoBtn.Name = "SairInformacaoBancoBtn"
+        SairInformacaoBancoBtn.Size = New Size(118, 38)
+        SairInformacaoBancoBtn.TabIndex = 47
+        SairInformacaoBancoBtn.Text = "SAIR"
+        SairInformacaoBancoBtn.TextAlign = ContentAlignment.MiddleLeft
+        SairInformacaoBancoBtn.UseVisualStyleBackColor = True
+        ' 
         ' Informação_do_banco
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(982, 553)
+        ClientSize = New Size(982, 603)
+        Controls.Add(SairInformacaoBancoBtn)
         Controls.Add(NomeBancoTxb)
         Controls.Add(ResultadoDgv)
         Controls.Add(MostrarinformacaoBtn)
@@ -194,4 +209,5 @@ Partial Class Informação_do_banco
     Friend WithEvents MostrarinformacaoBtn As Button
     Friend WithEvents ResultadoDgv As DataGridView
     Friend WithEvents NomeBancoTxb As TextBox
+    Friend WithEvents SairInformacaoBancoBtn As Button
 End Class
