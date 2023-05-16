@@ -173,6 +173,7 @@ Partial Class Informação_do_banco
         Controls.Add(SenhaInformacaoLbl)
         Controls.Add(UsuarioInformacaoLbl)
         Controls.Add(ServidorInformacaoLbl)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Informação_do_banco"
         Text = "Informação_do_banco"
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).EndInit()

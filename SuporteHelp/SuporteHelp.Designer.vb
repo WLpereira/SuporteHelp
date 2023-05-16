@@ -129,7 +129,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1, VerificarInformaçõesDoBancoToolStripMenuItem})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, VerificarInformaçõesDoBancoToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -214,6 +214,7 @@ Partial Class SuporteHelp
         ' 
         ' VerificarInformaçõesDoBancoToolStripMenuItem
         ' 
+        VerificarInformaçõesDoBancoToolStripMenuItem.Image = My.Resources.Resources.icons8_pesquisar_30
         VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
         VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(358, 28)
         VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
