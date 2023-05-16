@@ -225,8 +225,11 @@ Partial Class Informação_do_banco
         Controls.Add(SenhaInformacaoLbl)
         Controls.Add(UsuarioInformacaoLbl)
         Controls.Add(ServidorInformacaoLbl)
+        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        MaximizeBox = False
         Name = "Informação_do_banco"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Informação_do_banco"
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
