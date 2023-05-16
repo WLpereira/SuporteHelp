@@ -360,7 +360,7 @@ Partial Class SuporteHelp
         PesquisarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarBtn.Image = CType(resources.GetObject("PesquisarBtn.Image"), Image)
         PesquisarBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarBtn.Location = New Point(498, 183)
+        PesquisarBtn.Location = New Point(499, 183)
         PesquisarBtn.Name = "PesquisarBtn"
         PesquisarBtn.Size = New Size(118, 38)
         PesquisarBtn.TabIndex = 23
