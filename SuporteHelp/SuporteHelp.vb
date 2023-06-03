@@ -2,8 +2,14 @@
 Imports System.IO
 Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
+Imports Newtonsoft.Json
 
 Public Class SuporteHelp
+    Public Class DadosConexao
+        Public Property Servidor As String
+        Public Property Usuario As String
+        Public Property Senha As String
+    End Class
 
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
@@ -49,6 +55,15 @@ Public Class SuporteHelp
 
                 ' Fecha o leitor de dados
                 leitor.Close()
+
+                ' Verifica se os dados de conexão já foram salvos
+                If Not ExisteConexaoSalva(servidor, usuario, senha) Then
+                    ' Salva os dados de conexão em um arquivo de texto
+                    SalvarDadosConexao(servidor, usuario, senha)
+
+                    ' Adiciona o servidor ao ComboBox
+                    ExibirServidorCbx.Items.Add(servidor)
+                End If
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
@@ -56,6 +71,93 @@ Public Class SuporteHelp
         End Try
     End Sub
 
+    Private Function ExisteConexaoSalva(servidor As String, usuario As String, senha As String) As Boolean
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Verifica se alguma linha possui a mesma combinação de servidor, usuário e senha
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 AndAlso dados(0) = servidor AndAlso dados(1) = usuario AndAlso dados(2) = senha Then
+                    ' A combinação de servidor, usuário e senha já existe no arquivo de texto
+                    Return True
+                End If
+            Next
+        End If
+
+        ' A combinação de servidor, usuário e senha não foi encontrada no arquivo de texto
+        Return False
+    End Function
+
+    Private Sub SalvarDadosConexao(servidor As String, usuario As String, senha As String)
+        ' Cria uma linha com os dados de conexão separados por vírgula
+        Dim linha As String = servidor & "," & usuario & "," & senha
+
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Adiciona a linha ao arquivo de texto
+        File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
+    End Sub
+
+    Private Sub CarregarServidoresSalvos()
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Percorre as linhas e adiciona os servidores ao ComboBox
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 Then
+                    Dim servidor As String = dados(0)
+
+                    ' Verifica se o servidor já foi adicionado anteriormente
+                    If Not ExibirServidorCbx.Items.Contains(servidor) Then
+                        ExibirServidorCbx.Items.Add(servidor)
+                    End If
+                End If
+            Next
+        End If
+    End Sub
+
+
+    Private Sub SuporteHelp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Carrega os servidores salvos ao carregar o formulário
+        CarregarServidoresSalvos()
+    End Sub
+
+    Private Sub ExibirServidorCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorCbx.SelectedIndexChanged
+        ' Obtém o servidor selecionado no ComboBox
+        Dim servidorSelecionado As String = ExibirServidorCbx.SelectedItem.ToString()
+
+        ' Verifica se o arquivo de dados de conexão existe
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Percorre as linhas e procura pelo servidor selecionado
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 AndAlso dados(0) = servidorSelecionado Then
+                    ' Preenche os campos com os valores correspondentes
+                    ServidorTxb.Text = dados(0)
+                    NomeConectarTxb.Text = dados(1)
+                    SenhaTxb.Text = dados(2)
+                    Exit For ' Interrompe o loop após encontrar os dados correspondentes
+                End If
+            Next
+        End If
+    End Sub
     Private Sub PesquisarBtn_Click(sender As Object, e As EventArgs) Handles PesquisarBtn.Click
 
         If ServidorTxb.Text.Trim() = "" Or NomeConectarTxb.Text.Trim() = "" Or SenhaTxb.Text.Trim() = "" Then
@@ -414,7 +516,7 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub SugestaoBtn_Click(sender As Object, e As EventArgs) Handles SugestaoBtn.Click
-        Dim sugestao As New sugestao()
+        Dim sugestao As New Sugestao()
         sugestao.Show()
     End Sub
 

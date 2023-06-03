@@ -35,6 +35,7 @@ Partial Class SuporteHelp
         ValidarGtinToolStripMenuItem = New ToolStripMenuItem()
         ProcurarTabelaOuColunaNoBDToolStripMenuItem = New ToolStripMenuItem()
         DescriçãoDasColunasToolStripMenuItem = New ToolStripMenuItem()
+        VerificarInformaçõesDoBancoToolStripMenuItem = New ToolStripMenuItem()
         CriptoToolStripMenuItem = New ToolStripMenuItem()
         DDClientsToolStripMenuItem = New ToolStripMenuItem()
         CloudCreateUserToolStripMenuItem = New ToolStripMenuItem()
@@ -42,7 +43,6 @@ Partial Class SuporteHelp
         PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
         HelpDeskToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
-        VerificarInformaçõesDoBancoToolStripMenuItem = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -63,6 +63,7 @@ Partial Class SuporteHelp
         GerarRegbtn = New Button()
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
+        ExibirServidorCbx = New ComboBox()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +164,13 @@ Partial Class SuporteHelp
         DescriçãoDasColunasToolStripMenuItem.Size = New Size(358, 28)
         DescriçãoDasColunasToolStripMenuItem.Text = "Descrição das Colunas"
         ' 
+        ' VerificarInformaçõesDoBancoToolStripMenuItem
+        ' 
+        VerificarInformaçõesDoBancoToolStripMenuItem.Image = My.Resources.Resources.icons8_pesquisar_30
+        VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
+        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(358, 28)
+        VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
+        ' 
         ' CriptoToolStripMenuItem
         ' 
         CriptoToolStripMenuItem.Image = My.Resources.Resources.icons8_senha_30
@@ -211,13 +219,6 @@ Partial Class SuporteHelp
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(358, 28)
         ToolStripMenuItem1.Text = "Pasta de Packs "
-        ' 
-        ' VerificarInformaçõesDoBancoToolStripMenuItem
-        ' 
-        VerificarInformaçõesDoBancoToolStripMenuItem.Image = My.Resources.Resources.icons8_pesquisar_30
-        VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
-        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(358, 28)
-        VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
         ' 
         ' PictureBox2
         ' 
@@ -438,11 +439,20 @@ Partial Class SuporteHelp
         SugestaoBtn.TextAlign = ContentAlignment.MiddleRight
         SugestaoBtn.UseVisualStyleBackColor = True
         ' 
+        ' ExibirServidorCbx
+        ' 
+        ExibirServidorCbx.FormattingEnabled = True
+        ExibirServidorCbx.Location = New Point(115, 90)
+        ExibirServidorCbx.Name = "ExibirServidorCbx"
+        ExibirServidorCbx.Size = New Size(151, 29)
+        ExibirServidorCbx.TabIndex = 30
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 753)
+        Controls.Add(ExibirServidorCbx)
         Controls.Add(SugestaoBtn)
         Controls.Add(GerarRegLbl)
         Controls.Add(GerarRegbtn)
@@ -527,4 +537,5 @@ Partial Class SuporteHelp
     Friend WithEvents ProcurarTabelaOuColunaNoBDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerificarInformaçõesDoBancoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExibirServidorCbx As ComboBox
 End Class
