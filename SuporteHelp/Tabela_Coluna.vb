@@ -399,7 +399,5 @@ Public Class Tabela_Coluna
 
     End Sub
 
-    Private Sub Tabela_Coluna_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 End Class
