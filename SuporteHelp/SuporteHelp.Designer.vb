@@ -64,6 +64,7 @@ Partial Class SuporteHelp
         GerarRegLbl = New Label()
         SugestaoBtn = New Button()
         ExibirServidorCbx = New ComboBox()
+        SelecinarServidorLbl = New Label()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -442,16 +443,27 @@ Partial Class SuporteHelp
         ' ExibirServidorCbx
         ' 
         ExibirServidorCbx.FormattingEnabled = True
-        ExibirServidorCbx.Location = New Point(115, 90)
+        ExibirServidorCbx.Location = New Point(115, 115)
         ExibirServidorCbx.Name = "ExibirServidorCbx"
-        ExibirServidorCbx.Size = New Size(151, 29)
+        ExibirServidorCbx.Size = New Size(210, 29)
         ExibirServidorCbx.TabIndex = 30
+        ' 
+        ' SelecinarServidorLbl
+        ' 
+        SelecinarServidorLbl.AutoSize = True
+        SelecinarServidorLbl.ForeColor = Color.Red
+        SelecinarServidorLbl.Location = New Point(115, 89)
+        SelecinarServidorLbl.Name = "SelecinarServidorLbl"
+        SelecinarServidorLbl.Size = New Size(221, 23)
+        SelecinarServidorLbl.TabIndex = 31
+        SelecinarServidorLbl.Text = "Selecionar Servidor Salvos"
         ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 753)
+        Controls.Add(SelecinarServidorLbl)
         Controls.Add(ExibirServidorCbx)
         Controls.Add(SugestaoBtn)
         Controls.Add(GerarRegLbl)
@@ -538,4 +550,5 @@ Partial Class SuporteHelp
     Friend WithEvents DescriçãoDasColunasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerificarInformaçõesDoBancoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExibirServidorCbx As ComboBox
+    Friend WithEvents SelecinarServidorLbl As Label
 End Class

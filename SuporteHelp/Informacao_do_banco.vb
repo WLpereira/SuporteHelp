@@ -1,9 +1,12 @@
 ﻿Imports NPOI.SS.Formula.Functions
+Imports System.Data.SqlClient
+Imports System.IO
+Imports DocumentFormat.OpenXml.Drawing.Diagrams
+Imports MahApps.Metro.Controls.Dialogs
+Imports Newtonsoft.Json
 
 Public Class Informação_do_banco
     Private Sub ConectarInformacaoBtn_Click(sender As Object, e As EventArgs) Handles ConectarInformacaoBtn.Click
-
-
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorInformacaoTxb.Text
         Dim usuario As String = NomeInformacaoTxb.Text
@@ -12,6 +15,12 @@ Public Class Informação_do_banco
         ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
+            Return
+        End If
+
+        ' Verifica se o servidor informado não é um dos servidores bloqueados
+        If servidor = "cloud.informo.com.br,9898" OrElse servidor = "cloud.informo.com.br,9586" Then
+            MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
             Return
         End If
 
@@ -44,12 +53,120 @@ Public Class Informação_do_banco
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoInformacaoCbx.DataSource = listaBancos
+
+                ' Verifica se os dados de conexão já foram salvos
+                If Not ExisteConexaoSalva(servidor, usuario, senha) Then
+                    ' Salva os dados de conexão em um arquivo de texto
+                    SalvarDadosConexao(servidor, usuario, senha)
+                End If
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
             MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
         End Try
     End Sub
+
+    Private Function ExisteConexaoSalva(servidor As String, usuario As String, senha As String) As Boolean
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Verifica se já existe uma conexão salva com os mesmos dados
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 AndAlso dados(0) = servidor AndAlso dados(1) = usuario AndAlso dados(2) = senha Then
+                    Return True ' Já existe uma conexão salva com os mesmos dados
+                End If
+            Next
+        End If
+
+        Return False ' Não existe uma conexão salva com os mesmos dados
+    End Function
+
+    Private Sub SalvarDadosConexao(servidor As String, usuario As String, senha As String)
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Cria uma linha com os dados de conexão
+        Dim linha As String = $"{servidor},{usuario},{senha}"
+
+        ' Salva a linha no arquivo de texto
+        File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
+    End Sub
+
+    Private Sub CarregarServidoresSalvos()
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Cria uma lista para armazenar os servidores salvos
+            Dim listaServidores As New List(Of String)
+
+            ' Popula a lista com os servidores salvos
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 Then
+                    listaServidores.Add(dados(0)) ' Adiciona apenas o servidor à lista
+                End If
+            Next
+
+            ' Popula o ComboBox com os servidores salvos
+            ExibirServidorIfoCbx.DataSource = listaServidores
+
+            ' Verifica se há servidores salvos
+            If listaServidores.Count > 0 Then
+                ' Define o valor selecionado no combobox como o primeiro servidor da lista
+                ExibirServidorIfoCbx.SelectedIndex = 0
+
+                ' Obtém os dados do servidor selecionado
+                Dim dadosServidor As String() = linhas(ExibirServidorIfoCbx.SelectedIndex).Split(","c)
+
+                ' Preenche os campos de servidor, usuário e senha com os dados do servidor selecionado
+                ServidorInformacaoTxb.Text = dadosServidor(0)
+                NomeInformacaoTxb.Text = dadosServidor(1)
+                SenhaInformacaoTxb.Text = dadosServidor(2)
+            End If
+        End If
+    End Sub
+
+    Private Sub ExibirServidorIfoCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorIfoCbx.SelectedIndexChanged
+        ' Obtém o índice do servidor selecionado
+        Dim indiceServidor As Integer = ExibirServidorIfoCbx.SelectedIndex
+
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Verifica se o índice do servidor selecionado é válido
+            If indiceServidor >= 0 AndAlso indiceServidor < linhas.Length Then
+                ' Obtém os dados do servidor selecionado
+                Dim dadosServidor As String() = linhas(indiceServidor).Split(","c)
+
+                ' Preenche os campos de servidor, usuário e senha com os dados do servidor selecionado
+                ServidorInformacaoTxb.Text = dadosServidor(0)
+                NomeInformacaoTxb.Text = dadosServidor(1)
+                SenhaInformacaoTxb.Text = dadosServidor(2)
+            End If
+        End If
+    End Sub
+
+    Private Sub Informação_do_banco_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Carrega os servidores salvos ao carregar o formulário
+        CarregarServidoresSalvos()
+    End Sub
+
 
     Private Sub MostrarCaminhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarCaminhoBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
