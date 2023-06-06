@@ -65,7 +65,7 @@ Public Class Descricao_Coluna
             ' Verifica se a linha já existe no arquivo antes de adicioná-la
             Dim linhaExistente As Boolean = False
             For Each linhaExistenteArquivo As String In linhasExistentes
-                If linhaExistenteArquivo = linha Then
+                If linhaExistenteArquivo.StartsWith(servidor) Then
                     linhaExistente = True
                     Exit For
                 End If
@@ -166,6 +166,7 @@ Public Class Descricao_Coluna
             MessageBox.Show("Erro ao carregar as informações do servidor: " & ex.Message)
         End Try
     End Sub
+
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
         Me.Close()
     End Sub
