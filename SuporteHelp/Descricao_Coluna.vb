@@ -47,6 +47,7 @@ Public Class Descricao_Coluna
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoColunasTxb.DataSource = listaBancos
+                SelecionarBancoColunasTxb.SelectedIndex = -1 ' Define o índice selecionado como -1 para limpar a seleção atual
 
                 ' Habilita o CheckBox para exibir o servidor salvo
                 ExibirServidorDescCbx.Enabled = True
@@ -55,95 +56,75 @@ Public Class Descricao_Coluna
             ' Exibe uma mensagem de erro caso ocorra uma exceção
             MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
         End Try
+
+        ' Salva as informações de servidor, nome e senha em um arquivo de texto
+        Try
+            Using writer As New StreamWriter("dados_conexao.txt", True)
+                writer.WriteLine(servidor & "|" & usuario & "|" & senha)
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Erro ao salvar as informações do servidor: " & ex.Message)
+        End Try
+
+        ' Carrega os servidores salvos no ComboBox
+        CarregarServidoresSalvos()
+    End Sub
+
+    Private Sub CarregarServidoresSalvos()
+        Try
+            If File.Exists("dados_conexao.txt") Then
+                ' Lê as linhas do arquivo de texto
+                Dim linhas As String() = File.ReadAllLines("dados_conexao.txt")
+
+                ' Cria uma lista para armazenar os servidores salvos
+                Dim servidoresSalvos As New List(Of String)
+
+                ' Extrai as informações de servidor, nome e senha de cada linha
+                For Each linha As String In linhas
+                    Dim informacoes As String() = linha.Split("|"c)
+                    Dim servidor As String = informacoes(0)
+                    servidoresSalvos.Add(servidor)
+                Next
+
+                ' Popula o ComboBox com os servidores salvos
+                ExibirServidorDescCbx.DataSource = servidoresSalvos
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Erro ao carregar os servidores salvos: " & ex.Message)
+        End Try
     End Sub
 
     Private Sub ExibirServidorDescCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorDescCbx.SelectedIndexChanged
-        If ExibirServidorDescCbx.SelectedItem IsNot Nothing Then
-            ' Obtém o índice do servidor selecionado no combobox
-            Dim indiceServidor As Integer = ExibirServidorDescCbx.SelectedIndex
+        ' Obtém o servidor selecionado no ComboBox
+        Dim servidorSelecionado As String = ExibirServidorDescCbx.SelectedItem.ToString()
 
-            ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
-            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_servidores.txt")
-
-            ' Verifica se o arquivo de dados de servidores existe
-            If File.Exists(caminhoArquivo) Then
-                ' Lê todas as linhas do arquivo de texto
-                Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
-
-                ' Verifica se o índice do servidor selecionado é válido
-                If indiceServidor >= 0 AndAlso indiceServidor < linhas.Length Then
-                    ' Obtém os dados do servidor selecionado
-                    Dim dadosServidor As String() = linhas(indiceServidor).Split(","c)
-
-                    ' Preenche os campos de servidor, usuário e senha com os dados do servidor selecionado
-                    ServidorColunasTxb.Text = dadosServidor(0)
-                    NomeConectarColunasTxb.Text = dadosServidor(1)
-                    SenhaColunasTxb.Text = dadosServidor(2)
-                End If
-            End If
-        Else
-            ' Limpa os campos de servidor, usuário e senha
-            ServidorColunasTxb.Clear()
-            NomeConectarColunasTxb.Clear()
-            SenhaColunasTxb.Clear()
-        End If
-    End Sub
-
-    Private Sub SelecionarBancoColunasTxb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelecionarBancoColunasTxb.SelectedIndexChanged
-        ' Captura o nome do banco de dados selecionado no combobox
-        Dim nomeBanco As String = SelecionarBancoColunasTxb.SelectedItem.ToString()
-
+        ' Carrega as informações do servidor selecionado nos textboxes
         Try
-            ' Cria uma conexão com o banco de dados selecionado
-            Using conexaoBD As New SqlConnection($"Server={ServidorColunasTxb.Text};User Id={NomeConectarColunasTxb.Text};Password={SenhaColunasTxb.Text};Database={nomeBanco}")
-                ' Abre a conexão com o banco de dados
-                conexaoBD.Open()
+            If File.Exists("dados_conexao.txt") Then
+                ' Lê as linhas do arquivo de texto
+                Dim linhas As String() = File.ReadAllLines("dados_conexao.txt")
 
-                ' Executa uma consulta SQL que retorna as colunas da tabela selecionada
-                Dim comando As New SqlCommand("SELECT name as Nome_da_Coluna, description as Descricao, comment as Informacao, stnull as Aceita_null, objectid FROM ObjectField", conexaoBD)
-                Dim leitor As SqlDataReader = comando.ExecuteReader()
+                ' Procura a linha correspondente ao servidor selecionado
+                For Each linha As String In linhas
+                    Dim informacoes As String() = linha.Split("|"c)
+                    Dim servidor As String = informacoes(0)
 
-                ' Cria uma DataTable para armazenar as colunas da tabela selecionada
-                Dim dt As New DataTable()
-                dt.Load(leitor)
-
-                ' Popula o DataGridView com as colunas da tabela selecionada
-                MostarDetalheColunaDGV.DataSource = dt
-                MostarDetalheColunaDGV.Columns(0).Width = 200
-                MostarDetalheColunaDGV.Columns(1).Width = 200
-                MostarDetalheColunaDGV.Columns(2).Width = 200
-                MostarDetalheColunaDGV.Columns(3).Width = 100
-                MostarDetalheColunaDGV.Columns(4).Visible = False
-
-                ' Fecha o leitor de dados
-                leitor.Close()
-            End Using
+                    If servidor = servidorSelecionado Then
+                        ' Exibe as informações do servidor nos textboxes
+                        ServidorColunasTxb.Text = servidor
+                        NomeConectarColunasTxb.Text = informacoes(1)
+                        SenhaColunasTxb.Text = informacoes(2)
+                        Exit For
+                    End If
+                Next
+            End If
         Catch ex As Exception
-            ' Exibe uma mensagem de erro caso ocorra uma exceção
-            MessageBox.Show("Erro ao carregar colunas: " & ex.Message)
+            MessageBox.Show("Erro ao carregar as informações do servidor: " & ex.Message)
         End Try
     End Sub
 
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
         Me.Close()
-    End Sub
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CarregarServidoresSalvos()
-    End Sub
-
-    Private Sub CarregarServidoresSalvos()
-        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
-        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_servidores.txt")
-
-        ' Verifica se o arquivo de dados de servidores existe
-        If File.Exists(caminhoArquivo) Then
-            ' Lê todas as linhas do arquivo de texto
-            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
-
-            ' Popula o combobox com os servidores salvos
-            ExibirServidorDescCbx.Items.AddRange(linhas)
-        End If
     End Sub
 
     Private Sub PesquisarColunaBtn_Click(sender As Object, e As EventArgs) Handles PesquisarColunaBtn.Click
