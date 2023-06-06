@@ -118,14 +118,18 @@ Public Class Descricao_Coluna
                 ' Procura a linha correspondente ao servidor selecionado
                 For Each linha As String In linhas
                     Dim informacoes As String() = linha.Split("|"c)
-                    Dim servidorLido As String = informacoes(0)
 
-                    If servidorLido = servidorSelecionado Then
-                        ' Armazena as informações do servidor selecionado
-                        servidor = servidorLido
-                        usuario = informacoes(1)
-                        senha = informacoes(2)
-                        Exit For
+                    ' Verifica se a linha contém todas as informações necessárias
+                    If informacoes.Length = 3 Then
+                        Dim servidorLido As String = informacoes(0)
+
+                        If servidorLido = servidorSelecionado Then
+                            ' Armazena as informações do servidor selecionado
+                            servidor = servidorLido
+                            usuario = informacoes(1)
+                            senha = informacoes(2)
+                            Exit For
+                        End If
                     End If
                 Next
 
