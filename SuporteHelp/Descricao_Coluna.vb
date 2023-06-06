@@ -1,4 +1,9 @@
 ﻿Imports System.Data.SqlClient
+Imports DocumentFormat.OpenXml.Office2010.Excel
+Imports System.IO
+Imports DocumentFormat.OpenXml.Drawing.Diagrams
+Imports MahApps.Metro.Controls.Dialogs
+Imports Newtonsoft.Json
 
 Public Class Descricao_Coluna
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
@@ -7,7 +12,7 @@ Public Class Descricao_Coluna
         Dim usuario As String = NomeConectarColunasTxb.Text
         Dim senha As String = SenhaColunasTxb.Text
 
-        '' Verifica se todos os campos foram preenchidos
+        ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
             Return
@@ -22,7 +27,7 @@ Public Class Descricao_Coluna
                 ' Abre a conexão com o servidor
                 conexaoBD.Open()
 
-                '' Exibe uma mensagem de sucesso ao conectar no servidor
+                ' Exibe uma mensagem de sucesso ao conectar no servidor
                 MessageBox.Show("Conexão estabelecida com sucesso, Selecione o Banco!")
 
                 ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
@@ -42,11 +47,46 @@ Public Class Descricao_Coluna
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoColunasTxb.DataSource = listaBancos
+
+                ' Habilita o CheckBox para exibir o servidor salvo
+                ExibirServidorDescCbx.Enabled = True
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
             MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
         End Try
+    End Sub
+
+    Private Sub ExibirServidorDescCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorDescCbx.SelectedIndexChanged
+        If ExibirServidorDescCbx.SelectedItem IsNot Nothing Then
+            ' Obtém o índice do servidor selecionado no combobox
+            Dim indiceServidor As Integer = ExibirServidorDescCbx.SelectedIndex
+
+            ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_servidores.txt")
+
+            ' Verifica se o arquivo de dados de servidores existe
+            If File.Exists(caminhoArquivo) Then
+                ' Lê todas as linhas do arquivo de texto
+                Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+                ' Verifica se o índice do servidor selecionado é válido
+                If indiceServidor >= 0 AndAlso indiceServidor < linhas.Length Then
+                    ' Obtém os dados do servidor selecionado
+                    Dim dadosServidor As String() = linhas(indiceServidor).Split(","c)
+
+                    ' Preenche os campos de servidor, usuário e senha com os dados do servidor selecionado
+                    ServidorColunasTxb.Text = dadosServidor(0)
+                    NomeConectarColunasTxb.Text = dadosServidor(1)
+                    SenhaColunasTxb.Text = dadosServidor(2)
+                End If
+            End If
+        Else
+            ' Limpa os campos de servidor, usuário e senha
+            ServidorColunasTxb.Clear()
+            NomeConectarColunasTxb.Clear()
+            SenhaColunasTxb.Clear()
+        End If
     End Sub
 
     Private Sub SelecionarBancoColunasTxb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelecionarBancoColunasTxb.SelectedIndexChanged
@@ -86,6 +126,24 @@ Public Class Descricao_Coluna
 
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
         Me.Close()
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CarregarServidoresSalvos()
+    End Sub
+
+    Private Sub CarregarServidoresSalvos()
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_servidores.txt")
+
+        ' Verifica se o arquivo de dados de servidores existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Popula o combobox com os servidores salvos
+            ExibirServidorDescCbx.Items.AddRange(linhas)
+        End If
     End Sub
 
     Private Sub PesquisarColunaBtn_Click(sender As Object, e As EventArgs) Handles PesquisarColunaBtn.Click

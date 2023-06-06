@@ -47,6 +47,8 @@ Partial Class Descricao_Coluna
         PesquisarInformacaoBtn = New Button()
         PesquisarDescricaotxb = New TextBox()
         PesquisarInformacaoTxb = New TextBox()
+        SSSALVOSLbl = New Label()
+        ExibirServidorDescCbx = New ComboBox()
         CType(MostarDetalheColunaDGV, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -67,11 +69,11 @@ Partial Class Descricao_Coluna
         ' MostarDetalheColunaDGV
         ' 
         MostarDetalheColunaDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        MostarDetalheColunaDGV.Location = New Point(32, 239)
+        MostarDetalheColunaDGV.Location = New Point(32, 278)
         MostarDetalheColunaDGV.Name = "MostarDetalheColunaDGV"
         MostarDetalheColunaDGV.RowHeadersWidth = 51
         MostarDetalheColunaDGV.RowTemplate.Height = 29
-        MostarDetalheColunaDGV.Size = New Size(924, 530)
+        MostarDetalheColunaDGV.Size = New Size(924, 491)
         MostarDetalheColunaDGV.TabIndex = 23
         ' 
         ' DescricaoColunaLbl
@@ -79,7 +81,7 @@ Partial Class Descricao_Coluna
         DescricaoColunaLbl.AutoSize = True
         DescricaoColunaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         DescricaoColunaLbl.ForeColor = Color.Navy
-        DescricaoColunaLbl.Location = New Point(312, 60)
+        DescricaoColunaLbl.Location = New Point(310, 124)
         DescricaoColunaLbl.Name = "DescricaoColunaLbl"
         DescricaoColunaLbl.Size = New Size(338, 28)
         DescricaoColunaLbl.TabIndex = 24
@@ -170,7 +172,7 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarcolunaTxb
         ' 
-        PesquisarcolunaTxb.Location = New Point(32, 147)
+        PesquisarcolunaTxb.Location = New Point(32, 195)
         PesquisarcolunaTxb.Margin = New Padding(3, 4, 3, 4)
         PesquisarcolunaTxb.Name = "PesquisarcolunaTxb"
         PesquisarcolunaTxb.Size = New Size(235, 27)
@@ -181,7 +183,7 @@ Partial Class Descricao_Coluna
         LimparColunaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparColunaBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparColunaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparColunaBtn.Location = New Point(152, 181)
+        LimparColunaBtn.Location = New Point(152, 229)
         LimparColunaBtn.Margin = New Padding(3, 4, 3, 4)
         LimparColunaBtn.Name = "LimparColunaBtn"
         LimparColunaBtn.Size = New Size(115, 45)
@@ -195,7 +197,7 @@ Partial Class Descricao_Coluna
         PesquisarColunaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarColunaBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarColunaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarColunaBtn.Location = New Point(32, 181)
+        PesquisarColunaBtn.Location = New Point(32, 229)
         PesquisarColunaBtn.Margin = New Padding(3, 4, 3, 4)
         PesquisarColunaBtn.Name = "PesquisarColunaBtn"
         PesquisarColunaBtn.Size = New Size(117, 45)
@@ -208,7 +210,7 @@ Partial Class Descricao_Coluna
         ' 
         ColunaLbl.AutoSize = True
         ColunaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ColunaLbl.Location = New Point(109, 115)
+        ColunaLbl.Location = New Point(109, 163)
         ColunaLbl.Name = "ColunaLbl"
         ColunaLbl.Size = New Size(77, 28)
         ColunaLbl.TabIndex = 40
@@ -218,7 +220,7 @@ Partial Class Descricao_Coluna
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(420, 115)
+        Label1.Location = New Point(420, 163)
         Label1.Name = "Label1"
         Label1.Size = New Size(104, 28)
         Label1.TabIndex = 43
@@ -229,7 +231,7 @@ Partial Class Descricao_Coluna
         LimparDescricaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparDescricaoBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparDescricaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparDescricaoBtn.Location = New Point(478, 181)
+        LimparDescricaoBtn.Location = New Point(478, 229)
         LimparDescricaoBtn.Margin = New Padding(3, 4, 3, 4)
         LimparDescricaoBtn.Name = "LimparDescricaoBtn"
         LimparDescricaoBtn.Size = New Size(115, 45)
@@ -243,7 +245,7 @@ Partial Class Descricao_Coluna
         PesquisarDescricaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarDescricaoBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarDescricaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarDescricaoBtn.Location = New Point(358, 181)
+        PesquisarDescricaoBtn.Location = New Point(358, 229)
         PesquisarDescricaoBtn.Margin = New Padding(3, 4, 3, 4)
         PesquisarDescricaoBtn.Name = "PesquisarDescricaoBtn"
         PesquisarDescricaoBtn.Size = New Size(117, 45)
@@ -256,7 +258,7 @@ Partial Class Descricao_Coluna
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Label2.Location = New Point(784, 115)
+        Label2.Location = New Point(784, 163)
         Label2.Name = "Label2"
         Label2.Size = New Size(120, 28)
         Label2.TabIndex = 46
@@ -267,7 +269,7 @@ Partial Class Descricao_Coluna
         LimparInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparInformacaoBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparInformacaoBtn.Location = New Point(840, 181)
+        LimparInformacaoBtn.Location = New Point(840, 229)
         LimparInformacaoBtn.Margin = New Padding(3, 4, 3, 4)
         LimparInformacaoBtn.Name = "LimparInformacaoBtn"
         LimparInformacaoBtn.Size = New Size(115, 45)
@@ -281,7 +283,7 @@ Partial Class Descricao_Coluna
         PesquisarInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarInformacaoBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarInformacaoBtn.Location = New Point(720, 181)
+        PesquisarInformacaoBtn.Location = New Point(720, 229)
         PesquisarInformacaoBtn.Margin = New Padding(3, 4, 3, 4)
         PesquisarInformacaoBtn.Name = "PesquisarInformacaoBtn"
         PesquisarInformacaoBtn.Size = New Size(117, 45)
@@ -292,7 +294,7 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarDescricaotxb
         ' 
-        PesquisarDescricaotxb.Location = New Point(358, 147)
+        PesquisarDescricaotxb.Location = New Point(358, 195)
         PesquisarDescricaotxb.Margin = New Padding(3, 4, 3, 4)
         PesquisarDescricaotxb.Name = "PesquisarDescricaotxb"
         PesquisarDescricaotxb.Size = New Size(235, 27)
@@ -300,17 +302,38 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarInformacaoTxb
         ' 
-        PesquisarInformacaoTxb.Location = New Point(720, 147)
+        PesquisarInformacaoTxb.Location = New Point(720, 195)
         PesquisarInformacaoTxb.Margin = New Padding(3, 4, 3, 4)
         PesquisarInformacaoTxb.Name = "PesquisarInformacaoTxb"
         PesquisarInformacaoTxb.Size = New Size(235, 27)
         PesquisarInformacaoTxb.TabIndex = 48
+        ' 
+        ' SSSALVOSLbl
+        ' 
+        SSSALVOSLbl.AutoSize = True
+        SSSALVOSLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        SSSALVOSLbl.ForeColor = Color.Red
+        SSSALVOSLbl.Location = New Point(3, 66)
+        SSSALVOSLbl.Name = "SSSALVOSLbl"
+        SSSALVOSLbl.Size = New Size(239, 20)
+        SSSALVOSLbl.TabIndex = 54
+        SSSALVOSLbl.Text = "SELECIONAR SERVIDOR SALVOS "
+        ' 
+        ' ExibirServidorDescCbx
+        ' 
+        ExibirServidorDescCbx.FormattingEnabled = True
+        ExibirServidorDescCbx.Location = New Point(5, 90)
+        ExibirServidorDescCbx.Name = "ExibirServidorDescCbx"
+        ExibirServidorDescCbx.Size = New Size(192, 28)
+        ExibirServidorDescCbx.TabIndex = 53
         ' 
         ' Descricao_Coluna
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(982, 853)
+        Controls.Add(SSSALVOSLbl)
+        Controls.Add(ExibirServidorDescCbx)
         Controls.Add(PesquisarInformacaoTxb)
         Controls.Add(PesquisarDescricaotxb)
         Controls.Add(Label2)
@@ -370,4 +393,6 @@ Partial Class Descricao_Coluna
     Friend WithEvents PesquisarInformacaoBtn As Button
     Friend WithEvents PesquisarDescricaotxb As TextBox
     Friend WithEvents PesquisarInformacaoTxb As TextBox
+    Friend WithEvents SSSALVOSLbl As Label
+    Friend WithEvents ExibirServidorDescCbx As ComboBox
 End Class
