@@ -6,6 +6,11 @@ Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
 
 Public Class Descricao_Coluna
+    Private Sub Descricao_Coluna_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Carrega os servidores salvos no ComboBox
+        CarregarServidoresSalvos()
+    End Sub
+
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorColunasTxb.Text
@@ -20,6 +25,20 @@ Public Class Descricao_Coluna
 
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+
+        ' Verifica se a conexão é válida
+        Using conexaoBD As New SqlConnection(conexao)
+            Try
+                ' Tenta abrir a conexão com o servidor
+                conexaoBD.Open()
+            Catch ex As Exception
+                ' Exibe uma mensagem de erro se não for possível abrir a conexão
+                MessageBox.Show("Erro ao conectar com o servidor: " & ex.Message)
+                Return
+            End Try
+        End Using
+
+        ' Se a conexão for válida, continua o código para exibir a mensagem de sucesso e salvar as informações
 
         Try
             ' Cria uma conexão com o servidor de banco de dados
@@ -60,7 +79,8 @@ Public Class Descricao_Coluna
         ' Salva as informações de servidor, nome e senha em um arquivo de texto
         Try
             Dim linha As String = servidor & "|" & usuario & "|" & senha
-            Dim linhasExistentes As String() = If(File.Exists("dados_conexao.txt"), File.ReadAllLines("dados_conexao.txt"), New String() {})
+            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "conexao_descricao.txt")
+            Dim linhasExistentes As String() = If(File.Exists(caminhoArquivo), File.ReadAllLines(caminhoArquivo), New String() {})
 
             ' Verifica se a linha já existe no arquivo antes de adicioná-la
             Dim linhaExistente As Boolean = False
@@ -72,9 +92,7 @@ Public Class Descricao_Coluna
             Next
 
             If Not linhaExistente Then
-                Using writer As New StreamWriter("dados_conexao.txt", True)
-                    writer.WriteLine(linha)
-                End Using
+                File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
             End If
         Catch ex As Exception
             MessageBox.Show("Erro ao salvar as informações do servidor: " & ex.Message)
@@ -86,9 +104,10 @@ Public Class Descricao_Coluna
 
     Private Sub CarregarServidoresSalvos()
         Try
-            If File.Exists("dados_conexao.txt") Then
+            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "conexao_descricao.txt")
+            If File.Exists(caminhoArquivo) Then
                 ' Lê as linhas do arquivo de texto
-                Dim linhas As String() = File.ReadAllLines("dados_conexao.txt")
+                Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
 
                 ' Cria um HashSet para armazenar os servidores salvos sem repetição
                 Dim servidoresSalvos As New HashSet(Of String)
@@ -130,9 +149,10 @@ Public Class Descricao_Coluna
 
         ' Carrega as informações do servidor selecionado nos textboxes
         Try
-            If File.Exists("dados_conexao.txt") Then
+            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "conexao_descricao.txt")
+            If File.Exists(caminhoArquivo) Then
                 ' Lê as linhas do arquivo de texto
-                Dim linhas As String() = File.ReadAllLines("dados_conexao.txt")
+                Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
 
                 ' Variáveis para armazenar as informações do servidor selecionado
                 Dim servidor As String = ""
@@ -166,7 +186,6 @@ Public Class Descricao_Coluna
             MessageBox.Show("Erro ao carregar as informações do servidor: " & ex.Message)
         End Try
     End Sub
-
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
         Me.Close()
     End Sub

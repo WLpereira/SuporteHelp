@@ -17,7 +17,7 @@ Public Class SuporteHelp
         Dim usuario As String = NomeConectarTxb.Text
         Dim senha As String = SenhaTxb.Text
 
-        '' Verifica se todos os campos foram preenchidos
+        ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
             Return
@@ -101,8 +101,13 @@ Public Class SuporteHelp
         ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
         Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
 
-        ' Adiciona a linha ao arquivo de texto
-        File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
+        ' Adiciona a linha ao arquivo de texto, somente se a conexão for válida
+        If ValidarConexao(servidor, usuario, senha) Then
+            ' Verifica se a linha já existe no arquivo antes de adicioná-la
+            If Not ExisteConexaoSalva(servidor, usuario, senha) Then
+                File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
+            End If
+        End If
     End Sub
 
     Private Sub CarregarServidoresSalvos()
@@ -129,6 +134,11 @@ Public Class SuporteHelp
         End If
     End Sub
 
+    Private Function ValidarConexao(servidor As String, usuario As String, senha As String) As Boolean
+        ' Implemente aqui a lógica de validação da conexão
+        ' Retorne True se a conexão for válida, ou False caso contrário
+        Return True ' Exemplo: sempre retorna True para fins de demonstração
+    End Function
 
     Private Sub SuporteHelp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Carrega os servidores salvos ao carregar o formulário
@@ -158,6 +168,7 @@ Public Class SuporteHelp
             Next
         End If
     End Sub
+
     Private Sub PesquisarBtn_Click(sender As Object, e As EventArgs) Handles PesquisarBtn.Click
 
         If ServidorTxb.Text.Trim() = "" Or NomeConectarTxb.Text.Trim() = "" Or SenhaTxb.Text.Trim() = "" Then
