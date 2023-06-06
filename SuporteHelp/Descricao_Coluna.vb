@@ -63,7 +63,15 @@ Public Class Descricao_Coluna
             Dim linhasExistentes As String() = If(File.Exists("dados_conexao.txt"), File.ReadAllLines("dados_conexao.txt"), New String() {})
 
             ' Verifica se a linha já existe no arquivo antes de adicioná-la
-            If Not linhasExistentes.Contains(linha) Then
+            Dim linhaExistente As Boolean = False
+            For Each linhaExistenteArquivo As String In linhasExistentes
+                If linhaExistenteArquivo = linha Then
+                    linhaExistente = True
+                    Exit For
+                End If
+            Next
+
+            If Not linhaExistente Then
                 Using writer As New StreamWriter("dados_conexao.txt", True)
                     writer.WriteLine(linha)
                 End Using
@@ -88,12 +96,28 @@ Public Class Descricao_Coluna
                 ' Extrai as informações de servidor, nome e senha de cada linha
                 For Each linha As String In linhas
                     Dim informacoes As String() = linha.Split("|"c)
-                    Dim servidor As String = informacoes(0)
-                    servidoresSalvos.Add(servidor)
-                Next
 
-                ' Popula o ComboBox com os servidores salvos
-                ExibirServidorDescCbx.DataSource = servidoresSalvos.ToList()
+                    ' Verifica se a linha contém todas as informações necessárias
+                    If informacoes.Length = 3 Then
+                        Dim servidor As String = informacoes(0)
+                        Dim usuario As String = informacoes(1)
+                        Dim senha As String = informacoes(2)
+
+                        ' Verifica se o servidor já existe na lista de servidores salvos
+                        Dim servidorExistente As Boolean = False
+                        For Each item As String In ExibirServidorDescCbx.Items
+                            If item = servidor Then
+                                servidorExistente = True
+                                Exit For
+                            End If
+                        Next
+
+                        ' Se o servidor não existir, adiciona na lista
+                        If Not servidorExistente Then
+                            ExibirServidorDescCbx.Items.Add(servidor)
+                        End If
+                    End If
+                Next
             End If
         Catch ex As Exception
             MessageBox.Show("Erro ao carregar os servidores salvos: " & ex.Message)
@@ -142,7 +166,6 @@ Public Class Descricao_Coluna
             MessageBox.Show("Erro ao carregar as informações do servidor: " & ex.Message)
         End Try
     End Sub
-
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
         Me.Close()
     End Sub
