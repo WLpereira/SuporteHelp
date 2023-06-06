@@ -1,23 +1,13 @@
 ﻿Imports System.Data.SqlClient
-Imports DocumentFormat.OpenXml.Office2010.Excel
-Imports System.IO
-Imports DocumentFormat.OpenXml.Drawing.Diagrams
-Imports MahApps.Metro.Controls.Dialogs
-Imports Newtonsoft.Json
 
 Public Class Descricao_Coluna
-    Private Sub Descricao_Coluna_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Carrega os servidores salvos no ComboBox
-        CarregarServidoresSalvos()
-    End Sub
-
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorColunasTxb.Text
         Dim usuario As String = NomeConectarColunasTxb.Text
         Dim senha As String = SenhaColunasTxb.Text
 
-        ' Verifica se todos os campos foram preenchidos
+        '' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
             Return
@@ -26,27 +16,13 @@ Public Class Descricao_Coluna
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
-        ' Verifica se a conexão é válida
-        Using conexaoBD As New SqlConnection(conexao)
-            Try
-                ' Tenta abrir a conexão com o servidor
-                conexaoBD.Open()
-            Catch ex As Exception
-                ' Exibe uma mensagem de erro se não for possível abrir a conexão
-                MessageBox.Show("Erro ao conectar com o servidor: " & ex.Message)
-                Return
-            End Try
-        End Using
-
-        ' Se a conexão for válida, continua o código para exibir a mensagem de sucesso e salvar as informações
-
         Try
             ' Cria uma conexão com o servidor de banco de dados
             Using conexaoBD As New SqlConnection(conexao)
                 ' Abre a conexão com o servidor
                 conexaoBD.Open()
 
-                ' Exibe uma mensagem de sucesso ao conectar no servidor
+                '' Exibe uma mensagem de sucesso ao conectar no servidor
                 MessageBox.Show("Conexão estabelecida com sucesso, Selecione o Banco!")
 
                 ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
@@ -66,126 +42,48 @@ Public Class Descricao_Coluna
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoColunasTxb.DataSource = listaBancos
-                SelecionarBancoColunasTxb.SelectedIndex = -1 ' Define o índice selecionado como -1 para limpar a seleção atual
-
-                ' Habilita o CheckBox para exibir o servidor salvo
-                ExibirServidorDescCbx.Enabled = True
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
             MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
         End Try
-
-        ' Salva as informações de servidor, nome e senha em um arquivo de texto
-        Try
-            Dim linha As String = servidor & "|" & usuario & "|" & senha
-            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "conexao_descricao.txt")
-            Dim linhasExistentes As String() = If(File.Exists(caminhoArquivo), File.ReadAllLines(caminhoArquivo), New String() {})
-
-            ' Verifica se a linha já existe no arquivo antes de adicioná-la
-            Dim linhaExistente As Boolean = False
-            For Each linhaExistenteArquivo As String In linhasExistentes
-                If linhaExistenteArquivo.StartsWith(servidor) Then
-                    linhaExistente = True
-                    Exit For
-                End If
-            Next
-
-            If Not linhaExistente Then
-                File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Erro ao salvar as informações do servidor: " & ex.Message)
-        End Try
-
-        ' Carrega os servidores salvos no ComboBox
-        CarregarServidoresSalvos()
     End Sub
 
-    Private Sub CarregarServidoresSalvos()
+    Private Sub SelecionarBancoColunasTxb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelecionarBancoColunasTxb.SelectedIndexChanged
+        ' Captura o nome do banco de dados selecionado no combobox
+        Dim nomeBanco As String = SelecionarBancoColunasTxb.SelectedItem.ToString()
+
         Try
-            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "conexao_descricao.txt")
-            If File.Exists(caminhoArquivo) Then
-                ' Lê as linhas do arquivo de texto
-                Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+            ' Cria uma conexão com o banco de dados selecionado
+            Using conexaoBD As New SqlConnection($"Server={ServidorColunasTxb.Text};User Id={NomeConectarColunasTxb.Text};Password={SenhaColunasTxb.Text};Database={nomeBanco}")
+                ' Abre a conexão com o banco de dados
+                conexaoBD.Open()
 
-                ' Cria um HashSet para armazenar os servidores salvos sem repetição
-                Dim servidoresSalvos As New HashSet(Of String)
+                ' Executa uma consulta SQL que retorna as colunas da tabela selecionada
+                Dim comando As New SqlCommand("SELECT name as Nome_da_Coluna, description as Descricao, comment as Informacao, stnull as Aceita_null, objectid FROM ObjectField", conexaoBD)
+                Dim leitor As SqlDataReader = comando.ExecuteReader()
 
-                ' Extrai as informações de servidor, nome e senha de cada linha
-                For Each linha As String In linhas
-                    Dim informacoes As String() = linha.Split("|"c)
+                ' Cria uma DataTable para armazenar as colunas da tabela selecionada
+                Dim dt As New DataTable()
+                dt.Load(leitor)
 
-                    ' Verifica se a linha contém todas as informações necessárias
-                    If informacoes.Length = 3 Then
-                        Dim servidor As String = informacoes(0)
-                        Dim usuario As String = informacoes(1)
-                        Dim senha As String = informacoes(2)
+                ' Popula o DataGridView com as colunas da tabela selecionada
+                MostarDetalheColunaDGV.DataSource = dt
+                MostarDetalheColunaDGV.Columns(0).Width = 200
+                MostarDetalheColunaDGV.Columns(1).Width = 200
+                MostarDetalheColunaDGV.Columns(2).Width = 200
+                MostarDetalheColunaDGV.Columns(3).Width = 100
+                MostarDetalheColunaDGV.Columns(4).Visible = False
 
-                        ' Verifica se o servidor já existe na lista de servidores salvos
-                        Dim servidorExistente As Boolean = False
-                        For Each item As String In ExibirServidorDescCbx.Items
-                            If item = servidor Then
-                                servidorExistente = True
-                                Exit For
-                            End If
-                        Next
-
-                        ' Se o servidor não existir, adiciona na lista
-                        If Not servidorExistente Then
-                            ExibirServidorDescCbx.Items.Add(servidor)
-                        End If
-                    End If
-                Next
-            End If
+                ' Fecha o leitor de dados
+                leitor.Close()
+            End Using
         Catch ex As Exception
-            MessageBox.Show("Erro ao carregar os servidores salvos: " & ex.Message)
+            ' Exibe uma mensagem de erro caso ocorra uma exceção
+            MessageBox.Show("Erro ao carregar colunas: " & ex.Message)
         End Try
     End Sub
 
-    Private Sub ExibirServidorDescCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorDescCbx.SelectedIndexChanged
-        ' Obtém o servidor selecionado no ComboBox
-        Dim servidorSelecionado As String = ExibirServidorDescCbx.SelectedItem.ToString()
-
-        ' Carrega as informações do servidor selecionado nos textboxes
-        Try
-            Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "conexao_descricao.txt")
-            If File.Exists(caminhoArquivo) Then
-                ' Lê as linhas do arquivo de texto
-                Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
-
-                ' Variáveis para armazenar as informações do servidor selecionado
-                Dim servidor As String = ""
-                Dim usuario As String = ""
-                Dim senha As String = ""
-
-                ' Procura a linha correspondente ao servidor selecionado
-                For Each linha As String In linhas
-                    Dim informacoes As String() = linha.Split("|"c)
-
-                    ' Verifica se a linha contém todas as informações necessárias
-                    If informacoes.Length = 3 Then
-                        Dim servidorLido As String = informacoes(0)
-
-                        If servidorLido = servidorSelecionado Then
-                            ' Armazena as informações do servidor selecionado
-                            servidor = servidorLido
-                            usuario = informacoes(1)
-                            senha = informacoes(2)
-                            Exit For
-                        End If
-                    End If
-                Next
-
-                ' Exibe as informações do servidor nos textboxes
-                ServidorColunasTxb.Text = servidor
-                NomeConectarColunasTxb.Text = usuario
-                SenhaColunasTxb.Text = senha
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Erro ao carregar as informações do servidor: " & ex.Message)
-        End Try
-    End Sub
     Private Sub SairTabelaColuna_Click(sender As Object, e As EventArgs) Handles SairTabelaColuna.Click
         Me.Close()
     End Sub
