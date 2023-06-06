@@ -59,9 +59,15 @@ Public Class Descricao_Coluna
 
         ' Salva as informações de servidor, nome e senha em um arquivo de texto
         Try
-            Using writer As New StreamWriter("dados_conexao.txt", True)
-                writer.WriteLine(servidor & "|" & usuario & "|" & senha)
-            End Using
+            Dim linha As String = servidor & "|" & usuario & "|" & senha
+            Dim linhasExistentes As String() = If(File.Exists("dados_conexao.txt"), File.ReadAllLines("dados_conexao.txt"), New String() {})
+
+            ' Verifica se a linha já existe no arquivo antes de adicioná-la
+            If Not linhasExistentes.Contains(linha) Then
+                Using writer As New StreamWriter("dados_conexao.txt", True)
+                    writer.WriteLine(linha)
+                End Using
+            End If
         Catch ex As Exception
             MessageBox.Show("Erro ao salvar as informações do servidor: " & ex.Message)
         End Try
@@ -76,8 +82,8 @@ Public Class Descricao_Coluna
                 ' Lê as linhas do arquivo de texto
                 Dim linhas As String() = File.ReadAllLines("dados_conexao.txt")
 
-                ' Cria uma lista para armazenar os servidores salvos
-                Dim servidoresSalvos As New List(Of String)
+                ' Cria um HashSet para armazenar os servidores salvos sem repetição
+                Dim servidoresSalvos As New HashSet(Of String)
 
                 ' Extrai as informações de servidor, nome e senha de cada linha
                 For Each linha As String In linhas
@@ -87,7 +93,7 @@ Public Class Descricao_Coluna
                 Next
 
                 ' Popula o ComboBox com os servidores salvos
-                ExibirServidorDescCbx.DataSource = servidoresSalvos
+                ExibirServidorDescCbx.DataSource = servidoresSalvos.ToList()
             End If
         Catch ex As Exception
             MessageBox.Show("Erro ao carregar os servidores salvos: " & ex.Message)
@@ -104,19 +110,29 @@ Public Class Descricao_Coluna
                 ' Lê as linhas do arquivo de texto
                 Dim linhas As String() = File.ReadAllLines("dados_conexao.txt")
 
+                ' Variáveis para armazenar as informações do servidor selecionado
+                Dim servidor As String = ""
+                Dim usuario As String = ""
+                Dim senha As String = ""
+
                 ' Procura a linha correspondente ao servidor selecionado
                 For Each linha As String In linhas
                     Dim informacoes As String() = linha.Split("|"c)
-                    Dim servidor As String = informacoes(0)
+                    Dim servidorLido As String = informacoes(0)
 
-                    If servidor = servidorSelecionado Then
-                        ' Exibe as informações do servidor nos textboxes
-                        ServidorColunasTxb.Text = servidor
-                        NomeConectarColunasTxb.Text = informacoes(1)
-                        SenhaColunasTxb.Text = informacoes(2)
+                    If servidorLido = servidorSelecionado Then
+                        ' Armazena as informações do servidor selecionado
+                        servidor = servidorLido
+                        usuario = informacoes(1)
+                        senha = informacoes(2)
                         Exit For
                     End If
                 Next
+
+                ' Exibe as informações do servidor nos textboxes
+                ServidorColunasTxb.Text = servidor
+                NomeConectarColunasTxb.Text = usuario
+                SenhaColunasTxb.Text = senha
             End If
         Catch ex As Exception
             MessageBox.Show("Erro ao carregar as informações do servidor: " & ex.Message)
