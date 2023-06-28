@@ -119,18 +119,19 @@ Public Class SuporteHelp
             ' Lê todas as linhas do arquivo de texto
             Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
 
-            ' Percorre as linhas e adiciona os servidores ao ComboBox
+            ' Cria uma lista para armazenar os servidores salvos
+            Dim listaServidores As New List(Of String)
+
+            ' Popula a lista com os servidores salvos
             For Each linha As String In linhas
                 Dim dados As String() = linha.Split(","c)
                 If dados.Length = 3 Then
-                    Dim servidor As String = dados(0)
-
-                    ' Verifica se o servidor já foi adicionado anteriormente
-                    If Not ExibirServidorCbx.Items.Contains(servidor) Then
-                        ExibirServidorCbx.Items.Add(servidor)
-                    End If
+                    listaServidores.Add(dados(0)) ' Adiciona apenas o servidor à lista
                 End If
             Next
+
+            ' Popula o ComboBox com os servidores salvos
+            ExibirServidorCbx.DataSource = listaServidores
         End If
     End Sub
 
