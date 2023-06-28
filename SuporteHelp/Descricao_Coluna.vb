@@ -182,8 +182,8 @@ Public Class Descricao_Coluna
     End Sub
 
     Private Sub PesquisarColunaBtn_Click(sender As Object, e As EventArgs) Handles PesquisarColunaBtn.Click
-        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
             Return
         End If
 
@@ -228,8 +228,8 @@ Public Class Descricao_Coluna
     End Sub
 
     Private Sub LimparColunaBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaBtn.Click
-        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
             Return
         End If
 
@@ -255,8 +255,8 @@ Public Class Descricao_Coluna
     End Sub
 
     Private Sub PesquisarDescricaoBtn_Click(sender As Object, e As EventArgs) Handles PesquisarDescricaoBtn.Click
-        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
             Return
         End If
 
@@ -301,11 +301,10 @@ Public Class Descricao_Coluna
     End Sub
 
     Private Sub LimparDescricaoBtn_Click(sender As Object, e As EventArgs) Handles LimparDescricaoBtn.Click
-        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
             Return
         End If
-
         PesquisarDescricaoBtn.Enabled = True
         PesquisarColunaBtn.Enabled = True
         LimparColunaBtn.Enabled = True
@@ -328,8 +327,8 @@ Public Class Descricao_Coluna
     End Sub
 
     Private Sub PesquisarInformacaoBtn_Click(sender As Object, e As EventArgs) Handles PesquisarInformacaoBtn.Click
-        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
             Return
         End If
 
@@ -374,8 +373,8 @@ Public Class Descricao_Coluna
     End Sub
 
     Private Sub LimparInformacaoBtn_Click(sender As Object, e As EventArgs) Handles LimparInformacaoBtn.Click
-        If ServidorColunasTxb.Text.Trim() = "" Or NomeConectarColunasTxb.Text.Trim() = "" Or SenhaColunasTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
             Return
         End If
         PesquisarInformacaoBtn.Enabled = True

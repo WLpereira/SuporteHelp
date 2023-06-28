@@ -213,11 +213,11 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub LimparBtn_Click(sender As Object, e As EventArgs) Handles LimparBtn.Click
-        If ServidorTxb.Text.Trim() = "" Or NomeConectarTxb.Text.Trim() = "" Or SenhaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        ' Verifica se o DataGridView está vazio
+        If ListadeServidorDtg.Rows.Count = 0 Then
+            MessageBox.Show("Não há bancos de dados para pesquisar.")
             Return
         End If
-
         PesquisarBtn.Enabled = True
         ' Limpa o campo de pesquisa
         PesquisaTxb.Text = ""
@@ -235,7 +235,7 @@ Public Class SuporteHelp
         ConectarBtn.PerformClick()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub SairHelpBtn_Click(sender As Object, e As EventArgs) Handles SairHelpBtn.Click
         Me.Close()
     End Sub
 
