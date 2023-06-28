@@ -1,5 +1,8 @@
 ﻿Imports System.Data.SqlClient
-
+Imports System.IO
+Imports DocumentFormat.OpenXml.Drawing.Diagrams
+Imports MahApps.Metro.Controls.Dialogs
+Imports Newtonsoft.Json
 Public Class Descricao_Coluna
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
@@ -7,7 +10,7 @@ Public Class Descricao_Coluna
         Dim usuario As String = NomeConectarColunasTxb.Text
         Dim senha As String = SenhaColunasTxb.Text
 
-        '' Verifica se todos os campos foram preenchidos
+        ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
             Return
@@ -22,7 +25,7 @@ Public Class Descricao_Coluna
                 ' Abre a conexão com o servidor
                 conexaoBD.Open()
 
-                '' Exibe uma mensagem de sucesso ao conectar no servidor
+                ' Exibe uma mensagem de sucesso ao conectar no servidor
                 MessageBox.Show("Conexão estabelecida com sucesso, Selecione o Banco!")
 
                 ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
@@ -42,11 +45,101 @@ Public Class Descricao_Coluna
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoColunasTxb.DataSource = listaBancos
+                ' Desabilita o botão de pesquisa
+                PesquisarColunaBtn.Enabled = False
+                LimparColunaBtn.Enabled = False
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
             MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
         End Try
+    End Sub
+
+    Private Function ExisteConexaoSalva(servidor As String, usuario As String, senha As String) As Boolean
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Verifica se já existe uma conexão salva com os mesmos dados
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 AndAlso dados(0) = servidor AndAlso dados(1) = usuario AndAlso dados(2) = senha Then
+                    Return True ' Já existe uma conexão salva com os mesmos dados
+                End If
+            Next
+        End If
+
+        Return False ' Não existe uma conexão salva com os mesmos dados
+    End Function
+
+    Private Sub SalvarDadosConexao(servidor As String, usuario As String, senha As String)
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Cria uma linha com os dados de conexão
+        Dim linha As String = $"{servidor},{usuario},{senha}"
+
+        ' Salva a linha no arquivo de texto
+        File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
+    End Sub
+
+    Private Sub CarregarServidoresSalvos()
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Cria uma lista para armazenar os servidores salvos
+            Dim listaServidores As New List(Of String)
+
+            ' Popula a lista com os servidores salvos
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 Then
+                    listaServidores.Add(dados(0)) ' Adiciona apenas o servidor à lista
+                End If
+            Next
+
+            ' Popula o ComboBox com os servidores salvos
+            ExibirServidorDescCbx.DataSource = listaServidores
+        End If
+    End Sub
+
+    Private Sub ExibirServidorTabelaCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorDescCbx.SelectedIndexChanged
+        ' Obtém o índice do servidor selecionado no combobox
+        Dim indiceServidor As Integer = ExibirServidorDescCbx.SelectedIndex
+
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Verifica se o índice do servidor selecionado é válido
+            If indiceServidor >= 0 AndAlso indiceServidor < linhas.Length Then
+                ' Obtém os dados do servidor selecionado
+                Dim dadosServidor As String() = linhas(indiceServidor).Split(","c)
+
+                ' Preenche os campos de servidor, usuário e senha com os dados do servidor selecionado
+                ServidorColunasTxb.Text = dadosServidor(0)
+                NomeConectarColunasTxb.Text = dadosServidor(1)
+                SenhaColunasTxb.Text = dadosServidor(2)
+            End If
+        End If
+    End Sub
+
+    Private Sub Tabela_Coluna_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Carrega os servidores salvos ao carregar o formulário
+        CarregarServidoresSalvos()
     End Sub
 
     Private Sub SelecionarBancoColunasTxb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelecionarBancoColunasTxb.SelectedIndexChanged

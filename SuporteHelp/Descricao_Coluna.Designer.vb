@@ -154,7 +154,7 @@ Partial Class Descricao_Coluna
         ' SelecionarBancoColunasTxb
         ' 
         SelecionarBancoColunasTxb.FormattingEnabled = True
-        SelecionarBancoColunasTxb.Location = New Point(761, 26)
+        SelecionarBancoColunasTxb.Location = New Point(784, 27)
         SelecionarBancoColunasTxb.Name = "SelecionarBancoColunasTxb"
         SelecionarBancoColunasTxb.Size = New Size(186, 28)
         SelecionarBancoColunasTxb.TabIndex = 34
