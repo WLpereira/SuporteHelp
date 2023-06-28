@@ -215,7 +215,7 @@ Public Class SuporteHelp
     Private Sub LimparBtn_Click(sender As Object, e As EventArgs) Handles LimparBtn.Click
         ' Verifica se o DataGridView está vazio
         If ListadeServidorDtg.Rows.Count = 0 Then
-            MessageBox.Show("Não há bancos de dados para pesquisar.")
+            MessageBox.Show("Não há bancos de dados para limpar.")
             Return
         End If
         PesquisarBtn.Enabled = True

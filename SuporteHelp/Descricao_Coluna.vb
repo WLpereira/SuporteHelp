@@ -229,7 +229,7 @@ Public Class Descricao_Coluna
 
     Private Sub LimparColunaBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaBtn.Click
         If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
-            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
+            MessageBox.Show("Selecione um banco de dados antes de limpar.")
             Return
         End If
 
@@ -302,7 +302,7 @@ Public Class Descricao_Coluna
 
     Private Sub LimparDescricaoBtn_Click(sender As Object, e As EventArgs) Handles LimparDescricaoBtn.Click
         If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
-            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
+            MessageBox.Show("Selecione um banco de dados antes de limpar.")
             Return
         End If
         PesquisarDescricaoBtn.Enabled = True
@@ -374,7 +374,7 @@ Public Class Descricao_Coluna
 
     Private Sub LimparInformacaoBtn_Click(sender As Object, e As EventArgs) Handles LimparInformacaoBtn.Click
         If SelecionarBancoColunasTxb.SelectedIndex = -1 Then
-            MessageBox.Show("Selecione um banco de dados antes de pesquisar.")
+            MessageBox.Show("Selecione um banco de dados antes de limpar.")
             Return
         End If
         PesquisarInformacaoBtn.Enabled = True
