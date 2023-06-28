@@ -45,9 +45,7 @@ Public Class Descricao_Coluna
 
                 ' Popula o combobox com os nomes dos bancos de dados
                 SelecionarBancoColunasTxb.DataSource = listaBancos
-                ' Desabilita o botão de pesquisa
-                PesquisarColunaBtn.Enabled = False
-                LimparColunaBtn.Enabled = False
+
             End Using
         Catch ex As Exception
             ' Exibe uma mensagem de erro caso ocorra uma exceção
