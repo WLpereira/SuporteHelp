@@ -171,12 +171,11 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub PesquisarBtn_Click(sender As Object, e As EventArgs) Handles PesquisarBtn.Click
-
-        If ServidorTxb.Text.Trim() = "" Or NomeConectarTxb.Text.Trim() = "" Or SenhaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        ' Verifica se o DataGridView está vazio
+        If ListadeServidorDtg.Rows.Count = 0 Then
+            MessageBox.Show("Não há bancos de dados para pesquisar.")
             Return
         End If
-
         ' Desabilita o botão de pesquisa
         PesquisarBtn.Enabled = False
 

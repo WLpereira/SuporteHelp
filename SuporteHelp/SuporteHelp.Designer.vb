@@ -53,7 +53,7 @@ Partial Class SuporteHelp
         UsuarioSenhaBtn = New Button()
         HomologacaoBtn = New Button()
         ModuloCheckBtn = New Button()
-        Button1 = New Button()
+        SairHelpBtn = New Button()
         PesquisaTxb = New TextBox()
         PesquisaLbl = New Label()
         PesquisarBtn = New Button()
@@ -327,18 +327,18 @@ Partial Class SuporteHelp
         ModuloCheckBtn.TextAlign = ContentAlignment.MiddleRight
         ModuloCheckBtn.UseVisualStyleBackColor = True
         ' 
-        ' Button1
+        ' SairHelpBtn
         ' 
-        Button1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        Button1.Image = CType(resources.GetObject("Button1.Image"), Image)
-        Button1.ImageAlign = ContentAlignment.MiddleRight
-        Button1.Location = New Point(916, 703)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(118, 38)
-        Button1.TabIndex = 20
-        Button1.Text = "SAIR"
-        Button1.TextAlign = ContentAlignment.MiddleLeft
-        Button1.UseVisualStyleBackColor = True
+        SairHelpBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        SairHelpBtn.Image = CType(resources.GetObject("SairHelpBtn.Image"), Image)
+        SairHelpBtn.ImageAlign = ContentAlignment.MiddleRight
+        SairHelpBtn.Location = New Point(916, 703)
+        SairHelpBtn.Name = "SairHelpBtn"
+        SairHelpBtn.Size = New Size(118, 38)
+        SairHelpBtn.TabIndex = 20
+        SairHelpBtn.Text = "SAIR"
+        SairHelpBtn.TextAlign = ContentAlignment.MiddleLeft
+        SairHelpBtn.UseVisualStyleBackColor = True
         ' 
         ' PesquisaTxb
         ' 
@@ -474,7 +474,7 @@ Partial Class SuporteHelp
         Controls.Add(PesquisarBtn)
         Controls.Add(PesquisaTxb)
         Controls.Add(PesquisaLbl)
-        Controls.Add(Button1)
+        Controls.Add(SairHelpBtn)
         Controls.Add(ModuloCheckBtn)
         Controls.Add(HomologacaoBtn)
         Controls.Add(UsuarioSenhaBtn)
@@ -529,7 +529,7 @@ Partial Class SuporteHelp
     Friend WithEvents UsuarioSenhaBtn As Button
     Friend WithEvents HomologacaoBtn As Button
     Friend WithEvents ModuloCheckBtn As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents SairHelpBtn As Button
     Friend WithEvents PesquisaTxb As TextBox
     Friend WithEvents PesquisaLbl As Label
     Friend WithEvents PesquisarBtn As Button
