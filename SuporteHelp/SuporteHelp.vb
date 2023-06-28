@@ -245,7 +245,7 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub CriptoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CriptoToolStripMenuItem.Click
-        Dim caminho As String = "\\172.16.1.100\usuario\Marcos Aurelio\Crypto.exe"
+        Dim caminho As String = Path.Combine(Application.StartupPath, "Crypto.exe")
 
         If System.IO.File.Exists(caminho) Then
             Dim psi As New ProcessStartInfo(caminho)
