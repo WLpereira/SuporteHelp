@@ -180,11 +180,10 @@ Public Class Tabela_Coluna
 
     Private Sub PesquisarTabelaBtn_Click(sender As Object, e As EventArgs) Handles PesquisarTabelaBtn.Click
 
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
             Return
         End If
-
         ' Desabilita o botão de pesquisa
         PesquisarTabelaBtn.Enabled = False
 
@@ -222,8 +221,8 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub LimparTabelaBtn_Click(sender As Object, e As EventArgs) Handles LimparTabelaBtn.Click
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
             Return
         End If
 
@@ -247,8 +246,8 @@ Public Class Tabela_Coluna
 
 
     Private Sub MostrarColunasBtn_Click(sender As Object, e As EventArgs) Handles MostrarColunasBtn.Click
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
             Return
         End If
         ' Desabilita o botão de pesquisa
@@ -290,8 +289,8 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub PesquisarColunaBtn_Click(sender As Object, e As EventArgs) Handles PesquisarColunaBtn.Click
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Or ProcurarColunaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
             Return
         End If
 
@@ -332,8 +331,8 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub LimparColunaBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaBtn.Click
-        If ServidorTabelaTxb.Text.Trim() = "" Or NomeConectarTabelaTxb.Text.Trim() = "" Or SenhaTabelaTxb.Text.Trim() = "" Or ProcurarColunaTxb.Text.Trim() = "" Then
-            MessageBox.Show("Por favor, preencha todos os campos obrigatórios.")
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
             Return
         End If
 
@@ -355,7 +354,10 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub PesquisartodasBtn_Click(sender As Object, e As EventArgs) Handles PesquisartodasBtn.Click
-
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
+            Return
+        End If
         ' Verifica se o filtro não é vazio
         If Not String.IsNullOrEmpty(PesquisartodasTxb.Text) Then
             Try
@@ -393,6 +395,13 @@ Public Class Tabela_Coluna
     End Sub
 
     Private Sub LimparTodasBtn_Click(sender As Object, e As EventArgs) Handles LimparTodasBtn.Click
+
+
+        If SelecionarBancoBbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
+            Return
+        End If
+
         ListarTodasDgv.DataSource = Nothing
         ListarTodasDgv.Columns.Clear()
         PesquisartodasTxb.Clear()
