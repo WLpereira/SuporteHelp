@@ -169,6 +169,11 @@ Public Class Informação_do_banco
 
 
     Private Sub MostrarCaminhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarCaminhoBtn.Click
+        If SelecionarBancoInformacaoCbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
+            Return
+        End If
+
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorInformacaoTxb.Text
         Dim usuario As String = NomeInformacaoTxb.Text
@@ -212,6 +217,10 @@ Public Class Informação_do_banco
 
     End Sub
     Private Sub MostrarinformacaoBtn_Click(sender As Object, e As EventArgs) Handles MostrarinformacaoBtn.Click
+        If SelecionarBancoInformacaoCbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
+            Return
+        End If
 
 
         Dim servidor As String = ServidorInformacaoTxb.Text
@@ -270,6 +279,12 @@ Public Class Informação_do_banco
     End Sub
 
     Private Sub MostrarTodosBtn_Click(sender As Object, e As EventArgs) Handles MostrarTodosBtn.Click
+        If SelecionarBancoInformacaoCbx.SelectedIndex = -1 Then
+            MessageBox.Show("Selecione um banco de dados.")
+            Return
+        End If
+
+
         Dim servidor As String = ServidorInformacaoTxb.Text
         Dim caminhoTrace As String = MostrarCaminhoTxb.Text
         Dim nomeBanco As String = NomeBancoTxb.Text
