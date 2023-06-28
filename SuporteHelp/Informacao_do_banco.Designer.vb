@@ -42,6 +42,7 @@ Partial Class Informação_do_banco
         MostrarTodosBtn = New Button()
         ExibirServidorIfoCbx = New ComboBox()
         SSSALVOSLbl = New Label()
+        LimparInfoBtn = New Button()
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -137,7 +138,7 @@ Partial Class Informação_do_banco
         ' MostrarinformacaoBtn
         ' 
         MostrarinformacaoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
-        MostrarinformacaoBtn.Location = New Point(287, 235)
+        MostrarinformacaoBtn.Location = New Point(253, 229)
         MostrarinformacaoBtn.Name = "MostrarinformacaoBtn"
         MostrarinformacaoBtn.Size = New Size(140, 41)
         MostrarinformacaoBtn.TabIndex = 44
@@ -223,11 +224,23 @@ Partial Class Informação_do_banco
         SSSALVOSLbl.TabIndex = 52
         SSSALVOSLbl.Text = "SELECIONAR SERVIDOR SALVOS "
         ' 
+        ' LimparInfoBtn
+        ' 
+        LimparInfoBtn.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        LimparInfoBtn.ForeColor = Color.Red
+        LimparInfoBtn.Location = New Point(399, 229)
+        LimparInfoBtn.Name = "LimparInfoBtn"
+        LimparInfoBtn.Size = New Size(140, 41)
+        LimparInfoBtn.TabIndex = 53
+        LimparInfoBtn.Text = "Limpar"
+        LimparInfoBtn.UseVisualStyleBackColor = True
+        ' 
         ' Informação_do_banco
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(982, 653)
+        Controls.Add(LimparInfoBtn)
         Controls.Add(SSSALVOSLbl)
         Controls.Add(ExibirServidorIfoCbx)
         Controls.Add(MostrarTodosBtn)
@@ -277,4 +290,5 @@ Partial Class Informação_do_banco
     Friend WithEvents MostrarTodosBtn As Button
     Friend WithEvents ExibirServidorIfoCbx As ComboBox
     Friend WithEvents SSSALVOSLbl As Label
+    Friend WithEvents LimparInfoBtn As Button
 End Class

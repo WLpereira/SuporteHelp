@@ -272,6 +272,9 @@ Public Class Informação_do_banco
         Finally
             conexao.Close()
         End Try
+
+        ' Desabilita o botão de pesquisa
+        MostrarTodosBtn.Enabled = False
     End Sub
 
     Private Sub SairInformacaoBancoBtn_Click(sender As Object, e As EventArgs) Handles SairInformacaoBancoBtn.Click
@@ -333,4 +336,19 @@ Public Class Informação_do_banco
             conexao.Close()
         End Try
     End Sub
+
+    Private Sub LimparInfoBtn_Click(sender As Object, e As EventArgs) Handles LimparInfoBtn.Click
+        ' Limpa o campo de pesquisa
+        NomeBancoTxb.Text = ""
+
+        ' Limpa o DataSource do DataGridView
+        ResultadoDgv.DataSource = Nothing
+
+        ' Chama o evento "Click" do botão "Conectar"
+        ConectarInformacaoBtn.PerformClick()
+
+        ' Habilita o botão "Mostrar Todos"
+        MostrarTodosBtn.Enabled = True
+    End Sub
+
 End Class
