@@ -37,7 +37,7 @@ Public Class Informação_do_banco
                 MessageBox.Show("Conexão estabelecida com sucesso, Selecione o Banco!")
 
                 ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')oreder by name", conexaoBD)
+                Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')order by name", conexaoBD)
                 Dim leitor As SqlDataReader = comando.ExecuteReader()
 
                 ' Cria uma lista para armazenar os nomes dos bancos de dados
