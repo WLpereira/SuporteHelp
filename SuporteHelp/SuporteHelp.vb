@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.CodeDom.Compiler
+Imports System.Data.SqlClient
 Imports System.IO
 Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
@@ -259,40 +260,45 @@ Public Class SuporteHelp
 
 
     Private Sub UsuarioSenhaBtn_Click(sender As Object, e As EventArgs) Handles UsuarioSenhaBtn.Click
-        ' Verifique se uma linha foi selecionada no DataGridView ou se o cursor está sobre uma linha
-        If ListadeServidorDtg.CurrentRow IsNot Nothing Then
-            ' Obtenha o nome do banco de dados selecionado
-            Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
+        Try
+            ' Verifique se uma linha foi selecionada no DataGridView ou se o cursor está sobre uma linha
+            If ListadeServidorDtg.CurrentRow IsNot Nothing Then
+                ' Obtenha o nome do banco de dados selecionado
+                Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
-            ' Obtenha o valor da coluna de nome de usuário da linha selecionada ou com o cursor sobre ela
-            Dim username As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
+                ' Obtenha o valor da coluna de nome de usuário da linha selecionada ou com o cursor sobre ela
+                Dim username As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()
 
-            ' Crie uma string de conexão com base nas informações fornecidas pelo usuário
-            Dim builder As New SqlConnectionStringBuilder()
-            builder.DataSource = ServidorTxb.Text
-            builder.UserID = NomeConectarTxb.Text
-            builder.Password = SenhaTxb.Text
-            builder.InitialCatalog = selectedDatabase
-            builder.IntegratedSecurity = False ' desativa a autenticação integrada do Windows
-            Dim connectionString As String = builder.ConnectionString
+                ' Crie uma string de conexão com base nas informações fornecidas pelo usuário
+                Dim builder As New SqlConnectionStringBuilder()
+                builder.DataSource = ServidorTxb.Text
+                builder.UserID = NomeConectarTxb.Text
+                builder.Password = SenhaTxb.Text
+                builder.InitialCatalog = selectedDatabase
+                builder.IntegratedSecurity = False ' desativa a autenticação integrada do Windows
+                Dim connectionString As String = builder.ConnectionString
 
-            ' Conecte-se ao banco de dados
-            Using connection As New SqlConnection(connectionString)
-                connection.Open()
+                ' Conecte-se ao banco de dados
+                Using connection As New SqlConnection(connectionString)
+                    connection.Open()
 
-                ' Execute o comando SQL de atualização para o banco de dados selecionado e o nome de usuário da linha selecionada ou com o cursor sobre ela
-                Dim commandText As String = $"UPDATE Usuario SET senha = 'UM6qev3j5m7C9asc' WHERE username = 'SA'"
-                Dim command As New SqlCommand(commandText, connection)
-                command.ExecuteNonQuery()
+                    ' Execute o comando SQL de atualização para o banco de dados selecionado e o nome de usuário da linha selecionada ou com o cursor sobre ela
+                    Dim commandText As String = $"UPDATE Usuario SET senha = 'UM6qev3j5m7C9asc' WHERE username = 'SA'"
+                    Dim command As New SqlCommand(commandText, connection)
+                    command.ExecuteNonQuery()
 
-                ' Feche a conexão
-                connection.Close()
+                    ' Feche a conexão
+                    connection.Close()
 
-                MessageBox.Show("Senha atualizada com sucesso!")
-            End Using
-        Else
-            MessageBox.Show("Por favor, selecione uma linha do DataGridView.")
-        End If
+                    MessageBox.Show("Senha atualizada com sucesso!")
+                End Using
+            Else
+                MessageBox.Show("Por favor, selecione uma linha do DataGridView.")
+            End If
+        Catch ex As Exception
+            ' Se ocorrer uma exceção, exiba uma mensagem de erro
+            MessageBox.Show("Erro ao conectar ao banco de dados. Banco de dados do CLOUD, execute a primeira opção.")
+        End Try
     End Sub
 
     Private Sub CloudBtn_Click(sender As Object, e As EventArgs) Handles CloudBtn.Click
