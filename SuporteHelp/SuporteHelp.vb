@@ -576,5 +576,75 @@ Public Class SuporteHelp
         Dim Informacao_do_banco As New Informação_do_banco()
         Informacao_do_banco.Show()
     End Sub
+
+    Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
+
+        'Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()'
+
+        ' String de conexão com o banco de dados. Substitua pelos seus próprios detalhes de conexão.
+        Dim builder As New SqlConnectionStringBuilder()
+        builder.DataSource = ServidorTxb.Text
+        builder.UserID = NomeConectarTxb.Text
+        builder.Password = SenhaTxb.Text
+        'builder.InitialCatalog = selectedDatabase'
+        builder.IntegratedSecurity = False ' desativa a autenticação integrada do Windows
+        Dim connectionString As String = builder.ConnectionString
+
+        ' Crie uma conexão com o banco de dados
+        Dim connection As New SqlConnection(connectionString)
+
+        Try
+            ' Abra a conexão
+            connection.Open()
+
+            ' Comando SQL para executar
+            Dim sql As String = "
+            DROP TABLE IF EXISTS #tmp
+            CREATE TABLE #tmp
+            (
+                [database_name]     VARCHAR(MAX),
+                [database_size]     VARCHAR(MAX),
+                [unallocated space] VARCHAR(MAX),
+                [reserved]          VARCHAR(MAX),
+                [data]              VARCHAR(MAX),
+                [index_size]        VARCHAR(MAX),
+                [unused]            VARCHAR(MAX)
+            );
+
+            EXEC sys.sp_MSforeachdb 'USE [?]
+            IF DB_NAME() NOT IN (''tempdb'', ''msdb'', ''model'', ''master'')
+            BEGIN
+                INSERT #tmp EXEC sp_spaceused @oneresultset = 1
+            END'
+
+            SELECT *,
+                   IIF(CAST(CAST(REPLACE(database_size, ' MB', '') AS FLOAT) / 1000 AS DECIMAL(10, 2)) < 1.00
+                       , CONCAT(CAST(REPLACE(database_size, ' MB', '') AS FLOAT), ' MB')
+                       , CONCAT(CAST(CAST(REPLACE(database_size, ' MB', '') AS FLOAT) / 1000 AS DECIMAL(10, 2)), ' GB')
+                       ) AS 'database_size'
+            FROM #tmp
+            ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC
+        "
+
+            ' Crie um objeto SqlCommand
+            Dim command As New SqlCommand(sql, connection)
+
+            ' Crie um adaptador de dados para preencher um DataSet
+            Dim adapter As New SqlDataAdapter(command)
+            Dim dataSet As New DataSet()
+
+            ' Preencha o DataSet com os resultados da consulta
+            adapter.Fill(dataSet)
+
+            ' Vincule o DataSet à sua DataGridView
+            ListadeServidorDtg.DataSource = dataSet.Tables(0)
+        Catch ex As Exception
+            MessageBox.Show("Erro ao executar o comando SQL: " & ex.Message)
+        Finally
+            ' Feche a conexão
+            connection.Close()
+        End Try
+
+    End Sub
 End Class
 
