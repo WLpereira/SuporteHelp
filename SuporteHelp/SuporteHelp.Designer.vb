@@ -65,6 +65,7 @@ Partial Class SuporteHelp
         SugestaoBtn = New Button()
         ExibirServidorCbx = New ComboBox()
         SelecinarServidorLbl = New Label()
+        MostrarTamanhoBtn = New Button()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -344,7 +345,7 @@ Partial Class SuporteHelp
         ' 
         PesquisaTxb.Location = New Point(498, 149)
         PesquisaTxb.Name = "PesquisaTxb"
-        PesquisaTxb.Size = New Size(414, 29)
+        PesquisaTxb.Size = New Size(507, 29)
         PesquisaTxb.TabIndex = 22
         ' 
         ' PesquisaLbl
@@ -375,7 +376,7 @@ Partial Class SuporteHelp
         LimparBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparBtn.Image = CType(resources.GetObject("LimparBtn.Image"), Image)
         LimparBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparBtn.Location = New Point(795, 183)
+        LimparBtn.Location = New Point(886, 185)
         LimparBtn.Name = "LimparBtn"
         LimparBtn.Size = New Size(118, 38)
         LimparBtn.TabIndex = 24
@@ -458,11 +459,22 @@ Partial Class SuporteHelp
         SelecinarServidorLbl.TabIndex = 31
         SelecinarServidorLbl.Text = "Selecionar Servidor Salvos"
         ' 
+        ' MostrarTamanhoBtn
+        ' 
+        MostrarTamanhoBtn.ForeColor = Color.Red
+        MostrarTamanhoBtn.Location = New Point(653, 187)
+        MostrarTamanhoBtn.Name = "MostrarTamanhoBtn"
+        MostrarTamanhoBtn.Size = New Size(199, 34)
+        MostrarTamanhoBtn.TabIndex = 32
+        MostrarTamanhoBtn.Text = "Tamanho dos Bancos"
+        MostrarTamanhoBtn.UseVisualStyleBackColor = True
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 753)
+        Controls.Add(MostrarTamanhoBtn)
         Controls.Add(SelecinarServidorLbl)
         Controls.Add(ExibirServidorCbx)
         Controls.Add(SugestaoBtn)
@@ -551,4 +563,5 @@ Partial Class SuporteHelp
     Friend WithEvents VerificarInformaçõesDoBancoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExibirServidorCbx As ComboBox
     Friend WithEvents SelecinarServidorLbl As Label
+    Friend WithEvents MostrarTamanhoBtn As Button
 End Class
