@@ -578,7 +578,11 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
-
+        ' Verifica se o DataGridView está vazio
+        If ListadeServidorDtg.Rows.Count = 0 Then
+            MessageBox.Show("Necessario conectar no servidor.")
+            Return
+        End If
         'Dim selectedDatabase As String = ListadeServidorDtg.CurrentRow.Cells("Nome").Value.ToString()'
 
         ' String de conexão com o banco de dados. Substitua pelos seus próprios detalhes de conexão.
