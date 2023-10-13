@@ -14,7 +14,7 @@ Public Class SuporteHelp
 
     Private Sub ConectarBtn_Click(sender As Object, e As EventArgs) Handles ConectarBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
-        Dim servidor As String = ServidorTxb.Text
+        Dim servidor As String = ServidorTxb.Text.Trim()
         Dim usuario As String = NomeConectarTxb.Text
         Dim senha As String = SenhaTxb.Text
 
@@ -25,7 +25,7 @@ Public Class SuporteHelp
         End If
 
         ' Verifica se o servidor informado não é um dos servidores bloqueados
-        If servidor = "dp01.informo.com.br,9898" OrElse servidor = "dp01.informo.com.br,9797" Then
+        If servidor.Contains("informo") Then
             MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
             Return
         End If
