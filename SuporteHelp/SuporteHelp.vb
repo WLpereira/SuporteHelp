@@ -25,7 +25,7 @@ Public Class SuporteHelp
         End If
 
         ' Verifica se o servidor informado não é um dos servidores bloqueados
-        If servidor = "cloud.informo.com.br,9898" OrElse servidor = "cloud.informo.com.br,9586" Then
+        If servidor = "dp01.informo.com.br,9898" OrElse servidor = "dp01.informo.com.br,9797" Then
             MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
             Return
         End If
