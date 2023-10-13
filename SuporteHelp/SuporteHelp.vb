@@ -629,6 +629,9 @@ Public Class SuporteHelp
             ' Crie um objeto SqlCommand
             Dim command As New SqlCommand(sql, connection)
 
+            ' Defina o tempo limite da consulta para 0 (ilimitado)
+            command.CommandTimeout = 0
+
             ' Crie um adaptador de dados para preencher um DataSet
             Dim adapter As New SqlDataAdapter(command)
             Dim dataSet As New DataSet()
