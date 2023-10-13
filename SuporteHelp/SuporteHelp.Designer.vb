@@ -225,9 +225,9 @@ Partial Class SuporteHelp
         ' PictureBox2
         ' 
         PictureBox2.Image = My.Resources.Resources.icons8_servidor_64
-        PictureBox2.Location = New Point(396, 142)
+        PictureBox2.Location = New Point(396, 138)
         PictureBox2.Name = "PictureBox2"
-        PictureBox2.Size = New Size(76, 79)
+        PictureBox2.Size = New Size(96, 69)
         PictureBox2.TabIndex = 10
         PictureBox2.TabStop = False
         ' 
@@ -343,7 +343,7 @@ Partial Class SuporteHelp
         ' 
         ' PesquisaTxb
         ' 
-        PesquisaTxb.Location = New Point(498, 149)
+        PesquisaTxb.Location = New Point(498, 134)
         PesquisaTxb.Name = "PesquisaTxb"
         PesquisaTxb.Size = New Size(507, 29)
         PesquisaTxb.TabIndex = 22
@@ -352,7 +352,7 @@ Partial Class SuporteHelp
         ' 
         PesquisaLbl.AutoSize = True
         PesquisaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisaLbl.Location = New Point(573, 118)
+        PesquisaLbl.Location = New Point(613, 102)
         PesquisaLbl.Name = "PesquisaLbl"
         PesquisaLbl.Size = New Size(251, 28)
         PesquisaLbl.TabIndex = 21
@@ -363,7 +363,7 @@ Partial Class SuporteHelp
         PesquisarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarBtn.Image = CType(resources.GetObject("PesquisarBtn.Image"), Image)
         PesquisarBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarBtn.Location = New Point(499, 183)
+        PesquisarBtn.Location = New Point(498, 169)
         PesquisarBtn.Name = "PesquisarBtn"
         PesquisarBtn.Size = New Size(118, 38)
         PesquisarBtn.TabIndex = 23
@@ -376,7 +376,7 @@ Partial Class SuporteHelp
         LimparBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparBtn.Image = CType(resources.GetObject("LimparBtn.Image"), Image)
         LimparBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparBtn.Location = New Point(886, 185)
+        LimparBtn.Location = New Point(887, 169)
         LimparBtn.Name = "LimparBtn"
         LimparBtn.Size = New Size(118, 38)
         LimparBtn.TabIndex = 24
@@ -461,12 +461,13 @@ Partial Class SuporteHelp
         ' 
         ' MostrarTamanhoBtn
         ' 
+        MostrarTamanhoBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         MostrarTamanhoBtn.ForeColor = Color.Red
-        MostrarTamanhoBtn.Location = New Point(653, 187)
+        MostrarTamanhoBtn.Location = New Point(649, 169)
         MostrarTamanhoBtn.Name = "MostrarTamanhoBtn"
-        MostrarTamanhoBtn.Size = New Size(199, 34)
+        MostrarTamanhoBtn.Size = New Size(201, 52)
         MostrarTamanhoBtn.TabIndex = 32
-        MostrarTamanhoBtn.Text = "Tamanho dos Bancos"
+        MostrarTamanhoBtn.Text = "Tamanho dos Bancos Consulta Demorada"
         MostrarTamanhoBtn.UseVisualStyleBackColor = True
         ' 
         ' SuporteHelp
