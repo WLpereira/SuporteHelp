@@ -34,6 +34,7 @@ Partial Class SuporteHelp
         ValidarEmailToolStripMenuItem = New ToolStripMenuItem()
         ValidarGtinToolStripMenuItem = New ToolStripMenuItem()
         ProcurarTabelaOuColunaNoBDToolStripMenuItem = New ToolStripMenuItem()
+        CompararTabelasToolStripMenuItem = New ToolStripMenuItem()
         DescriçãoDasColunasToolStripMenuItem = New ToolStripMenuItem()
         VerificarInformaçõesDoBancoToolStripMenuItem = New ToolStripMenuItem()
         CriptoToolStripMenuItem = New ToolStripMenuItem()
@@ -66,7 +67,6 @@ Partial Class SuporteHelp
         ExibirServidorCbx = New ComboBox()
         SelecinarServidorLbl = New Label()
         MostrarTamanhoBtn = New Button()
-        CompararTabelasToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +159,13 @@ Partial Class SuporteHelp
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Name = "ProcurarTabelaOuColunaNoBDToolStripMenuItem"
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(358, 28)
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Text = "Procurar Tabela ou Coluna no BD"
+        ' 
+        ' CompararTabelasToolStripMenuItem
+        ' 
+        CompararTabelasToolStripMenuItem.Image = My.Resources.Resources.tabela
+        CompararTabelasToolStripMenuItem.Name = "CompararTabelasToolStripMenuItem"
+        CompararTabelasToolStripMenuItem.Size = New Size(358, 28)
+        CompararTabelasToolStripMenuItem.Text = "Comparar Tabelas"
         ' 
         ' DescriçãoDasColunasToolStripMenuItem
         ' 
@@ -470,13 +477,6 @@ Partial Class SuporteHelp
         MostrarTamanhoBtn.TabIndex = 32
         MostrarTamanhoBtn.Text = "Tamanho dos Bancos Consulta Demorada"
         MostrarTamanhoBtn.UseVisualStyleBackColor = True
-        ' 
-        ' CompararTabelasToolStripMenuItem
-        ' 
-        CompararTabelasToolStripMenuItem.Image = My.Resources.Resources.tabela
-        CompararTabelasToolStripMenuItem.Name = "CompararTabelasToolStripMenuItem"
-        CompararTabelasToolStripMenuItem.Size = New Size(358, 28)
-        CompararTabelasToolStripMenuItem.Text = "Comparar Tabelas"
         ' 
         ' SuporteHelp
         ' 

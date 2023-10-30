@@ -653,5 +653,10 @@ Public Class SuporteHelp
         End Try
 
     End Sub
+
+    Private Sub CompararTabelasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CompararTabelasToolStripMenuItem.Click
+        Dim Comparar_Tabelas As New Comparar_Tabelas()
+        Comparar_Tabelas.Show()
+    End Sub
 End Class
 
