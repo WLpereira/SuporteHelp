@@ -66,6 +66,7 @@ Partial Class SuporteHelp
         ExibirServidorCbx = New ComboBox()
         SelecinarServidorLbl = New Label()
         MostrarTamanhoBtn = New Button()
+        CompararTabelasToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -132,7 +133,7 @@ Partial Class SuporteHelp
         ' 
         ' FerramentasToolStripMenuItem
         ' 
-        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, VerificarInformaçõesDoBancoToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
+        FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, CompararTabelasToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, VerificarInformaçõesDoBancoToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
         FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
         FerramentasToolStripMenuItem.Size = New Size(123, 27)
@@ -470,6 +471,13 @@ Partial Class SuporteHelp
         MostrarTamanhoBtn.Text = "Tamanho dos Bancos Consulta Demorada"
         MostrarTamanhoBtn.UseVisualStyleBackColor = True
         ' 
+        ' CompararTabelasToolStripMenuItem
+        ' 
+        CompararTabelasToolStripMenuItem.Image = My.Resources.Resources.tabela
+        CompararTabelasToolStripMenuItem.Name = "CompararTabelasToolStripMenuItem"
+        CompararTabelasToolStripMenuItem.Size = New Size(358, 28)
+        CompararTabelasToolStripMenuItem.Text = "Comparar Tabelas"
+        ' 
         ' SuporteHelp
         ' 
         AutoScaleDimensions = New SizeF(10F, 21F)
@@ -565,4 +573,5 @@ Partial Class SuporteHelp
     Friend WithEvents ExibirServidorCbx As ComboBox
     Friend WithEvents SelecinarServidorLbl As Label
     Friend WithEvents MostrarTamanhoBtn As Button
+    Friend WithEvents CompararTabelasToolStripMenuItem As ToolStripMenuItem
 End Class
