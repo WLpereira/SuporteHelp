@@ -44,8 +44,11 @@ Partial Class Comparar_Tabelas
         PesquisarTabela2Btn = New Button()
         Pesquisatabela2Txb = New TextBox()
         PesquisarTabela2Lbl = New Label()
+        CompararBtn = New Button()
+        ResultadoDgv = New DataGridView()
         CType(ListadeTabela1Dtg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ListadeTabela2Dtg, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' SelecinarServidorCompararLbl
@@ -273,11 +276,38 @@ Partial Class Comparar_Tabelas
         PesquisarTabela2Lbl.TabIndex = 69
         PesquisarTabela2Lbl.Text = "Pesquisar Tabela 2"
         ' 
+        ' CompararBtn
+        ' 
+        CompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        CompararBtn.ImageAlign = ContentAlignment.MiddleLeft
+        CompararBtn.Location = New Point(612, 412)
+        CompararBtn.Margin = New Padding(3, 4, 3, 4)
+        CompararBtn.Name = "CompararBtn"
+        CompararBtn.Size = New Size(115, 45)
+        CompararBtn.TabIndex = 74
+        CompararBtn.Text = "Comparar"
+        CompararBtn.TextAlign = ContentAlignment.MiddleRight
+        CompararBtn.UseVisualStyleBackColor = True
+        ' 
+        ' ResultadoDgv
+        ' 
+        ResultadoDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ResultadoDgv.Location = New Point(759, 166)
+        ResultadoDgv.Margin = New Padding(3, 4, 3, 4)
+        ResultadoDgv.Name = "ResultadoDgv"
+        ResultadoDgv.ReadOnly = True
+        ResultadoDgv.RowHeadersWidth = 51
+        ResultadoDgv.RowTemplate.Height = 25
+        ResultadoDgv.Size = New Size(326, 571)
+        ResultadoDgv.TabIndex = 75
+        ' 
         ' Comparar_Tabelas
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1132, 803)
+        Controls.Add(ResultadoDgv)
+        Controls.Add(CompararBtn)
         Controls.Add(ListadeTabela2Dtg)
         Controls.Add(LimparTabela2Btn)
         Controls.Add(PesquisarTabela2Btn)
@@ -306,6 +336,7 @@ Partial Class Comparar_Tabelas
         Text = "Comparar_Tabelas"
         CType(ListadeTabela1Dtg, ComponentModel.ISupportInitialize).EndInit()
         CType(ListadeTabela2Dtg, ComponentModel.ISupportInitialize).EndInit()
+        CType(ResultadoDgv, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -331,4 +362,6 @@ Partial Class Comparar_Tabelas
     Friend WithEvents PesquisarTabela2Btn As Button
     Friend WithEvents Pesquisatabela2Txb As TextBox
     Friend WithEvents PesquisarTabela2Lbl As Label
+    Friend WithEvents CompararBtn As Button
+    Friend WithEvents ResultadoDgv As DataGridView
 End Class

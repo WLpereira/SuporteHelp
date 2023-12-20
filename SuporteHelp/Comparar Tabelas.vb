@@ -175,4 +175,72 @@ Public Class Comparar_Tabelas
             MessageBox.Show("Erro ao carregar tabelas: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub CompararBtn_Click(sender As Object, e As EventArgs) Handles CompararBtn.Click
+        ' Verifica se há uma linha selecionada em ambas as DataGridViews
+        If ListadeTabela1Dtg.SelectedRows.Count = 0 OrElse ListadeTabela2Dtg.SelectedRows.Count = 0 Then
+            MessageBox.Show("Selecione uma linha em ambas as tabelas para comparar.")
+            Return
+        End If
+
+        ' Captura os nomes das tabelas selecionadas nas linhas das DataGridViews
+        Dim tabela1 As String = ListadeTabela1Dtg.SelectedRows(0).Cells("Nome_da_Tabela").Value.ToString()
+        Dim tabela2 As String = ListadeTabela2Dtg.SelectedRows(0).Cells("Nome_da_Tabela").Value.ToString()
+
+        Try
+            ' Cria uma conexão com o banco de dados
+            Using conexaoBD As New SqlConnection($"Sua_String_de_Conexao_Aqui")
+                ' Abre a conexão com o banco de dados
+                conexaoBD.Open()
+
+                ' Obtém as colunas da primeira tabela
+                Dim colunasTabela1 As List(Of String) = ObterColunasDaTabela(conexaoBD, tabela1)
+
+                ' Obtém as colunas da segunda tabela
+                Dim colunasTabela2 As List(Of String) = ObterColunasDaTabela(conexaoBD, tabela2)
+
+                ' Encontra as colunas comuns
+                Dim colunasComuns As List(Of String) = colunasTabela1.Intersect(colunasTabela2).ToList()
+
+                ' Exibe as colunas comuns no DataGridView ResultadoDgv
+                ResultadoDgv.DataSource = ObterDataTableComColunas(colunasComuns)
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Erro ao comparar tabelas: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Function ObterColunasDaTabela(conexao As SqlConnection, tabela As String) As List(Of String)
+        Dim colunas As New List(Of String)()
+
+        ' Executa uma consulta SQL que retorna os nomes das colunas da tabela
+        Dim comando As New SqlCommand($"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='{tabela}'", conexao)
+        Dim leitor As SqlDataReader = comando.ExecuteReader()
+
+        ' Adiciona os nomes das colunas à lista
+        While leitor.Read()
+            colunas.Add(leitor("COLUMN_NAME").ToString())
+        End While
+
+        ' Fecha o leitor de dados
+        leitor.Close()
+
+        Return colunas
+    End Function
+
+    Private Function ObterDataTableComColunas(colunas As List(Of String)) As DataTable
+        ' Cria uma DataTable para armazenar os nomes das colunas comuns
+        Dim dt As New DataTable()
+
+        ' Adiciona uma coluna ao DataTable para cada nome de coluna comum
+        For Each coluna As String In colunas
+            dt.Columns.Add(coluna, GetType(String))
+        Next
+
+        ' Adiciona uma linha ao DataTable para representar as colunas comuns
+        dt.Rows.Add(colunas.ToArray())
+
+        Return dt
+    End Function
+
 End Class
