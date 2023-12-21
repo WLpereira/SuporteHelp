@@ -4,6 +4,8 @@ Imports System.IO
 Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
+Imports NPOI.SS.Formula.Functions
+
 Public Class Comparar_Tabelas
     Private Sub ConectarCompararBtn_Click(sender As Object, e As EventArgs) Handles ConectarCompararBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
@@ -177,6 +179,11 @@ Public Class Comparar_Tabelas
     End Sub
 
     Private Sub CompararBtn_Click(sender As Object, e As EventArgs) Handles CompararBtn.Click
+        ' Captura os valores digitados nos textboxes de servidor, usuário e senha
+        Dim servidor As String = ServidorTabelaCompararTxb.Text
+        Dim usuario As String = NomeConectarTabelaCompararTxb.Text
+        Dim senha As String = SenhaTabelaCompararTxb.Text
+
         ' Verifica se há uma linha selecionada em ambas as DataGridViews
         If ListadeTabela1Dtg.SelectedRows.Count = 0 OrElse ListadeTabela2Dtg.SelectedRows.Count = 0 Then
             MessageBox.Show("Selecione uma linha em ambas as tabelas para comparar.")
@@ -187,10 +194,13 @@ Public Class Comparar_Tabelas
         Dim tabela1 As String = ListadeTabela1Dtg.SelectedRows(0).Cells("Nome_da_Tabela").Value.ToString()
         Dim tabela2 As String = ListadeTabela2Dtg.SelectedRows(0).Cells("Nome_da_Tabela").Value.ToString()
 
+        ' Cria uma string de conexão com o servidor de banco de dados
+        Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+
         Try
-            ' Cria uma conexão com o banco de dados
-            Using conexaoBD As New SqlConnection($"Sua_String_de_Conexao_Aqui")
-                ' Abre a conexão com o banco de dados
+            ' Cria uma conexão com o servidor de banco de dados
+            Using conexaoBD As New SqlConnection(conexao)
+                ' Abre a conexão com o servidor
                 conexaoBD.Open()
 
                 ' Obtém as colunas da primeira tabela
@@ -202,8 +212,17 @@ Public Class Comparar_Tabelas
                 ' Encontra as colunas comuns
                 Dim colunasComuns As List(Of String) = colunasTabela1.Intersect(colunasTabela2).ToList()
 
-                ' Exibe as colunas comuns no DataGridView ResultadoDgv
-                ResultadoDgv.DataSource = ObterDataTableComColunas(colunasComuns)
+                ' Limpando as colunas e linhas existentes
+                ResultadoDgv.Columns.Clear()
+                ResultadoDgv.Rows.Clear()
+
+                ' Adicionando as colunas manualmente
+                For Each coluna As String In colunasComuns
+                    ResultadoDgv.Columns.Add(coluna, coluna)
+                Next
+
+                ' Adicionando uma linha ao DataGridView
+                ResultadoDgv.Rows.Add(colunasComuns.Select(Function(c) "").ToArray())
             End Using
         Catch ex As Exception
             MessageBox.Show("Erro ao comparar tabelas: " & ex.Message)
@@ -227,20 +246,4 @@ Public Class Comparar_Tabelas
 
         Return colunas
     End Function
-
-    Private Function ObterDataTableComColunas(colunas As List(Of String)) As DataTable
-        ' Cria uma DataTable para armazenar os nomes das colunas comuns
-        Dim dt As New DataTable()
-
-        ' Adiciona uma coluna ao DataTable para cada nome de coluna comum
-        For Each coluna As String In colunas
-            dt.Columns.Add(coluna, GetType(String))
-        Next
-
-        ' Adiciona uma linha ao DataTable para representar as colunas comuns
-        dt.Rows.Add(colunas.ToArray())
-
-        Return dt
-    End Function
-
 End Class

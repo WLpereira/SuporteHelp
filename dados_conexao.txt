@@ -3,3 +3,4 @@ nbwashington,sa,dp
 172.16.2.98,sa,dp
 172.16.2.52,sa,dp
 dp01.informo.com.br,9900,dataplace,$ymph0ny*
+dp01.informo.com.br,9900,dataplace,$ymph0ny*
