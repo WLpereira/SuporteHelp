@@ -46,9 +46,11 @@ Partial Class Comparar_Tabelas
         PesquisarTabela2Lbl = New Label()
         CompararBtn = New Button()
         ResultadoDgv = New DataGridView()
+        DataGridView1 = New DataGridView()
         CType(ListadeTabela1Dtg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ListadeTabela2Dtg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' SelecinarServidorCompararLbl
@@ -163,13 +165,13 @@ Partial Class Comparar_Tabelas
         ' ListadeTabela1Dtg
         ' 
         ListadeTabela1Dtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeTabela1Dtg.Location = New Point(11, 285)
+        ListadeTabela1Dtg.Location = New Point(12, 338)
         ListadeTabela1Dtg.Margin = New Padding(3, 4, 3, 4)
         ListadeTabela1Dtg.Name = "ListadeTabela1Dtg"
         ListadeTabela1Dtg.ReadOnly = True
         ListadeTabela1Dtg.RowHeadersWidth = 51
         ListadeTabela1Dtg.RowTemplate.Height = 25
-        ListadeTabela1Dtg.Size = New Size(280, 452)
+        ListadeTabela1Dtg.Size = New Size(184, 452)
         ListadeTabela1Dtg.TabIndex = 68
         ' 
         ' LimparTabela1Btn
@@ -177,10 +179,10 @@ Partial Class Comparar_Tabelas
         LimparTabela1Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparTabela1Btn.Image = CType(resources.GetObject("LimparTabela1Btn.Image"), Image)
         LimparTabela1Btn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTabela1Btn.Location = New Point(176, 232)
+        LimparTabela1Btn.Location = New Point(40, 291)
         LimparTabela1Btn.Margin = New Padding(3, 4, 3, 4)
         LimparTabela1Btn.Name = "LimparTabela1Btn"
-        LimparTabela1Btn.Size = New Size(115, 45)
+        LimparTabela1Btn.Size = New Size(120, 39)
         LimparTabela1Btn.TabIndex = 67
         LimparTabela1Btn.Text = "Limpar"
         LimparTabela1Btn.TextAlign = ContentAlignment.MiddleRight
@@ -191,10 +193,10 @@ Partial Class Comparar_Tabelas
         PesquisarTabela1Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarTabela1Btn.Image = CType(resources.GetObject("PesquisarTabela1Btn.Image"), Image)
         PesquisarTabela1Btn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarTabela1Btn.Location = New Point(10, 228)
+        PesquisarTabela1Btn.Location = New Point(38, 232)
         PesquisarTabela1Btn.Margin = New Padding(3, 4, 3, 4)
         PesquisarTabela1Btn.Name = "PesquisarTabela1Btn"
-        PesquisarTabela1Btn.Size = New Size(117, 45)
+        PesquisarTabela1Btn.Size = New Size(122, 45)
         PesquisarTabela1Btn.TabIndex = 66
         PesquisarTabela1Btn.Text = "Pesquisar"
         PesquisarTabela1Btn.TextAlign = ContentAlignment.MiddleRight
@@ -202,17 +204,17 @@ Partial Class Comparar_Tabelas
         ' 
         ' Pesquisatabela1Txb
         ' 
-        Pesquisatabela1Txb.Location = New Point(11, 193)
+        Pesquisatabela1Txb.Location = New Point(12, 193)
         Pesquisatabela1Txb.Margin = New Padding(3, 4, 3, 4)
         Pesquisatabela1Txb.Name = "Pesquisatabela1Txb"
-        Pesquisatabela1Txb.Size = New Size(279, 27)
+        Pesquisatabela1Txb.Size = New Size(191, 27)
         Pesquisatabela1Txb.TabIndex = 65
         ' 
         ' PesquisarTabela1Lbl
         ' 
         PesquisarTabela1Lbl.AutoSize = True
         PesquisarTabela1Lbl.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabela1Lbl.Location = New Point(70, 166)
+        PesquisarTabela1Lbl.Location = New Point(20, 164)
         PesquisarTabela1Lbl.Name = "PesquisarTabela1Lbl"
         PesquisarTabela1Lbl.Size = New Size(167, 25)
         PesquisarTabela1Lbl.TabIndex = 64
@@ -221,13 +223,13 @@ Partial Class Comparar_Tabelas
         ' ListadeTabela2Dtg
         ' 
         ListadeTabela2Dtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeTabela2Dtg.Location = New Point(326, 285)
+        ListadeTabela2Dtg.Location = New Point(248, 338)
         ListadeTabela2Dtg.Margin = New Padding(3, 4, 3, 4)
         ListadeTabela2Dtg.Name = "ListadeTabela2Dtg"
         ListadeTabela2Dtg.ReadOnly = True
         ListadeTabela2Dtg.RowHeadersWidth = 51
         ListadeTabela2Dtg.RowTemplate.Height = 25
-        ListadeTabela2Dtg.Size = New Size(280, 452)
+        ListadeTabela2Dtg.Size = New Size(185, 452)
         ListadeTabela2Dtg.TabIndex = 73
         ' 
         ' LimparTabela2Btn
@@ -235,7 +237,7 @@ Partial Class Comparar_Tabelas
         LimparTabela2Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparTabela2Btn.Image = CType(resources.GetObject("LimparTabela2Btn.Image"), Image)
         LimparTabela2Btn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTabela2Btn.Location = New Point(491, 232)
+        LimparTabela2Btn.Location = New Point(280, 285)
         LimparTabela2Btn.Margin = New Padding(3, 4, 3, 4)
         LimparTabela2Btn.Name = "LimparTabela2Btn"
         LimparTabela2Btn.Size = New Size(115, 45)
@@ -249,7 +251,7 @@ Partial Class Comparar_Tabelas
         PesquisarTabela2Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarTabela2Btn.Image = CType(resources.GetObject("PesquisarTabela2Btn.Image"), Image)
         PesquisarTabela2Btn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarTabela2Btn.Location = New Point(325, 228)
+        PesquisarTabela2Btn.Location = New Point(280, 232)
         PesquisarTabela2Btn.Margin = New Padding(3, 4, 3, 4)
         PesquisarTabela2Btn.Name = "PesquisarTabela2Btn"
         PesquisarTabela2Btn.Size = New Size(117, 45)
@@ -260,17 +262,17 @@ Partial Class Comparar_Tabelas
         ' 
         ' Pesquisatabela2Txb
         ' 
-        Pesquisatabela2Txb.Location = New Point(326, 193)
+        Pesquisatabela2Txb.Location = New Point(248, 193)
         Pesquisatabela2Txb.Margin = New Padding(3, 4, 3, 4)
         Pesquisatabela2Txb.Name = "Pesquisatabela2Txb"
-        Pesquisatabela2Txb.Size = New Size(279, 27)
+        Pesquisatabela2Txb.Size = New Size(191, 27)
         Pesquisatabela2Txb.TabIndex = 70
         ' 
         ' PesquisarTabela2Lbl
         ' 
         PesquisarTabela2Lbl.AutoSize = True
         PesquisarTabela2Lbl.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabela2Lbl.Location = New Point(381, 164)
+        PesquisarTabela2Lbl.Location = New Point(266, 164)
         PesquisarTabela2Lbl.Name = "PesquisarTabela2Lbl"
         PesquisarTabela2Lbl.Size = New Size(167, 25)
         PesquisarTabela2Lbl.TabIndex = 69
@@ -280,10 +282,10 @@ Partial Class Comparar_Tabelas
         ' 
         CompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         CompararBtn.ImageAlign = ContentAlignment.MiddleLeft
-        CompararBtn.Location = New Point(612, 412)
+        CompararBtn.Location = New Point(439, 490)
         CompararBtn.Margin = New Padding(3, 4, 3, 4)
         CompararBtn.Name = "CompararBtn"
-        CompararBtn.Size = New Size(115, 45)
+        CompararBtn.Size = New Size(131, 101)
         CompararBtn.TabIndex = 74
         CompararBtn.Text = "Comparar"
         CompararBtn.TextAlign = ContentAlignment.MiddleRight
@@ -292,20 +294,33 @@ Partial Class Comparar_Tabelas
         ' ResultadoDgv
         ' 
         ResultadoDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ResultadoDgv.Location = New Point(759, 166)
+        ResultadoDgv.Location = New Point(598, 232)
         ResultadoDgv.Margin = New Padding(3, 4, 3, 4)
         ResultadoDgv.Name = "ResultadoDgv"
         ResultadoDgv.ReadOnly = True
         ResultadoDgv.RowHeadersWidth = 51
         ResultadoDgv.RowTemplate.Height = 25
-        ResultadoDgv.Size = New Size(326, 571)
+        ResultadoDgv.Size = New Size(229, 558)
         ResultadoDgv.TabIndex = 75
+        ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Location = New Point(860, 232)
+        DataGridView1.Margin = New Padding(3, 4, 3, 4)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.ReadOnly = True
+        DataGridView1.RowHeadersWidth = 51
+        DataGridView1.RowTemplate.Height = 25
+        DataGridView1.Size = New Size(229, 558)
+        DataGridView1.TabIndex = 76
         ' 
         ' Comparar_Tabelas
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1132, 803)
+        Controls.Add(DataGridView1)
         Controls.Add(ResultadoDgv)
         Controls.Add(CompararBtn)
         Controls.Add(ListadeTabela2Dtg)
@@ -337,6 +352,7 @@ Partial Class Comparar_Tabelas
         CType(ListadeTabela1Dtg, ComponentModel.ISupportInitialize).EndInit()
         CType(ListadeTabela2Dtg, ComponentModel.ISupportInitialize).EndInit()
         CType(ResultadoDgv, ComponentModel.ISupportInitialize).EndInit()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -364,4 +380,5 @@ Partial Class Comparar_Tabelas
     Friend WithEvents PesquisarTabela2Lbl As Label
     Friend WithEvents CompararBtn As Button
     Friend WithEvents ResultadoDgv As DataGridView
+    Friend WithEvents DataGridView1 As DataGridView
 End Class

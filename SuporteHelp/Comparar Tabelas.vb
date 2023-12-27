@@ -177,7 +177,6 @@ Public Class Comparar_Tabelas
             MessageBox.Show("Erro ao carregar tabelas: " & ex.Message)
         End Try
     End Sub
-
     Private Sub CompararBtn_Click(sender As Object, e As EventArgs) Handles CompararBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorTabelaCompararTxb.Text
@@ -191,9 +190,8 @@ Public Class Comparar_Tabelas
         End If
 
         ' Captura os nomes das tabelas selecionadas nas linhas das DataGridViews
-        Dim tabela1 As String = ListadeTabela1Dtg.SelectedRows(0).Cells("Nome_da_Tabela").Value.ToString()
-        Dim tabela2 As String = ListadeTabela2Dtg.SelectedRows(0).Cells("Nome_da_Tabela").Value.ToString()
-
+        Dim tabela1 As String = ListadeTabela1Dtg.SelectedRows(0).Cells("columnName").Value.ToString()
+        Dim tabela2 As String = ListadeTabela2Dtg.SelectedRows(0).Cells("columnName").Value.ToString()
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
@@ -204,46 +202,74 @@ Public Class Comparar_Tabelas
                 conexaoBD.Open()
 
                 ' Obtém as colunas da primeira tabela
-                Dim colunasTabela1 As List(Of String) = ObterColunasDaTabela(conexaoBD, tabela1)
+                Dim colunasTabela1 As List(Of String) = ObterColunasDaTabela(conexaoBD, tabela1, tabela2)
 
-                ' Obtém as colunas da segunda tabela
-                Dim colunasTabela2 As List(Of String) = ObterColunasDaTabela(conexaoBD, tabela2)
-
-                ' Encontra as colunas comuns
-                Dim colunasComuns As List(Of String) = colunasTabela1.Intersect(colunasTabela2).ToList()
-
-                ' Limpando as colunas e linhas existentes
+                ' Limpa as colunas existentes
                 ResultadoDgv.Columns.Clear()
-                ResultadoDgv.Rows.Clear()
 
-                ' Adicionando as colunas manualmente
-                For Each coluna As String In colunasComuns
-                    ResultadoDgv.Columns.Add(coluna, coluna)
+                ' Adiciona as colunas ao DataGridView ResultadoDgv
+                For Each coluna As String In colunasTabela1
+                    ' Verifica se a coluna já existe antes de adicioná-la
+                    If Not ResultadoDgv.Columns.Contains(coluna) Then
+                        ResultadoDgv.Columns.Add(coluna, coluna)
+                    End If
                 Next
 
-                ' Adicionando uma linha ao DataGridView
-                ResultadoDgv.Rows.Add(colunasComuns.Select(Function(c) "").ToArray())
+                ' Executa a comparação entre as tabelas e preenche o DataGridView ResultadoDgv com os resultados
+                Dim resultadoConsulta As DataTable = CompararTabelas(conexaoBD, tabela1, tabela2)
+                ResultadoDgv.DataSource = resultadoConsulta
             End Using
+        Catch ex As ArgumentException
+            ' Manipula o erro quando uma coluna não é encontrada
+            MessageBox.Show("Erro ao comparar tabelas: " & ex.Message)
         Catch ex As Exception
+            ' Manipula outros erros
             MessageBox.Show("Erro ao comparar tabelas: " & ex.Message)
         End Try
     End Sub
 
-    Private Function ObterColunasDaTabela(conexao As SqlConnection, tabela As String) As List(Of String)
+    Private Function ObterColunasDaTabela(conexao As SqlConnection, tabela1 As String, tabela2 As String) As List(Of String)
         Dim colunas As New List(Of String)()
 
-        ' Executa uma consulta SQL que retorna os nomes das colunas da tabela
-        Dim comando As New SqlCommand($"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='{tabela}'", conexao)
-        Dim leitor As SqlDataReader = comando.ExecuteReader()
+        Try
+            ' Executa uma consulta SQL que retorna os nomes das colunas da tabela
+            Dim comando As New SqlCommand($"SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = '{tabela1}' AND COLUMN_NAME IN (
+    SELECT COLUMN_NAME
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = '{tabela2}'
+);", conexao)
+            Dim leitor As SqlDataReader = comando.ExecuteReader()
 
-        ' Adiciona os nomes das colunas à lista
-        While leitor.Read()
-            colunas.Add(leitor("COLUMN_NAME").ToString())
-        End While
+            ' Adiciona os nomes das colunas à lista
+            While leitor.Read()
+                colunas.Add(leitor("COLUMN_NAME").ToString())
+            End While
 
-        ' Fecha o leitor de dados
-        leitor.Close()
+            ' Fecha o leitor de dados
+            leitor.Close()
+        Catch ex As Exception
+            ' Lança uma exceção personalizada se uma coluna não for encontrada
+            Throw New ArgumentException($"Coluna não encontrada na tabela {tabela1} ou {tabela2}.")
+        End Try
 
         Return colunas
+    End Function
+
+    Private Function CompararTabelas(conexao As SqlConnection, tabela1 As String, tabela2 As String) As DataTable
+        Dim resultadoConsulta As New DataTable()
+
+        Try
+            ' Executa a consulta para comparar as tabelas
+            Dim consulta As String = $"SELECT * FROM {tabela1} EXCEPT SELECT * FROM {tabela2};"
+            Dim adapter As New SqlDataAdapter(consulta, conexao)
+            adapter.Fill(resultadoConsulta)
+        Catch ex As Exception
+            ' Lança uma exceção se ocorrer um erro durante a comparação
+            Throw New Exception("Erro ao comparar as tabelas: " & ex.Message)
+        End Try
+
+        Return resultadoConsulta
     End Function
 End Class
