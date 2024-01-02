@@ -23,6 +23,11 @@ Public Class Comparar_Tabelas
             Return
         End If
 
+        ' Verifica se o servidor informado não é um dos servidores bloqueados
+        If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") Then
+            MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
+            Return
+        End If
         ' Cria a string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
@@ -53,6 +58,47 @@ Public Class Comparar_Tabelas
         End Try
     End Sub
 
+
+
+    Private Function ExisteConexaoSalva(servidor As String, usuario As String, senha As String) As Boolean
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Verifica se o arquivo de dados de conexão existe
+        If File.Exists(caminhoArquivo) Then
+            ' Lê todas as linhas do arquivo de texto
+            Dim linhas As String() = File.ReadAllLines(caminhoArquivo)
+
+            ' Verifica se alguma linha possui a mesma combinação de servidor, usuário e senha
+            For Each linha As String In linhas
+                Dim dados As String() = linha.Split(","c)
+                If dados.Length = 3 AndAlso dados(0) = servidor AndAlso dados(1) = usuario AndAlso dados(2) = senha Then
+                    ' A combinação de servidor, usuário e senha já existe no arquivo de texto
+                    Return True
+                End If
+            Next
+        End If
+
+        ' A combinação de servidor, usuário e senha não foi encontrada no arquivo de texto
+        Return False
+    End Function
+
+    Private Sub SalvarDadosConexao(servidor As String, usuario As String, senha As String)
+        ' Cria uma linha com os dados de conexão separados por vírgula
+        Dim linha As String = servidor & "," & usuario & "," & senha
+
+        ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
+
+        ' Adiciona a linha ao arquivo de texto, somente se a conexão for válida
+        If ValidarConexao(servidor, usuario, senha) Then
+            ' Verifica se a linha já existe no arquivo antes de adicioná-la
+            If Not ExisteConexaoSalva(servidor, usuario, senha) Then
+                File.AppendAllText(caminhoArquivo, linha & Environment.NewLine)
+            End If
+        End If
+    End Sub
+
     Private Sub CarregarServidoresSalvos()
         ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
         Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")
@@ -77,10 +123,14 @@ Public Class Comparar_Tabelas
             ExibirServidorTabelaCompararCbx.DataSource = listaServidores
         End If
     End Sub
-    ' Métodos para manipulação dos bancos de dados e conexões (ExisteConexaoSalva, SalvarDadosConexao, CarregarServidoresSalvos)
 
-    ' Evento ao carregar o formulário
-    Private Sub Tabela_Coluna_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Function ValidarConexao(servidor As String, usuario As String, senha As String) As Boolean
+        ' Implemente aqui a lógica de validação da conexão
+        ' Retorne True se a conexão for válida, ou False caso contrário
+        Return True ' Exemplo: sempre retorna True para fins de demonstração
+    End Function
+
+    Private Sub SuporteHelp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Carrega os servidores salvos ao carregar o formulário
         CarregarServidoresSalvos()
     End Sub
