@@ -113,13 +113,13 @@ Public Class Tabela_Coluna
             Next
 
             ' Popula o ComboBox com os servidores salvos
-            ExibirServidorTabelaCbx.DataSource = listaServidores
+            ExibirServidorTabelaCompararCbx.DataSource = listaServidores
         End If
     End Sub
 
-    Private Sub ExibirServidorTabelaCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorTabelaCbx.SelectedIndexChanged
+    Private Sub ExibirServidorTabelaCbx_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExibirServidorTabelaCompararCbx.SelectedIndexChanged
         ' Obtém o índice do servidor selecionado no combobox
-        Dim indiceServidor As Integer = ExibirServidorTabelaCbx.SelectedIndex
+        Dim indiceServidor As Integer = ExibirServidorTabelaCompararCbx.SelectedIndex
 
         ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
         Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "dados_conexao.txt")

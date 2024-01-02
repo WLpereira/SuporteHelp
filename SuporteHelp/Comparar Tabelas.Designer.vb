@@ -39,10 +39,10 @@ Partial Class Comparar_Tabelas
         PesquisarTabelaCompararBtn = New Button()
         PesquisatabelaCompararTxb = New TextBox()
         PesquisarTabelaColunaLbl = New Label()
-        CompararBtn = New Button()
-        ResultadoCompararDtg = New DataGridView()
+        ResultadoComprarDtg = New DataGridView()
+        LimparSelecaoBtn = New Button()
         CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ResultadoCompararDtg, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ResultadoComprarDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' SelecinarServidorCompararLbl
@@ -212,39 +212,40 @@ Partial Class Comparar_Tabelas
         PesquisarTabelaColunaLbl.TabIndex = 64
         PesquisarTabelaColunaLbl.Text = "Pesquisar Tabela"
         ' 
-        ' CompararBtn
+        ' ResultadoComprarDtg
         ' 
-        CompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        CompararBtn.Image = CType(resources.GetObject("CompararBtn.Image"), Image)
-        CompararBtn.ImageAlign = ContentAlignment.MiddleLeft
-        CompararBtn.Location = New Point(310, 375)
-        CompararBtn.Margin = New Padding(3, 4, 3, 4)
-        CompararBtn.Name = "CompararBtn"
-        CompararBtn.Size = New Size(143, 103)
-        CompararBtn.TabIndex = 69
-        CompararBtn.Text = "Comparar"
-        CompararBtn.TextAlign = ContentAlignment.MiddleRight
-        CompararBtn.UseVisualStyleBackColor = True
+        ResultadoComprarDtg.AllowUserToOrderColumns = True
+        ResultadoComprarDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ResultadoComprarDtg.Location = New Point(573, 276)
+        ResultadoComprarDtg.Margin = New Padding(3, 4, 3, 4)
+        ResultadoComprarDtg.Name = "ResultadoComprarDtg"
+        ResultadoComprarDtg.ReadOnly = True
+        ResultadoComprarDtg.RowHeadersWidth = 51
+        ResultadoComprarDtg.RowTemplate.Height = 25
+        ResultadoComprarDtg.Size = New Size(280, 452)
+        ResultadoComprarDtg.TabIndex = 70
         ' 
-        ' ResultadoCompararDtg
+        ' LimparSelecaoBtn
         ' 
-        ResultadoCompararDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ResultadoCompararDtg.Location = New Point(506, 276)
-        ResultadoCompararDtg.Margin = New Padding(3, 4, 3, 4)
-        ResultadoCompararDtg.Name = "ResultadoCompararDtg"
-        ResultadoCompararDtg.ReadOnly = True
-        ResultadoCompararDtg.RowHeadersWidth = 51
-        ResultadoCompararDtg.RowTemplate.Height = 25
-        ResultadoCompararDtg.Size = New Size(280, 452)
-        ResultadoCompararDtg.TabIndex = 70
+        LimparSelecaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LimparSelecaoBtn.Image = CType(resources.GetObject("LimparSelecaoBtn.Image"), Image)
+        LimparSelecaoBtn.ImageAlign = ContentAlignment.MiddleLeft
+        LimparSelecaoBtn.Location = New Point(381, 397)
+        LimparSelecaoBtn.Margin = New Padding(3, 4, 3, 4)
+        LimparSelecaoBtn.Name = "LimparSelecaoBtn"
+        LimparSelecaoBtn.Size = New Size(115, 72)
+        LimparSelecaoBtn.TabIndex = 71
+        LimparSelecaoBtn.Text = "Limpar"
+        LimparSelecaoBtn.TextAlign = ContentAlignment.MiddleRight
+        LimparSelecaoBtn.UseVisualStyleBackColor = True
         ' 
         ' Comparar_Tabelas
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1132, 803)
-        Controls.Add(ResultadoCompararDtg)
-        Controls.Add(CompararBtn)
+        Controls.Add(LimparSelecaoBtn)
+        Controls.Add(ResultadoComprarDtg)
         Controls.Add(ListarTabelasCompararDtg)
         Controls.Add(LimparTabelaCompararBtn)
         Controls.Add(PesquisarTabelaCompararBtn)
@@ -267,7 +268,7 @@ Partial Class Comparar_Tabelas
         StartPosition = FormStartPosition.CenterScreen
         Text = "Comparar_Tabelas"
         CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).EndInit()
-        CType(ResultadoCompararDtg, ComponentModel.ISupportInitialize).EndInit()
+        CType(ResultadoComprarDtg, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -288,6 +289,6 @@ Partial Class Comparar_Tabelas
     Friend WithEvents PesquisarTabelaCompararBtn As Button
     Friend WithEvents PesquisatabelaCompararTxb As TextBox
     Friend WithEvents PesquisarTabelaColunaLbl As Label
-    Friend WithEvents CompararBtn As Button
-    Friend WithEvents ResultadoCompararDtg As DataGridView
+    Friend WithEvents ResultadoComprarDtg As DataGridView
+    Friend WithEvents LimparSelecaoBtn As Button
 End Class

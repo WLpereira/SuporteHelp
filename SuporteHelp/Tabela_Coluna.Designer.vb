@@ -50,7 +50,7 @@ Partial Class Tabela_Coluna
         PesquisartodasTxb = New TextBox()
         PesquisarColunaNobancoLbl = New Label()
         SelecinarServidorLbl = New Label()
-        ExibirServidorTabelaCbx = New ComboBox()
+        ExibirServidorTabelaCompararCbx = New ComboBox()
         CType(ListadeTabelaDtg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ListarColunaDvg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ListarTodasDgv, ComponentModel.ISupportInitialize).BeginInit()
@@ -359,13 +359,13 @@ Partial Class Tabela_Coluna
         SelecinarServidorLbl.TabIndex = 52
         SelecinarServidorLbl.Text = "Selecionar Servidor Salvos"
         ' 
-        ' ExibirServidorTabelaCbx
+        ' ExibirServidorTabelaCompararCbx
         ' 
-        ExibirServidorTabelaCbx.FormattingEnabled = True
-        ExibirServidorTabelaCbx.Location = New Point(25, 88)
-        ExibirServidorTabelaCbx.Name = "ExibirServidorTabelaCbx"
-        ExibirServidorTabelaCbx.Size = New Size(221, 28)
-        ExibirServidorTabelaCbx.TabIndex = 51
+        ExibirServidorTabelaCompararCbx.FormattingEnabled = True
+        ExibirServidorTabelaCompararCbx.Location = New Point(25, 88)
+        ExibirServidorTabelaCompararCbx.Name = "ExibirServidorTabelaCompararCbx"
+        ExibirServidorTabelaCompararCbx.Size = New Size(221, 28)
+        ExibirServidorTabelaCompararCbx.TabIndex = 51
         ' 
         ' Tabela_Coluna
         ' 
@@ -373,7 +373,7 @@ Partial Class Tabela_Coluna
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1128, 799)
         Controls.Add(SelecinarServidorLbl)
-        Controls.Add(ExibirServidorTabelaCbx)
+        Controls.Add(ExibirServidorTabelaCompararCbx)
         Controls.Add(PesquisarColunaNobancoLbl)
         Controls.Add(ListarTodasDgv)
         Controls.Add(LimparTodasBtn)
@@ -441,5 +441,5 @@ Partial Class Tabela_Coluna
     Friend WithEvents PesquisartodasTxb As TextBox
     Friend WithEvents PesquisarColunaNobancoLbl As Label
     Friend WithEvents SelecinarServidorLbl As Label
-    Friend WithEvents ExibirServidorTabelaCbx As ComboBox
+    Friend WithEvents ExibirServidorTabelaCompararCbx As ComboBox
 End Class
