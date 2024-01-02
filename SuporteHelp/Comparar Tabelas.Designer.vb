@@ -39,11 +39,9 @@ Partial Class Comparar_Tabelas
         PesquisarTabelaCompararBtn = New Button()
         PesquisatabelaCompararTxb = New TextBox()
         PesquisarTabelaColunaLbl = New Label()
-        ResultadoComprarDtg = New DataGridView()
         LimparSelecaoBtn = New Button()
         ResultadoLst = New ListBox()
         CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ResultadoComprarDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' SelecinarServidorCompararLbl
@@ -69,7 +67,7 @@ Partial Class Comparar_Tabelas
         ' 
         SelecionarBancoCompararLbl.AutoSize = True
         SelecionarBancoCompararLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        SelecionarBancoCompararLbl.Location = New Point(860, 22)
+        SelecionarBancoCompararLbl.Location = New Point(370, 80)
         SelecionarBancoCompararLbl.Name = "SelecionarBancoCompararLbl"
         SelecionarBancoCompararLbl.Size = New Size(127, 20)
         SelecionarBancoCompararLbl.TabIndex = 61
@@ -78,7 +76,7 @@ Partial Class Comparar_Tabelas
         ' SelecionarBancoCompararBbx
         ' 
         SelecionarBancoCompararBbx.FormattingEnabled = True
-        SelecionarBancoCompararBbx.Location = New Point(860, 46)
+        SelecionarBancoCompararBbx.Location = New Point(326, 103)
         SelecionarBancoCompararBbx.Margin = New Padding(3, 4, 3, 4)
         SelecionarBancoCompararBbx.Name = "SelecionarBancoCompararBbx"
         SelecionarBancoCompararBbx.Size = New Size(225, 28)
@@ -89,7 +87,7 @@ Partial Class Comparar_Tabelas
         ConectarCompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarCompararBtn.Image = CType(resources.GetObject("ConectarCompararBtn.Image"), Image)
         ConectarCompararBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarCompararBtn.Location = New Point(742, 39)
+        ConectarCompararBtn.Location = New Point(713, 38)
         ConectarCompararBtn.Margin = New Padding(3, 4, 3, 4)
         ConectarCompararBtn.Name = "ConectarCompararBtn"
         ConectarCompararBtn.Size = New Size(111, 37)
@@ -100,7 +98,7 @@ Partial Class Comparar_Tabelas
         ' 
         ' SenhaTabelaCompararTxb
         ' 
-        SenhaTabelaCompararTxb.Location = New Point(533, 46)
+        SenhaTabelaCompararTxb.Location = New Point(509, 46)
         SenhaTabelaCompararTxb.Margin = New Padding(3, 4, 3, 4)
         SenhaTabelaCompararTxb.Name = "SenhaTabelaCompararTxb"
         SenhaTabelaCompararTxb.Size = New Size(202, 27)
@@ -108,10 +106,10 @@ Partial Class Comparar_Tabelas
         ' 
         ' NomeConectarTabelaCompararTxb
         ' 
-        NomeConectarTabelaCompararTxb.Location = New Point(248, 46)
+        NomeConectarTabelaCompararTxb.Location = New Point(235, 46)
         NomeConectarTabelaCompararTxb.Margin = New Padding(3, 4, 3, 4)
         NomeConectarTabelaCompararTxb.Name = "NomeConectarTabelaCompararTxb"
-        NomeConectarTabelaCompararTxb.Size = New Size(278, 27)
+        NomeConectarTabelaCompararTxb.Size = New Size(256, 27)
         NomeConectarTabelaCompararTxb.TabIndex = 57
         ' 
         ' ServidorTabelaCompararTxb
@@ -119,7 +117,7 @@ Partial Class Comparar_Tabelas
         ServidorTabelaCompararTxb.Location = New Point(18, 46)
         ServidorTabelaCompararTxb.Margin = New Padding(3, 4, 3, 4)
         ServidorTabelaCompararTxb.Name = "ServidorTabelaCompararTxb"
-        ServidorTabelaCompararTxb.Size = New Size(222, 27)
+        ServidorTabelaCompararTxb.Size = New Size(206, 27)
         ServidorTabelaCompararTxb.TabIndex = 56
         ' 
         ' SenhaConectarCompararLbl
@@ -127,7 +125,7 @@ Partial Class Comparar_Tabelas
         SenhaConectarCompararLbl.AutoSize = True
         SenhaConectarCompararLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         SenhaConectarCompararLbl.ForeColor = Color.Blue
-        SenhaConectarCompararLbl.Location = New Point(533, 19)
+        SenhaConectarCompararLbl.Location = New Point(509, 19)
         SenhaConectarCompararLbl.Name = "SenhaConectarCompararLbl"
         SenhaConectarCompararLbl.Size = New Size(51, 20)
         SenhaConectarCompararLbl.TabIndex = 55
@@ -138,7 +136,7 @@ Partial Class Comparar_Tabelas
         UsuarioConectarCompararLbl.AutoSize = True
         UsuarioConectarCompararLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         UsuarioConectarCompararLbl.ForeColor = Color.Blue
-        UsuarioConectarCompararLbl.Location = New Point(248, 19)
+        UsuarioConectarCompararLbl.Location = New Point(235, 22)
         UsuarioConectarCompararLbl.Name = "UsuarioConectarCompararLbl"
         UsuarioConectarCompararLbl.Size = New Size(63, 20)
         UsuarioConectarCompararLbl.TabIndex = 54
@@ -213,28 +211,15 @@ Partial Class Comparar_Tabelas
         PesquisarTabelaColunaLbl.TabIndex = 64
         PesquisarTabelaColunaLbl.Text = "Pesquisar Tabela"
         ' 
-        ' ResultadoComprarDtg
-        ' 
-        ResultadoComprarDtg.AllowUserToOrderColumns = True
-        ResultadoComprarDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ResultadoComprarDtg.Location = New Point(573, 276)
-        ResultadoComprarDtg.Margin = New Padding(3, 4, 3, 4)
-        ResultadoComprarDtg.Name = "ResultadoComprarDtg"
-        ResultadoComprarDtg.ReadOnly = True
-        ResultadoComprarDtg.RowHeadersWidth = 51
-        ResultadoComprarDtg.RowTemplate.Height = 25
-        ResultadoComprarDtg.Size = New Size(280, 452)
-        ResultadoComprarDtg.TabIndex = 70
-        ' 
         ' LimparSelecaoBtn
         ' 
         LimparSelecaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparSelecaoBtn.Image = CType(resources.GetObject("LimparSelecaoBtn.Image"), Image)
         LimparSelecaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparSelecaoBtn.Location = New Point(381, 397)
+        LimparSelecaoBtn.Location = New Point(339, 397)
         LimparSelecaoBtn.Margin = New Padding(3, 4, 3, 4)
         LimparSelecaoBtn.Name = "LimparSelecaoBtn"
-        LimparSelecaoBtn.Size = New Size(115, 72)
+        LimparSelecaoBtn.Size = New Size(129, 94)
         LimparSelecaoBtn.TabIndex = 71
         LimparSelecaoBtn.Text = "Limpar"
         LimparSelecaoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -244,19 +229,18 @@ Partial Class Comparar_Tabelas
         ' 
         ResultadoLst.FormattingEnabled = True
         ResultadoLst.ItemHeight = 20
-        ResultadoLst.Location = New Point(639, 204)
+        ResultadoLst.Location = New Point(498, 184)
         ResultadoLst.Name = "ResultadoLst"
-        ResultadoLst.Size = New Size(280, 524)
+        ResultadoLst.Size = New Size(280, 544)
         ResultadoLst.TabIndex = 72
         ' 
         ' Comparar_Tabelas
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1132, 803)
+        ClientSize = New Size(832, 803)
         Controls.Add(ResultadoLst)
         Controls.Add(LimparSelecaoBtn)
-        Controls.Add(ResultadoComprarDtg)
         Controls.Add(ListarTabelasCompararDtg)
         Controls.Add(LimparTabelaCompararBtn)
         Controls.Add(PesquisarTabelaCompararBtn)
@@ -279,7 +263,6 @@ Partial Class Comparar_Tabelas
         StartPosition = FormStartPosition.CenterScreen
         Text = "Comparar_Tabelas"
         CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).EndInit()
-        CType(ResultadoComprarDtg, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -300,7 +283,6 @@ Partial Class Comparar_Tabelas
     Friend WithEvents PesquisarTabelaCompararBtn As Button
     Friend WithEvents PesquisatabelaCompararTxb As TextBox
     Friend WithEvents PesquisarTabelaColunaLbl As Label
-    Friend WithEvents ResultadoComprarDtg As DataGridView
     Friend WithEvents LimparSelecaoBtn As Button
     Friend WithEvents ResultadoLst As ListBox
 End Class
