@@ -34,23 +34,15 @@ Partial Class Comparar_Tabelas
         SenhaConectarCompararLbl = New Label()
         UsuarioConectarCompararLbl = New Label()
         ServidorConectarCompararLbl = New Label()
-        ListadeTabela1Dtg = New DataGridView()
-        LimparTabela1Btn = New Button()
-        PesquisarTabela1Btn = New Button()
-        Pesquisatabela1Txb = New TextBox()
-        PesquisarTabela1Lbl = New Label()
-        ListadeTabela2Dtg = New DataGridView()
-        LimparTabela2Btn = New Button()
-        PesquisarTabela2Btn = New Button()
-        Pesquisatabela2Txb = New TextBox()
-        PesquisarTabela2Lbl = New Label()
+        ListarTabelasCompararDtg = New DataGridView()
+        LimparTabelaCompararBtn = New Button()
+        PesquisarTabelaCompararBtn = New Button()
+        PesquisatabelaCompararTxb = New TextBox()
+        PesquisarTabelaColunaLbl = New Label()
         CompararBtn = New Button()
-        ResultadoDgv = New DataGridView()
-        DataGridView1 = New DataGridView()
-        CType(ListadeTabela1Dtg, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ListadeTabela2Dtg, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ResultadoDgv, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        ResultadoCompararDtg = New DataGridView()
+        CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ResultadoCompararDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' SelecinarServidorCompararLbl
@@ -162,177 +154,102 @@ Partial Class Comparar_Tabelas
         ServidorConectarCompararLbl.TabIndex = 53
         ServidorConectarCompararLbl.Text = "Informe o Servidor"
         ' 
-        ' ListadeTabela1Dtg
+        ' ListarTabelasCompararDtg
         ' 
-        ListadeTabela1Dtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeTabela1Dtg.Location = New Point(12, 338)
-        ListadeTabela1Dtg.Margin = New Padding(3, 4, 3, 4)
-        ListadeTabela1Dtg.Name = "ListadeTabela1Dtg"
-        ListadeTabela1Dtg.ReadOnly = True
-        ListadeTabela1Dtg.RowHeadersWidth = 51
-        ListadeTabela1Dtg.RowTemplate.Height = 25
-        ListadeTabela1Dtg.Size = New Size(184, 452)
-        ListadeTabela1Dtg.TabIndex = 68
+        ListarTabelasCompararDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ListarTabelasCompararDtg.Location = New Point(12, 276)
+        ListarTabelasCompararDtg.Margin = New Padding(3, 4, 3, 4)
+        ListarTabelasCompararDtg.Name = "ListarTabelasCompararDtg"
+        ListarTabelasCompararDtg.ReadOnly = True
+        ListarTabelasCompararDtg.RowHeadersWidth = 51
+        ListarTabelasCompararDtg.RowTemplate.Height = 25
+        ListarTabelasCompararDtg.Size = New Size(280, 452)
+        ListarTabelasCompararDtg.TabIndex = 68
         ' 
-        ' LimparTabela1Btn
+        ' LimparTabelaCompararBtn
         ' 
-        LimparTabela1Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        LimparTabela1Btn.Image = CType(resources.GetObject("LimparTabela1Btn.Image"), Image)
-        LimparTabela1Btn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTabela1Btn.Location = New Point(40, 291)
-        LimparTabela1Btn.Margin = New Padding(3, 4, 3, 4)
-        LimparTabela1Btn.Name = "LimparTabela1Btn"
-        LimparTabela1Btn.Size = New Size(120, 39)
-        LimparTabela1Btn.TabIndex = 67
-        LimparTabela1Btn.Text = "Limpar"
-        LimparTabela1Btn.TextAlign = ContentAlignment.MiddleRight
-        LimparTabela1Btn.UseVisualStyleBackColor = True
+        LimparTabelaCompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LimparTabelaCompararBtn.Image = CType(resources.GetObject("LimparTabelaCompararBtn.Image"), Image)
+        LimparTabelaCompararBtn.ImageAlign = ContentAlignment.MiddleLeft
+        LimparTabelaCompararBtn.Location = New Point(177, 223)
+        LimparTabelaCompararBtn.Margin = New Padding(3, 4, 3, 4)
+        LimparTabelaCompararBtn.Name = "LimparTabelaCompararBtn"
+        LimparTabelaCompararBtn.Size = New Size(115, 45)
+        LimparTabelaCompararBtn.TabIndex = 67
+        LimparTabelaCompararBtn.Text = "Limpar"
+        LimparTabelaCompararBtn.TextAlign = ContentAlignment.MiddleRight
+        LimparTabelaCompararBtn.UseVisualStyleBackColor = True
         ' 
-        ' PesquisarTabela1Btn
+        ' PesquisarTabelaCompararBtn
         ' 
-        PesquisarTabela1Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabela1Btn.Image = CType(resources.GetObject("PesquisarTabela1Btn.Image"), Image)
-        PesquisarTabela1Btn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarTabela1Btn.Location = New Point(38, 232)
-        PesquisarTabela1Btn.Margin = New Padding(3, 4, 3, 4)
-        PesquisarTabela1Btn.Name = "PesquisarTabela1Btn"
-        PesquisarTabela1Btn.Size = New Size(122, 45)
-        PesquisarTabela1Btn.TabIndex = 66
-        PesquisarTabela1Btn.Text = "Pesquisar"
-        PesquisarTabela1Btn.TextAlign = ContentAlignment.MiddleRight
-        PesquisarTabela1Btn.UseVisualStyleBackColor = True
+        PesquisarTabelaCompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        PesquisarTabelaCompararBtn.Image = CType(resources.GetObject("PesquisarTabelaCompararBtn.Image"), Image)
+        PesquisarTabelaCompararBtn.ImageAlign = ContentAlignment.MiddleLeft
+        PesquisarTabelaCompararBtn.Location = New Point(11, 219)
+        PesquisarTabelaCompararBtn.Margin = New Padding(3, 4, 3, 4)
+        PesquisarTabelaCompararBtn.Name = "PesquisarTabelaCompararBtn"
+        PesquisarTabelaCompararBtn.Size = New Size(117, 45)
+        PesquisarTabelaCompararBtn.TabIndex = 66
+        PesquisarTabelaCompararBtn.Text = "Pesquisar"
+        PesquisarTabelaCompararBtn.TextAlign = ContentAlignment.MiddleRight
+        PesquisarTabelaCompararBtn.UseVisualStyleBackColor = True
         ' 
-        ' Pesquisatabela1Txb
+        ' PesquisatabelaCompararTxb
         ' 
-        Pesquisatabela1Txb.Location = New Point(12, 193)
-        Pesquisatabela1Txb.Margin = New Padding(3, 4, 3, 4)
-        Pesquisatabela1Txb.Name = "Pesquisatabela1Txb"
-        Pesquisatabela1Txb.Size = New Size(191, 27)
-        Pesquisatabela1Txb.TabIndex = 65
+        PesquisatabelaCompararTxb.Location = New Point(12, 184)
+        PesquisatabelaCompararTxb.Margin = New Padding(3, 4, 3, 4)
+        PesquisatabelaCompararTxb.Name = "PesquisatabelaCompararTxb"
+        PesquisatabelaCompararTxb.Size = New Size(279, 27)
+        PesquisatabelaCompararTxb.TabIndex = 65
         ' 
-        ' PesquisarTabela1Lbl
+        ' PesquisarTabelaColunaLbl
         ' 
-        PesquisarTabela1Lbl.AutoSize = True
-        PesquisarTabela1Lbl.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabela1Lbl.Location = New Point(20, 164)
-        PesquisarTabela1Lbl.Name = "PesquisarTabela1Lbl"
-        PesquisarTabela1Lbl.Size = New Size(167, 25)
-        PesquisarTabela1Lbl.TabIndex = 64
-        PesquisarTabela1Lbl.Text = "Pesquisar Tabela 1"
-        ' 
-        ' ListadeTabela2Dtg
-        ' 
-        ListadeTabela2Dtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeTabela2Dtg.Location = New Point(248, 338)
-        ListadeTabela2Dtg.Margin = New Padding(3, 4, 3, 4)
-        ListadeTabela2Dtg.Name = "ListadeTabela2Dtg"
-        ListadeTabela2Dtg.ReadOnly = True
-        ListadeTabela2Dtg.RowHeadersWidth = 51
-        ListadeTabela2Dtg.RowTemplate.Height = 25
-        ListadeTabela2Dtg.Size = New Size(185, 452)
-        ListadeTabela2Dtg.TabIndex = 73
-        ' 
-        ' LimparTabela2Btn
-        ' 
-        LimparTabela2Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        LimparTabela2Btn.Image = CType(resources.GetObject("LimparTabela2Btn.Image"), Image)
-        LimparTabela2Btn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparTabela2Btn.Location = New Point(280, 285)
-        LimparTabela2Btn.Margin = New Padding(3, 4, 3, 4)
-        LimparTabela2Btn.Name = "LimparTabela2Btn"
-        LimparTabela2Btn.Size = New Size(115, 45)
-        LimparTabela2Btn.TabIndex = 72
-        LimparTabela2Btn.Text = "Limpar"
-        LimparTabela2Btn.TextAlign = ContentAlignment.MiddleRight
-        LimparTabela2Btn.UseVisualStyleBackColor = True
-        ' 
-        ' PesquisarTabela2Btn
-        ' 
-        PesquisarTabela2Btn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabela2Btn.Image = CType(resources.GetObject("PesquisarTabela2Btn.Image"), Image)
-        PesquisarTabela2Btn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarTabela2Btn.Location = New Point(280, 232)
-        PesquisarTabela2Btn.Margin = New Padding(3, 4, 3, 4)
-        PesquisarTabela2Btn.Name = "PesquisarTabela2Btn"
-        PesquisarTabela2Btn.Size = New Size(117, 45)
-        PesquisarTabela2Btn.TabIndex = 71
-        PesquisarTabela2Btn.Text = "Pesquisar"
-        PesquisarTabela2Btn.TextAlign = ContentAlignment.MiddleRight
-        PesquisarTabela2Btn.UseVisualStyleBackColor = True
-        ' 
-        ' Pesquisatabela2Txb
-        ' 
-        Pesquisatabela2Txb.Location = New Point(248, 193)
-        Pesquisatabela2Txb.Margin = New Padding(3, 4, 3, 4)
-        Pesquisatabela2Txb.Name = "Pesquisatabela2Txb"
-        Pesquisatabela2Txb.Size = New Size(191, 27)
-        Pesquisatabela2Txb.TabIndex = 70
-        ' 
-        ' PesquisarTabela2Lbl
-        ' 
-        PesquisarTabela2Lbl.AutoSize = True
-        PesquisarTabela2Lbl.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point)
-        PesquisarTabela2Lbl.Location = New Point(266, 164)
-        PesquisarTabela2Lbl.Name = "PesquisarTabela2Lbl"
-        PesquisarTabela2Lbl.Size = New Size(167, 25)
-        PesquisarTabela2Lbl.TabIndex = 69
-        PesquisarTabela2Lbl.Text = "Pesquisar Tabela 2"
+        PesquisarTabelaColunaLbl.AutoSize = True
+        PesquisarTabelaColunaLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        PesquisarTabelaColunaLbl.Location = New Point(85, 160)
+        PesquisarTabelaColunaLbl.Name = "PesquisarTabelaColunaLbl"
+        PesquisarTabelaColunaLbl.Size = New Size(125, 20)
+        PesquisarTabelaColunaLbl.TabIndex = 64
+        PesquisarTabelaColunaLbl.Text = "Pesquisar Tabela"
         ' 
         ' CompararBtn
         ' 
         CompararBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        CompararBtn.Image = CType(resources.GetObject("CompararBtn.Image"), Image)
         CompararBtn.ImageAlign = ContentAlignment.MiddleLeft
-        CompararBtn.Location = New Point(439, 490)
+        CompararBtn.Location = New Point(310, 375)
         CompararBtn.Margin = New Padding(3, 4, 3, 4)
         CompararBtn.Name = "CompararBtn"
-        CompararBtn.Size = New Size(131, 101)
-        CompararBtn.TabIndex = 74
+        CompararBtn.Size = New Size(143, 103)
+        CompararBtn.TabIndex = 69
         CompararBtn.Text = "Comparar"
         CompararBtn.TextAlign = ContentAlignment.MiddleRight
         CompararBtn.UseVisualStyleBackColor = True
         ' 
-        ' ResultadoDgv
+        ' ResultadoCompararDtg
         ' 
-        ResultadoDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ResultadoDgv.Location = New Point(598, 232)
-        ResultadoDgv.Margin = New Padding(3, 4, 3, 4)
-        ResultadoDgv.Name = "ResultadoDgv"
-        ResultadoDgv.ReadOnly = True
-        ResultadoDgv.RowHeadersWidth = 51
-        ResultadoDgv.RowTemplate.Height = 25
-        ResultadoDgv.Size = New Size(229, 558)
-        ResultadoDgv.TabIndex = 75
-        ' 
-        ' DataGridView1
-        ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(860, 232)
-        DataGridView1.Margin = New Padding(3, 4, 3, 4)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.RowTemplate.Height = 25
-        DataGridView1.Size = New Size(229, 558)
-        DataGridView1.TabIndex = 76
+        ResultadoCompararDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ResultadoCompararDtg.Location = New Point(506, 276)
+        ResultadoCompararDtg.Margin = New Padding(3, 4, 3, 4)
+        ResultadoCompararDtg.Name = "ResultadoCompararDtg"
+        ResultadoCompararDtg.ReadOnly = True
+        ResultadoCompararDtg.RowHeadersWidth = 51
+        ResultadoCompararDtg.RowTemplate.Height = 25
+        ResultadoCompararDtg.Size = New Size(280, 452)
+        ResultadoCompararDtg.TabIndex = 70
         ' 
         ' Comparar_Tabelas
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1132, 803)
-        Controls.Add(DataGridView1)
-        Controls.Add(ResultadoDgv)
+        Controls.Add(ResultadoCompararDtg)
         Controls.Add(CompararBtn)
-        Controls.Add(ListadeTabela2Dtg)
-        Controls.Add(LimparTabela2Btn)
-        Controls.Add(PesquisarTabela2Btn)
-        Controls.Add(Pesquisatabela2Txb)
-        Controls.Add(PesquisarTabela2Lbl)
-        Controls.Add(ListadeTabela1Dtg)
-        Controls.Add(LimparTabela1Btn)
-        Controls.Add(PesquisarTabela1Btn)
-        Controls.Add(Pesquisatabela1Txb)
-        Controls.Add(PesquisarTabela1Lbl)
+        Controls.Add(ListarTabelasCompararDtg)
+        Controls.Add(LimparTabelaCompararBtn)
+        Controls.Add(PesquisarTabelaCompararBtn)
+        Controls.Add(PesquisatabelaCompararTxb)
+        Controls.Add(PesquisarTabelaColunaLbl)
         Controls.Add(SelecinarServidorCompararLbl)
         Controls.Add(ExibirServidorTabelaCompararCbx)
         Controls.Add(SelecionarBancoCompararLbl)
@@ -349,10 +266,8 @@ Partial Class Comparar_Tabelas
         Name = "Comparar_Tabelas"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Comparar_Tabelas"
-        CType(ListadeTabela1Dtg, ComponentModel.ISupportInitialize).EndInit()
-        CType(ListadeTabela2Dtg, ComponentModel.ISupportInitialize).EndInit()
-        CType(ResultadoDgv, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).EndInit()
+        CType(ResultadoCompararDtg, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -368,17 +283,11 @@ Partial Class Comparar_Tabelas
     Friend WithEvents SenhaConectarCompararLbl As Label
     Friend WithEvents UsuarioConectarCompararLbl As Label
     Friend WithEvents ServidorConectarCompararLbl As Label
-    Friend WithEvents ListadeTabela1Dtg As DataGridView
-    Friend WithEvents LimparTabela1Btn As Button
-    Friend WithEvents PesquisarTabela1Btn As Button
-    Friend WithEvents Pesquisatabela1Txb As TextBox
-    Friend WithEvents PesquisarTabela1Lbl As Label
-    Friend WithEvents ListadeTabela2Dtg As DataGridView
-    Friend WithEvents LimparTabela2Btn As Button
-    Friend WithEvents PesquisarTabela2Btn As Button
-    Friend WithEvents Pesquisatabela2Txb As TextBox
-    Friend WithEvents PesquisarTabela2Lbl As Label
+    Friend WithEvents ListarTabelasCompararDtg As DataGridView
+    Friend WithEvents LimparTabelaCompararBtn As Button
+    Friend WithEvents PesquisarTabelaCompararBtn As Button
+    Friend WithEvents PesquisatabelaCompararTxb As TextBox
+    Friend WithEvents PesquisarTabelaColunaLbl As Label
     Friend WithEvents CompararBtn As Button
-    Friend WithEvents ResultadoDgv As DataGridView
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents ResultadoCompararDtg As DataGridView
 End Class
