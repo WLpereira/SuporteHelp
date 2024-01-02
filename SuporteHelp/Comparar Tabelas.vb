@@ -172,7 +172,7 @@ Public Class Comparar_Tabelas
         End If
     End Sub
 
-    ' Método para exibir colunas comuns em ResultadoComprarDtg
+    ' Método para exibir colunas comuns em ResultadoLst
     Private Sub ExibirColunasComuns(tabela1 As String, tabela2 As String)
         Try
             Using conexaoBD As New SqlConnection($"Server={ServidorTabelaCompararTxb.Text};User Id={NomeConectarTabelaCompararTxb.Text};Password={SenhaTabelaCompararTxb.Text};Database={SelecionarBancoCompararBbx.SelectedItem.ToString()}")
@@ -187,25 +187,25 @@ Public Class Comparar_Tabelas
                 ' Encontrar colunas comuns
                 Dim colunasComuns As List(Of String) = colunasTabela1.Intersect(colunasTabela2).ToList()
 
-                ' Exibir as colunas comuns em ResultadoComprarDtg
-                Dim dtResultado As New DataTable()
+                ' Limpar itens anteriores no ListBox
+                ResultadoLst.Items.Clear()
+
+                ' Adicionar as colunas comuns ao ListBox
                 For Each coluna As String In colunasComuns
-                    dtResultado.Columns.Add(coluna)
+                    ResultadoLst.Items.Add(coluna)
                 Next
-
-                ResultadoComprarDtg.DataSource = dtResultado
-
             End Using
         Catch ex As Exception
             MessageBox.Show("Erro ao exibir colunas comuns: " & ex.Message)
         End Try
     End Sub
+
     Private Sub LimparSelecaoBtn_Click(sender As Object, e As EventArgs) Handles LimparSelecaoBtn.Click
         ' Limpar a seleção e resetar as tabelas selecionadas
         tabela1 = ""
         tabela2 = ""
         ListarTabelasCompararDtg.ClearSelection()
-        ResultadoComprarDtg.DataSource = Nothing
+        ResultadoLst.Items.Clear()
     End Sub
 
     ' Método para obter colunas de uma tabela

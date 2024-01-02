@@ -22,7 +22,7 @@ Partial Class Comparar_Tabelas
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Comparar_Tabelas))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Comparar_Tabelas))
         SelecinarServidorCompararLbl = New Label()
         ExibirServidorTabelaCompararCbx = New ComboBox()
         SelecionarBancoCompararLbl = New Label()
@@ -41,6 +41,7 @@ Partial Class Comparar_Tabelas
         PesquisarTabelaColunaLbl = New Label()
         ResultadoComprarDtg = New DataGridView()
         LimparSelecaoBtn = New Button()
+        ResultadoLst = New ListBox()
         CType(ListarTabelasCompararDtg, ComponentModel.ISupportInitialize).BeginInit()
         CType(ResultadoComprarDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -239,11 +240,21 @@ Partial Class Comparar_Tabelas
         LimparSelecaoBtn.TextAlign = ContentAlignment.MiddleRight
         LimparSelecaoBtn.UseVisualStyleBackColor = True
         ' 
+        ' ResultadoLst
+        ' 
+        ResultadoLst.FormattingEnabled = True
+        ResultadoLst.ItemHeight = 20
+        ResultadoLst.Location = New Point(639, 204)
+        ResultadoLst.Name = "ResultadoLst"
+        ResultadoLst.Size = New Size(280, 524)
+        ResultadoLst.TabIndex = 72
+        ' 
         ' Comparar_Tabelas
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1132, 803)
+        Controls.Add(ResultadoLst)
         Controls.Add(LimparSelecaoBtn)
         Controls.Add(ResultadoComprarDtg)
         Controls.Add(ListarTabelasCompararDtg)
@@ -291,4 +302,5 @@ Partial Class Comparar_Tabelas
     Friend WithEvents PesquisarTabelaColunaLbl As Label
     Friend WithEvents ResultadoComprarDtg As DataGridView
     Friend WithEvents LimparSelecaoBtn As Button
+    Friend WithEvents ResultadoLst As ListBox
 End Class
