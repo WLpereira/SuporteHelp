@@ -130,7 +130,7 @@ Public Class Comparar_Tabelas
         Return True ' Exemplo: sempre retorna True para fins de demonstração
     End Function
 
-    Private Sub SuporteHelp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Comparar_Tabelas(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Carrega os servidores salvos ao carregar o formulário
         CarregarServidoresSalvos()
     End Sub
