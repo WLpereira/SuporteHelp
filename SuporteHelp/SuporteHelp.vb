@@ -658,5 +658,11 @@ Public Class SuporteHelp
         Dim Comparar_Tabelas As New Comparar_Tabelas()
         Comparar_Tabelas.Show()
     End Sub
+
+    Private Sub FerramentaCloudToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FerramentaCloudToolStripMenuItem.Click
+
+        Dim Ferramenta_Cloud As New Ferramenta_Cloud()
+        Ferramenta_Cloud.Show()
+    End Sub
 End Class
 
