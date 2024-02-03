@@ -6,7 +6,6 @@ Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
 Public Class Ferramenta_Cloud
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
-
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorCloudTxb.Text.Trim()
         Dim usuario As String = NomeConectarCloudTxb.Text
@@ -30,39 +29,58 @@ Public Class Ferramenta_Cloud
         Try
             ' Cria uma conexão com o servidor de banco de dados
             Using conexaoBD As New SqlConnection(conexao)
-                ' Abre a conexão com o servidor
                 conexaoBD.Open()
 
-                ' Exibe uma mensagem de sucesso ao conectar no servidor
-                MessageBox.Show("Conexão estabelecida com sucesso, Selecione o Banco!")
+                ' Iniciar transação explícita
+                Using transacao As SqlTransaction = conexaoBD.BeginTransaction()
+                    Try
+                        ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
+                        Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD, transacao)
+                        Dim leitor As SqlDataReader = comando.ExecuteReader()
 
-                ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')order by name", conexaoBD)
-                Dim leitor As SqlDataReader = comando.ExecuteReader()
+                        ' Cria uma DataTable para armazenar os resultados da consulta
+                        Dim dt As New DataTable()
+                        dt.Load(leitor)
 
-                ' Cria uma DataTable para armazenar os resultados da consulta
-                Dim dt As New DataTable()
-                dt.Load(leitor)
+                        ' Adiciona as colunas 'VersaoBCodados' e 'DtBCodados' ao DataTable
+                        dt.Columns.Add("VersaoBCodados", GetType(String))
+                        dt.Columns.Add("DtBCodados", GetType(String))
 
-                ' Popula o DataGridView com os nomes dos bancos de dados
-                ListadeServidorCloudDtg.DataSource = dt
-                ListadeServidorCloudDtg.Columns(0).Width = 200
+                        ' Itera sobre as linhas do DataTable
+                        For Each row As DataRow In dt.Rows
+                            Dim nomeBanco As String = row("Nome").ToString()
 
-                ' Fecha o leitor de dados
-                leitor.Close()
+                            ' Executa a consulta SQL para obter as informações do Parametro
+                            Dim queryParametro As String = $"SELECT versaobcodados, dtbcodados FROM parametro WHERE Nome = '{nomeBanco}'"
+                            Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD, transacao)
+                            Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
 
-                ' Verifica se os dados de conexão já foram salvos
-                If Not ExisteConexaoSalva(servidor, usuario, senha) Then
-                    ' Salva os dados de conexão em um arquivo de texto
-                    SalvarDadosConexao(servidor, usuario, senha)
+                            ' Verifica se há resultados
+                            If leitorParametro.Read() Then
+                                ' Preenche os valores nas colunas adicionadas
+                                row("VersaoBCodados") = leitorParametro("versaobcodados").ToString()
+                                row("DtBCodados") = leitorParametro("dtbcodados").ToString()
+                            End If
 
-                    ' Adiciona o servidor ao ComboBox
-                    ExibirServidorCloudCbx.Items.Add(servidor)
-                End If
+                            ' Fecha o leitor de dados da consulta de parâmetros
+                            leitorParametro.Close()
+                        Next
+
+                        ' Popula o DataGridView com os nomes dos bancos de dados, VersaoBCodados e DtBCodados
+                        ListadeServidorCloudDtg.DataSource = dt
+                        ListadeServidorCloudDtg.Columns(0).Width = 200
+
+                        ' Commit da transação
+                        transacao.Commit()
+                    Catch ex As Exception
+                        ' Rollback em caso de erro
+                        transacao.Rollback()
+                        MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
+                    End Try
+                End Using
             End Using
         Catch ex As Exception
-            ' Exibe uma mensagem de erro caso ocorra uma exceção
-            MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
+            MessageBox.Show("Erro ao estabelecer a conexão: " & ex.Message)
         End Try
     End Sub
 
