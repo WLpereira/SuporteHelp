@@ -51,7 +51,7 @@ Public Class Ferramenta_Cloud
                             Dim nomeBanco As String = row("Nome").ToString()
 
                             ' Executa a consulta SQL para obter as informações do Parametro
-                            Dim queryParametro As String = $"SELECT versaobcodados, dtbcodados FROM parametro WHERE Nome = '{nomeBanco}'"
+                            Dim queryParametro As String = $"USE {nomeBanco} SELECT versaobcodados, dtbcodados FROM parametro"
                             Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD, transacao)
                             Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
 
