@@ -33,6 +33,10 @@ Partial Class Ferramenta_Cloud
         SenhaConectarLbl = New Label()
         UsuarioConectarLbl = New Label()
         ListadeServidorCloudDtg = New DataGridView()
+        LogEventoBtn = New Button()
+        MostrarTamanhoBtn = New Button()
+        ProgressoPb = New ProgressBar()
+        BackgroundWorker1 = New ComponentModel.BackgroundWorker()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -46,26 +50,28 @@ Partial Class Ferramenta_Cloud
         ' ServidorConectarLbl
         ' 
         ServidorConectarLbl.AutoSize = True
+        ServidorConectarLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorConectarLbl.Location = New Point(12, 27)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
-        ServidorConectarLbl.Size = New Size(105, 15)
+        ServidorConectarLbl.Size = New Size(125, 17)
         ServidorConectarLbl.TabIndex = 5
         ServidorConectarLbl.Text = "Informe o Servidor"
         ' 
         ' SelecinarServidorLbl
         ' 
         SelecinarServidorLbl.AutoSize = True
+        SelecinarServidorLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SelecinarServidorLbl.ForeColor = Color.Red
         SelecinarServidorLbl.Location = New Point(12, 75)
         SelecinarServidorLbl.Name = "SelecinarServidorLbl"
-        SelecinarServidorLbl.Size = New Size(143, 15)
+        SelecinarServidorLbl.Size = New Size(170, 17)
         SelecinarServidorLbl.TabIndex = 38
         SelecinarServidorLbl.Text = "Selecionar Servidor Salvos"
         ' 
         ' ExibirServidorCloudCbx
         ' 
         ExibirServidorCloudCbx.FormattingEnabled = True
-        ExibirServidorCloudCbx.Location = New Point(12, 101)
+        ExibirServidorCloudCbx.Location = New Point(12, 93)
         ExibirServidorCloudCbx.Name = "ExibirServidorCloudCbx"
         ExibirServidorCloudCbx.Size = New Size(210, 23)
         ExibirServidorCloudCbx.TabIndex = 37
@@ -100,37 +106,72 @@ Partial Class Ferramenta_Cloud
         ' SenhaConectarLbl
         ' 
         SenhaConectarLbl.AutoSize = True
+        SenhaConectarLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SenhaConectarLbl.Location = New Point(573, 27)
         SenhaConectarLbl.Name = "SenhaConectarLbl"
-        SenhaConectarLbl.Size = New Size(39, 15)
+        SenhaConectarLbl.Size = New Size(45, 17)
         SenhaConectarLbl.TabIndex = 33
         SenhaConectarLbl.Text = "Senha"
         ' 
         ' UsuarioConectarLbl
         ' 
         UsuarioConectarLbl.AutoSize = True
-        UsuarioConectarLbl.Location = New Point(296, 27)
+        UsuarioConectarLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        UsuarioConectarLbl.Location = New Point(299, 27)
         UsuarioConectarLbl.Name = "UsuarioConectarLbl"
-        UsuarioConectarLbl.Size = New Size(47, 15)
+        UsuarioConectarLbl.Size = New Size(55, 17)
         UsuarioConectarLbl.TabIndex = 32
         UsuarioConectarLbl.Text = "Usuario"
         ' 
         ' ListadeServidorCloudDtg
         ' 
         ListadeServidorCloudDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeServidorCloudDtg.Location = New Point(275, 101)
+        ListadeServidorCloudDtg.Location = New Point(280, 211)
         ListadeServidorCloudDtg.Name = "ListadeServidorCloudDtg"
         ListadeServidorCloudDtg.ReadOnly = True
         ListadeServidorCloudDtg.RowHeadersWidth = 51
         ListadeServidorCloudDtg.RowTemplate.Height = 25
-        ListadeServidorCloudDtg.Size = New Size(516, 300)
+        ListadeServidorCloudDtg.Size = New Size(737, 493)
         ListadeServidorCloudDtg.TabIndex = 39
+        ' 
+        ' LogEventoBtn
+        ' 
+        LogEventoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LogEventoBtn.ImageAlign = ContentAlignment.TopCenter
+        LogEventoBtn.Location = New Point(38, 266)
+        LogEventoBtn.Name = "LogEventoBtn"
+        LogEventoBtn.Size = New Size(184, 48)
+        LogEventoBtn.TabIndex = 40
+        LogEventoBtn.Text = "Verificar Tamanho LOGEVENTO"
+        LogEventoBtn.TextAlign = ContentAlignment.MiddleRight
+        LogEventoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' MostrarTamanhoBtn
+        ' 
+        MostrarTamanhoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        MostrarTamanhoBtn.ForeColor = Color.Red
+        MostrarTamanhoBtn.Location = New Point(38, 352)
+        MostrarTamanhoBtn.Name = "MostrarTamanhoBtn"
+        MostrarTamanhoBtn.Size = New Size(184, 48)
+        MostrarTamanhoBtn.TabIndex = 42
+        MostrarTamanhoBtn.Text = "Tamanho dos Bancos, Consulta Demorada"
+        MostrarTamanhoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' ProgressoPb
+        ' 
+        ProgressoPb.Location = New Point(38, 395)
+        ProgressoPb.Name = "ProgressoPb"
+        ProgressoPb.Size = New Size(184, 23)
+        ProgressoPb.TabIndex = 43
         ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(ProgressoPb)
+        Controls.Add(MostrarTamanhoBtn)
+        Controls.Add(LogEventoBtn)
         Controls.Add(ListadeServidorCloudDtg)
         Controls.Add(SelecinarServidorLbl)
         Controls.Add(ExibirServidorCloudCbx)
@@ -158,4 +199,8 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents SenhaConectarLbl As Label
     Friend WithEvents UsuarioConectarLbl As Label
     Friend WithEvents ListadeServidorCloudDtg As DataGridView
+    Friend WithEvents LogEventoBtn As Button
+    Friend WithEvents MostrarTamanhoBtn As Button
+    Friend WithEvents ProgressoPb As ProgressBar
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
