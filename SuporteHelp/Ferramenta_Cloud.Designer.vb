@@ -130,7 +130,7 @@ Partial Class Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(862, 450)
+        ClientSize = New Size(1062, 749)
         Controls.Add(ListadeServidorCloudDtg)
         Controls.Add(SelecinarServidorLbl)
         Controls.Add(ExibirServidorCloudCbx)
