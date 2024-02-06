@@ -50,8 +50,8 @@ Public Class Ferramenta_Cloud
                         For Each row As DataRow In dt.Rows
                             Dim nomeBanco As String = row("Nome").ToString()
 
-                            ' Executa a consulta SQL para obter as informações do Parametro
-                            Dim queryParametro As String = $"USE {nomeBanco} SELECT versaobcodados, dtbcodados FROM parametro"
+                            ' Executa a consulta SQL para obter as informações do Parametro, considerando que a tabela pode não existir
+                            Dim queryParametro As String = $"IF OBJECT_ID('{nomeBanco}.dbo.parametro', 'U') IS NOT NULL SELECT TOP 1 versaobcodados, dtbcodados FROM {nomeBanco}.dbo.parametro"
                             Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD, transacao)
                             Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
 
@@ -60,11 +60,16 @@ Public Class Ferramenta_Cloud
                                 ' Preenche os valores nas colunas adicionadas
                                 row("VersaoBCodados") = leitorParametro("versaobcodados").ToString()
                                 row("DtBCodados") = leitorParametro("dtbcodados").ToString()
+                            Else
+                                ' Se não houver resultados, define os valores como vazios
+                                row("VersaoBCodados") = String.Empty
+                                row("DtBCodados") = String.Empty
                             End If
 
                             ' Fecha o leitor de dados da consulta de parâmetros
                             leitorParametro.Close()
                         Next
+
 
                         ' Popula o DataGridView com os nomes dos bancos de dados, VersaoBCodados e DtBCodados
                         ListadeServidorCloudDtg.DataSource = dt
