@@ -5,6 +5,8 @@ Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
 Public Class Ferramenta_Cloud
+    Private e As Object
+
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorCloudTxb.Text.Trim()
@@ -410,71 +412,6 @@ Public Class Ferramenta_Cloud
             ' Feche a conexão
             connection.Close()
         End Try
-        ' Inicie o BackgroundWorker
-        BackgroundWorker1.RunWorkerAsync()
+
     End Sub
-
-    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        ' Código que será executado em segundo plano
-
-        ' Obtenha a DataTable com os dados
-        Dim dt As DataTable = ObterDados()
-
-        ' Configure o resultado do trabalho
-        e.Result = dt
-    End Sub
-    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-        ' Código que será executado quando o trabalho em segundo plano estiver concluído
-
-        ' Verifique se houve algum erro durante o processo em segundo plano
-        If e.Error IsNot Nothing Then
-            MessageBox.Show("Erro ao carregar bancos de dados: " & e.Error.Message)
-        ElseIf e.Cancelled Then
-            ' O trabalho foi cancelado
-        Else
-            ' O trabalho foi concluído com sucesso
-
-            ' Obtenha a DataTable do resultado
-            Dim dt As DataTable = DirectCast(e.Result, DataTable)
-
-            ' Popula o DataGridView com os nomes dos bancos de dados, VersaoBCodados, DtBCodados e TamanhoTabela
-            ListadeServidorCloudDtg.DataSource = dt
-            ListadeServidorCloudDtg.Columns(0).Width = 200
-        End If
-
-        ' Reinicie o ProgressBar
-        ProgressoPb.Value = 0
-    End Sub
-
-    Private Function ObterDados() As DataTable
-        ' ... Seu código para obter os dados ...
-
-        ' Itera sobre as linhas do DataTable
-        For i As Integer = 0 To dt.Rows.Count - 1
-            ' Se o BackgroundWorker estiver sendo cancelado, pare o loop
-            If BackgroundWorker1.CancellationPending Then
-                e.Cancel = True
-                Exit For
-            End If
-
-            ' Restante do seu código para processar cada linha
-
-            ' Atualize o ProgressBar (coloque isso onde faz sentido em seu código)
-            Dim progressoAtual As Integer = CInt((i / dt.Rows.Count) * 100)
-            BackgroundWorker1.ReportProgress(progressoAtual)
-        Next
-
-        ' Restante do seu código ...
-
-        ' Retorna a DataTable resultante
-        Return dt
-    End Function
-
-    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-        ' Atualize o ProgressBar
-        ProgressoPb.Value = e.ProgressPercentage
-    End Sub
-
-
-
 End Class

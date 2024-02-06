@@ -33,9 +33,7 @@ Partial Class Ferramenta_Cloud
         SenhaConectarLbl = New Label()
         UsuarioConectarLbl = New Label()
         ListadeServidorCloudDtg = New DataGridView()
-        LogEventoBtn = New Button()
         MostrarTamanhoBtn = New Button()
-        ProgressoPb = New ProgressBar()
         BackgroundWorker1 = New ComponentModel.BackgroundWorker()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -134,18 +132,6 @@ Partial Class Ferramenta_Cloud
         ListadeServidorCloudDtg.Size = New Size(737, 493)
         ListadeServidorCloudDtg.TabIndex = 39
         ' 
-        ' LogEventoBtn
-        ' 
-        LogEventoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        LogEventoBtn.ImageAlign = ContentAlignment.TopCenter
-        LogEventoBtn.Location = New Point(38, 266)
-        LogEventoBtn.Name = "LogEventoBtn"
-        LogEventoBtn.Size = New Size(184, 48)
-        LogEventoBtn.TabIndex = 40
-        LogEventoBtn.Text = "Verificar Tamanho LOGEVENTO"
-        LogEventoBtn.TextAlign = ContentAlignment.MiddleRight
-        LogEventoBtn.UseVisualStyleBackColor = True
-        ' 
         ' MostrarTamanhoBtn
         ' 
         MostrarTamanhoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
@@ -157,21 +143,12 @@ Partial Class Ferramenta_Cloud
         MostrarTamanhoBtn.Text = "Tamanho dos Bancos, Consulta Demorada"
         MostrarTamanhoBtn.UseVisualStyleBackColor = True
         ' 
-        ' ProgressoPb
-        ' 
-        ProgressoPb.Location = New Point(38, 395)
-        ProgressoPb.Name = "ProgressoPb"
-        ProgressoPb.Size = New Size(184, 23)
-        ProgressoPb.TabIndex = 43
-        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
-        Controls.Add(ProgressoPb)
         Controls.Add(MostrarTamanhoBtn)
-        Controls.Add(LogEventoBtn)
         Controls.Add(ListadeServidorCloudDtg)
         Controls.Add(SelecinarServidorLbl)
         Controls.Add(ExibirServidorCloudCbx)
@@ -199,8 +176,6 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents SenhaConectarLbl As Label
     Friend WithEvents UsuarioConectarLbl As Label
     Friend WithEvents ListadeServidorCloudDtg As DataGridView
-    Friend WithEvents LogEventoBtn As Button
     Friend WithEvents MostrarTamanhoBtn As Button
-    Friend WithEvents ProgressoPb As ProgressBar
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
