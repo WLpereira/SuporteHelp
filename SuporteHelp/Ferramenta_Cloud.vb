@@ -6,11 +6,40 @@ Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
 Imports System.Diagnostics
 Imports System.ComponentModel
+Imports System.Text
+Imports Dapper
 
 Public Class Ferramenta_Cloud
     Private e As Object
 
-    Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
+
+    Private Server As String
+    Private Database As String
+    Private Username As String
+    Private Password As String
+
+    Private Function ObterConexaoBancoDeDados() As SqlConnection
+        Dim connectionString As String = $"Server={Server};Database={Database};User Id={Username};Password={Password};"
+        Return New SqlConnection(connectionString)
+    End Function
+
+
+    Private Class SysDatabases
+        Public Property Name As String
+        Public Property Create_Date As DateTime
+    End Class
+
+    Public Class TabelaInformacoesViewModel
+        Public Property Schema As String
+        Public Property TableName As String
+        Public Property RowCount As Integer
+        Public Property SizeMb As Decimal
+        Public Property UsedMb As Decimal
+        Public Property UnusedMb As Decimal
+    End Class
+
+
+    Private Async Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
         ' Captura os valores digitados nos textboxes de servidor, usuário e senha
         Dim servidor As String = ServidorCloudTxb.Text.Trim()
         Dim usuario As String = NomeConectarCloudTxb.Text
@@ -28,91 +57,143 @@ Public Class Ferramenta_Cloud
             Return
         End If
 
+        Server = servidor
+        Database = "master"
+        Username = usuario
+        Password = senha
+
+
         ' Cria uma string de conexão com o servidor de banco de dados
-        Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+        Dim conexao As SqlConnection = ObterConexaoBancoDeDados()
+
+
         ' Cria uma DataTable para armazenar os resultados da consulta fora do bloco Try
         Dim dt As New DataTable()
 
         Try
             ' Cria uma conexão com o servidor de banco de dados
-            Using conexaoBD As New SqlConnection(conexao)
+            Using conexaoBD As New SqlConnection(conexao.ConnectionString)
                 conexaoBD.Open()
 
                 ' Iniciar transação explícita
                 Using transacao As SqlTransaction = conexaoBD.BeginTransaction()
                     Try
-                        ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                        Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD, transacao)
-                        Dim leitor As SqlDataReader = comando.ExecuteReader()
 
-                        ' Carrega os dados do leitor para o DataTable
-                        dt.Load(leitor)
 
-                        ' Adiciona as colunas 'VERSAOBCODADOS', 'DtBCodados' e 'LOGEVENTO' ao DataTable
-                        dt.Columns.Add("VERSAOBCODADOS", GetType(String))
-                        dt.Columns.Add("DATA_DO_DBA", GetType(String))
-                        dt.Columns.Add("LOGEVENTO", GetType(String)) ' Nova coluna para armazenar o resultado da consulta LOGEVENTO
+                        Dim builder As New StringBuilder
+                        Dim parameters As New DynamicParameters()
 
-                        ' Itera sobre as linhas do DataTable
-                        For Each row As DataRow In dt.Rows
-                            Dim nomeBanco As String = row("Nome").ToString()
+                        builder.AppendLine("SELECT name, create_date")
+                        builder.AppendLine("FROM sys.databases")
+                        builder.AppendLine("WHERE 1 = 1")
+                        builder.AppendLine("	AND name NOT IN ('master', 'tempdb', 'model', 'msdb')")
+                        builder.AppendLine("ORDER BY name")
 
-                            ' Executa a consulta SQL para obter as informações do Parametro, considerando que a tabela pode não existir
-                            Dim queryParametro As String = $"IF OBJECT_ID('{nomeBanco}.dbo.parametro', 'U') IS NOT NULL SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM {nomeBanco}.dbo.parametro"
-                            Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD, transacao)
-                            Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
 
-                            ' Verifica se há resultados
-                            If leitorParametro.Read() Then
-                                ' Preenche os valores nas colunas adicionadas
-                                row("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
-                                row("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
-                            Else
-                                ' Se não houver resultados, define os valores como vazios
-                                row("VERSAOBCODADOS") = String.Empty
-                                row("DATA_DO_DBA") = String.Empty
+                        Dim data = conexao.Query(Of SysDatabases)(builder.ToString(), parameters)
+
+                        For Each item In data
+
+                            Debug.WriteLine("")
+
+                            Database = item.Name
+
+                            Dim existeParametro = Await TabelaExiste("parametro")
+                            Dim existeLogEvento = Await TabelaExiste("LogEvento")
+
+                            If Not existeParametro OrElse Not existeLogEvento Then
+                                Continue For
                             End If
 
-                            ' Fecha o leitor de dados da consulta de parâmetros
-                            leitorParametro.Close()
-                            ' Executa a consulta SQL para verificar a existência da tabela 'logevento'
-                            Dim queryVerificarTabela As String = "SELECT COUNT(*) FROM sys.tables WHERE name = 'logevento';"
-                            Dim comandoVerificarTabela As New SqlCommand(queryVerificarTabela, conexaoBD, transacao)
-                            Dim tabelaExiste As Integer = Convert.ToInt32(comandoVerificarTabela.ExecuteScalar())
 
-                            If tabelaExiste = 0 Then
-                                ' A tabela 'logevento' não existe no banco de dados
-                                MessageBox.Show("A tabela 'logevento' não existe no banco de dados.")
-                            Else
-                                ' A tabela 'logevento' existe, então executamos a consulta para obter o tamanho
-                                Dim queryLOGEVENTO As String = "SELECT " &
-      "CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB " &
-      "FROM " &
-      "sys.tables t " &
-      "INNER JOIN " &
-      "sys.indexes i ON t.OBJECT_ID = i.object_id " &
-      "INNER JOIN " &
-      "sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
-      "INNER JOIN " &
-      "sys.allocation_units a ON p.partition_id = a.container_id " &
-      "LEFT OUTER JOIN " &
-      "sys.schemas s ON t.schema_id = s.schema_id " &
-      "WHERE " &
-      "t.NAME = 'logevento';"
+                            Dim tamanhoDaTabela = Await TabelaInformacoes("LogEvento")
 
-                                Dim comandoLOGEVENTO As New SqlCommand(queryLOGEVENTO, conexaoBD, transacao)
-                                Dim LOGEVENTO As Object = comandoLOGEVENTO.ExecuteScalar()
+                            Debug.WriteLine("")
 
-                                ' Verifica se há resultados
-                                If LOGEVENTO IsNot Nothing AndAlso LOGEVENTO IsNot DBNull.Value Then
-                                    ' Preenche o valor diretamente na célula 'LOGEVENTO'
-                                    row("LOGEVENTO") = $"{Convert.ToDecimal(LOGEVENTO):N2} MB"
-                                Else
-                                    ' Se a tabela existe, mas não há registros
-                                    MessageBox.Show("A tabela 'logevento' existe no banco de dados, mas não há registros.")
-                                End If
-                            End If
                         Next
+
+
+                        '                  ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
+                        '                  Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD, transacao)
+                        '                  Dim leitor As SqlDataReader = comando.ExecuteReader()
+
+                        '                  ' Carrega os dados do leitor para o DataTable
+                        '                  dt.Load(leitor)
+
+                        '                  ' Adiciona as colunas 'VERSAOBCODADOS', 'DtBCodados' e 'LOGEVENTO' ao DataTable
+                        '                  dt.Columns.Add("VERSAOBCODADOS", GetType(String))
+                        '                  dt.Columns.Add("DATA_DO_DBA", GetType(String))
+                        '                  dt.Columns.Add("LOGEVENTO", GetType(String)) ' Nova coluna para armazenar o resultado da consulta LOGEVENTO
+
+                        '                  ' Itera sobre as linhas do DataTable
+                        '                  For Each row As DataRow In dt.Rows
+
+
+
+
+
+                        '                      Dim nomeBanco As String = row("Nome").ToString()
+
+                        '                      ' Executa a consulta SQL para obter as informações do Parametro, considerando que a tabela pode não existir
+                        '                      Dim queryParametro As String = $"IF OBJECT_ID('{nomeBanco}.dbo.parametro', 'U') IS NOT NULL SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM {nomeBanco}.dbo.parametro"
+                        '                      Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD, transacao)
+                        '                      Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
+
+                        '                      ' Verifica se há resultados
+                        '                      If leitorParametro.Read() Then
+                        '                          ' Preenche os valores nas colunas adicionadas
+                        '                          row("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
+                        '                          row("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
+                        '                      Else
+                        '                          ' Se não houver resultados, define os valores como vazios
+                        '                          row("VERSAOBCODADOS") = String.Empty
+                        '                          row("DATA_DO_DBA") = String.Empty
+                        '                      End If
+
+                        '                      ' Fecha o leitor de dados da consulta de parâmetros
+                        '                      leitorParametro.Close()
+                        '                      ' Executa a consulta SQL para verificar a existência da tabela 'logevento'
+                        '                      Dim queryVerificarTabela As String = "SELECT COUNT(*) FROM sys.tables WHERE name = 'logevento';"
+                        '                      Dim comandoVerificarTabela As New SqlCommand(queryVerificarTabela, conexaoBD, transacao)
+                        '                      Dim tabelaExiste As Integer = Convert.ToInt32(comandoVerificarTabela.ExecuteScalar())
+
+                        '                      If tabelaExiste = 0 Then
+                        '                          ' A tabela 'logevento' não existe no banco de dados
+                        '                          MessageBox.Show("A tabela 'logevento' não existe no banco de dados.")
+                        '                      Else
+                        '                          ' A tabela 'logevento' existe, então executamos a consulta para obter o tamanho
+                        '                          Dim queryLOGEVENTO As String = "SELECT " &
+                        '"CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB " &
+                        '"FROM " &
+                        '"sys.tables t " &
+                        '"INNER JOIN " &
+                        '"sys.indexes i ON t.OBJECT_ID = i.object_id " &
+                        '"INNER JOIN " &
+                        '"sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
+                        '"INNER JOIN " &
+                        '"sys.allocation_units a ON p.partition_id = a.container_id " &
+                        '"LEFT OUTER JOIN " &
+                        '"sys.schemas s ON t.schema_id = s.schema_id " &
+                        '"WHERE " &
+                        '"t.NAME = 'logevento';"
+
+                        '                          Dim comandoLOGEVENTO As New SqlCommand(queryLOGEVENTO, conexaoBD, transacao)
+                        '                          Dim LOGEVENTO As Object = comandoLOGEVENTO.ExecuteScalar()
+
+                        '                          ' Verifica se há resultados
+                        '                          If LOGEVENTO IsNot Nothing AndAlso LOGEVENTO IsNot DBNull.Value Then
+                        '                              ' Preenche o valor diretamente na célula 'LOGEVENTO'
+                        '                              row("LOGEVENTO") = $"{Convert.ToDecimal(LOGEVENTO):N2} MB"
+                        '                          Else
+                        '                              ' Se a tabela existe, mas não há registros
+                        '                              MessageBox.Show("A tabela 'logevento' existe no banco de dados, mas não há registros.")
+                        '                          End If
+                        '                      End If
+
+
+
+                        '                  Next
+
                     Catch ex As Exception
                         ' Rollback em caso de erro
                         transacao.Rollback()
@@ -126,6 +207,7 @@ Public Class Ferramenta_Cloud
                     ' Commit da transação
                     transacao.Commit()
                 End Using
+
             End Using
         Catch ex As Exception
             MessageBox.Show("Erro ao estabelecer a conexão: " & ex.Message)
@@ -331,4 +413,66 @@ ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
         ' Ocultar o ProgressBar após a conclusão da consulta
         progressoPb.Visible = False
     End Sub
+
+
+    Private Async Function TabelaExiste(tabela As String) As Task(Of Boolean)
+        Try
+            Dim builder As New StringBuilder
+            Dim parameters As New DynamicParameters()
+
+            builder.AppendLine("SELECT COUNT(name) AS contador")
+            builder.AppendLine("FROM sys.tables")
+            builder.AppendLine("WHERE 1 = 1")
+
+            If Not String.IsNullOrEmpty(tabela) Then
+                builder.AppendLine("	AND name = @tabela")
+                parameters.Add("@tabela", tabela)
+            End If
+
+            Using dbConnection As IDbConnection = ObterConexaoBancoDeDados()
+                Dim data = Await dbConnection.QueryFirstOrDefaultAsync(Of Integer)(builder.ToString(), parameters)
+                Return data > 0
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Private Async Function TabelaInformacoes(tabela As String) As Task(Of TabelaInformacoesViewModel)
+        Dim builder As New StringBuilder()
+        Dim parameters As New DynamicParameters()
+
+        builder.AppendLine("SELECT  s.[name] AS [Schema],")
+        builder.AppendLine("        t.[name] AS [TableName],")
+        builder.AppendLine("        p.[rows] AS [RowCount],")
+        builder.AppendLine("        CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS [SizeMb],")
+        builder.AppendLine("        CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS [UsedMb], ")
+        builder.AppendLine("        CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS [UnusedMb]")
+        builder.AppendLine("FROM ")
+        builder.AppendLine("    sys.tables t")
+        builder.AppendLine("    JOIN sys.indexes i ON t.[object_id] = i.[object_id]")
+        builder.AppendLine("    JOIN sys.partitions p ON i.[object_id] = p.[object_id] AND i.index_id = p.index_id")
+        builder.AppendLine("    JOIN sys.allocation_units a ON p.[partition_id] = a.container_id")
+        builder.AppendLine("    LEFT JOIN sys.schemas s ON t.[schema_id] = s.[schema_id]")
+        builder.AppendLine("WHERE 1 = 1")
+        builder.AppendLine("    AND t.is_ms_shipped = 0")
+        builder.AppendLine("    AND i.[object_id] > 255 ")
+
+        If Not String.IsNullOrEmpty(tabela) Then
+            builder.AppendLine("	AND t.[name] = @tabela")
+            parameters.Add("@tabela", tabela)
+        End If
+
+        builder.AppendLine("GROUP BY")
+        builder.AppendLine("    t.[name], ")
+        builder.AppendLine("    s.[name], ")
+        builder.AppendLine("    p.[rows]")
+
+        Using dbConnection As IDbConnection = ObterConexaoBancoDeDados()
+            Dim data = Await dbConnection.QueryFirstOrDefaultAsync(Of TabelaInformacoesViewModel)(builder.ToString(), parameters)
+            Return data
+        End Using
+    End Function
+
+
 End Class
