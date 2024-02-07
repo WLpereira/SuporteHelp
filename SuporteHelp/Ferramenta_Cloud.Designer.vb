@@ -34,6 +34,7 @@ Partial Class Ferramenta_Cloud
         UsuarioConectarLbl = New Label()
         ListadeServidorCloudDtg = New DataGridView()
         MostrarTamanhoBtn = New Button()
+        progressoPb = New ProgressBar()
         BackgroundWorker1 = New ComponentModel.BackgroundWorker()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -143,11 +144,24 @@ Partial Class Ferramenta_Cloud
         MostrarTamanhoBtn.Text = "Tamanho dos Bancos, Consulta Demorada"
         MostrarTamanhoBtn.UseVisualStyleBackColor = True
         ' 
+        ' progressoPb
+        ' 
+        progressoPb.Location = New Point(280, 710)
+        progressoPb.Name = "progressoPb"
+        progressoPb.Size = New Size(737, 23)
+        progressoPb.TabIndex = 43
+        progressoPb.Visible = False
+        ' 
+        ' BackgroundWorker1
+        ' 
+        BackgroundWorker1.WorkerReportsProgress = True
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(progressoPb)
         Controls.Add(MostrarTamanhoBtn)
         Controls.Add(ListadeServidorCloudDtg)
         Controls.Add(SelecinarServidorLbl)
@@ -177,5 +191,6 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents UsuarioConectarLbl As Label
     Friend WithEvents ListadeServidorCloudDtg As DataGridView
     Friend WithEvents MostrarTamanhoBtn As Button
+    Friend WithEvents progressoPb As ProgressBar
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
