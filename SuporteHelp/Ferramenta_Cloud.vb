@@ -6,6 +6,7 @@ Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
 Imports System.Diagnostics
 Imports System.ComponentModel
+Imports System.Text
 
 Public Class Ferramenta_Cloud
     Private e As Object
@@ -48,8 +49,8 @@ Public Class Ferramenta_Cloud
 
                 ' Adiciona as colunas 'VERSAOBCODADOS' e 'DATA_DO_DBA' ao DataTable
                 dt.Columns.Add("VERSAOBCODADOS", GetType(String))
-                dt.Columns.Add("DATA_DO_DBA", GetType(String))
                 dt.Columns.Add("Versão do Sistema", GetType(String))
+                dt.Columns.Add("DATA_DO_DBA", GetType(String))
 
                 ' Itera sobre as linhas do DataTable
                 For Each row As DataRow In dt.Rows
@@ -319,100 +320,86 @@ ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
         ' Ocultar o ProgressBar após a conclusão da consulta
         progressoPb.Visible = False
     End Sub
-
     Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
-        ' Verifica se o cursor está sobre o DataGridView
-        If ListadeServidorCloudDtg.CurrentRow Is Nothing Then
-            MessageBox.Show("Posicione o cursor sobre o banco de dados na lista.")
-            Return
-        End If
+        Dim dt As New DataTable()
+        ' Limpa o DataGridView
+        ListadeServidorCloudDtg.DataSource = Nothing
 
-        ' Obtém o nome do banco de dados da linha em que o cursor está
-        Dim nomeBanco As String = ListadeServidorCloudDtg.CurrentRow.Cells("Nome").Value.ToString()
+        ' Converte o DataTable em um List(Of String) contendo apenas os nomes dos bancos de dados
+        Dim listaBancos As List(Of String) = (From row In dt.AsEnumerable() Select Convert.ToString(row("Nome"))).ToList()
 
-        ' Verifica se o nome do banco de dados está vazio
-        If String.IsNullOrEmpty(nomeBanco) Then
-            MessageBox.Show("Nome do banco de dados não encontrado.")
-            Return
-        End If
+        ' Remove os bancos de dados "Master", "Model", "Msdb" e "Tempdb" da lista
+        listaBancos.RemoveAll(Function(x) {"Master", "Model", "Msdb", "Tempdb"}.Contains(x))
 
-        ' String de conexão com o banco de dados. Substitua pelos seus próprios detalhes de conexão.
-        Dim builder As New SqlConnectionStringBuilder()
-        builder.DataSource = ServidorCloudTxb.Text
-        builder.UserID = NomeConectarCloudTxb.Text
-        builder.Password = SenhaCloudTxb.Text
-        builder.InitialCatalog = nomeBanco ' Define o banco de dados a ser usado na conexão
-        Dim connectionString As String = builder.ConnectionString
+        ' Cria uma StringBuilder para construir a consulta SQL dinâmica
+        Dim sqlQuery As New StringBuilder()
+
+        ' Adiciona a parte estática da consulta
+        sqlQuery.AppendLine("SELECT")
+        sqlQuery.AppendLine("    t.NAME AS 'NomeBanco',")
+        sqlQuery.AppendLine("    CAST(SUM(p.rows) AS INT) AS TotalRows,")
+        sqlQuery.AppendLine("    CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB")
+        sqlQuery.AppendLine("FROM")
+        sqlQuery.AppendLine("    sys.tables t")
+        sqlQuery.AppendLine("INNER JOIN")
+        sqlQuery.AppendLine("    sys.indexes i ON t.OBJECT_ID = i.object_id")
+        sqlQuery.AppendLine("INNER JOIN")
+        sqlQuery.AppendLine("    sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id")
+        sqlQuery.AppendLine("INNER JOIN")
+        sqlQuery.AppendLine("    sys.allocation_units a ON p.partition_id = a.container_id")
+        sqlQuery.AppendLine("WHERE")
+        sqlQuery.AppendLine("    t.NAME = 'LogEvento'")
+
+        ' Adiciona a parte dinâmica da consulta para cada banco de dados na lista
+        Dim firstIteration As Boolean = True
+        For Each banco As String In listaBancos
+            If Not firstIteration Then
+                sqlQuery.AppendLine($"UNION ALL")
+            Else
+                firstIteration = False
+            End If
+            sqlQuery.AppendLine($"SELECT")
+            sqlQuery.AppendLine($"    '{banco}' AS 'NomeBanco',")
+            sqlQuery.AppendLine($"    CAST(SUM(p.rows) AS INT) AS TotalRows,")
+            sqlQuery.AppendLine($"    CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB")
+            sqlQuery.AppendLine($"FROM")
+            sqlQuery.AppendLine($"    [{banco}].sys.tables t")
+            sqlQuery.AppendLine($"INNER JOIN")
+            sqlQuery.AppendLine($"    [{banco}].sys.indexes i ON t.OBJECT_ID = i.object_id")
+            sqlQuery.AppendLine($"INNER JOIN")
+            sqlQuery.AppendLine($"    [{banco}].sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id")
+            sqlQuery.AppendLine($"INNER JOIN")
+            sqlQuery.AppendLine($"    [{banco}].sys.allocation_units a ON p.partition_id = a.container_id")
+            sqlQuery.AppendLine($"WHERE")
+            sqlQuery.AppendLine($"    t.NAME = 'LogEvento'")
+        Next
+
+        ' Remove o primeiro "UNION ALL" desnecessário
+        sqlQuery.Remove(0, 10)
+
+        ' String de conexão com o servidor de banco de dados
+        Dim conexao As String = "Server=" & ServidorCloudTxb.Text & ";User Id=" & NomeConectarCloudTxb.Text & ";Password=" & SenhaCloudTxb.Text
+
+        ' Cria uma DataTable para armazenar os resultados da consulta
+        Dim dtResultado As New DataTable()
 
         Try
-            ' Crie uma conexão com o banco de dados
-            Using connection As New SqlConnection(connectionString)
-                connection.Open()
+            ' Cria uma conexão com o servidor de banco de dados
+            Using conexaoBD As New SqlConnection(conexao)
+                conexaoBD.Open()
 
-                ' Consulta SQL para obter o tamanho da tabela "LogEvento"
-                Dim queryLogEvento As String = "SELECT " &
-                "CAST(SUM(p.rows) AS INT) AS TotalRows, " &
-                "CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB " &
-                "FROM " &
-                "sys.tables t " &
-                "INNER JOIN " &
-                "sys.indexes i ON t.OBJECT_ID = i.object_id " &
-                "INNER JOIN " &
-                "sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
-                "INNER JOIN " &
-                "sys.allocation_units a ON p.partition_id = a.container_id " &
-                "WHERE " &
-                "t.NAME = 'LogEvento'"
-
-                ' Consulta SQL para obter o tamanho da tabela "logacessoSym"
-                Dim queryLogAcessoSym As String = "SELECT " &
-                "CAST(SUM(p.rows) AS INT) AS TotalRows, " &
-                "CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB " &
-                "FROM " &
-                "sys.tables t " &
-                "INNER JOIN " &
-                "sys.indexes i ON t.OBJECT_ID = i.object_id " &
-                "INNER JOIN " &
-                "sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
-                "INNER JOIN " &
-                "sys.allocation_units a ON p.partition_id = a.container_id " &
-                "WHERE " &
-                "t.NAME = 'logacessoSym'"
-
-                ' Crie um comando para a consulta do "LogEvento"
-                Using cmdLogEvento As New SqlCommand(queryLogEvento, connection)
-                    Dim readerLogEvento As SqlDataReader = cmdLogEvento.ExecuteReader()
-
-                    ' Leia os resultados da consulta do "LogEvento"
-                    If readerLogEvento.Read() Then
-                        Dim totalRowsLogEvento As Integer = readerLogEvento.GetInt32(0)
-                        Dim totalSizeMBLogEvento As Decimal = readerLogEvento.GetDecimal(1)
-                        MessageBox.Show($"Tamanho da tabela LogEvento: {totalRowsLogEvento} linhas, {totalSizeMBLogEvento} MB")
-                    Else
-                        MessageBox.Show("Tabela LogEvento não encontrada ou sem dados.")
-                    End If
-
-                    readerLogEvento.Close()
+                ' Executa a consulta SQL dinâmica
+                Using comando As New SqlCommand(sqlQuery.ToString(), conexaoBD)
+                    Dim leitor As SqlDataReader = comando.ExecuteReader()
+                    dtResultado.Load(leitor)
                 End Using
 
-                ' Crie um comando para a consulta do "logacessoSym"
-                Using cmdLogAcessoSym As New SqlCommand(queryLogAcessoSym, connection)
-                    Dim readerLogAcessoSym As SqlDataReader = cmdLogAcessoSym.ExecuteReader()
-
-                    ' Leia os resultados da consulta do "logacessoSym"
-                    If readerLogAcessoSym.Read() Then
-                        Dim totalRowsLogAcessoSym As Integer = readerLogAcessoSym.GetInt32(0)
-                        Dim totalSizeMBLogAcessoSym As Decimal = readerLogAcessoSym.GetDecimal(1)
-                        MessageBox.Show($"Tamanho da tabela logacessoSym: {totalRowsLogAcessoSym} linhas, {totalSizeMBLogAcessoSym} MB")
-                    Else
-                        MessageBox.Show("Tabela logacessoSym não encontrada ou sem dados.")
-                    End If
-
-                    readerLogAcessoSym.Close()
-                End Using
+                ' Atualiza o DataGridView com os resultados da consulta
+                ListadeServidorCloudDtg.DataSource = dtResultado
+                ListadeServidorCloudDtg.Columns(0).Width = 200
             End Using
         Catch ex As Exception
-            MessageBox.Show("Erro ao obter o tamanho das tabelas: " & ex.Message)
+            MessageBox.Show("Erro ao executar a consulta SQL: " & ex.Message)
         End Try
     End Sub
 End Class
