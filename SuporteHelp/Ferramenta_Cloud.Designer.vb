@@ -36,6 +36,7 @@ Partial Class Ferramenta_Cloud
         MostrarTamanhoBtn = New Button()
         progressoPb = New ProgressBar()
         BackgroundWorker1 = New ComponentModel.BackgroundWorker()
+        LogEventoBtn = New Button()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -156,11 +157,23 @@ Partial Class Ferramenta_Cloud
         ' 
         BackgroundWorker1.WorkerReportsProgress = True
         ' 
+        ' LogEventoBtn
+        ' 
+        LogEventoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LogEventoBtn.ForeColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
+        LogEventoBtn.Location = New Point(38, 263)
+        LogEventoBtn.Name = "LogEventoBtn"
+        LogEventoBtn.Size = New Size(184, 48)
+        LogEventoBtn.TabIndex = 44
+        LogEventoBtn.Text = "Verificar Tamanho da LogEvento, LogAcessoSym"
+        LogEventoBtn.UseVisualStyleBackColor = True
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(LogEventoBtn)
         Controls.Add(progressoPb)
         Controls.Add(MostrarTamanhoBtn)
         Controls.Add(ListadeServidorCloudDtg)
@@ -193,4 +206,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents MostrarTamanhoBtn As Button
     Friend WithEvents progressoPb As ProgressBar
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents LogEventoBtn As Button
 End Class

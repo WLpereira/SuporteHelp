@@ -30,7 +30,8 @@ Public Class Ferramenta_Cloud
 
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
-        ' Cria uma DataTable para armazenar os resultados da consulta fora do bloco Try
+
+        ' Cria uma DataTable para armazenar os resultados da consulta
         Dim dt As New DataTable()
 
         Try
@@ -38,100 +39,87 @@ Public Class Ferramenta_Cloud
             Using conexaoBD As New SqlConnection(conexao)
                 conexaoBD.Open()
 
-                ' Iniciar transação explícita
-                Using transacao As SqlTransaction = conexaoBD.BeginTransaction()
-                    Try
-                        ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                        Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD, transacao)
-                        Dim leitor As SqlDataReader = comando.ExecuteReader()
+                ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
+                Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD)
 
-                        ' Carrega os dados do leitor para o DataTable
-                        dt.Load(leitor)
+                ' Carrega os dados do leitor para o DataTable
+                Dim leitor As SqlDataReader = comando.ExecuteReader()
+                dt.Load(leitor)
 
-                        ' Adiciona as colunas 'VERSAOBCODADOS', 'DtBCodados' e 'LOGEVENTO' ao DataTable
-                        dt.Columns.Add("VERSAOBCODADOS", GetType(String))
-                        dt.Columns.Add("DATA_DO_DBA", GetType(String))
-                        dt.Columns.Add("LOGEVENTO", GetType(String)) ' Nova coluna para armazenar o resultado da consulta LOGEVENTO
+                ' Adiciona as colunas 'VERSAOBCODADOS' e 'DATA_DO_DBA' ao DataTable
+                dt.Columns.Add("VERSAOBCODADOS", GetType(String))
+                dt.Columns.Add("DATA_DO_DBA", GetType(String))
+                dt.Columns.Add("Versão do Sistema", GetType(String))
 
-                        ' Itera sobre as linhas do DataTable
-                        For Each row As DataRow In dt.Rows
-                            Dim nomeBanco As String = row("Nome").ToString()
+                ' Itera sobre as linhas do DataTable
+                For Each row As DataRow In dt.Rows
+                    ' Executa a consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
+                    Dim queryParametro As String = "IF OBJECT_ID(@NomeBanco + '.dbo.parametro', 'U') IS NOT NULL " &
+                "BEGIN " &
+                "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
+                "[" & row("Nome") & "].dbo.parametro END"
+                    Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
 
-                            ' Executa a consulta SQL para obter as informações do Parametro, considerando que a tabela pode não existir
-                            Dim queryParametro As String = $"IF OBJECT_ID('{nomeBanco}.dbo.parametro', 'U') IS NOT NULL SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM {nomeBanco}.dbo.parametro"
-                            Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD, transacao)
-                            Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
+                    ' Adiciona o parâmetro para o nome do banco de dados
+                    comandoParametro.Parameters.AddWithValue("@NomeBanco", row("Nome"))
 
-                            ' Verifica se há resultados
-                            If leitorParametro.Read() Then
-                                ' Preenche os valores nas colunas adicionadas
-                                row("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
-                                row("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
-                            Else
-                                ' Se não houver resultados, define os valores como vazios
-                                row("VERSAOBCODADOS") = String.Empty
-                                row("DATA_DO_DBA") = String.Empty
-                            End If
+                    ' Executa o comando e processa o resultado
+                    Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
+                    If leitorParametro.Read() Then
+                        ' Preenche os valores nas colunas adicionadas
+                        row("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
+                        row("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
 
-                            ' Fecha o leitor de dados da consulta de parâmetros
-                            leitorParametro.Close()
-                            ' Executa a consulta SQL para verificar a existência da tabela 'logevento'
-                            Dim queryVerificarTabela As String = "SELECT COUNT(*) FROM sys.tables WHERE name = 'logevento';"
-                            Dim comandoVerificarTabela As New SqlCommand(queryVerificarTabela, conexaoBD, transacao)
-                            Dim tabelaExiste As Integer = Convert.ToInt32(comandoVerificarTabela.ExecuteScalar())
+                        ' Extrai os dois dígitos do meio de "VERSAOBCODADOS" e mapeia para o formato de versão do sistema desejado
+                        Dim versaoCompleta As String = row("VERSAOBCODADOS").ToString()
+                        Dim versao As String = If(versaoCompleta.Length >= 6, versaoCompleta.Substring(3, 2), "")
+                        versao = versao.Replace(". ", "") ' Remove o ponto e o espaço
+                        Select Case versao
+                            Case "40"
+                                row("Versão do Sistema") = "2025.R3"
+                            Case "39"
+                                row("Versão do Sistema") = "2025.R2"
+                            Case "38"
+                                row("Versão do Sistema") = "2025.R1"
+                            Case "37"
+                                row("Versão do Sistema") = "2024.R3"
+                            Case "36"
+                                row("Versão do Sistema") = "2024.R2"
+                            Case "35"
+                                row("Versão do Sistema") = "2024.R1"
+                            Case "34"
+                                row("Versão do Sistema") = "2023.R3"
+                            Case "33"
+                                row("Versão do Sistema") = "2023.R2"
+                            Case "32"
+                                row("Versão do Sistema") = "2023.R1"
+                            Case "31"
+                                row("Versão do Sistema") = "2022.R3"
+                            Case "30"
+                                row("Versão do Sistema") = "2022.R2"
+                            Case Else
+                                ' Se a versão não estiver mapeada, defina a versão do sistema como "Versão não mapeada"
+                                row("Versão do Sistema") = "Versão não mapeada"
+                        End Select
+                    Else
+                        ' Se não houver resultados, define os valores como vazios
+                        row("VERSAOBCODADOS") = String.Empty
+                        row("DATA_DO_DBA") = String.Empty
+                        row("Versão do Sistema") = String.Empty
+                    End If
 
-                            If tabelaExiste = 0 Then
-                                ' A tabela 'logevento' não existe no banco de dados
-                                MessageBox.Show("A tabela 'logevento' não existe no banco de dados.")
-                            Else
-                                ' A tabela 'logevento' existe, então executamos a consulta para obter o tamanho
-                                Dim queryLOGEVENTO As String = "SELECT " &
-      "CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB " &
-      "FROM " &
-      "sys.tables t " &
-      "INNER JOIN " &
-      "sys.indexes i ON t.OBJECT_ID = i.object_id " &
-      "INNER JOIN " &
-      "sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
-      "INNER JOIN " &
-      "sys.allocation_units a ON p.partition_id = a.container_id " &
-      "LEFT OUTER JOIN " &
-      "sys.schemas s ON t.schema_id = s.schema_id " &
-      "WHERE " &
-      "t.NAME = 'logevento';"
+                    ' Fecha o leitor de dados da consulta de parâmetros
+                    leitorParametro.Close()
+                Next
 
-                                Dim comandoLOGEVENTO As New SqlCommand(queryLOGEVENTO, conexaoBD, transacao)
-                                Dim LOGEVENTO As Object = comandoLOGEVENTO.ExecuteScalar()
-
-                                ' Verifica se há resultados
-                                If LOGEVENTO IsNot Nothing AndAlso LOGEVENTO IsNot DBNull.Value Then
-                                    ' Preenche o valor diretamente na célula 'LOGEVENTO'
-                                    row("LOGEVENTO") = $"{Convert.ToDecimal(LOGEVENTO):N2} MB"
-                                Else
-                                    ' Se a tabela existe, mas não há registros
-                                    MessageBox.Show("A tabela 'logevento' existe no banco de dados, mas não há registros.")
-                                End If
-                            End If
-                        Next
-                    Catch ex As Exception
-                        ' Rollback em caso de erro
-                        transacao.Rollback()
-                        MessageBox.Show("Erro ao carregar bancos de dados: " & ex.Message)
-                    End Try
-
-                    ' Popula o DataGridView com os nomes dos bancos de dados, VERSAO_DO_BANCO, DATA_DO_DBA e LOGEVENTO
-                    ListadeServidorCloudDtg.DataSource = dt
-                    ListadeServidorCloudDtg.Columns(0).Width = 200
-
-                    ' Commit da transação
-                    transacao.Commit()
-                End Using
+                ' Popula o DataGridView com os nomes dos bancos de dados, VERSAOBCODADOS, DATA_DO_DBA e a nova coluna "Versão do Sistema"
+                ListadeServidorCloudDtg.DataSource = dt
+                ListadeServidorCloudDtg.Columns(0).Width = 200
             End Using
         Catch ex As Exception
-            MessageBox.Show("Erro ao estabelecer a conexão: " & ex.Message)
+            MessageBox.Show("Erro ao estabelecer a conexão ou carregar os bancos de dados: " & ex.Message)
         End Try
     End Sub
-
 
     Private Function ExisteConexaoSalva(servidor As String, usuario As String, senha As String) As Boolean
         ' Obtém o caminho completo do arquivo de texto dentro da pasta do programa
@@ -330,5 +318,101 @@ ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         ' Ocultar o ProgressBar após a conclusão da consulta
         progressoPb.Visible = False
+    End Sub
+
+    Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
+        ' Verifica se o cursor está sobre o DataGridView
+        If ListadeServidorCloudDtg.CurrentRow Is Nothing Then
+            MessageBox.Show("Posicione o cursor sobre o banco de dados na lista.")
+            Return
+        End If
+
+        ' Obtém o nome do banco de dados da linha em que o cursor está
+        Dim nomeBanco As String = ListadeServidorCloudDtg.CurrentRow.Cells("Nome").Value.ToString()
+
+        ' Verifica se o nome do banco de dados está vazio
+        If String.IsNullOrEmpty(nomeBanco) Then
+            MessageBox.Show("Nome do banco de dados não encontrado.")
+            Return
+        End If
+
+        ' String de conexão com o banco de dados. Substitua pelos seus próprios detalhes de conexão.
+        Dim builder As New SqlConnectionStringBuilder()
+        builder.DataSource = ServidorCloudTxb.Text
+        builder.UserID = NomeConectarCloudTxb.Text
+        builder.Password = SenhaCloudTxb.Text
+        builder.InitialCatalog = nomeBanco ' Define o banco de dados a ser usado na conexão
+        Dim connectionString As String = builder.ConnectionString
+
+        Try
+            ' Crie uma conexão com o banco de dados
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+
+                ' Consulta SQL para obter o tamanho da tabela "LogEvento"
+                Dim queryLogEvento As String = "SELECT " &
+                "CAST(SUM(p.rows) AS INT) AS TotalRows, " &
+                "CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB " &
+                "FROM " &
+                "sys.tables t " &
+                "INNER JOIN " &
+                "sys.indexes i ON t.OBJECT_ID = i.object_id " &
+                "INNER JOIN " &
+                "sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
+                "INNER JOIN " &
+                "sys.allocation_units a ON p.partition_id = a.container_id " &
+                "WHERE " &
+                "t.NAME = 'LogEvento'"
+
+                ' Consulta SQL para obter o tamanho da tabela "logacessoSym"
+                Dim queryLogAcessoSym As String = "SELECT " &
+                "CAST(SUM(p.rows) AS INT) AS TotalRows, " &
+                "CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB " &
+                "FROM " &
+                "sys.tables t " &
+                "INNER JOIN " &
+                "sys.indexes i ON t.OBJECT_ID = i.object_id " &
+                "INNER JOIN " &
+                "sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id " &
+                "INNER JOIN " &
+                "sys.allocation_units a ON p.partition_id = a.container_id " &
+                "WHERE " &
+                "t.NAME = 'logacessoSym'"
+
+                ' Crie um comando para a consulta do "LogEvento"
+                Using cmdLogEvento As New SqlCommand(queryLogEvento, connection)
+                    Dim readerLogEvento As SqlDataReader = cmdLogEvento.ExecuteReader()
+
+                    ' Leia os resultados da consulta do "LogEvento"
+                    If readerLogEvento.Read() Then
+                        Dim totalRowsLogEvento As Integer = readerLogEvento.GetInt32(0)
+                        Dim totalSizeMBLogEvento As Decimal = readerLogEvento.GetDecimal(1)
+                        MessageBox.Show($"Tamanho da tabela LogEvento: {totalRowsLogEvento} linhas, {totalSizeMBLogEvento} MB")
+                    Else
+                        MessageBox.Show("Tabela LogEvento não encontrada ou sem dados.")
+                    End If
+
+                    readerLogEvento.Close()
+                End Using
+
+                ' Crie um comando para a consulta do "logacessoSym"
+                Using cmdLogAcessoSym As New SqlCommand(queryLogAcessoSym, connection)
+                    Dim readerLogAcessoSym As SqlDataReader = cmdLogAcessoSym.ExecuteReader()
+
+                    ' Leia os resultados da consulta do "logacessoSym"
+                    If readerLogAcessoSym.Read() Then
+                        Dim totalRowsLogAcessoSym As Integer = readerLogAcessoSym.GetInt32(0)
+                        Dim totalSizeMBLogAcessoSym As Decimal = readerLogAcessoSym.GetDecimal(1)
+                        MessageBox.Show($"Tamanho da tabela logacessoSym: {totalRowsLogAcessoSym} linhas, {totalSizeMBLogAcessoSym} MB")
+                    Else
+                        MessageBox.Show("Tabela logacessoSym não encontrada ou sem dados.")
+                    End If
+
+                    readerLogAcessoSym.Close()
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Erro ao obter o tamanho das tabelas: " & ex.Message)
+        End Try
     End Sub
 End Class
