@@ -475,4 +475,9 @@ Public Class Ferramenta_Cloud
 
 
     End Sub
+
+    Private Sub GerenciadorDePortaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GerenciadorDePortaToolStripMenuItem.Click
+        Dim Gerenciador_Porta As New Gerenciador_Porta()
+        Gerenciador_Porta.Show()
+    End Sub
 End Class
