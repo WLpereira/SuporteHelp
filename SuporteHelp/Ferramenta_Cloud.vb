@@ -226,6 +226,12 @@ Public Class Ferramenta_Cloud
 
 
     Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
+
+        ' Desabilitar o botão enquanto o BackgroundWorker está ocupado
+        MostrarTamanhoBtn.Enabled = False
+        ' Desabilitar o botão enquanto o BackgroundWorker está ocupado
+        LogEventoBtn.Enabled = False
+
         If Not BackgroundWorker1.IsBusy Then
             ' Exibir o ProgressBar
             progressoPb.Visible = True
@@ -236,6 +242,9 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        ' Definir o progresso inicial para 0
+        DirectCast(sender, BackgroundWorker).ReportProgress(0)
+
         ' Configurar o BackgroundWorker para relatar progresso
         DirectCast(sender, BackgroundWorker).WorkerReportsProgress = True
 
@@ -261,31 +270,31 @@ Public Class Ferramenta_Cloud
 
                 ' Comando SQL para executar
                 Dim sql As String = "
-DROP TABLE IF EXISTS #tmp
-CREATE TABLE #tmp
-(
-    [database_name]     VARCHAR(MAX),
-    [database_size]     VARCHAR(MAX),
-    [unallocated space] VARCHAR(MAX),
-    [reserved]          VARCHAR(MAX),
-    [data]              VARCHAR(MAX),
-    [index_size]        VARCHAR(MAX),
-    [unused]            VARCHAR(MAX)
-);
+                DROP TABLE IF EXISTS #tmp
+                CREATE TABLE #tmp
+                (
+                    [database_name]     VARCHAR(MAX),
+                    [database_size]     VARCHAR(MAX),
+                    [unallocated space] VARCHAR(MAX),
+                    [reserved]          VARCHAR(MAX),
+                    [data]              VARCHAR(MAX),
+                    [index_size]        VARCHAR(MAX),
+                    [unused]            VARCHAR(MAX)
+                );
 
-EXEC sys.sp_MSforeachdb 'USE [?]
-IF DB_NAME() NOT IN (''tempdb'', ''msdb'', ''model'', ''master'')
-BEGIN
-    INSERT #tmp EXEC sp_spaceused @oneresultset = 1
-END'
+                EXEC sys.sp_MSforeachdb 'USE [?]
+                IF DB_NAME() NOT IN (''tempdb'', ''msdb'', ''model'', ''master'')
+                BEGIN
+                    INSERT #tmp EXEC sp_spaceused @oneresultset = 1
+                END'
 
-SELECT *,
-       IIF(CAST(CAST(REPLACE(database_size, ' MB', '') AS FLOAT) / 1000 AS DECIMAL(10, 2)) < 1.00
-           , CONCAT(CAST(REPLACE(database_size, ' MB', '') AS FLOAT), ' MB')
-           , CONCAT(CAST(CAST(REPLACE(database_size, ' MB', '') AS FLOAT) / 1000 AS DECIMAL(10, 2)), ' GB')
-           ) AS 'database_size'
-FROM #tmp
-ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
+                SELECT *,
+                       IIF(CAST(CAST(REPLACE(database_size, ' MB', '') AS FLOAT) / 1000 AS DECIMAL(10, 2)) < 1.00
+                           , CONCAT(CAST(REPLACE(database_size, ' MB', '') AS FLOAT), ' MB')
+                           , CONCAT(CAST(CAST(REPLACE(database_size, ' MB', '') AS FLOAT) / 1000 AS DECIMAL(10, 2)), ' GB')
+                           ) AS 'database_size'
+                FROM #tmp
+                ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
 
                 ' Crie um objeto SqlCommand
                 Dim command As New SqlCommand(sql, connection)
@@ -302,7 +311,7 @@ ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
 
                 ' Reporte o progresso para o BackgroundWorker
                 ' Aqui o progresso é relativo ao número de linhas retornadas pelo DataSet
-                BackgroundWorker1.ReportProgress(dataSet.Tables(0).Rows.Count, dataSet)
+                BackgroundWorker1.ReportProgress(100, dataSet)
             Catch ex As Exception
                 MessageBox.Show("Erro ao executar o comando SQL: " & ex.Message)
             End Try
@@ -313,18 +322,29 @@ ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
         ' Atualize o valor atual do ProgressBar com base no progresso relatado
         progressoPb.Value = e.ProgressPercentage
 
-        ' Não é necessário atualizar o valor máximo do ProgressBar aqui
-
         ' Vincule o DataSet à sua DataGridView
-        ListadeServidorCloudDtg.DataSource = DirectCast(e.UserState, DataSet).Tables(0)
+        If e.UserState IsNot Nothing Then
+            ListadeServidorCloudDtg.DataSource = DirectCast(e.UserState, DataSet).Tables(0)
+        End If
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         ' Ocultar o ProgressBar após a conclusão da consulta
-        progressoPb.Visible = False
+        ' progressoPb.Visible = False
+
+        ' Reabilitar o botão após a conclusão do trabalho
+        MostrarTamanhoBtn.Enabled = True
+
+        ' Definir o UserState para o DataSet retornado após a conclusão do trabalho
+        If e.Result IsNot Nothing Then
+            BackgroundWorker1.ReportProgress(100, e.Result)
+        End If
     End Sub
 
     Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
+        'Desabilitar MostrarTamanhoBtn
+        MostrarTamanhoBtn.Enabled = False
+
         ' Verifica se a conexão foi estabelecida anteriormente
         If String.IsNullOrEmpty(conexao) Then
             MessageBox.Show("Por favor, conecte-se ao servidor antes de consultar o banco de dados.")
@@ -422,5 +442,37 @@ ORDER BY TRY_CAST(REPLACE(database_size, ' MB', '') AS FLOAT) DESC"
         Else
             MessageBox.Show("Não há bancos de dados para consultar.")
         End If
+
+
+    End Sub
+
+    Private Sub LimparColunaCloudBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaCloudBtn.Click
+        ' Limpar as colunas adicionadas ao DataGridView
+        If ListadeServidorCloudDtg.Columns.Contains("TotalRows_LogEvento") Then
+            ListadeServidorCloudDtg.Columns.Remove("TotalRows_LogEvento")
+        End If
+        If ListadeServidorCloudDtg.Columns.Contains("TotalSizeMB_LogEvento") Then
+            ListadeServidorCloudDtg.Columns.Remove("TotalSizeMB_LogEvento")
+        End If
+        If ListadeServidorCloudDtg.Columns.Contains("TotalRows_LogAcessoSym") Then
+            ListadeServidorCloudDtg.Columns.Remove("TotalRows_LogAcessoSym")
+        End If
+        If ListadeServidorCloudDtg.Columns.Contains("TotalSizeMB_LogAcessoSym") Then
+            ListadeServidorCloudDtg.Columns.Remove("TotalSizeMB_LogAcessoSym")
+        End If
+
+        ' Habilitar o botão LogEventoBtn
+        LogEventoBtn.Enabled = True
+
+        ' Habilitar o botão MostraTamanho
+        MostrarTamanhoBtn.Enabled = True
+
+        ' Ocultar o ProgressBar
+        progressoPb.Visible = False
+
+        ' Reconectar no servidor
+        ConectarCloudBtn.PerformClick()
+
+
     End Sub
 End Class

@@ -37,6 +37,7 @@ Partial Class Ferramenta_Cloud
         progressoPb = New ProgressBar()
         BackgroundWorker1 = New ComponentModel.BackgroundWorker()
         LogEventoBtn = New Button()
+        LimparColunaCloudBtn = New Button()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -126,12 +127,12 @@ Partial Class Ferramenta_Cloud
         ' ListadeServidorCloudDtg
         ' 
         ListadeServidorCloudDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        ListadeServidorCloudDtg.Location = New Point(280, 211)
+        ListadeServidorCloudDtg.Location = New Point(271, 211)
         ListadeServidorCloudDtg.Name = "ListadeServidorCloudDtg"
         ListadeServidorCloudDtg.ReadOnly = True
         ListadeServidorCloudDtg.RowHeadersWidth = 51
         ListadeServidorCloudDtg.RowTemplate.Height = 25
-        ListadeServidorCloudDtg.Size = New Size(737, 493)
+        ListadeServidorCloudDtg.Size = New Size(746, 478)
         ListadeServidorCloudDtg.TabIndex = 39
         ' 
         ' MostrarTamanhoBtn
@@ -147,9 +148,9 @@ Partial Class Ferramenta_Cloud
         ' 
         ' progressoPb
         ' 
-        progressoPb.Location = New Point(280, 710)
+        progressoPb.Location = New Point(38, 406)
         progressoPb.Name = "progressoPb"
-        progressoPb.Size = New Size(737, 23)
+        progressoPb.Size = New Size(184, 23)
         progressoPb.TabIndex = 43
         progressoPb.Visible = False
         ' 
@@ -168,11 +169,25 @@ Partial Class Ferramenta_Cloud
         LogEventoBtn.Text = "Verificar Tamanho da LogEvento, LogAcessoSym"
         LogEventoBtn.UseVisualStyleBackColor = True
         ' 
+        ' LimparColunaCloudBtn
+        ' 
+        LimparColunaCloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LimparColunaCloudBtn.Image = CType(resources.GetObject("LimparColunaCloudBtn.Image"), Image)
+        LimparColunaCloudBtn.ImageAlign = ContentAlignment.MiddleLeft
+        LimparColunaCloudBtn.Location = New Point(916, 703)
+        LimparColunaCloudBtn.Name = "LimparColunaCloudBtn"
+        LimparColunaCloudBtn.Size = New Size(101, 34)
+        LimparColunaCloudBtn.TabIndex = 45
+        LimparColunaCloudBtn.Text = "Limpar"
+        LimparColunaCloudBtn.TextAlign = ContentAlignment.MiddleRight
+        LimparColunaCloudBtn.UseVisualStyleBackColor = True
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(LimparColunaCloudBtn)
         Controls.Add(LogEventoBtn)
         Controls.Add(progressoPb)
         Controls.Add(MostrarTamanhoBtn)
@@ -207,4 +222,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents progressoPb As ProgressBar
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents LogEventoBtn As Button
+    Friend WithEvents LimparColunaCloudBtn As Button
 End Class
