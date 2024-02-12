@@ -503,6 +503,33 @@ Public Class Ferramenta_Cloud
             MessageBox.Show("A pasta 'Portas' não foi encontrada.")
         End If
     End Sub
+    Private Sub CarregarBancos(portaFilePath As String)
+        ' Limpar o DataGridView
+        ListadeServidorCloudDtg.DataSource = Nothing
+
+        ' Ler todas as linhas do arquivo da porta
+        Dim lines() As String = File.ReadAllLines(portaFilePath)
+
+        ' Criar um DataTable para armazenar os dados
+        Dim dt As New DataTable()
+        dt.Columns.Add("Nome")
+
+        ' Adicionar os bancos ao DataTable
+        For Each line As String In lines
+            dt.Rows.Add(line)
+        Next
+
+        ' Adicionar as colunas extras, se necessário
+        If ListadeServidorCloudDtg.Columns.Count > 1 Then
+            dt.Columns.Add("VERSAOBCODADOS", GetType(String))
+            dt.Columns.Add("Versão do Sistema", GetType(String))
+            dt.Columns.Add("DATA_DO_DBA", GetType(String))
+        End If
+
+        ' Definir o DataTable como a fonte de dados do DataGridView
+        ListadeServidorCloudDtg.DataSource = dt
+    End Sub
+
     Private Sub SelecionarPortaBtn_Click(sender As Object, e As EventArgs) Handles SelecionarPortaBtn.Click
         ' Verificar se uma porta está selecionada no ComboBox
         If SelecionarPortaCbx.SelectedItem IsNot Nothing Then
@@ -514,25 +541,123 @@ Public Class Ferramenta_Cloud
 
             ' Verificar se o arquivo da porta existe
             If File.Exists(portaFilePath) Then
-                ' Limpar o DataGridView
-                ListadeServidorCloudDtg.DataSource = Nothing
+                ' Captura os valores digitados nos textboxes de servidor, usuário e senha
+                Dim servidor As String = ServidorCloudTxb.Text.Trim()
+                Dim usuario As String = NomeConectarCloudTxb.Text
+                Dim senha As String = SenhaCloudTxb.Text
 
-                ' Ler todas as linhas do arquivo da porta
-                Dim lines() As String = File.ReadAllLines(portaFilePath)
+                ' Verifica se todos os campos foram preenchidos
+                If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
+                    MessageBox.Show("Preencha todos os campos antes de conectar.")
+                    Return
+                End If
 
-                ' Criar um DataTable para armazenar os dados
+                ' Verifica se o servidor informado não é um dos servidores bloqueados
+                If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") Then
+                    MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
+                    Return
+                End If
+
+                ' Cria uma string de conexão com o servidor de banco de dados
+                Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+
+                ' Cria uma DataTable para armazenar os resultados da consulta
                 Dim dt As New DataTable()
-                dt.Columns.Add("Banco")
 
-                ' Adicionar os bancos ao DataTable
-                For Each line As String In lines
-                    dt.Rows.Add(line)
-                Next
+                Try
+                    ' Cria uma conexão com o servidor de banco de dados
+                    Using conexaoBD As New SqlConnection(conexao)
+                        conexaoBD.Open()
 
-                ' Definir o DataTable como a fonte de dados do DataGridView
-                ListadeServidorCloudDtg.DataSource = dt
+                        ' Ler todas as linhas do arquivo da porta
+                        Dim lines() As String = File.ReadAllLines(portaFilePath)
 
-                MessageBox.Show($"Bancos da porta '{selectedPorta}' carregados com sucesso.")
+                        ' Iterar sobre as linhas do arquivo para obter os bancos de dados que estão dentro do arquivo
+                        Dim bancosSelecionados As New List(Of String)()
+                        For Each line As String In lines
+                            bancosSelecionados.Add(line)
+                        Next
+
+                        ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
+                        Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') AND name IN ('" & String.Join("','", bancosSelecionados) & "') order by name", conexaoBD)
+
+                        ' Carrega os dados do leitor para o DataTable
+                        Dim leitor As SqlDataReader = comando.ExecuteReader()
+                        dt.Load(leitor)
+
+                        ' Adiciona as colunas 'VERSAOBCODADOS' e 'DATA_DO_DBA' ao DataTable
+                        dt.Columns.Add("VERSAOBCODADOS", GetType(String))
+                        dt.Columns.Add("Versão do Sistema", GetType(String))
+                        dt.Columns.Add("DATA_DO_DBA", GetType(String))
+
+                        ' Itera sobre as linhas do DataTable
+                        For Each row As DataRow In dt.Rows
+                            ' Executa a consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
+                            Dim queryParametro As String = "IF OBJECT_ID(@NomeBanco + '.dbo.parametro', 'U') IS NOT NULL " &
+                        "BEGIN " &
+                        "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
+                        "[" & row("Nome") & "].dbo.parametro END"
+                            Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
+
+                            ' Adiciona o parâmetro para o nome do banco de dados
+                            comandoParametro.Parameters.AddWithValue("@NomeBanco", row("Nome"))
+
+                            ' Executa o comando e processa o resultado
+                            Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
+                            If leitorParametro.Read() Then
+                                ' Preenche os valores nas colunas adicionadas
+                                row("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
+                                row("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
+
+                                ' Extrai os dois dígitos do meio de "VERSAOBCODADOS" e mapeia para o formato de versão do sistema desejado
+                                Dim versaoCompleta As String = row("VERSAOBCODADOS").ToString()
+                                Dim versao As String = If(versaoCompleta.Length >= 6, versaoCompleta.Substring(3, 2), "")
+                                versao = versao.Replace(". ", "") ' Remove o ponto e o espaço
+                                Select Case versao
+                                    Case "40"
+                                        row("Versão do Sistema") = "2025.R3"
+                                    Case "39"
+                                        row("Versão do Sistema") = "2025.R2"
+                                    Case "38"
+                                        row("Versão do Sistema") = "2025.R1"
+                                    Case "37"
+                                        row("Versão do Sistema") = "2024.R3"
+                                    Case "36"
+                                        row("Versão do Sistema") = "2024.R2"
+                                    Case "35"
+                                        row("Versão do Sistema") = "2024.R1"
+                                    Case "34"
+                                        row("Versão do Sistema") = "2023.R3"
+                                    Case "33"
+                                        row("Versão do Sistema") = "2023.R2"
+                                    Case "32"
+                                        row("Versão do Sistema") = "2023.R1"
+                                    Case "31"
+                                        row("Versão do Sistema") = "2022.R3"
+                                    Case "30"
+                                        row("Versão do Sistema") = "2022.R2"
+                                    Case Else
+                                        ' Se a versão não estiver mapeada, defina a versão do sistema como "Versão não mapeada"
+                                        row("Versão do Sistema") = "Versão não mapeada"
+                                End Select
+                            Else
+                                ' Se não houver resultados, define os valores como vazios
+                                row("VERSAOBCODADOS") = String.Empty
+                                row("DATA_DO_DBA") = String.Empty
+                                row("Versão do Sistema") = String.Empty
+                            End If
+
+                            ' Fecha o leitor de dados da consulta de parâmetros
+                            leitorParametro.Close()
+                        Next
+
+                        ' Popula o DataGridView com os nomes dos bancos de dados, VERSAOBCODADOS, DATA_DO_DBA e a nova coluna "Versão do Sistema"
+                        ListadeServidorCloudDtg.DataSource = dt
+                        ListadeServidorCloudDtg.Columns(0).Width = 200
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Erro ao estabelecer a conexão ou carregar os bancos de dados: " & ex.Message)
+                End Try
             Else
                 MessageBox.Show($"O arquivo da porta '{selectedPorta}' não foi encontrado.")
             End If
