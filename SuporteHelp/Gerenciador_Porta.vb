@@ -147,10 +147,15 @@ Public Class Gerenciador_Porta
 
             ' Verificar se o arquivo da porta existe
             If File.Exists(portaFilePath) Then
-                ' Adicionar o banco ao arquivo da porta
-                File.AppendAllText(portaFilePath, banco & Environment.NewLine)
+                ' Verificar se o conteúdo já existe no arquivo da porta
+                If Not File.ReadAllLines(portaFilePath).Contains(banco) Then
+                    ' Adicionar o banco ao arquivo da porta
+                    File.AppendAllText(portaFilePath, banco & Environment.NewLine)
 
-                MessageBox.Show($"Banco '{banco}' adicionado ao arquivo da porta '{selectedPorta}' com sucesso.")
+                    MessageBox.Show($"Banco '{banco}' adicionado ao arquivo da porta '{selectedPorta}' com sucesso.")
+                Else
+                    MessageBox.Show($"O banco '{banco}' já existe no arquivo da porta '{selectedPorta}'.")
+                End If
             Else
                 MessageBox.Show($"O arquivo da porta '{selectedPorta}' não foi encontrado.")
             End If
@@ -212,6 +217,35 @@ Public Class Gerenciador_Porta
             End If
         Else
             MessageBox.Show("Por favor, selecione um banco para excluir.")
+        End If
+    End Sub
+
+    Private Sub AtualizarConteudoBtn_Click(sender As Object, e As EventArgs) Handles AtualizarConteudoBtn.Click
+        ' Verificar se uma porta está selecionada
+        If ListarPortasCbx.SelectedIndex <> -1 Then
+            ' Obter a porta selecionada
+            Dim selectedPorta As String = ListarPortasCbx.SelectedItem.ToString()
+
+            ' Caminho do arquivo da porta selecionada
+            Dim portaFilePath As String = Path.Combine(Application.StartupPath, "Portas", $"{selectedPorta}.txt")
+
+            ' Verificar se o arquivo da porta existe
+            If File.Exists(portaFilePath) Then
+                ' Limpar o conteúdo atual do ComboBox
+                ConteudoPortaCbx.Items.Clear()
+
+                ' Ler todas as linhas do arquivo da porta
+                Dim lines() As String = File.ReadAllLines(portaFilePath)
+
+                ' Adicionar as linhas ao ComboBox
+                ConteudoPortaCbx.Items.AddRange(lines)
+
+                MessageBox.Show("Conteúdo atualizado com sucesso.")
+            Else
+                MessageBox.Show($"O arquivo da porta '{selectedPorta}' não foi encontrado.")
+            End If
+        Else
+            MessageBox.Show("Por favor, selecione uma porta para atualizar o conteúdo.")
         End If
     End Sub
 End Class
