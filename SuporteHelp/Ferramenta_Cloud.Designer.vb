@@ -198,14 +198,15 @@ Partial Class Ferramenta_Cloud
         ' CadastrosToolStripMenuItem
         ' 
         CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem})
+        CadastrosToolStripMenuItem.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
-        CadastrosToolStripMenuItem.Size = New Size(71, 20)
+        CadastrosToolStripMenuItem.Size = New Size(72, 20)
         CadastrosToolStripMenuItem.Text = "Cadastros"
         ' 
         ' GerenciadorDePortaToolStripMenuItem
         ' 
         GerenciadorDePortaToolStripMenuItem.Name = "GerenciadorDePortaToolStripMenuItem"
-        GerenciadorDePortaToolStripMenuItem.Size = New Size(185, 22)
+        GerenciadorDePortaToolStripMenuItem.Size = New Size(193, 22)
         GerenciadorDePortaToolStripMenuItem.Text = "Gerenciador de Porta"
         ' 
         ' Ferramenta_Cloud
