@@ -480,4 +480,64 @@ Public Class Ferramenta_Cloud
         Dim Gerenciador_Porta As New Gerenciador_Porta()
         Gerenciador_Porta.Show()
     End Sub
+
+    Private Sub CarregarListaBtn_Click(sender As Object, e As EventArgs) Handles CarregarListaBtn.Click
+        ' Caminho da pasta "Portas"
+        Dim portasFolderPath As String = Path.Combine(Application.StartupPath, "Portas")
+
+        ' Verificar se a pasta existe
+        If Directory.Exists(portasFolderPath) Then
+            ' Limpar o ComboBox
+            SelecionarPortaCbx.Items.Clear()
+
+            ' Obter todos os arquivos na pasta "Portas"
+            Dim portaFiles As String() = Directory.GetFiles(portasFolderPath)
+
+            ' Adicionar os nomes dos arquivos ao ComboBox
+            For Each portaFile As String In portaFiles
+                SelecionarPortaCbx.Items.Add(Path.GetFileNameWithoutExtension(portaFile))
+            Next
+
+            MessageBox.Show("Lista de portas carregada com sucesso.")
+        Else
+            MessageBox.Show("A pasta 'Portas' não foi encontrada.")
+        End If
+    End Sub
+    Private Sub SelecionarPortaBtn_Click(sender As Object, e As EventArgs) Handles SelecionarPortaBtn.Click
+        ' Verificar se uma porta está selecionada no ComboBox
+        If SelecionarPortaCbx.SelectedItem IsNot Nothing Then
+            ' Obter o nome da porta selecionada
+            Dim selectedPorta As String = SelecionarPortaCbx.SelectedItem.ToString()
+
+            ' Caminho do arquivo da porta selecionada
+            Dim portaFilePath As String = Path.Combine(Application.StartupPath, "Portas", $"{selectedPorta}.txt")
+
+            ' Verificar se o arquivo da porta existe
+            If File.Exists(portaFilePath) Then
+                ' Limpar o DataGridView
+                ListadeServidorCloudDtg.DataSource = Nothing
+
+                ' Ler todas as linhas do arquivo da porta
+                Dim lines() As String = File.ReadAllLines(portaFilePath)
+
+                ' Criar um DataTable para armazenar os dados
+                Dim dt As New DataTable()
+                dt.Columns.Add("Banco")
+
+                ' Adicionar os bancos ao DataTable
+                For Each line As String In lines
+                    dt.Rows.Add(line)
+                Next
+
+                ' Definir o DataTable como a fonte de dados do DataGridView
+                ListadeServidorCloudDtg.DataSource = dt
+
+                MessageBox.Show($"Bancos da porta '{selectedPorta}' carregados com sucesso.")
+            Else
+                MessageBox.Show($"O arquivo da porta '{selectedPorta}' não foi encontrado.")
+            End If
+        Else
+            MessageBox.Show("Por favor, selecione uma porta.")
+        End If
+    End Sub
 End Class

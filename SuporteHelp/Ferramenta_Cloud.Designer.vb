@@ -41,6 +41,10 @@ Partial Class Ferramenta_Cloud
         MenuStrip1 = New MenuStrip()
         CadastrosToolStripMenuItem = New ToolStripMenuItem()
         GerenciadorDePortaToolStripMenuItem = New ToolStripMenuItem()
+        SelecionarPortaCbx = New ComboBox()
+        SelecionePortaLbl = New Label()
+        SelecionarPortaBtn = New Button()
+        CarregarListaBtn = New Button()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -209,11 +213,54 @@ Partial Class Ferramenta_Cloud
         GerenciadorDePortaToolStripMenuItem.Size = New Size(193, 22)
         GerenciadorDePortaToolStripMenuItem.Text = "Gerenciador de Porta"
         ' 
+        ' SelecionarPortaCbx
+        ' 
+        SelecionarPortaCbx.FormattingEnabled = True
+        SelecionarPortaCbx.Location = New Point(457, 163)
+        SelecionarPortaCbx.Name = "SelecionarPortaCbx"
+        SelecionarPortaCbx.Size = New Size(210, 23)
+        SelecionarPortaCbx.TabIndex = 47
+        ' 
+        ' SelecionePortaLbl
+        ' 
+        SelecionePortaLbl.AutoSize = True
+        SelecionePortaLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        SelecionePortaLbl.ForeColor = Color.Red
+        SelecionePortaLbl.Location = New Point(457, 143)
+        SelecionePortaLbl.Name = "SelecionePortaLbl"
+        SelecionePortaLbl.Size = New Size(108, 17)
+        SelecionePortaLbl.TabIndex = 48
+        SelecionePortaLbl.Text = "Selecionar Porta"
+        ' 
+        ' SelecionarPortaBtn
+        ' 
+        SelecionarPortaBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        SelecionarPortaBtn.Location = New Point(779, 157)
+        SelecionarPortaBtn.Name = "SelecionarPortaBtn"
+        SelecionarPortaBtn.Size = New Size(100, 29)
+        SelecionarPortaBtn.TabIndex = 49
+        SelecionarPortaBtn.Text = "Selecionar"
+        SelecionarPortaBtn.UseVisualStyleBackColor = True
+        ' 
+        ' CarregarListaBtn
+        ' 
+        CarregarListaBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        CarregarListaBtn.Location = New Point(673, 157)
+        CarregarListaBtn.Name = "CarregarListaBtn"
+        CarregarListaBtn.Size = New Size(100, 29)
+        CarregarListaBtn.TabIndex = 50
+        CarregarListaBtn.Text = "Carregar"
+        CarregarListaBtn.UseVisualStyleBackColor = True
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(CarregarListaBtn)
+        Controls.Add(SelecionarPortaBtn)
+        Controls.Add(SelecionePortaLbl)
+        Controls.Add(SelecionarPortaCbx)
         Controls.Add(LimparColunaCloudBtn)
         Controls.Add(LogEventoBtn)
         Controls.Add(progressoPb)
@@ -257,4 +304,8 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents CadastrosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GerenciadorDePortaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SelecionarPortaCbx As ComboBox
+    Friend WithEvents SelecionePortaLbl As Label
+    Friend WithEvents SelecionarPortaBtn As Button
+    Friend WithEvents CarregarListaBtn As Button
 End Class
