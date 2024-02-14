@@ -339,6 +339,7 @@ Partial Class Ferramenta_Cloud
         Controls.Add(ServidorCloudTxb)
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         Name = "Ferramenta_Cloud"
         Text = "Ferramenta_Cloud"

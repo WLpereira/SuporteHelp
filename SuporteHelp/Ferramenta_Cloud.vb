@@ -9,21 +9,23 @@ Imports System.ComponentModel
 Imports System.Text
 
 Public Class Ferramenta_Cloud
-    Private conexao As String = ""
+
     Private e As Object
+    Private conexao1 As String = ""
+    Private conexao2 As String = ""
 
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
         ' Conectar ao primeiro servidor
-        ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
+        ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text, 1)
 
         ' Verificar se o segundo servidor está preenchido
         If Not String.IsNullOrWhiteSpace(Servidor2CloudTxb.Text) Then
             ' Conectar ao segundo servidor
-            ConectarServidor(Servidor2CloudTxb.Text.Trim(), Nome2ConectarCloudTxb.Text, Senha2CloudTxb.Text)
+            ConectarServidor(Servidor2CloudTxb.Text.Trim(), Nome2ConectarCloudTxb.Text, Senha2CloudTxb.Text, 2)
         End If
     End Sub
 
-    Private Sub ConectarServidor(servidor As String, usuario As String, senha As String)
+    Private Sub ConectarServidor(servidor As String, usuario As String, senha As String, numeroServidor As Integer)
         ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
@@ -36,9 +38,22 @@ Public Class Ferramenta_Cloud
             Return
         End If
 
+        ' Desabilita os botões LogEventoBtn e MostrarTamanhoBtn se houver conexão com dois servidores
+        If Not String.IsNullOrEmpty(conexao1) AndAlso Not String.IsNullOrEmpty(conexao2) Then
+            LogEventoBtn.Enabled = False
+            MostrarTamanhoBtn.Enabled = False
+        End If
+
+
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
+        ' Armazena a conexão na variável correspondente ao número do servidor
+        If numeroServidor = 1 Then
+            conexao1 = conexao
+        ElseIf numeroServidor = 2 Then
+            conexao2 = conexao
+        End If
         ' Cria uma DataTable para armazenar os resultados da consulta
         Dim dt As New DataTable()
 
@@ -351,7 +366,7 @@ Public Class Ferramenta_Cloud
         MostrarTamanhoBtn.Enabled = False
 
         ' Verifica se a conexão foi estabelecida anteriormente
-        If String.IsNullOrEmpty(conexao) Then
+        If String.IsNullOrEmpty(conexao1) Then
             MessageBox.Show("Por favor, conecte-se ao servidor antes de consultar o banco de dados.")
             Return
         End If
@@ -413,7 +428,7 @@ Public Class Ferramenta_Cloud
                     Dim totalRowsLogAcessoSym As Integer = 0
                     Dim totalSizeMBLogAcessoSym As Decimal = 0
 
-                    Using conexaoBD As New SqlConnection(conexao)
+                    Using conexaoBD As New SqlConnection(conexao1)
                         Try
                             conexaoBD.Open()
 
@@ -447,8 +462,6 @@ Public Class Ferramenta_Cloud
         Else
             MessageBox.Show("Não há bancos de dados para consultar.")
         End If
-
-
     End Sub
 
     Private Sub LimparColunaCloudBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaCloudBtn.Click
@@ -478,6 +491,12 @@ Public Class Ferramenta_Cloud
         ' Reconectar no servidor
         ConectarCloudBtn.PerformClick()
 
+
+        ' Habilitar o botão LogEventoBtn
+        LogEventoBtn.Enabled = True
+
+        ' Habilitar o botão MostraTamanho
+        MostrarTamanhoBtn.Enabled = True
 
     End Sub
 
