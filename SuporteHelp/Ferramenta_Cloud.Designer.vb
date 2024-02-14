@@ -45,6 +45,12 @@ Partial Class Ferramenta_Cloud
         SelecionePortaLbl = New Label()
         SelecionarPortaBtn = New Button()
         CarregarListaBtn = New Button()
+        Senha2CloudTxb = New TextBox()
+        Nome2ConectarCloudTxb = New TextBox()
+        Label1 = New Label()
+        Label2 = New Label()
+        Servidor2CloudTxb = New TextBox()
+        Label3 = New Label()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -62,16 +68,16 @@ Partial Class Ferramenta_Cloud
         ServidorConectarLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorConectarLbl.Location = New Point(12, 50)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
-        ServidorConectarLbl.Size = New Size(125, 17)
+        ServidorConectarLbl.Size = New Size(136, 17)
         ServidorConectarLbl.TabIndex = 5
-        ServidorConectarLbl.Text = "Informe o Servidor"
+        ServidorConectarLbl.Text = "Informe o Servidor 1"
         ' 
         ' SelecinarServidorLbl
         ' 
         SelecinarServidorLbl.AutoSize = True
         SelecinarServidorLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SelecinarServidorLbl.ForeColor = Color.Red
-        SelecinarServidorLbl.Location = New Point(12, 98)
+        SelecinarServidorLbl.Location = New Point(848, 47)
         SelecinarServidorLbl.Name = "SelecinarServidorLbl"
         SelecinarServidorLbl.Size = New Size(170, 17)
         SelecinarServidorLbl.TabIndex = 38
@@ -80,7 +86,7 @@ Partial Class Ferramenta_Cloud
         ' ExibirServidorCloudCbx
         ' 
         ExibirServidorCloudCbx.FormattingEnabled = True
-        ExibirServidorCloudCbx.Location = New Point(12, 116)
+        ExibirServidorCloudCbx.Location = New Point(848, 65)
         ExibirServidorCloudCbx.Name = "ExibirServidorCloudCbx"
         ExibirServidorCloudCbx.Size = New Size(210, 23)
         ExibirServidorCloudCbx.TabIndex = 37
@@ -90,7 +96,7 @@ Partial Class Ferramenta_Cloud
         ConectarCloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarCloudBtn.Image = CType(resources.GetObject("ConectarCloudBtn.Image"), Image)
         ConectarCloudBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarCloudBtn.Location = New Point(732, 55)
+        ConectarCloudBtn.Location = New Point(724, 85)
         ConectarCloudBtn.Name = "ConectarCloudBtn"
         ConectarCloudBtn.Size = New Size(118, 38)
         ConectarCloudBtn.TabIndex = 36
@@ -216,7 +222,7 @@ Partial Class Ferramenta_Cloud
         ' SelecionarPortaCbx
         ' 
         SelecionarPortaCbx.FormattingEnabled = True
-        SelecionarPortaCbx.Location = New Point(457, 163)
+        SelecionarPortaCbx.Location = New Point(457, 171)
         SelecionarPortaCbx.Name = "SelecionarPortaCbx"
         SelecionarPortaCbx.Size = New Size(210, 23)
         SelecionarPortaCbx.TabIndex = 47
@@ -226,7 +232,7 @@ Partial Class Ferramenta_Cloud
         SelecionePortaLbl.AutoSize = True
         SelecionePortaLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SelecionePortaLbl.ForeColor = Color.Red
-        SelecionePortaLbl.Location = New Point(457, 143)
+        SelecionePortaLbl.Location = New Point(457, 151)
         SelecionePortaLbl.Name = "SelecionePortaLbl"
         SelecionePortaLbl.Size = New Size(108, 17)
         SelecionePortaLbl.TabIndex = 48
@@ -235,7 +241,7 @@ Partial Class Ferramenta_Cloud
         ' SelecionarPortaBtn
         ' 
         SelecionarPortaBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        SelecionarPortaBtn.Location = New Point(779, 157)
+        SelecionarPortaBtn.Location = New Point(779, 165)
         SelecionarPortaBtn.Name = "SelecionarPortaBtn"
         SelecionarPortaBtn.Size = New Size(100, 29)
         SelecionarPortaBtn.TabIndex = 49
@@ -245,18 +251,75 @@ Partial Class Ferramenta_Cloud
         ' CarregarListaBtn
         ' 
         CarregarListaBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        CarregarListaBtn.Location = New Point(673, 157)
+        CarregarListaBtn.Location = New Point(673, 165)
         CarregarListaBtn.Name = "CarregarListaBtn"
         CarregarListaBtn.Size = New Size(100, 29)
         CarregarListaBtn.TabIndex = 50
         CarregarListaBtn.Text = "Carregar"
         CarregarListaBtn.UseVisualStyleBackColor = True
         ' 
+        ' Senha2CloudTxb
+        ' 
+        Senha2CloudTxb.Location = New Point(573, 116)
+        Senha2CloudTxb.Name = "Senha2CloudTxb"
+        Senha2CloudTxb.Size = New Size(146, 23)
+        Senha2CloudTxb.TabIndex = 56
+        ' 
+        ' Nome2ConectarCloudTxb
+        ' 
+        Nome2ConectarCloudTxb.Location = New Point(299, 116)
+        Nome2ConectarCloudTxb.Name = "Nome2ConectarCloudTxb"
+        Nome2ConectarCloudTxb.Size = New Size(268, 23)
+        Nome2ConectarCloudTxb.TabIndex = 55
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(573, 96)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(45, 17)
+        Label1.TabIndex = 54
+        Label1.Text = "Senha"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Label2.Location = New Point(299, 96)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(55, 17)
+        Label2.TabIndex = 53
+        Label2.Text = "Usuario"
+        ' 
+        ' Servidor2CloudTxb
+        ' 
+        Servidor2CloudTxb.Location = New Point(12, 116)
+        Servidor2CloudTxb.Name = "Servidor2CloudTxb"
+        Servidor2CloudTxb.Size = New Size(281, 23)
+        Servidor2CloudTxb.TabIndex = 52
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Label3.Location = New Point(12, 96)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(136, 17)
+        Label3.TabIndex = 51
+        Label3.Text = "Informe o Servidor 2"
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(Senha2CloudTxb)
+        Controls.Add(Nome2ConectarCloudTxb)
+        Controls.Add(Label1)
+        Controls.Add(Label2)
+        Controls.Add(Servidor2CloudTxb)
+        Controls.Add(Label3)
         Controls.Add(CarregarListaBtn)
         Controls.Add(SelecionarPortaBtn)
         Controls.Add(SelecionePortaLbl)
@@ -308,4 +371,10 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents SelecionePortaLbl As Label
     Friend WithEvents SelecionarPortaBtn As Button
     Friend WithEvents CarregarListaBtn As Button
+    Friend WithEvents Senha2CloudTxb As TextBox
+    Friend WithEvents Nome2ConectarCloudTxb As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Servidor2CloudTxb As TextBox
+    Friend WithEvents Label3 As Label
 End Class

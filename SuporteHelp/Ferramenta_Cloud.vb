@@ -13,11 +13,17 @@ Public Class Ferramenta_Cloud
     Private e As Object
 
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
-        ' Captura os valores digitados nos textboxes de servidor, usuário e senha
-        Dim servidor As String = ServidorCloudTxb.Text.Trim()
-        Dim usuario As String = NomeConectarCloudTxb.Text
-        Dim senha As String = SenhaCloudTxb.Text
+        ' Conectar ao primeiro servidor
+        ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
 
+        ' Verificar se o segundo servidor está preenchido
+        If Not String.IsNullOrWhiteSpace(Servidor2CloudTxb.Text) Then
+            ' Conectar ao segundo servidor
+            ConectarServidor(Servidor2CloudTxb.Text.Trim(), Nome2ConectarCloudTxb.Text, Senha2CloudTxb.Text)
+        End If
+    End Sub
+
+    Private Sub ConectarServidor(servidor As String, usuario As String, senha As String)
         ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
@@ -26,12 +32,12 @@ Public Class Ferramenta_Cloud
 
         ' Verifica se o servidor informado não é um dos servidores bloqueados
         If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") Then
-            MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
+            MessageBox.Show("Por motivos de segurança, esse servidor não pode ser acessado.")
             Return
         End If
 
         ' Cria uma string de conexão com o servidor de banco de dados
-        conexao = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+        Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
         ' Cria uma DataTable para armazenar os resultados da consulta
         Dim dt As New DataTable()
@@ -57,9 +63,9 @@ Public Class Ferramenta_Cloud
                 For Each row As DataRow In dt.Rows
                     ' Executa a consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
                     Dim queryParametro As String = "IF OBJECT_ID(@NomeBanco + '.dbo.parametro', 'U') IS NOT NULL " &
-                "BEGIN " &
-                "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
-                "[" & row("Nome") & "].dbo.parametro END"
+        "BEGIN " &
+        "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
+        "[" & row("Nome") & "].dbo.parametro END"
                     Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
 
                     ' Adiciona o parâmetro para o nome do banco de dados
@@ -121,7 +127,6 @@ Public Class Ferramenta_Cloud
         Catch ex As Exception
             MessageBox.Show("Erro ao estabelecer a conexão ou carregar os bancos de dados: " & ex.Message)
         End Try
-
     End Sub
 
 
