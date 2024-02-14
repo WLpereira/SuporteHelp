@@ -10,6 +10,8 @@ Imports System.Text
 
 Public Class Ferramenta_Cloud
 
+
+
     Private e As Object
     Private conexao1 As String = ""
     Private conexao2 As String = ""
@@ -26,11 +28,18 @@ Public Class Ferramenta_Cloud
         ' Conectar ao servidor 1
         ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
 
-        ' Verificar se o segundo servidor está preenchido
-        If Not String.IsNullOrWhiteSpace(Servidor2CloudTxb.Text) Then
+        ' Verificar se o segundo servidor está preenchido e se o checkbox está marcado
+        If Not String.IsNullOrWhiteSpace(Servidor2CloudTxb.Text) AndAlso ConectarServidor2Cxb.Checked Then
             ' Conectar ao servidor 2
             ConectarServidor(Servidor2CloudTxb.Text.Trim(), Nome2ConectarCloudTxb.Text, Senha2CloudTxb.Text)
         End If
+    End Sub
+
+    Private Sub ConectarServidor2Cxb_CheckedChanged(sender As Object, e As EventArgs) Handles ConectarServidor2Cxb.CheckedChanged
+        ' Habilita ou desabilita os controles com base no estado do checkbox
+        Servidor2CloudTxb.Enabled = ConectarServidor2Cxb.Checked
+        Nome2ConectarCloudTxb.Enabled = ConectarServidor2Cxb.Checked
+        Senha2CloudTxb.Enabled = ConectarServidor2Cxb.Checked
     End Sub
 
     Private Sub ConectarServidor(servidor As String, usuario As String, senha As String)

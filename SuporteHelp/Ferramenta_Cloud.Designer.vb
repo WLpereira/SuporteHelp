@@ -51,6 +51,7 @@ Partial Class Ferramenta_Cloud
         Label2 = New Label()
         Servidor2CloudTxb = New TextBox()
         Label3 = New Label()
+        ConectarServidor2Cxb = New CheckBox()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -77,7 +78,7 @@ Partial Class Ferramenta_Cloud
         SelecinarServidorLbl.AutoSize = True
         SelecinarServidorLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SelecinarServidorLbl.ForeColor = Color.Red
-        SelecinarServidorLbl.Location = New Point(848, 47)
+        SelecinarServidorLbl.Location = New Point(12, 149)
         SelecinarServidorLbl.Name = "SelecinarServidorLbl"
         SelecinarServidorLbl.Size = New Size(170, 17)
         SelecinarServidorLbl.TabIndex = 38
@@ -86,7 +87,7 @@ Partial Class Ferramenta_Cloud
         ' ExibirServidorCloudCbx
         ' 
         ExibirServidorCloudCbx.FormattingEnabled = True
-        ExibirServidorCloudCbx.Location = New Point(848, 65)
+        ExibirServidorCloudCbx.Location = New Point(12, 169)
         ExibirServidorCloudCbx.Name = "ExibirServidorCloudCbx"
         ExibirServidorCloudCbx.Size = New Size(210, 23)
         ExibirServidorCloudCbx.TabIndex = 37
@@ -96,7 +97,7 @@ Partial Class Ferramenta_Cloud
         ConectarCloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarCloudBtn.Image = CType(resources.GetObject("ConectarCloudBtn.Image"), Image)
         ConectarCloudBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarCloudBtn.Location = New Point(724, 85)
+        ConectarCloudBtn.Location = New Point(741, 70)
         ConectarCloudBtn.Name = "ConectarCloudBtn"
         ConectarCloudBtn.Size = New Size(118, 38)
         ConectarCloudBtn.TabIndex = 36
@@ -309,11 +310,23 @@ Partial Class Ferramenta_Cloud
         Label3.TabIndex = 51
         Label3.Text = "Informe o Servidor 2"
         ' 
+        ' ConectarServidor2Cxb
+        ' 
+        ConectarServidor2Cxb.AutoSize = True
+        ConectarServidor2Cxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        ConectarServidor2Cxb.Location = New Point(731, 118)
+        ConectarServidor2Cxb.Name = "ConectarServidor2Cxb"
+        ConectarServidor2Cxb.Size = New Size(148, 21)
+        ConectarServidor2Cxb.TabIndex = 58
+        ConectarServidor2Cxb.Text = "Conectar Servidor 2"
+        ConectarServidor2Cxb.UseVisualStyleBackColor = True
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(ConectarServidor2Cxb)
         Controls.Add(Senha2CloudTxb)
         Controls.Add(Nome2ConectarCloudTxb)
         Controls.Add(Label1)
@@ -378,4 +391,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents Label2 As Label
     Friend WithEvents Servidor2CloudTxb As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents ConectarServidor2Cxb As CheckBox
 End Class
