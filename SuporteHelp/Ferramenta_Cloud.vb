@@ -14,18 +14,26 @@ Public Class Ferramenta_Cloud
     Private conexao1 As String = ""
     Private conexao2 As String = ""
 
+
+
+    ' DataTable para armazenar os bancos de dados de ambos os servidores
+    Private dtTodosBancos As New DataTable()
+
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
-        ' Conectar ao primeiro servidor
-        ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text, 1)
+        ' Limpar DataTable antes de adicionar novos dados
+        dtTodosBancos.Clear()
+
+        ' Conectar ao servidor 1
+        ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
 
         ' Verificar se o segundo servidor está preenchido
         If Not String.IsNullOrWhiteSpace(Servidor2CloudTxb.Text) Then
-            ' Conectar ao segundo servidor
-            ConectarServidor(Servidor2CloudTxb.Text.Trim(), Nome2ConectarCloudTxb.Text, Senha2CloudTxb.Text, 2)
+            ' Conectar ao servidor 2
+            ConectarServidor(Servidor2CloudTxb.Text.Trim(), Nome2ConectarCloudTxb.Text, Senha2CloudTxb.Text)
         End If
     End Sub
 
-    Private Sub ConectarServidor(servidor As String, usuario As String, senha As String, numeroServidor As Integer)
+    Private Sub ConectarServidor(servidor As String, usuario As String, senha As String)
         ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
@@ -38,22 +46,9 @@ Public Class Ferramenta_Cloud
             Return
         End If
 
-        ' Desabilita os botões LogEventoBtn e MostrarTamanhoBtn se houver conexão com dois servidores
-        If Not String.IsNullOrEmpty(conexao1) AndAlso Not String.IsNullOrEmpty(conexao2) Then
-            LogEventoBtn.Enabled = False
-            MostrarTamanhoBtn.Enabled = False
-        End If
-
-
         ' Cria uma string de conexão com o servidor de banco de dados
         Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
-        ' Armazena a conexão na variável correspondente ao número do servidor
-        If numeroServidor = 1 Then
-            conexao1 = conexao
-        ElseIf numeroServidor = 2 Then
-            conexao2 = conexao
-        End If
         ' Cria uma DataTable para armazenar os resultados da consulta
         Dim dt As New DataTable()
 
@@ -78,9 +73,9 @@ Public Class Ferramenta_Cloud
                 For Each row As DataRow In dt.Rows
                     ' Executa a consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
                     Dim queryParametro As String = "IF OBJECT_ID(@NomeBanco + '.dbo.parametro', 'U') IS NOT NULL " &
-        "BEGIN " &
-        "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
-        "[" & row("Nome") & "].dbo.parametro END"
+                "BEGIN " &
+                "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
+                "[" & row("Nome") & "].dbo.parametro END"
                     Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
 
                     ' Adiciona o parâmetro para o nome do banco de dados
@@ -135,13 +130,24 @@ Public Class Ferramenta_Cloud
                     leitorParametro.Close()
                 Next
 
-                ' Popula o DataGridView com os nomes dos bancos de dados, VERSAOBCODADOS, DATA_DO_DBA e a nova coluna "Versão do Sistema"
-                ListadeServidorCloudDtg.DataSource = dt
-                ListadeServidorCloudDtg.Columns(0).Width = 200
+                ' Adiciona os dados deste servidor ao DataTable geral
+                dtTodosBancos.Merge(dt)
             End Using
         Catch ex As Exception
             MessageBox.Show("Erro ao estabelecer a conexão ou carregar os bancos de dados: " & ex.Message)
         End Try
+
+        ' Define a origem de dados do DataGridView
+        If ListadeServidorCloudDtg.InvokeRequired Then
+            ListadeServidorCloudDtg.Invoke(Sub() ListadeServidorCloudDtg.DataSource = dtTodosBancos)
+        Else
+            ListadeServidorCloudDtg.DataSource = dtTodosBancos
+        End If
+
+        ' Define a largura da primeira coluna se houver pelo menos uma coluna
+        If ListadeServidorCloudDtg.Columns.Count > 0 Then
+            ListadeServidorCloudDtg.Columns(0).Width = 200
+        End If
     End Sub
 
 
