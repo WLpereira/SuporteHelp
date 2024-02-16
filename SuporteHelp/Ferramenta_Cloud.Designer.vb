@@ -49,6 +49,8 @@ Partial Class Ferramenta_Cloud
         ServidorCloud3Txb = New TextBox()
         Servidor2Lbl = New Label()
         Servidor3Lbl = New Label()
+        HabilitarServidor2Cbx = New CheckBox()
+        HabilitarServidor3Cbx = New CheckBox()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -295,11 +297,35 @@ Partial Class Ferramenta_Cloud
         Servidor3Lbl.TabIndex = 54
         Servidor3Lbl.Text = "Informe o Servidor 3"
         ' 
+        ' HabilitarServidor2Cbx
+        ' 
+        HabilitarServidor2Cbx.AutoSize = True
+        HabilitarServidor2Cbx.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        HabilitarServidor2Cbx.Location = New Point(487, 110)
+        HabilitarServidor2Cbx.Name = "HabilitarServidor2Cbx"
+        HabilitarServidor2Cbx.Size = New Size(148, 21)
+        HabilitarServidor2Cbx.TabIndex = 55
+        HabilitarServidor2Cbx.Text = "Habilitar Servidor 2"
+        HabilitarServidor2Cbx.UseVisualStyleBackColor = True
+        ' 
+        ' HabilitarServidor3Cbx
+        ' 
+        HabilitarServidor3Cbx.AutoSize = True
+        HabilitarServidor3Cbx.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        HabilitarServidor3Cbx.Location = New Point(487, 160)
+        HabilitarServidor3Cbx.Name = "HabilitarServidor3Cbx"
+        HabilitarServidor3Cbx.Size = New Size(148, 21)
+        HabilitarServidor3Cbx.TabIndex = 56
+        HabilitarServidor3Cbx.Text = "Habilitar Servidor 3"
+        HabilitarServidor3Cbx.UseVisualStyleBackColor = True
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(HabilitarServidor3Cbx)
+        Controls.Add(HabilitarServidor2Cbx)
         Controls.Add(Servidor3Lbl)
         Controls.Add(Servidor2Lbl)
         Controls.Add(ServidorCloud3Txb)
@@ -359,4 +385,6 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents ServidorCloud3Txb As TextBox
     Friend WithEvents Servidor2Lbl As Label
     Friend WithEvents Servidor3Lbl As Label
+    Friend WithEvents HabilitarServidor2Cbx As CheckBox
+    Friend WithEvents HabilitarServidor3Cbx As CheckBox
 End Class
