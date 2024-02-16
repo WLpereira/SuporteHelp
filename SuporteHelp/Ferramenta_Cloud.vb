@@ -11,13 +11,29 @@ Imports System.Text
 Public Class Ferramenta_Cloud
     Private conexao As String = ""
     Private e As Object
-
+    ' DataTable para armazenar os bancos de dados de todos os servidores
+    Private dtTodosBancos As New DataTable()
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
-        ' Captura os valores digitados nos textboxes de servidor, usuário e senha
-        Dim servidor As String = ServidorCloudTxb.Text.Trim()
-        Dim usuario As String = NomeConectarCloudTxb.Text
-        Dim senha As String = SenhaCloudTxb.Text
+        ' Limpar DataTable antes de adicionar novos dados
+        dtTodosBancos.Clear()
 
+        ' Conectar ao servidor principal
+        ConectarServidor(ServidorCloudTxb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
+
+        ' Verificar se o segundo servidor está preenchido
+        If Not String.IsNullOrWhiteSpace(ServidorCloud2Txb.Text) Then
+            ' Conectar ao servidor secundário
+            ConectarServidor(ServidorCloud2Txb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
+        End If
+
+        ' Verificar se o terceiro servidor está preenchido
+        If Not String.IsNullOrWhiteSpace(ServidorCloud3Txb.Text) Then
+            ' Conectar ao terceiro servidor
+            ConectarServidor(ServidorCloud3Txb.Text.Trim(), NomeConectarCloudTxb.Text, SenhaCloudTxb.Text)
+        End If
+    End Sub
+
+    Private Sub ConectarServidor(servidor As String, usuario As String, senha As String)
         ' Verifica se todos os campos foram preenchidos
         If String.IsNullOrEmpty(servidor) OrElse String.IsNullOrEmpty(usuario) OrElse String.IsNullOrEmpty(senha) Then
             MessageBox.Show("Preencha todos os campos antes de conectar.")
@@ -31,7 +47,7 @@ Public Class Ferramenta_Cloud
         End If
 
         ' Cria uma string de conexão com o servidor de banco de dados
-        conexao = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+        Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
 
         ' Cria uma DataTable para armazenar os resultados da consulta
         Dim dt As New DataTable()
@@ -57,9 +73,9 @@ Public Class Ferramenta_Cloud
                 For Each row As DataRow In dt.Rows
                     ' Executa a consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
                     Dim queryParametro As String = "IF OBJECT_ID(@NomeBanco + '.dbo.parametro', 'U') IS NOT NULL " &
-                "BEGIN " &
-                "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
-                "[" & row("Nome") & "].dbo.parametro END"
+            "BEGIN " &
+            "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
+            "[" & row("Nome") & "].dbo.parametro END"
                     Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
 
                     ' Adiciona o parâmetro para o nome do banco de dados
@@ -114,14 +130,20 @@ Public Class Ferramenta_Cloud
                     leitorParametro.Close()
                 Next
 
-                ' Popula o DataGridView com os nomes dos bancos de dados, VERSAOBCODADOS, DATA_DO_DBA e a nova coluna "Versão do Sistema"
-                ListadeServidorCloudDtg.DataSource = dt
-                ListadeServidorCloudDtg.Columns(0).Width = 200
+                ' Adiciona os dados deste servidor ao DataTable geral
+                dtTodosBancos.Merge(dt)
             End Using
         Catch ex As Exception
             MessageBox.Show("Erro ao estabelecer a conexão ou carregar os bancos de dados: " & ex.Message)
         End Try
 
+        ' Quando todos os servidores foram carregados, define o DataTable geral como a fonte de dados do DataGridView
+        ListadeServidorCloudDtg.DataSource = dtTodosBancos
+
+        ' Define a largura da primeira coluna se houver pelo menos uma coluna
+        If ListadeServidorCloudDtg.Columns.Count > 0 Then
+            ListadeServidorCloudDtg.Columns(0).Width = 200
+        End If
     End Sub
 
 

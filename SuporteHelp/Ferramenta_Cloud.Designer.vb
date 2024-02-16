@@ -77,7 +77,7 @@ Partial Class Ferramenta_Cloud
         SelecinarServidorLbl.AutoSize = True
         SelecinarServidorLbl.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SelecinarServidorLbl.ForeColor = Color.Red
-        SelecinarServidorLbl.Location = New Point(12, 206)
+        SelecinarServidorLbl.Location = New Point(824, 110)
         SelecinarServidorLbl.Name = "SelecinarServidorLbl"
         SelecinarServidorLbl.Size = New Size(170, 17)
         SelecinarServidorLbl.TabIndex = 38
@@ -86,7 +86,7 @@ Partial Class Ferramenta_Cloud
         ' ExibirServidorCloudCbx
         ' 
         ExibirServidorCloudCbx.FormattingEnabled = True
-        ExibirServidorCloudCbx.Location = New Point(12, 224)
+        ExibirServidorCloudCbx.Location = New Point(807, 132)
         ExibirServidorCloudCbx.Name = "ExibirServidorCloudCbx"
         ExibirServidorCloudCbx.Size = New Size(210, 23)
         ExibirServidorCloudCbx.TabIndex = 37
@@ -96,7 +96,7 @@ Partial Class Ferramenta_Cloud
         ConectarCloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarCloudBtn.Image = CType(resources.GetObject("ConectarCloudBtn.Image"), Image)
         ConectarCloudBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarCloudBtn.Location = New Point(902, 43)
+        ConectarCloudBtn.Location = New Point(899, 48)
         ConectarCloudBtn.Name = "ConectarCloudBtn"
         ConectarCloudBtn.Size = New Size(118, 38)
         ConectarCloudBtn.TabIndex = 36
