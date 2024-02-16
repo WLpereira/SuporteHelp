@@ -665,4 +665,16 @@ Public Class Ferramenta_Cloud
             MessageBox.Show("Por favor, selecione uma porta.")
         End If
     End Sub
+
+    Private Sub HabilitarServidor2Cbx_CheckedChanged(sender As Object, e As EventArgs) Handles HabilitarServidor2Cbx.CheckedChanged
+        ' Define a visibilidade do TextBox e da Label com base no estado do checkbox
+        ServidorCloud2Txb.Visible = HabilitarServidor2Cbx.Checked
+        Servidor2Lbl.Visible = HabilitarServidor2Cbx.Checked
+    End Sub
+
+    Private Sub HabilitarServidor3Cbx_CheckedChanged(sender As Object, e As EventArgs) Handles HabilitarServidor3Cbx.CheckedChanged
+        ' Define a visibilidade do TextBox e da Label com base no estado do checkbox
+        ServidorCloud3Txb.Visible = HabilitarServidor3Cbx.Checked
+        Servidor3Lbl.Visible = HabilitarServidor3Cbx.Checked
+    End Sub
 End Class

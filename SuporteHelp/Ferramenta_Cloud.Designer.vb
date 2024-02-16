@@ -267,6 +267,7 @@ Partial Class Ferramenta_Cloud
         ServidorCloud2Txb.Name = "ServidorCloud2Txb"
         ServidorCloud2Txb.Size = New Size(281, 23)
         ServidorCloud2Txb.TabIndex = 51
+        ServidorCloud2Txb.Visible = False
         ' 
         ' ServidorCloud3Txb
         ' 
@@ -274,6 +275,7 @@ Partial Class Ferramenta_Cloud
         ServidorCloud3Txb.Name = "ServidorCloud3Txb"
         ServidorCloud3Txb.Size = New Size(281, 23)
         ServidorCloud3Txb.TabIndex = 52
+        ServidorCloud3Txb.Visible = False
         ' 
         ' Servidor2Lbl
         ' 
@@ -285,6 +287,7 @@ Partial Class Ferramenta_Cloud
         Servidor2Lbl.Size = New Size(136, 17)
         Servidor2Lbl.TabIndex = 53
         Servidor2Lbl.Text = "Informe o Servidor 2"
+        Servidor2Lbl.Visible = False
         ' 
         ' Servidor3Lbl
         ' 
@@ -296,6 +299,7 @@ Partial Class Ferramenta_Cloud
         Servidor3Lbl.Size = New Size(136, 17)
         Servidor3Lbl.TabIndex = 54
         Servidor3Lbl.Text = "Informe o Servidor 3"
+        Servidor3Lbl.Visible = False
         ' 
         ' HabilitarServidor2Cbx
         ' 
