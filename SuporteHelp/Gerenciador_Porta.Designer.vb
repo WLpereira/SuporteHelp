@@ -49,7 +49,7 @@ Partial Class Gerenciador_Porta
         ' 
         PortaCbx.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PortaCbx.FormattingEnabled = True
-        PortaCbx.Location = New Point(367, 68)
+        PortaCbx.Location = New Point(430, 55)
         PortaCbx.Name = "PortaCbx"
         PortaCbx.Size = New Size(132, 25)
         PortaCbx.TabIndex = 0
@@ -57,7 +57,7 @@ Partial Class Gerenciador_Porta
         ' PortaTxt
         ' 
         PortaTxt.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        PortaTxt.Location = New Point(22, 68)
+        PortaTxt.Location = New Point(237, 55)
         PortaTxt.Name = "PortaTxt"
         PortaTxt.Size = New Size(174, 25)
         PortaTxt.TabIndex = 2
@@ -66,7 +66,7 @@ Partial Class Gerenciador_Porta
         ' 
         CadastrarBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         CadastrarBtn.ForeColor = Color.Black
-        CadastrarBtn.Location = New Point(212, 64)
+        CadastrarBtn.Location = New Point(275, 86)
         CadastrarBtn.Name = "CadastrarBtn"
         CadastrarBtn.Size = New Size(100, 29)
         CadastrarBtn.TabIndex = 3
@@ -78,7 +78,7 @@ Partial Class Gerenciador_Porta
         ExcluirPortaBtn.BackColor = Color.Crimson
         ExcluirPortaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ExcluirPortaBtn.ForeColor = Color.White
-        ExcluirPortaBtn.Location = New Point(522, 55)
+        ExcluirPortaBtn.Location = New Point(584, 55)
         ExcluirPortaBtn.Name = "ExcluirPortaBtn"
         ExcluirPortaBtn.Size = New Size(108, 49)
         ExcluirPortaBtn.TabIndex = 4
@@ -89,7 +89,7 @@ Partial Class Gerenciador_Porta
         ' 
         AtualizarListaBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         AtualizarListaBtn.ForeColor = Color.Black
-        AtualizarListaBtn.Location = New Point(367, 38)
+        AtualizarListaBtn.Location = New Point(430, 15)
         AtualizarListaBtn.Name = "AtualizarListaBtn"
         AtualizarListaBtn.Size = New Size(132, 24)
         AtualizarListaBtn.TabIndex = 5
@@ -119,7 +119,7 @@ Partial Class Gerenciador_Porta
         ' CadastrarBancosTxt
         ' 
         CadastrarBancosTxt.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        CadastrarBancosTxt.Location = New Point(31, 78)
+        CadastrarBancosTxt.Location = New Point(246, 48)
         CadastrarBancosTxt.Name = "CadastrarBancosTxt"
         CadastrarBancosTxt.Size = New Size(174, 25)
         CadastrarBancosTxt.TabIndex = 8
@@ -127,7 +127,7 @@ Partial Class Gerenciador_Porta
         ' CadastrarBancoBtn
         ' 
         CadastrarBancoBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        CadastrarBancoBtn.Location = New Point(221, 75)
+        CadastrarBancoBtn.Location = New Point(284, 79)
         CadastrarBancoBtn.Name = "CadastrarBancoBtn"
         CadastrarBancoBtn.Size = New Size(100, 29)
         CadastrarBancoBtn.TabIndex = 10
@@ -138,7 +138,7 @@ Partial Class Gerenciador_Porta
         ' 
         ConteudoPortaCbx.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConteudoPortaCbx.FormattingEnabled = True
-        ConteudoPortaCbx.Location = New Point(376, 79)
+        ConteudoPortaCbx.Location = New Point(439, 48)
         ConteudoPortaCbx.Name = "ConteudoPortaCbx"
         ConteudoPortaCbx.Size = New Size(132, 25)
         ConteudoPortaCbx.TabIndex = 11
@@ -147,7 +147,7 @@ Partial Class Gerenciador_Porta
         ' 
         ExcluirBancoBtn.BackColor = Color.Chartreuse
         ExcluirBancoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        ExcluirBancoBtn.Location = New Point(531, 64)
+        ExcluirBancoBtn.Location = New Point(593, 48)
         ExcluirBancoBtn.Name = "ExcluirBancoBtn"
         ExcluirBancoBtn.Size = New Size(108, 48)
         ExcluirBancoBtn.TabIndex = 12
@@ -157,7 +157,7 @@ Partial Class Gerenciador_Porta
         ' AtualizarConteudoBtn
         ' 
         AtualizarConteudoBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        AtualizarConteudoBtn.Location = New Point(376, 50)
+        AtualizarConteudoBtn.Location = New Point(439, 12)
         AtualizarConteudoBtn.Name = "AtualizarConteudoBtn"
         AtualizarConteudoBtn.Size = New Size(132, 24)
         AtualizarConteudoBtn.TabIndex = 13
@@ -202,7 +202,7 @@ Partial Class Gerenciador_Porta
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(636, 38)
+        PictureBox1.Location = New Point(59, 44)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(67, 71)
         PictureBox1.TabIndex = 16
@@ -211,7 +211,7 @@ Partial Class Gerenciador_Porta
         ' PictureBox2
         ' 
         PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), Image)
-        PictureBox2.Location = New Point(644, 50)
+        PictureBox2.Location = New Point(68, 48)
         PictureBox2.Name = "PictureBox2"
         PictureBox2.Size = New Size(68, 68)
         PictureBox2.TabIndex = 14
