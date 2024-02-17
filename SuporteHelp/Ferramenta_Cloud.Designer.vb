@@ -216,12 +216,12 @@ Partial Class Ferramenta_Cloud
         ' 
         ' CadastrosToolStripMenuItem
         ' 
-        CadastrosToolStripMenuItem.BackColor = SystemColors.ActiveCaption
+        CadastrosToolStripMenuItem.BackColor = Color.Yellow
         CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem})
         CadastrosToolStripMenuItem.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
-        CadastrosToolStripMenuItem.Size = New Size(96, 25)
-        CadastrosToolStripMenuItem.Text = "Cadastros"
+        CadastrosToolStripMenuItem.Size = New Size(135, 25)
+        CadastrosToolStripMenuItem.Text = "FERRAMENTAS"
         ' 
         ' GerenciadorDePortaToolStripMenuItem
         ' 
