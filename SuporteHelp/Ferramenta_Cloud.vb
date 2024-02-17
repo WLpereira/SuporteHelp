@@ -572,6 +572,14 @@ Public Class Ferramenta_Cloud
                 ' Cria uma DataTable para armazenar os resultados da consulta
                 Dim dt As New DataTable()
 
+                ' Adiciona as colunas 'Nome', 'NomeServidor', 'Data', 'VERSAOBCODADOS', 'Versão do Sistema' e 'DATA_DO_DBA' ao DataTable
+                dt.Columns.Add("Nome", GetType(String))
+                dt.Columns.Add("NomeServidor", GetType(String))
+                dt.Columns.Add("Data", GetType(DateTime))
+                dt.Columns.Add("VERSAOBCODADOS", GetType(String))
+                dt.Columns.Add("Versão do Sistema", GetType(String))
+                dt.Columns.Add("DATA_DO_DBA", GetType(String))
+
                 ' Declara a variável conexaoBD fora do loop
                 Dim conexaoBD As SqlConnection = Nothing
 
@@ -579,14 +587,19 @@ Public Class Ferramenta_Cloud
                     ' Ler todas as linhas do arquivo da porta
                     Dim lines() As String = File.ReadAllLines(portaFilePath)
 
-                    ' Iterar sobre as linhas do arquivo para obter os bancos de dados que estão dentro do arquivo
-                    Dim bancosSelecionados As New List(Of String)()
-                    For Each line As String In lines
-                        bancosSelecionados.Add(line)
-                    Next
-
                     ' Iterar sobre os servidores
-                    For Each servidor In New String() {ServidorCloudTxb.Text.Trim(), ServidorCloud2Txb.Text.Trim(), ServidorCloud3Txb.Text.Trim()}
+                    Dim servidores As New List(Of String)()
+                    If Not String.IsNullOrEmpty(ServidorCloudTxb.Text.Trim()) Then
+                        servidores.Add(ServidorCloudTxb.Text.Trim())
+                    End If
+                    If Not String.IsNullOrEmpty(ServidorCloud2Txb.Text.Trim()) Then
+                        servidores.Add(ServidorCloud2Txb.Text.Trim())
+                    End If
+                    If Not String.IsNullOrEmpty(ServidorCloud3Txb.Text.Trim()) Then
+                        servidores.Add(ServidorCloud3Txb.Text.Trim())
+                    End If
+
+                    For Each servidor In servidores
                         ' Verifica se o servidor informado não é um dos servidores bloqueados
                         If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") OrElse servidor.Equals("DP-SYMDB01") OrElse servidor.Equals("DP-SYMDB") Then
                             MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
@@ -600,84 +613,64 @@ Public Class Ferramenta_Cloud
                         conexaoBD = New SqlConnection(conexao)
                         conexaoBD.Open()
 
-                        ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                        Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') AND name IN ('" & String.Join("','", bancosSelecionados) & "') order by name", conexaoBD)
+                        ' Iterar sobre os bancos de dados
+                        For Each databaseName In lines
+                            ' Executa uma consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
+                            Dim queryParametro As String = "IF OBJECT_ID('" & databaseName & ".dbo.parametro', 'U') IS NOT NULL " &
+                            "BEGIN " &
+                            "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM [" & databaseName & "].dbo.parametro END"
+                            Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
 
-                        ' Carrega os dados do leitor para o DataTable
-                        Dim leitor As SqlDataReader = comando.ExecuteReader()
-                        dt.Load(leitor)
+                            ' Executa o comando e processa o resultado
+                            Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
+                            If leitorParametro.Read() Then
+                                ' Adiciona uma nova linha ao DataTable e preenche as colunas
+                                Dim newRow As DataRow = dt.NewRow()
+                                newRow("Nome") = databaseName
+                                newRow("NomeServidor") = servidor
+                                newRow("Data") = DateTime.Now ' Você pode modificar essa data de acordo com o que deseja
+                                newRow("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
+                                newRow("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
 
-                        ' Fecha a conexão com o servidor de banco de dados
-                        conexaoBD.Close()
-                    Next
+                                ' Extrai os dois dígitos do meio de "VERSAOBCODADOS" e mapeia para o formato de versão do sistema desejado
+                                Dim versaoCompleta As String = newRow("VERSAOBCODADOS").ToString()
+                                Dim versao As String = If(versaoCompleta.Length >= 6, versaoCompleta.Substring(3, 2), "")
+                                versao = versao.Replace(". ", "") ' Remove o ponto e o espaço
+                                Select Case versao
+                                    Case "40"
+                                        newRow("Versão do Sistema") = "2025.R3"
+                                    Case "39"
+                                        newRow("Versão do Sistema") = "2025.R2"
+                                    Case "38"
+                                        newRow("Versão do Sistema") = "2025.R1"
+                                    Case "37"
+                                        newRow("Versão do Sistema") = "2024.R3"
+                                    Case "36"
+                                        newRow("Versão do Sistema") = "2024.R2"
+                                    Case "35"
+                                        newRow("Versão do Sistema") = "2024.R1"
+                                    Case "34"
+                                        newRow("Versão do Sistema") = "2023.R3"
+                                    Case "33"
+                                        newRow("Versão do Sistema") = "2023.R2"
+                                    Case "32"
+                                        newRow("Versão do Sistema") = "2023.R1"
+                                    Case "31"
+                                        newRow("Versão do Sistema") = "2022.R3"
+                                    Case "30"
+                                        newRow("Versão do Sistema") = "2022.R2"
+                                    Case Else
+                                        ' Se a versão não estiver mapeada, defina a versão do sistema como "Versão não mapeada"
+                                        newRow("Versão do Sistema") = "Versão não mapeada"
+                                End Select
 
-                    ' Adiciona as colunas 'VERSAOBCODADOS' e 'DATA_DO_DBA' ao DataTable
-                    dt.Columns.Add("VERSAOBCODADOS", GetType(String))
-                    dt.Columns.Add("Versão do Sistema", GetType(String))
-                    dt.Columns.Add("DATA_DO_DBA", GetType(String))
+                                ' Adiciona a nova linha ao DataTable
+                                dt.Rows.Add(newRow)
+                            End If
 
-                    ' Itera sobre as linhas do DataTable
-                    For Each row As DataRow In dt.Rows
-                        ' Executa a consulta SQL para obter as informações do Parâmetro, considerando que a tabela pode não existir
-                        Dim queryParametro As String = "IF OBJECT_ID(@NomeBanco + '.dbo.parametro', 'U') IS NOT NULL " &
-                    "BEGIN " &
-                    "SELECT TOP 1 VERSAOBCODADOS, dtbcodados as DATA_DO_DBA FROM " &
-                    "[" & row("Nome") & "].dbo.parametro END"
-                        Dim comandoParametro As New SqlCommand(queryParametro, conexaoBD)
-
-                        ' Abre novamente a conexão com o servidor de banco de dados
-                        conexaoBD.Open()
-
-                        ' Adiciona o parâmetro para o nome do banco de dados
-                        comandoParametro.Parameters.AddWithValue("@NomeBanco", row("Nome"))
-
-                        ' Executa o comando e processa o resultado
-                        Dim leitorParametro As SqlDataReader = comandoParametro.ExecuteReader()
-                        If leitorParametro.Read() Then
-                            ' Preenche os valores nas colunas adicionadas
-                            row("VERSAOBCODADOS") = leitorParametro("VERSAOBCODADOS").ToString()
-                            row("DATA_DO_DBA") = leitorParametro("DATA_DO_DBA").ToString()
-
-                            ' Extrai os dois dígitos do meio de "VERSAOBCODADOS" e mapeia para o formato de versão do sistema desejado
-                            Dim versaoCompleta As String = row("VERSAOBCODADOS").ToString()
-                            Dim versao As String = If(versaoCompleta.Length >= 6, versaoCompleta.Substring(3, 2), "")
-                            versao = versao.Replace(". ", "") ' Remove o ponto e o espaço
-                            Select Case versao
-                                Case "40"
-                                    row("Versão do Sistema") = "2025.R3"
-                                Case "39"
-                                    row("Versão do Sistema") = "2025.R2"
-                                Case "38"
-                                    row("Versão do Sistema") = "2025.R1"
-                                Case "37"
-                                    row("Versão do Sistema") = "2024.R3"
-                                Case "36"
-                                    row("Versão do Sistema") = "2024.R2"
-                                Case "35"
-                                    row("Versão do Sistema") = "2024.R1"
-                                Case "34"
-                                    row("Versão do Sistema") = "2023.R3"
-                                Case "33"
-                                    row("Versão do Sistema") = "2023.R2"
-                                Case "32"
-                                    row("Versão do Sistema") = "2023.R1"
-                                Case "31"
-                                    row("Versão do Sistema") = "2022.R3"
-                                Case "30"
-                                    row("Versão do Sistema") = "2022.R2"
-                                Case Else
-                                    ' Se a versão não estiver mapeada, defina a versão do sistema como "Versão não mapeada"
-                                    row("Versão do Sistema") = "Versão não mapeada"
-                            End Select
-                        Else
-                            ' Se não houver resultados, define os valores como vazios
-                            row("VERSAOBCODADOS") = String.Empty
-                            row("DATA_DO_DBA") = String.Empty
-                            row("Versão do Sistema") = String.Empty
-                        End If
-
-                        ' Fecha o leitor de dados da consulta de parâmetros
-                        leitorParametro.Close()
+                            ' Fecha o leitor de dados da consulta de parâmetros
+                            leitorParametro.Close()
+                        Next
 
                         ' Fecha a conexão com o servidor de banco de dados
                         conexaoBD.Close()
