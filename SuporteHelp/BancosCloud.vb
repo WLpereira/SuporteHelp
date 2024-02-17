@@ -19,7 +19,8 @@ Public Class BancosCloud
         End If
 
         ' Verifica se o servidor informado não é um dos servidores bloqueados
-        If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") OrElse servidor.Equals("DP-SYMDB01") OrElse servidor.Equals("DP-SYMDB") Then
+        Dim servidorMinusculo As String = servidor.ToLower() ' Converter o servidor informado para minúsculas
+        If servidorMinusculo.Contains("dp01.informo.com.br,9797") OrElse servidorMinusculo.Contains("dp01.informo.com.br,9898") OrElse servidorMinusculo.Equals("dp-symdb01") OrElse servidorMinusculo.Equals("dp-symdb") Then
             MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
             Return
         End If
