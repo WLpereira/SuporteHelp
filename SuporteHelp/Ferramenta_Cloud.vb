@@ -704,4 +704,20 @@ Public Class Ferramenta_Cloud
         'Desabilitar MostrarTamanhoBtn
         MostrarTamanhoBtn.Enabled = False
     End Sub
+
+    Private Sub RARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RARToolStripMenuItem.Click
+        ' Obter o diretório do programa
+        Dim diretorioPrograma As String = Application.StartupPath
+
+        ' Construir o caminho completo para o arquivo RarExtractor.exe
+        Dim caminhoRarExtractor As String = Path.Combine(diretorioPrograma, "#RAR\RarExtractor.exe")
+
+        ' Verificar se o arquivo existe
+        If File.Exists(caminhoRarExtractor) Then
+            ' Executar o arquivo RarExtractor.exe
+            Process.Start(caminhoRarExtractor)
+        Else
+            MessageBox.Show("O arquivo RarExtractor.exe não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
 End Class

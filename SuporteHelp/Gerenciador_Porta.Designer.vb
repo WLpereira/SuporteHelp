@@ -36,13 +36,13 @@ Partial Class Gerenciador_Porta
         ExcluirBancoBtn = New Button()
         AtualizarConteudoBtn = New Button()
         BancosGbx = New GroupBox()
+        PictureBox2 = New PictureBox()
         CadastrarPertasGbx = New GroupBox()
         PictureBox1 = New PictureBox()
-        PictureBox2 = New PictureBox()
         BancosGbx.SuspendLayout()
+        CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CadastrarPertasGbx.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PortaCbx
@@ -82,7 +82,7 @@ Partial Class Gerenciador_Porta
         ExcluirPortaBtn.Name = "ExcluirPortaBtn"
         ExcluirPortaBtn.Size = New Size(108, 49)
         ExcluirPortaBtn.TabIndex = 4
-        ExcluirPortaBtn.Text = "Excluir Portas"
+        ExcluirPortaBtn.Text = "Excluir Porta Selecionada"
         ExcluirPortaBtn.UseVisualStyleBackColor = False
         ' 
         ' AtualizarListaBtn
@@ -176,10 +176,19 @@ Partial Class Gerenciador_Porta
         BancosGbx.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         BancosGbx.Location = New Point(27, 264)
         BancosGbx.Name = "BancosGbx"
-        BancosGbx.Size = New Size(719, 159)
+        BancosGbx.Size = New Size(728, 159)
         BancosGbx.TabIndex = 14
         BancosGbx.TabStop = False
         BancosGbx.Text = "CADASTRAR BANCOS"
+        ' 
+        ' PictureBox2
+        ' 
+        PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), Image)
+        PictureBox2.Location = New Point(68, 48)
+        PictureBox2.Name = "PictureBox2"
+        PictureBox2.Size = New Size(68, 68)
+        PictureBox2.TabIndex = 14
+        PictureBox2.TabStop = False
         ' 
         ' CadastrarPertasGbx
         ' 
@@ -208,33 +217,27 @@ Partial Class Gerenciador_Porta
         PictureBox1.TabIndex = 16
         PictureBox1.TabStop = False
         ' 
-        ' PictureBox2
-        ' 
-        PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), Image)
-        PictureBox2.Location = New Point(68, 48)
-        PictureBox2.Name = "PictureBox2"
-        PictureBox2.Size = New Size(68, 68)
-        PictureBox2.TabIndex = 14
-        PictureBox2.TabStop = False
-        ' 
         ' Gerenciador_Porta
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.AppWorkspace
         ClientSize = New Size(800, 450)
         Controls.Add(CadastrarPertasGbx)
         Controls.Add(BancosGbx)
         Controls.Add(CarregarPortasBtn)
         Controls.Add(ListarPortasCbx)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        MinimizeBox = False
         Name = "Gerenciador_Porta"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Gerenciador_de_Porta"
         BancosGbx.ResumeLayout(False)
         BancosGbx.PerformLayout()
+        CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
         CadastrarPertasGbx.ResumeLayout(False)
         CadastrarPertasGbx.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
