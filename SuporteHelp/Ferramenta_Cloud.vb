@@ -57,7 +57,7 @@ Public Class Ferramenta_Cloud
                 conexaoBD.Open()
 
                 ' Executa uma consulta SQL que retorna todos os bancos de dados do servidor
-                Dim comando As New SqlCommand("SELECT name as 'Nome', create_date as 'Data' FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD)
+                Dim comando As New SqlCommand("SELECT name as 'Nome', @@SERVERNAME as 'NomeServidor', create_date as 'Data' FROM sys.databases WHERE state_desc <> 'OFFLINE' AND name NOT IN ('master', 'tempdb', 'model', 'msdb') order by name", conexaoBD)
 
                 ' Carrega os dados do leitor para o DataTable
                 Dim leitor As SqlDataReader = comando.ExecuteReader()
