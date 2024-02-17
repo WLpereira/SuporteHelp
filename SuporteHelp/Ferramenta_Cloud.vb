@@ -753,4 +753,60 @@ Public Class Ferramenta_Cloud
             MessageBox.Show("O arquivo RarExtractor.exe não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+
+    Private Sub TotalLogEventoBtn_Click(sender As Object, e As EventArgs) Handles TotalLogEventoBtn.Click
+        ' Verifica se o DataGridView foi inicializado e possui linhas
+        If ListadeServidorCloudDtg IsNot Nothing AndAlso ListadeServidorCloudDtg.Rows.Count > 0 Then
+            ' Inicializa a variável para armazenar o total do tamanho dos logs de eventos
+            Dim totalSizeLogEvento As Decimal = 0
+
+            ' Itera sobre as linhas do DataGridView
+            For Each row As DataGridViewRow In ListadeServidorCloudDtg.Rows
+                ' Verifica se a célula "TotalSizeMB_LogEvento" existe
+                If row.Cells("TotalSizeMB_LogEvento") IsNot Nothing AndAlso row.Cells("TotalSizeMB_LogEvento").Value IsNot Nothing Then
+                    ' Obtém o valor da célula "TotalSizeMB_LogEvento" e adiciona ao total
+                    totalSizeLogEvento += Convert.ToDecimal(row.Cells("TotalSizeMB_LogEvento").Value)
+                End If
+            Next
+
+            ' Exibe o total do tamanho dos logs de eventos em uma mensagem
+            MessageBox.Show("Total do Tamanho dos Logs de Eventos: " & totalSizeLogEvento.ToString() & " MB")
+        Else
+            MessageBox.Show("Não há bancos de dados para calcular o total do tamanho dos logs de eventos.")
+        End If
+    End Sub
+
+    Private Sub MediaLogEventoBtn_Click(sender As Object, e As EventArgs) Handles MediaLogEventoBtn.Click
+        ' Verifica se o DataGridView foi inicializado e possui linhas
+        If ListadeServidorCloudDtg IsNot Nothing AndAlso ListadeServidorCloudDtg.Rows.Count > 0 Then
+            ' Inicializa as variáveis para armazenar o total do tamanho dos logs de eventos e o número de linhas
+            Dim totalSizeLogEvento As Decimal = 0
+            Dim totalLinhas As Integer = 0
+
+            ' Itera sobre as linhas do DataGridView
+            For Each row As DataGridViewRow In ListadeServidorCloudDtg.Rows
+                ' Verifica se a célula "TotalSizeMB_LogEvento" existe e contém um valor
+                If row.Cells("TotalSizeMB_LogEvento") IsNot Nothing AndAlso row.Cells("TotalSizeMB_LogEvento").Value IsNot Nothing Then
+                    ' Obtém o valor da célula "TotalSizeMB_LogEvento" e adiciona ao total
+                    totalSizeLogEvento += Convert.ToDecimal(row.Cells("TotalSizeMB_LogEvento").Value)
+                    ' Incrementa o número total de linhas
+                    totalLinhas += 1
+                End If
+            Next
+
+            ' Verifica se há pelo menos uma linha para calcular a média
+            If totalLinhas > 0 Then
+                ' Calcula a média do tamanho dos logs de eventos
+                Dim mediaSizeLogEvento As Decimal = totalSizeLogEvento / totalLinhas
+
+                ' Exibe a média do tamanho dos logs de eventos em uma mensagem
+                MessageBox.Show("Média do Tamanho dos Logs de Eventos: " & mediaSizeLogEvento.ToString("0.00") & " MB por banco de dados")
+            Else
+                MessageBox.Show("Não foi possível calcular a média pois não há dados disponíveis.")
+            End If
+        Else
+            MessageBox.Show("Não há bancos de dados para calcular a média do tamanho dos logs de eventos.")
+        End If
+
+    End Sub
 End Class
