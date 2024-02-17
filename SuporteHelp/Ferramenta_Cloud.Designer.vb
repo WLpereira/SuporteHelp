@@ -146,7 +146,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' ListadeServidorCloudDtg
         ' 
-        ListadeServidorCloudDtg.BackgroundColor = SystemColors.AppWorkspace
+        ListadeServidorCloudDtg.BackgroundColor = SystemColors.Control
         ListadeServidorCloudDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         ListadeServidorCloudDtg.Location = New Point(222, 211)
         ListadeServidorCloudDtg.Name = "ListadeServidorCloudDtg"
@@ -205,7 +205,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' MenuStrip1
         ' 
-        MenuStrip1.BackColor = SystemColors.ActiveBorder
+        MenuStrip1.BackColor = SystemColors.Control
         MenuStrip1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         MenuStrip1.Items.AddRange(New ToolStripItem() {CadastrosToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
@@ -216,7 +216,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' CadastrosToolStripMenuItem
         ' 
-        CadastrosToolStripMenuItem.BackColor = SystemColors.ActiveBorder
+        CadastrosToolStripMenuItem.BackColor = SystemColors.ActiveCaption
         CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem})
         CadastrosToolStripMenuItem.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
@@ -356,7 +356,7 @@ Partial Class Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = SystemColors.AppWorkspace
+        BackColor = SystemColors.Control
         ClientSize = New Size(1062, 749)
         Controls.Add(PictureBox1)
         Controls.Add(HabilitarServidor3Cbx)
@@ -384,6 +384,7 @@ Partial Class Ferramenta_Cloud
         Controls.Add(ServidorCloudTxb)
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
+        ForeColor = SystemColors.ControlText
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         MaximizeBox = False

@@ -221,7 +221,7 @@ Partial Class Gerenciador_Porta
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = SystemColors.AppWorkspace
+        BackColor = SystemColors.Control
         ClientSize = New Size(800, 450)
         Controls.Add(CadastrarPertasGbx)
         Controls.Add(BancosGbx)
