@@ -19,6 +19,11 @@ Public Class Ferramenta_Cloud
         TotalLogEventoBtn.Visible = False
         MediaLogEventoBtn.Visible = False
 
+        ' Desabilitar
+        TotalLogAcessoSymBtn.Visible = False
+        MediaLogAcessoSymBtn.Visible = False
+        SHRINKBtn.Visible = False
+
         ' Limpar DataTable antes de adicionar novos dados
         dtTodosBancos.Clear()
 
@@ -251,6 +256,13 @@ Public Class Ferramenta_Cloud
 
 
     Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
+        'Habilita
+        SHRINKBtn.Visible = True
+
+        ' Desabilitar
+        TotalLogAcessoSymBtn.Visible = False
+        MediaLogAcessoSymBtn.Visible = False
+
         ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = False
         MediaLogEventoBtn.Visible = False
@@ -373,6 +385,9 @@ Public Class Ferramenta_Cloud
         ' Habilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = True
         MediaLogEventoBtn.Visible = True
+        ' Habilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
+        TotalLogAcessoSymBtn.Visible = True
+        MediaLogAcessoSymBtn.Visible = True
 
         'Desabilitar MostrarTamanhoBtn
         MostrarTamanhoBtn.Enabled = False
@@ -477,6 +492,10 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub LimparColunaCloudBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaCloudBtn.Click
+        ' Desabilitar
+        TotalLogAcessoSymBtn.Visible = False
+        MediaLogAcessoSymBtn.Visible = False
+        SHRINKBtn.Visible = False
         ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = False
         MediaLogEventoBtn.Visible = False
@@ -566,7 +585,10 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub SelecionarPortaBtn_Click(sender As Object, e As EventArgs) Handles SelecionarPortaBtn.Click
-
+        ' Desabilitar
+        TotalLogAcessoSymBtn.Visible = False
+        MediaLogAcessoSymBtn.Visible = False
+        SHRINKBtn.Visible = False
         ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = False
         MediaLogEventoBtn.Visible = False
@@ -808,5 +830,92 @@ Public Class Ferramenta_Cloud
             MessageBox.Show("Não há bancos de dados para calcular a média do tamanho dos logs de eventos.")
         End If
 
+    End Sub
+
+    Private Sub TotalLogAcessoSymBtn_Click(sender As Object, e As EventArgs) Handles TotalLogAcessoSymBtn.Click
+        ' Verifica se o DataGridView foi inicializado e possui linhas
+        If ListadeServidorCloudDtg IsNot Nothing AndAlso ListadeServidorCloudDtg.Rows.Count > 0 Then
+            ' Inicializa a variável para armazenar o total do tamanho dos logs de acesso Sym
+            Dim totalSizeLogAcessoSym As Decimal = 0
+
+            ' Itera sobre as linhas do DataGridView
+            For Each row As DataGridViewRow In ListadeServidorCloudDtg.Rows
+                ' Verifica se a célula "TotalSizeMB_LogAcessoSym" existe e contém um valor
+                If row.Cells("TotalSizeMB_LogAcessoSym") IsNot Nothing AndAlso row.Cells("TotalSizeMB_LogAcessoSym").Value IsNot Nothing Then
+                    ' Obtém o valor da célula "TotalSizeMB_LogAcessoSym" e adiciona ao total
+                    totalSizeLogAcessoSym += Convert.ToDecimal(row.Cells("TotalSizeMB_LogAcessoSym").Value)
+                End If
+            Next
+
+            ' Exibe o total do tamanho dos logs de acesso Sym em uma mensagem
+            MessageBox.Show("Total do Tamanho dos Logs de Acesso Sym: " & totalSizeLogAcessoSym.ToString("0.00") & " MB")
+        Else
+            MessageBox.Show("Não há bancos de dados para calcular o total do tamanho dos logs de acesso Sym.")
+        End If
+    End Sub
+
+    Private Sub MediaLogAcessoSymBtn_Click(sender As Object, e As EventArgs) Handles MediaLogAcessoSymBtn.Click
+        ' Verifica se o DataGridView foi inicializado e possui linhas
+        If ListadeServidorCloudDtg IsNot Nothing AndAlso ListadeServidorCloudDtg.Rows.Count > 0 Then
+            ' Inicializa as variáveis para calcular a média
+            Dim totalSizeLogAcessoSym As Decimal = 0
+            Dim numLinhas As Integer = 0
+
+            ' Itera sobre as linhas do DataGridView
+            For Each row As DataGridViewRow In ListadeServidorCloudDtg.Rows
+                ' Verifica se a célula "TotalSizeMB_LogAcessoSym" existe e contém um valor
+                If row.Cells("TotalSizeMB_LogAcessoSym") IsNot Nothing AndAlso row.Cells("TotalSizeMB_LogAcessoSym").Value IsNot Nothing Then
+                    ' Obtém o valor da célula "TotalSizeMB_LogAcessoSym" e adiciona ao total
+                    totalSizeLogAcessoSym += Convert.ToDecimal(row.Cells("TotalSizeMB_LogAcessoSym").Value)
+                    ' Incrementa o número de linhas
+                    numLinhas += 1
+                End If
+            Next
+
+            ' Calcula a média
+            Dim mediaLogAcessoSym As Decimal = If(numLinhas > 0, totalSizeLogAcessoSym / numLinhas, 0)
+
+            ' Exibe a média em uma mensagem
+            MessageBox.Show("Média do Tamanho dos Logs de Acesso Sym: " & mediaLogAcessoSym.ToString("0.00") & " MB por banco de dados")
+        Else
+            MessageBox.Show("Não há bancos de dados para calcular a média do tamanho dos logs de acesso Sym.")
+        End If
+    End Sub
+
+    Private Sub SHRINKBtn_Click(sender As Object, e As EventArgs) Handles SHRINKBtn.Click
+        ' Verifica se há alguma linha selecionada no DataGridView
+        If ListadeServidorCloudDtg.SelectedRows.Count > 0 Then
+            ' Obtém o nome do banco de dados da linha selecionada
+            Dim dbName As String = ListadeServidorCloudDtg.SelectedRows(0).Cells("database_name").Value.ToString()
+
+            ' Cria uma string de conexão com o banco de dados selecionado
+            Dim builder As New SqlConnectionStringBuilder()
+            builder.DataSource = ServidorCloudTxb.Text
+            builder.UserID = NomeConectarCloudTxb.Text
+            builder.Password = SenhaCloudTxb.Text
+            builder.InitialCatalog = dbName
+            builder.IntegratedSecurity = False ' desativa a autenticação integrada do Windows
+            Dim connectionString As String = builder.ConnectionString
+
+            ' Executa o comando DBCC SHRINKDATABASE no banco de dados selecionado
+            Try
+                Using connection As New SqlConnection(connectionString)
+                    connection.Open()
+
+                    Dim sql As String = "DBCC SHRINKDATABASE(N'" & dbName & "')"
+                    Dim command As New SqlCommand(sql, connection)
+
+                    ' Aumenta o tempo limite do comando para 5 minutos (300 segundos)
+                    command.CommandTimeout = 800
+
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("DBCC SHRINKDATABASE executado com sucesso no banco de dados " & dbName & ".")
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Erro ao executar o comando DBCC SHRINKDATABASE: " & ex.Message)
+            End Try
+        Else
+            MessageBox.Show("Por favor, selecione um banco de dados na lista.")
+        End If
     End Sub
 End Class

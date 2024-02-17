@@ -55,6 +55,9 @@ Partial Class Ferramenta_Cloud
         PictureBox1 = New PictureBox()
         TotalLogEventoBtn = New Button()
         MediaLogEventoBtn = New Button()
+        MediaLogAcessoSymBtn = New Button()
+        TotalLogAcessoSymBtn = New Button()
+        SHRINKBtn = New Button()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -197,9 +200,9 @@ Partial Class Ferramenta_Cloud
         LimparColunaCloudBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         LimparColunaCloudBtn.Image = CType(resources.GetObject("LimparColunaCloudBtn.Image"), Image)
         LimparColunaCloudBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparColunaCloudBtn.Location = New Point(895, 695)
+        LimparColunaCloudBtn.Location = New Point(929, 695)
         LimparColunaCloudBtn.Name = "LimparColunaCloudBtn"
-        LimparColunaCloudBtn.Size = New Size(137, 52)
+        LimparColunaCloudBtn.Size = New Size(103, 52)
         LimparColunaCloudBtn.TabIndex = 45
         LimparColunaCloudBtn.Text = "Limpar"
         LimparColunaCloudBtn.TextAlign = ContentAlignment.MiddleRight
@@ -357,10 +360,11 @@ Partial Class Ferramenta_Cloud
         ' TotalLogEventoBtn
         ' 
         TotalLogEventoBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        TotalLogEventoBtn.ForeColor = Color.Navy
         TotalLogEventoBtn.ImageAlign = ContentAlignment.MiddleLeft
         TotalLogEventoBtn.Location = New Point(222, 695)
         TotalLogEventoBtn.Name = "TotalLogEventoBtn"
-        TotalLogEventoBtn.Size = New Size(137, 52)
+        TotalLogEventoBtn.Size = New Size(121, 52)
         TotalLogEventoBtn.TabIndex = 58
         TotalLogEventoBtn.Text = "Total da LogEvento"
         TotalLogEventoBtn.TextAlign = ContentAlignment.TopCenter
@@ -370,15 +374,58 @@ Partial Class Ferramenta_Cloud
         ' MediaLogEventoBtn
         ' 
         MediaLogEventoBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        MediaLogEventoBtn.ForeColor = Color.Navy
         MediaLogEventoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        MediaLogEventoBtn.Location = New Point(365, 695)
+        MediaLogEventoBtn.Location = New Point(349, 695)
         MediaLogEventoBtn.Name = "MediaLogEventoBtn"
-        MediaLogEventoBtn.Size = New Size(137, 52)
+        MediaLogEventoBtn.Size = New Size(121, 52)
         MediaLogEventoBtn.TabIndex = 59
         MediaLogEventoBtn.Text = "Média da LogEvento"
         MediaLogEventoBtn.TextAlign = ContentAlignment.TopCenter
         MediaLogEventoBtn.UseVisualStyleBackColor = True
         MediaLogEventoBtn.Visible = False
+        ' 
+        ' MediaLogAcessoSymBtn
+        ' 
+        MediaLogAcessoSymBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        MediaLogAcessoSymBtn.ForeColor = Color.FromArgb(CByte(192), CByte(0), CByte(0))
+        MediaLogAcessoSymBtn.ImageAlign = ContentAlignment.MiddleLeft
+        MediaLogAcessoSymBtn.Location = New Point(615, 695)
+        MediaLogAcessoSymBtn.Name = "MediaLogAcessoSymBtn"
+        MediaLogAcessoSymBtn.Size = New Size(133, 52)
+        MediaLogAcessoSymBtn.TabIndex = 61
+        MediaLogAcessoSymBtn.Text = "Média da LogAcessoSym"
+        MediaLogAcessoSymBtn.TextAlign = ContentAlignment.TopCenter
+        MediaLogAcessoSymBtn.UseVisualStyleBackColor = True
+        MediaLogAcessoSymBtn.Visible = False
+        ' 
+        ' TotalLogAcessoSymBtn
+        ' 
+        TotalLogAcessoSymBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        TotalLogAcessoSymBtn.ForeColor = Color.FromArgb(CByte(192), CByte(0), CByte(0))
+        TotalLogAcessoSymBtn.ImageAlign = ContentAlignment.MiddleLeft
+        TotalLogAcessoSymBtn.Location = New Point(476, 695)
+        TotalLogAcessoSymBtn.Name = "TotalLogAcessoSymBtn"
+        TotalLogAcessoSymBtn.Size = New Size(133, 52)
+        TotalLogAcessoSymBtn.TabIndex = 60
+        TotalLogAcessoSymBtn.Text = "Total da LogAcessoSym"
+        TotalLogAcessoSymBtn.TextAlign = ContentAlignment.TopCenter
+        TotalLogAcessoSymBtn.UseVisualStyleBackColor = True
+        TotalLogAcessoSymBtn.Visible = False
+        ' 
+        ' SHRINKBtn
+        ' 
+        SHRINKBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        SHRINKBtn.ForeColor = Color.Red
+        SHRINKBtn.ImageAlign = ContentAlignment.MiddleLeft
+        SHRINKBtn.Location = New Point(779, 695)
+        SHRINKBtn.Name = "SHRINKBtn"
+        SHRINKBtn.Size = New Size(121, 52)
+        SHRINKBtn.TabIndex = 62
+        SHRINKBtn.Text = "Executar SHRINK"
+        SHRINKBtn.TextAlign = ContentAlignment.TopCenter
+        SHRINKBtn.UseVisualStyleBackColor = True
+        SHRINKBtn.Visible = False
         ' 
         ' Ferramenta_Cloud
         ' 
@@ -386,6 +433,9 @@ Partial Class Ferramenta_Cloud
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Control
         ClientSize = New Size(1062, 749)
+        Controls.Add(SHRINKBtn)
+        Controls.Add(MediaLogAcessoSymBtn)
+        Controls.Add(TotalLogAcessoSymBtn)
         Controls.Add(MediaLogEventoBtn)
         Controls.Add(TotalLogEventoBtn)
         Controls.Add(PictureBox1)
@@ -461,4 +511,7 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents RARToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TotalLogEventoBtn As Button
     Friend WithEvents MediaLogEventoBtn As Button
+    Friend WithEvents MediaLogAcessoSymBtn As Button
+    Friend WithEvents TotalLogAcessoSymBtn As Button
+    Friend WithEvents SHRINKBtn As Button
 End Class
