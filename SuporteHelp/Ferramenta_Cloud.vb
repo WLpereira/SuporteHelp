@@ -11,18 +11,9 @@ Imports System.Text
 Public Class Ferramenta_Cloud
 
     ' Declaração das variáveis no escopo da classe
-
     Private conexao As String = ""
-    Private conexao2 As String = ""
-    Private conexao3 As String = ""
-    Private Nome2ConectarCloudTxb As String = ""
-    Private Nome3ConectarCloudTxb As String = ""
-    Private Senha2CloudTxb As String = ""
-    Private Senha3CloudTxb As String = ""
-
-    Private e As Object
-    ' DataTable para armazenar os bancos de dados de todos os servidores
     Private dtTodosBancos As New DataTable()
+
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
         ' Limpar DataTable antes de adicionar novos dados
         dtTodosBancos.Clear()
@@ -50,14 +41,12 @@ Public Class Ferramenta_Cloud
             Return
         End If
 
-        ' Verifica se o servidor informado não é um dos servidores bloqueados
-        If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") Then
-            MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
-            Return
-        End If
-
         ' Cria uma string de conexão com o servidor de banco de dados
-        Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+        Dim conexaoString As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
+
+        ' Atualiza a variável de conexão da classe
+        conexao = conexaoString
+
 
         ' Cria uma DataTable para armazenar os resultados da consulta
         Dim dt As New DataTable()
@@ -372,7 +361,6 @@ Public Class Ferramenta_Cloud
             BackgroundWorker1.ReportProgress(100, e.Result)
         End If
     End Sub
-
     Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
         'Desabilitar MostrarTamanhoBtn
         MostrarTamanhoBtn.Enabled = False
@@ -398,51 +386,77 @@ Public Class Ferramenta_Cloud
                     ' Obtém o nome do banco de dados da linha atual
                     Dim dbName As String = row.Cells("Nome").Value.ToString()
 
-                    ' Executa os comandos SQL para cada servidor
-                    For i As Integer = 1 To 3
-                        Dim conexaoAtual As String = If(i = 1, conexao, If(i = 2, conexao2, conexao3))
-                        Dim usuarioAtual As String = If(i = 1, NomeConectarCloudTxb.Text, If(i = 2, Nome2ConectarCloudTxb, Nome3ConectarCloudTxb))
-                        Dim senhaAtual As String = If(i = 1, SenhaCloudTxb.Text, If(i = 2, Senha2CloudTxb, Senha3CloudTxb))
+                    ' Executa a consulta SQL para o banco de dados 'LogEvento'
+                    Dim queryLogEvento As String = "SELECT 
+                                t.NAME AS TableName,
+                                CAST(SUM(p.rows) AS INT) AS TotalRows,
+                                CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB
+                            FROM 
+                                [" & dbName & "].sys.tables t
+                            INNER JOIN      
+                                [" & dbName & "].sys.indexes i ON t.OBJECT_ID = i.object_id
+                            INNER JOIN 
+                                [" & dbName & "].sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
+                            INNER JOIN 
+                                [" & dbName & "].sys.allocation_units a ON p.partition_id = a.container_id
+                            WHERE 
+                                t.NAME = 'LogEvento'
+                            GROUP BY 
+                                t.NAME;"
 
-                        Dim queryLogEvento As String = "..." ' Sua consulta para o banco de dados 'LogEvento'
-                        Dim queryLogAcessoSym As String = "..." ' Sua consulta para o banco de dados 'LogAcessoSym'
+                    ' Executa a consulta SQL para o banco de dados 'LogAcessoSym'
+                    Dim queryLogAcessoSym As String = "SELECT 
+                                    t.NAME AS TableName,
+                                    CAST(SUM(p.rows) AS INT) AS TotalRows,
+                                    CAST(SUM(a.total_pages) * 8 / 1024.0 AS DECIMAL(18, 2)) AS TotalSizeMB
+                                FROM 
+                                    [" & dbName & "].sys.tables t
+                                INNER JOIN      
+                                    [" & dbName & "].sys.indexes i ON t.OBJECT_ID = i.object_id
+                                INNER JOIN 
+                                    [" & dbName & "].sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
+                                INNER JOIN 
+                                    [" & dbName & "].sys.allocation_units a ON p.partition_id = a.container_id
+                                WHERE 
+                                    t.NAME = 'LogAcessoSym'
+                                GROUP BY 
+                                    t.NAME;"
 
-                        ' Executa as consultas SQL e obtém os resultados
-                        Dim totalRowsLogEvento As Integer = 0
-                        Dim totalSizeMBLogEvento As Decimal = 0
-                        Dim totalRowsLogAcessoSym As Integer = 0
-                        Dim totalSizeMBLogAcessoSym As Decimal = 0
+                    ' Executa as consultas SQL e obtém os resultados
+                    Dim totalRowsLogEvento As Integer = 0
+                    Dim totalSizeMBLogEvento As Decimal = 0
+                    Dim totalRowsLogAcessoSym As Integer = 0
+                    Dim totalSizeMBLogAcessoSym As Decimal = 0
 
-                        Using conexaoBD As New SqlConnection(conexaoAtual)
-                            Try
-                                conexaoBD.Open()
+                    Using conexaoBD As New SqlConnection(conexao)
+                        Try
+                            conexaoBD.Open()
 
-                                Dim comandoLogEvento As New SqlCommand(queryLogEvento, conexaoBD)
-                                Dim leitorLogEvento As SqlDataReader = comandoLogEvento.ExecuteReader()
-                                If leitorLogEvento.Read() Then
-                                    totalRowsLogEvento = Convert.ToInt32(leitorLogEvento("TotalRows"))
-                                    totalSizeMBLogEvento = Convert.ToDecimal(leitorLogEvento("TotalSizeMB"))
-                                End If
-                                leitorLogEvento.Close()
+                            Dim comandoLogEvento As New SqlCommand(queryLogEvento, conexaoBD)
+                            Dim leitorLogEvento As SqlDataReader = comandoLogEvento.ExecuteReader()
+                            If leitorLogEvento.Read() Then
+                                totalRowsLogEvento = Convert.ToInt32(leitorLogEvento("TotalRows"))
+                                totalSizeMBLogEvento = Convert.ToDecimal(leitorLogEvento("TotalSizeMB"))
+                            End If
+                            leitorLogEvento.Close()
 
-                                Dim comandoLogAcessoSym As New SqlCommand(queryLogAcessoSym, conexaoBD)
-                                Dim leitorLogAcessoSym As SqlDataReader = comandoLogAcessoSym.ExecuteReader()
-                                If leitorLogAcessoSym.Read() Then
-                                    totalRowsLogAcessoSym = Convert.ToInt32(leitorLogAcessoSym("TotalRows"))
-                                    totalSizeMBLogAcessoSym = Convert.ToDecimal(leitorLogAcessoSym("TotalSizeMB"))
-                                End If
-                                leitorLogAcessoSym.Close()
-                            Catch ex As Exception
-                                MessageBox.Show("Erro ao consultar o banco de dados '" & dbName & "' no servidor " & i & ": " & ex.Message)
-                            End Try
-                        End Using
+                            Dim comandoLogAcessoSym As New SqlCommand(queryLogAcessoSym, conexaoBD)
+                            Dim leitorLogAcessoSym As SqlDataReader = comandoLogAcessoSym.ExecuteReader()
+                            If leitorLogAcessoSym.Read() Then
+                                totalRowsLogAcessoSym = Convert.ToInt32(leitorLogAcessoSym("TotalRows"))
+                                totalSizeMBLogAcessoSym = Convert.ToDecimal(leitorLogAcessoSym("TotalSizeMB"))
+                            End If
+                            leitorLogAcessoSym.Close()
+                        Catch ex As Exception
+                            MessageBox.Show("Erro ao consultar o banco de dados '" & dbName & "': " & ex.Message)
+                        End Try
+                    End Using
 
-                        ' Adiciona os resultados como valores nas colunas adicionadas para esta linha
-                        row.Cells("TotalRows_LogEvento").Value = totalRowsLogEvento
-                        row.Cells("TotalSizeMB_LogEvento").Value = totalSizeMBLogEvento
-                        row.Cells("TotalRows_LogAcessoSym").Value = totalRowsLogAcessoSym
-                        row.Cells("TotalSizeMB_LogAcessoSym").Value = totalSizeMBLogAcessoSym
-                    Next
+                    ' Adiciona os resultados como valores nas colunas adicionadas para esta linha
+                    row.Cells("TotalRows_LogEvento").Value = totalRowsLogEvento
+                    row.Cells("TotalSizeMB_LogEvento").Value = totalSizeMBLogEvento
+                    row.Cells("TotalRows_LogAcessoSym").Value = totalRowsLogAcessoSym
+                    row.Cells("TotalSizeMB_LogAcessoSym").Value = totalSizeMBLogAcessoSym
                 End If
             Next
         Else
@@ -557,10 +571,10 @@ Public Class Ferramenta_Cloud
                 End If
 
                 ' Verifica se o servidor informado não é um dos servidores bloqueados
-                If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") Then
-                    MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
-                    Return
-                End If
+                '  If servidor.Contains("dp01.informo.com.br,9797") OrElse servidor.Contains("dp01.informo.com.br,9898") Then
+                'MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
+                'Return
+                ' End If
 
                 ' Cria uma string de conexão com o servidor de banco de dados
                 Dim conexao As String = "Server=" & servidor & ";User Id=" & usuario & ";Password=" & senha
@@ -674,11 +688,20 @@ Public Class Ferramenta_Cloud
         ' Define a visibilidade do TextBox e da Label com base no estado do checkbox
         ServidorCloud2Txb.Visible = HabilitarServidor2Cbx.Checked
         Servidor2Lbl.Visible = HabilitarServidor2Cbx.Checked
+        'Desabilitar LogEventoBtn
+        LogEventoBtn.Enabled = False
+        'Desabilitar MostrarTamanhoBtn
+        MostrarTamanhoBtn.Enabled = False
+
     End Sub
 
     Private Sub HabilitarServidor3Cbx_CheckedChanged(sender As Object, e As EventArgs) Handles HabilitarServidor3Cbx.CheckedChanged
         ' Define a visibilidade do TextBox e da Label com base no estado do checkbox
         ServidorCloud3Txb.Visible = HabilitarServidor3Cbx.Checked
         Servidor3Lbl.Visible = HabilitarServidor3Cbx.Checked
+        'Desabilitar LogEventoBtn
+        LogEventoBtn.Enabled = False
+        'Desabilitar MostrarTamanhoBtn
+        MostrarTamanhoBtn.Enabled = False
     End Sub
 End Class
