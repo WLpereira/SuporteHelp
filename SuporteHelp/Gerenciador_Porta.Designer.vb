@@ -228,6 +228,7 @@ Partial Class Gerenciador_Porta
         Controls.Add(CarregarPortasBtn)
         Controls.Add(ListarPortasCbx)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        MaximizeBox = False
         MinimizeBox = False
         Name = "Gerenciador_Porta"
         StartPosition = FormStartPosition.CenterScreen
