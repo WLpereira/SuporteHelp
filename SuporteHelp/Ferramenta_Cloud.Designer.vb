@@ -386,7 +386,9 @@ Partial Class Ferramenta_Cloud
         Controls.Add(MenuStrip1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
+        MaximizeBox = False
         Name = "Ferramenta_Cloud"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Ferramenta_Cloud"
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).EndInit()
         MenuStrip1.ResumeLayout(False)
