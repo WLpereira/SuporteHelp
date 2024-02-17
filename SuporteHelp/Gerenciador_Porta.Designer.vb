@@ -22,6 +22,7 @@ Partial Class Gerenciador_Porta
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Gerenciador_Porta))
         PortaCbx = New ComboBox()
         PortaTxt = New TextBox()
         CadastrarBtn = New Button()
@@ -36,8 +37,12 @@ Partial Class Gerenciador_Porta
         AtualizarConteudoBtn = New Button()
         BancosGbx = New GroupBox()
         CadastrarPertasGbx = New GroupBox()
+        PictureBox1 = New PictureBox()
+        PictureBox2 = New PictureBox()
         BancosGbx.SuspendLayout()
         CadastrarPertasGbx.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PortaCbx
@@ -162,6 +167,7 @@ Partial Class Gerenciador_Porta
         ' BancosGbx
         ' 
         BancosGbx.BackColor = Color.CornflowerBlue
+        BancosGbx.Controls.Add(PictureBox2)
         BancosGbx.Controls.Add(AtualizarConteudoBtn)
         BancosGbx.Controls.Add(ExcluirBancoBtn)
         BancosGbx.Controls.Add(ConteudoPortaCbx)
@@ -178,6 +184,7 @@ Partial Class Gerenciador_Porta
         ' CadastrarPertasGbx
         ' 
         CadastrarPertasGbx.BackColor = SystemColors.ControlDarkDark
+        CadastrarPertasGbx.Controls.Add(PictureBox1)
         CadastrarPertasGbx.Controls.Add(AtualizarListaBtn)
         CadastrarPertasGbx.Controls.Add(ExcluirPortaBtn)
         CadastrarPertasGbx.Controls.Add(CadastrarBtn)
@@ -192,6 +199,24 @@ Partial Class Gerenciador_Porta
         CadastrarPertasGbx.TabStop = False
         CadastrarPertasGbx.Text = "CADASTRAR PORTAS"
         ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(636, 38)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(67, 71)
+        PictureBox1.TabIndex = 16
+        PictureBox1.TabStop = False
+        ' 
+        ' PictureBox2
+        ' 
+        PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), Image)
+        PictureBox2.Location = New Point(644, 50)
+        PictureBox2.Name = "PictureBox2"
+        PictureBox2.Size = New Size(68, 68)
+        PictureBox2.TabIndex = 14
+        PictureBox2.TabStop = False
+        ' 
         ' Gerenciador_Porta
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -201,12 +226,15 @@ Partial Class Gerenciador_Porta
         Controls.Add(BancosGbx)
         Controls.Add(CarregarPortasBtn)
         Controls.Add(ListarPortasCbx)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Gerenciador_Porta"
         Text = "Gerenciador_de_Porta"
         BancosGbx.ResumeLayout(False)
         BancosGbx.PerformLayout()
         CadastrarPertasGbx.ResumeLayout(False)
         CadastrarPertasGbx.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -224,4 +252,6 @@ Partial Class Gerenciador_Porta
     Friend WithEvents AtualizarConteudoBtn As Button
     Friend WithEvents BancosGbx As GroupBox
     Friend WithEvents CadastrarPertasGbx As GroupBox
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

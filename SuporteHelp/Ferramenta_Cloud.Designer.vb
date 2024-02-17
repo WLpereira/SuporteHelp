@@ -51,8 +51,10 @@ Partial Class Ferramenta_Cloud
         Servidor3Lbl = New Label()
         HabilitarServidor2Cbx = New CheckBox()
         HabilitarServidor3Cbx = New CheckBox()
+        PictureBox1 = New PictureBox()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' ServidorCloudTxb
@@ -323,11 +325,23 @@ Partial Class Ferramenta_Cloud
         HabilitarServidor3Cbx.Text = "Habilitar Servidor 3"
         HabilitarServidor3Cbx.UseVisualStyleBackColor = True
         ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.InitialImage = Nothing
+        PictureBox1.Location = New Point(27, 88)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(120, 80)
+        PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
+        PictureBox1.TabIndex = 57
+        PictureBox1.TabStop = False
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(PictureBox1)
         Controls.Add(HabilitarServidor3Cbx)
         Controls.Add(HabilitarServidor2Cbx)
         Controls.Add(Servidor3Lbl)
@@ -353,12 +367,14 @@ Partial Class Ferramenta_Cloud
         Controls.Add(ServidorCloudTxb)
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         Name = "Ferramenta_Cloud"
         Text = "Ferramenta_Cloud"
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).EndInit()
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -391,4 +407,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents Servidor3Lbl As Label
     Friend WithEvents HabilitarServidor2Cbx As CheckBox
     Friend WithEvents HabilitarServidor3Cbx As CheckBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
