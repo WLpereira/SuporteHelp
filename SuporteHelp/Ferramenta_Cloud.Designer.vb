@@ -53,6 +53,8 @@ Partial Class Ferramenta_Cloud
         HabilitarServidor2Cbx = New CheckBox()
         HabilitarServidor3Cbx = New CheckBox()
         PictureBox1 = New PictureBox()
+        TotalLogEventoBtn = New Button()
+        MediaLogEventoBtn = New Button()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -352,12 +354,40 @@ Partial Class Ferramenta_Cloud
         PictureBox1.TabIndex = 57
         PictureBox1.TabStop = False
         ' 
+        ' TotalLogEventoBtn
+        ' 
+        TotalLogEventoBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        TotalLogEventoBtn.ImageAlign = ContentAlignment.MiddleLeft
+        TotalLogEventoBtn.Location = New Point(222, 695)
+        TotalLogEventoBtn.Name = "TotalLogEventoBtn"
+        TotalLogEventoBtn.Size = New Size(137, 52)
+        TotalLogEventoBtn.TabIndex = 58
+        TotalLogEventoBtn.Text = "Total da LogEvento"
+        TotalLogEventoBtn.TextAlign = ContentAlignment.TopCenter
+        TotalLogEventoBtn.UseVisualStyleBackColor = True
+        TotalLogEventoBtn.Visible = False
+        ' 
+        ' MediaLogEventoBtn
+        ' 
+        MediaLogEventoBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        MediaLogEventoBtn.ImageAlign = ContentAlignment.MiddleLeft
+        MediaLogEventoBtn.Location = New Point(365, 695)
+        MediaLogEventoBtn.Name = "MediaLogEventoBtn"
+        MediaLogEventoBtn.Size = New Size(137, 52)
+        MediaLogEventoBtn.TabIndex = 59
+        MediaLogEventoBtn.Text = "Média da LogEvento"
+        MediaLogEventoBtn.TextAlign = ContentAlignment.TopCenter
+        MediaLogEventoBtn.UseVisualStyleBackColor = True
+        MediaLogEventoBtn.Visible = False
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Control
         ClientSize = New Size(1062, 749)
+        Controls.Add(MediaLogEventoBtn)
+        Controls.Add(TotalLogEventoBtn)
         Controls.Add(PictureBox1)
         Controls.Add(HabilitarServidor3Cbx)
         Controls.Add(HabilitarServidor2Cbx)
@@ -429,4 +459,6 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents HabilitarServidor3Cbx As CheckBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents RARToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TotalLogEventoBtn As Button
+    Friend WithEvents MediaLogEventoBtn As Button
 End Class

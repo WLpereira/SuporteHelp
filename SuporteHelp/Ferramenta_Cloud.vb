@@ -15,6 +15,10 @@ Public Class Ferramenta_Cloud
     Private dtTodosBancos As New DataTable()
 
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
+        ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
+        TotalLogEventoBtn.Visible = False
+        MediaLogEventoBtn.Visible = False
+
         ' Limpar DataTable antes de adicionar novos dados
         dtTodosBancos.Clear()
 
@@ -247,6 +251,10 @@ Public Class Ferramenta_Cloud
 
 
     Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
+        ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
+        TotalLogEventoBtn.Visible = False
+        MediaLogEventoBtn.Visible = False
+
 
         ' Desabilitar o botão enquanto o BackgroundWorker está ocupado
         MostrarTamanhoBtn.Enabled = False
@@ -362,6 +370,10 @@ Public Class Ferramenta_Cloud
         End If
     End Sub
     Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
+        ' Habilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
+        TotalLogEventoBtn.Visible = True
+        MediaLogEventoBtn.Visible = True
+
         'Desabilitar MostrarTamanhoBtn
         MostrarTamanhoBtn.Enabled = False
 
@@ -465,6 +477,11 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub LimparColunaCloudBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaCloudBtn.Click
+        ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
+        TotalLogEventoBtn.Visible = False
+        MediaLogEventoBtn.Visible = False
+
+
         ' Limpar as colunas adicionadas ao DataGridView
         If ListadeServidorCloudDtg.Columns.Contains("TotalRows_LogEvento") Then
             ListadeServidorCloudDtg.Columns.Remove("TotalRows_LogEvento")
@@ -549,6 +566,11 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub SelecionarPortaBtn_Click(sender As Object, e As EventArgs) Handles SelecionarPortaBtn.Click
+
+        ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
+        TotalLogEventoBtn.Visible = False
+        MediaLogEventoBtn.Visible = False
+
         ' Verificar se uma porta está selecionada no ComboBox
         If SelecionarPortaCbx.SelectedItem IsNot Nothing Then
             ' Obter o nome da porta selecionada
