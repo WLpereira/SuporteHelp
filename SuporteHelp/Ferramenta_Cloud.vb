@@ -882,11 +882,11 @@ Public Class Ferramenta_Cloud
         End If
     End Sub
 
-    Private Sub SHRINKBtn_Click(sender As Object, e As EventArgs) Handles SHRINKBtn.Click
-        ' Verifica se há alguma linha selecionada no DataGridView
-        If ListadeServidorCloudDtg.SelectedRows.Count > 0 Then
-            ' Obtém o nome do banco de dados da linha selecionada
-            Dim dbName As String = ListadeServidorCloudDtg.SelectedRows(0).Cells("database_name").Value.ToString()
+    Private Sub ListadeServidorCloudDtg_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles ListadeServidorCloudDtg.CellMouseDoubleClick
+        ' Verifica se o clique foi feito em uma célula válida e se é a célula de banco de dados
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 AndAlso ListadeServidorCloudDtg.Columns(e.ColumnIndex).Name = "database_name" Then
+            ' Obtém o nome do banco de dados da linha clicada
+            Dim dbName As String = ListadeServidorCloudDtg.Rows(e.RowIndex).Cells("database_name").Value.ToString()
 
             ' Cria uma string de conexão com o banco de dados selecionado
             Dim builder As New SqlConnectionStringBuilder()
@@ -914,8 +914,6 @@ Public Class Ferramenta_Cloud
             Catch ex As Exception
                 MessageBox.Show("Erro ao executar o comando DBCC SHRINKDATABASE: " & ex.Message)
             End Try
-        Else
-            MessageBox.Show("Por favor, selecione um banco de dados na lista.")
         End If
     End Sub
 End Class
