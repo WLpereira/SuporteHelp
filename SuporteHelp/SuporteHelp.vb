@@ -483,15 +483,20 @@ Public Class SuporteHelp
     End Sub
 
     Private Sub LogoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoToolStripMenuItem.Click
-        Dim caminho As String = "\\172.16.1.100\suporte\Support Services\Tools\Script\VBS\Logoff.vbs"
+        ' Obtém o caminho completo do arquivo Logoff.vbs dentro da pasta da aplicação
+        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "Logoff.vbs")
 
-        If System.IO.File.Exists(caminho) Then
-            Dim psi As New ProcessStartInfo(caminho)
-            psi.UseShellExecute = True
-            Process.Start(psi)
-            MessageBox.Show("Desconectado")
+        ' Verifica se o arquivo Logoff.vbs existe
+        If File.Exists(caminhoArquivo) Then
+            Try
+                ' Inicia o processo para executar o arquivo Logoff.vbs
+                Process.Start(caminhoArquivo)
+                MessageBox.Show("O arquivo Logoff.vbs foi executado com sucesso.")
+            Catch ex As Exception
+                MessageBox.Show("Erro ao executar o arquivo Logoff.vbs: " & ex.Message)
+            End Try
         Else
-            MessageBox.Show("Não foi possível encontrar o executável no caminho especificado.")
+            MessageBox.Show("O arquivo Logoff.vbs não foi encontrado na pasta da aplicação.")
         End If
     End Sub
 

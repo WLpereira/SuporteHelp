@@ -743,21 +743,34 @@ Public Class Ferramenta_Cloud
         ' Define a visibilidade do TextBox e da Label com base no estado do checkbox
         ServidorCloud2Txb.Visible = HabilitarServidor2Cbx.Checked
         Servidor2Lbl.Visible = HabilitarServidor2Cbx.Checked
-        'Desabilitar LogEventoBtn
-        LogEventoBtn.Enabled = False
-        'Desabilitar MostrarTamanhoBtn
-        MostrarTamanhoBtn.Enabled = False
 
+        ' Limpa o conteúdo do ServidorCloud2Txb quando o checkbox é desmarcado
+        If Not HabilitarServidor2Cbx.Checked Then
+            ServidorCloud2Txb.Text = ""
+        End If
+
+        ' Desabilita o botão LogEventoBtn quando o checkbox é desmarcado
+        LogEventoBtn.Enabled = Not HabilitarServidor2Cbx.Checked
+
+        ' Desabilita o botão MostrarTamanhoBtn quando o checkbox é desmarcado
+        MostrarTamanhoBtn.Enabled = Not HabilitarServidor2Cbx.Checked
     End Sub
 
     Private Sub HabilitarServidor3Cbx_CheckedChanged(sender As Object, e As EventArgs) Handles HabilitarServidor3Cbx.CheckedChanged
         ' Define a visibilidade do TextBox e da Label com base no estado do checkbox
         ServidorCloud3Txb.Visible = HabilitarServidor3Cbx.Checked
         Servidor3Lbl.Visible = HabilitarServidor3Cbx.Checked
-        'Desabilitar LogEventoBtn
-        LogEventoBtn.Enabled = False
-        'Desabilitar MostrarTamanhoBtn
-        MostrarTamanhoBtn.Enabled = False
+
+        ' Limpa o conteúdo do ServidorCloud3Txb quando o checkbox é desmarcado
+        If Not HabilitarServidor3Cbx.Checked Then
+            ServidorCloud3Txb.Text = ""
+        End If
+
+        ' Desabilita o botão LogEventoBtn quando o checkbox é desmarcado
+        LogEventoBtn.Enabled = Not HabilitarServidor3Cbx.Checked
+
+        ' Desabilita o botão MostrarTamanhoBtn quando o checkbox é desmarcado
+        MostrarTamanhoBtn.Enabled = Not HabilitarServidor3Cbx.Checked
     End Sub
 
     Private Sub RARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RARToolStripMenuItem.Click
