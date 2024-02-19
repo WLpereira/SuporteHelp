@@ -44,6 +44,8 @@ Partial Class SuporteHelp
         PainelAvaliacoesToolStripMenuItem = New ToolStripMenuItem()
         HelpDeskToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
+        CloudToolStripMenuItem = New ToolStripMenuItem()
+        FerramentaCloudToolStripMenuItem = New ToolStripMenuItem()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
         BancoCloudLbl = New Label()
@@ -67,8 +69,6 @@ Partial Class SuporteHelp
         ExibirServidorCbx = New ComboBox()
         SelecinarServidorLbl = New Label()
         MostrarTamanhoBtn = New Button()
-        CloudToolStripMenuItem = New ToolStripMenuItem()
-        FerramentaCloudToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -129,108 +129,126 @@ Partial Class SuporteHelp
         MenuStrip1.Items.AddRange(New ToolStripItem() {FerramentasToolStripMenuItem, CloudToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(1062, 25)
+        MenuStrip1.Size = New Size(1062, 33)
         MenuStrip1.TabIndex = 8
         MenuStrip1.Text = "MenuStrip1"
         ' 
         ' FerramentasToolStripMenuItem
         ' 
+        FerramentasToolStripMenuItem.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         FerramentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ValidarEmailToolStripMenuItem, ValidarGtinToolStripMenuItem, ProcurarTabelaOuColunaNoBDToolStripMenuItem, CompararTabelasToolStripMenuItem, DescriçãoDasColunasToolStripMenuItem, VerificarInformaçõesDoBancoToolStripMenuItem, CriptoToolStripMenuItem, DDClientsToolStripMenuItem, CloudCreateUserToolStripMenuItem, LogoToolStripMenuItem, PainelAvaliacoesToolStripMenuItem, HelpDeskToolStripMenuItem, ToolStripMenuItem1})
-        FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        FerramentasToolStripMenuItem.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
+        FerramentasToolStripMenuItem.ForeColor = Color.White
         FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
-        FerramentasToolStripMenuItem.Size = New Size(96, 21)
+        FerramentasToolStripMenuItem.Size = New Size(116, 29)
         FerramentasToolStripMenuItem.Text = "Ferramentas"
         ' 
         ' ValidarEmailToolStripMenuItem
         ' 
         ValidarEmailToolStripMenuItem.Image = My.Resources.Resources.icons8_mensagem_64
         ValidarEmailToolStripMenuItem.Name = "ValidarEmailToolStripMenuItem"
-        ValidarEmailToolStripMenuItem.Size = New Size(285, 26)
+        ValidarEmailToolStripMenuItem.Size = New Size(335, 26)
         ValidarEmailToolStripMenuItem.Text = "Validar E-mail"
         ' 
         ' ValidarGtinToolStripMenuItem
         ' 
         ValidarGtinToolStripMenuItem.Image = My.Resources.Resources._3702397_barcode_code_scan_scanner_108737
         ValidarGtinToolStripMenuItem.Name = "ValidarGtinToolStripMenuItem"
-        ValidarGtinToolStripMenuItem.Size = New Size(285, 26)
+        ValidarGtinToolStripMenuItem.Size = New Size(335, 26)
         ValidarGtinToolStripMenuItem.Text = "Validar Gtin"
         ' 
         ' ProcurarTabelaOuColunaNoBDToolStripMenuItem
         ' 
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Image = My.Resources.Resources.icons8_servidor_64
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Name = "ProcurarTabelaOuColunaNoBDToolStripMenuItem"
-        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(285, 26)
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(335, 26)
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Text = "Procurar Tabela ou Coluna no BD"
         ' 
         ' CompararTabelasToolStripMenuItem
         ' 
         CompararTabelasToolStripMenuItem.Image = My.Resources.Resources.tabela
         CompararTabelasToolStripMenuItem.Name = "CompararTabelasToolStripMenuItem"
-        CompararTabelasToolStripMenuItem.Size = New Size(285, 26)
+        CompararTabelasToolStripMenuItem.Size = New Size(335, 26)
         CompararTabelasToolStripMenuItem.Text = "Comparar Tabelas"
         ' 
         ' DescriçãoDasColunasToolStripMenuItem
         ' 
         DescriçãoDasColunasToolStripMenuItem.Image = My.Resources.Resources.icons8_informações_30
         DescriçãoDasColunasToolStripMenuItem.Name = "DescriçãoDasColunasToolStripMenuItem"
-        DescriçãoDasColunasToolStripMenuItem.Size = New Size(285, 26)
+        DescriçãoDasColunasToolStripMenuItem.Size = New Size(335, 26)
         DescriçãoDasColunasToolStripMenuItem.Text = "Descrição das Colunas"
         ' 
         ' VerificarInformaçõesDoBancoToolStripMenuItem
         ' 
         VerificarInformaçõesDoBancoToolStripMenuItem.Image = My.Resources.Resources.icons8_pesquisar_30
         VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
-        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(285, 26)
+        VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(335, 26)
         VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
         ' 
         ' CriptoToolStripMenuItem
         ' 
         CriptoToolStripMenuItem.Image = My.Resources.Resources.icons8_senha_30
         CriptoToolStripMenuItem.Name = "CriptoToolStripMenuItem"
-        CriptoToolStripMenuItem.Size = New Size(285, 26)
+        CriptoToolStripMenuItem.Size = New Size(335, 26)
         CriptoToolStripMenuItem.Text = "Cripto"
         ' 
         ' DDClientsToolStripMenuItem
         ' 
         DDClientsToolStripMenuItem.Image = My.Resources.Resources.icons8_usuário_30
         DDClientsToolStripMenuItem.Name = "DDClientsToolStripMenuItem"
-        DDClientsToolStripMenuItem.Size = New Size(285, 26)
+        DDClientsToolStripMenuItem.Size = New Size(335, 26)
         DDClientsToolStripMenuItem.Text = "DDClients"
         ' 
         ' CloudCreateUserToolStripMenuItem
         ' 
         CloudCreateUserToolStripMenuItem.Image = My.Resources.Resources.icons8_nuvem_60
         CloudCreateUserToolStripMenuItem.Name = "CloudCreateUserToolStripMenuItem"
-        CloudCreateUserToolStripMenuItem.Size = New Size(285, 26)
+        CloudCreateUserToolStripMenuItem.Size = New Size(335, 26)
         CloudCreateUserToolStripMenuItem.Text = "CloudCreateUser"
         ' 
         ' LogoToolStripMenuItem
         ' 
         LogoToolStripMenuItem.Image = My.Resources.Resources.icons8_saída_de_emergência_30
         LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
-        LogoToolStripMenuItem.Size = New Size(285, 26)
+        LogoToolStripMenuItem.Size = New Size(335, 26)
         LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
         ' 
         ' PainelAvaliacoesToolStripMenuItem
         ' 
         PainelAvaliacoesToolStripMenuItem.Image = My.Resources.Resources.icons8_sugestão_30
         PainelAvaliacoesToolStripMenuItem.Name = "PainelAvaliacoesToolStripMenuItem"
-        PainelAvaliacoesToolStripMenuItem.Size = New Size(285, 26)
+        PainelAvaliacoesToolStripMenuItem.Size = New Size(335, 26)
         PainelAvaliacoesToolStripMenuItem.Text = "PainelAvaliacoes"
         ' 
         ' HelpDeskToolStripMenuItem
         ' 
         HelpDeskToolStripMenuItem.Image = My.Resources.Resources.person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_228998
         HelpDeskToolStripMenuItem.Name = "HelpDeskToolStripMenuItem"
-        HelpDeskToolStripMenuItem.Size = New Size(285, 26)
+        HelpDeskToolStripMenuItem.Size = New Size(335, 26)
         HelpDeskToolStripMenuItem.Text = "HelpDesk"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Image = My.Resources.Resources.download_folder_file_icon_219533
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(285, 26)
+        ToolStripMenuItem1.Size = New Size(335, 26)
         ToolStripMenuItem1.Text = "Pasta de Packs "
+        ' 
+        ' CloudToolStripMenuItem
+        ' 
+        CloudToolStripMenuItem.BackColor = Color.CornflowerBlue
+        CloudToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {FerramentaCloudToolStripMenuItem})
+        CloudToolStripMenuItem.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        CloudToolStripMenuItem.ForeColor = Color.White
+        CloudToolStripMenuItem.Name = "CloudToolStripMenuItem"
+        CloudToolStripMenuItem.Size = New Size(77, 29)
+        CloudToolStripMenuItem.Text = "Cloud"
+        ' 
+        ' FerramentaCloudToolStripMenuItem
+        ' 
+        FerramentaCloudToolStripMenuItem.Name = "FerramentaCloudToolStripMenuItem"
+        FerramentaCloudToolStripMenuItem.Size = New Size(244, 30)
+        FerramentaCloudToolStripMenuItem.Text = "Ferramenta Cloud"
         ' 
         ' PictureBox2
         ' 
@@ -471,7 +489,7 @@ Partial Class SuporteHelp
         ' 
         ' MostrarTamanhoBtn
         ' 
-        MostrarTamanhoBtn.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
+        MostrarTamanhoBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         MostrarTamanhoBtn.ForeColor = Color.Red
         MostrarTamanhoBtn.Location = New Point(649, 169)
         MostrarTamanhoBtn.Name = "MostrarTamanhoBtn"
@@ -479,20 +497,6 @@ Partial Class SuporteHelp
         MostrarTamanhoBtn.TabIndex = 32
         MostrarTamanhoBtn.Text = "Tamanho dos Bancos Consulta Demorada"
         MostrarTamanhoBtn.UseVisualStyleBackColor = True
-        ' 
-        ' CloudToolStripMenuItem
-        ' 
-        CloudToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {FerramentaCloudToolStripMenuItem})
-        CloudToolStripMenuItem.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        CloudToolStripMenuItem.Name = "CloudToolStripMenuItem"
-        CloudToolStripMenuItem.Size = New Size(56, 21)
-        CloudToolStripMenuItem.Text = "Cloud"
-        ' 
-        ' FerramentaCloudToolStripMenuItem
-        ' 
-        FerramentaCloudToolStripMenuItem.Name = "FerramentaCloudToolStripMenuItem"
-        FerramentaCloudToolStripMenuItem.Size = New Size(186, 22)
-        FerramentaCloudToolStripMenuItem.Text = "Ferramenta Cloud"
         ' 
         ' SuporteHelp
         ' 
