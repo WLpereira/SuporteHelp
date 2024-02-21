@@ -58,6 +58,7 @@ Partial Class Ferramenta_Cloud
         MediaLogAcessoSymBtn = New Button()
         TotalLogAcessoSymBtn = New Button()
         SHRINKBtn = New Button()
+        InformaçõesDasEmpresasToolStripMenuItem = New ToolStripMenuItem()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -222,7 +223,7 @@ Partial Class Ferramenta_Cloud
         ' CadastrosToolStripMenuItem
         ' 
         CadastrosToolStripMenuItem.BackColor = Color.Yellow
-        CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem})
+        CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem, InformaçõesDasEmpresasToolStripMenuItem})
         CadastrosToolStripMenuItem.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
         CadastrosToolStripMenuItem.Size = New Size(135, 25)
@@ -231,13 +232,13 @@ Partial Class Ferramenta_Cloud
         ' GerenciadorDePortaToolStripMenuItem
         ' 
         GerenciadorDePortaToolStripMenuItem.Name = "GerenciadorDePortaToolStripMenuItem"
-        GerenciadorDePortaToolStripMenuItem.Size = New Size(241, 26)
+        GerenciadorDePortaToolStripMenuItem.Size = New Size(281, 26)
         GerenciadorDePortaToolStripMenuItem.Text = "Gerenciador de Porta"
         ' 
         ' RARToolStripMenuItem
         ' 
         RARToolStripMenuItem.Name = "RARToolStripMenuItem"
-        RARToolStripMenuItem.Size = New Size(241, 26)
+        RARToolStripMenuItem.Size = New Size(281, 26)
         RARToolStripMenuItem.Text = "#RAR"
         ' 
         ' SelecionarPortaCbx
@@ -427,6 +428,12 @@ Partial Class Ferramenta_Cloud
         SHRINKBtn.UseVisualStyleBackColor = True
         SHRINKBtn.Visible = False
         ' 
+        ' InformaçõesDasEmpresasToolStripMenuItem
+        ' 
+        InformaçõesDasEmpresasToolStripMenuItem.Name = "InformaçõesDasEmpresasToolStripMenuItem"
+        InformaçõesDasEmpresasToolStripMenuItem.Size = New Size(281, 26)
+        InformaçõesDasEmpresasToolStripMenuItem.Text = "Informações das Empresas"
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -514,4 +521,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents MediaLogAcessoSymBtn As Button
     Friend WithEvents TotalLogAcessoSymBtn As Button
     Friend WithEvents SHRINKBtn As Button
+    Friend WithEvents InformaçõesDasEmpresasToolStripMenuItem As ToolStripMenuItem
 End Class
