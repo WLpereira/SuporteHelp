@@ -15,6 +15,9 @@ Public Class Ferramenta_Cloud
     Private dtTodosBancos As New DataTable()
 
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
+
+        ' Desabilita o botão ConectarCloudBtn 
+        ConectarCloudBtn.Enabled = False
         ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = False
         MediaLogEventoBtn.Visible = False
@@ -152,6 +155,9 @@ Public Class Ferramenta_Cloud
         If ListadeServidorCloudDtg.Columns.Count > 0 Then
             ListadeServidorCloudDtg.Columns(0).Width = 200
         End If
+
+        ' Desabilita o botão ConectarCloudBtn 
+        ConectarCloudBtn.Enabled = True
     End Sub
 
 
@@ -256,8 +262,8 @@ Public Class Ferramenta_Cloud
 
 
     Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
-        'Habilita
-        SHRINKBtn.Visible = True
+        'desabilita
+        SHRINKBtn.Visible = False
 
         ' Desabilitar
         TotalLogAcessoSymBtn.Visible = False
@@ -380,8 +386,14 @@ Public Class Ferramenta_Cloud
         If e.Result IsNot Nothing Then
             BackgroundWorker1.ReportProgress(100, e.Result)
         End If
+        'Habilita
+        SHRINKBtn.Visible = True
     End Sub
     Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
+
+        ' Desabilita o botão LogEventoBtn 
+        LogEventoBtn.Enabled = False
+
         ' Habilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = True
         MediaLogEventoBtn.Visible = True
@@ -492,6 +504,10 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub LimparColunaCloudBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaCloudBtn.Click
+
+        ' Desabilitar o botão LimparColunaCloudBtn novamente
+        LimparColunaCloudBtn.Enabled = False
+
         ' Desabilitar
         TotalLogAcessoSymBtn.Visible = False
         MediaLogAcessoSymBtn.Visible = False
@@ -499,7 +515,6 @@ Public Class Ferramenta_Cloud
         ' Desabilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = False
         MediaLogEventoBtn.Visible = False
-
 
         ' Limpar as colunas adicionadas ao DataGridView
         If ListadeServidorCloudDtg.Columns.Contains("TotalRows_LogEvento") Then
@@ -515,10 +530,19 @@ Public Class Ferramenta_Cloud
             ListadeServidorCloudDtg.Columns.Remove("TotalSizeMB_LogAcessoSym")
         End If
 
-        ' Habilitar o botão LogEventoBtn
+        ' Limpar os campos ServidorCloud2Txb, ServidorCloud3Txb e SelecionarPortaCbx
+        ServidorCloud2Txb.Text = String.Empty
+        ServidorCloud3Txb.Text = String.Empty
+        SelecionarPortaCbx.SelectedItem = Nothing
+
+        ' Desabilitar os checkboxes HabilitarServidor2Cbx e HabilitarServidor3Cbx
+        HabilitarServidor2Cbx.Checked = False
+        HabilitarServidor3Cbx.Checked = False
+
+        ' Desabilitar o botão LogEventoBtn
         LogEventoBtn.Enabled = True
 
-        ' Habilitar o botão MostraTamanho
+        ' Desabilitar o botão MostraTamanho
         MostrarTamanhoBtn.Enabled = True
 
         ' Ocultar o ProgressBar
@@ -527,7 +551,11 @@ Public Class Ferramenta_Cloud
         ' Reconectar no servidor
         ConectarCloudBtn.PerformClick()
 
+        ' Habilitar o botão LimparColunaCloudBtn novamente
+        LimparColunaCloudBtn.Enabled = True
 
+        ' Desabilita o botão LogEventoBtn 
+        LogEventoBtn.Enabled = True
     End Sub
 
     Private Sub GerenciadorDePortaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GerenciadorDePortaToolStripMenuItem.Click
@@ -585,6 +613,9 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub SelecionarPortaBtn_Click(sender As Object, e As EventArgs) Handles SelecionarPortaBtn.Click
+        ' Desabilita o botão SelecionarPortaBtn 
+        SelecionarPortaBtn.Enabled = False
+
         ' Desabilitar
         TotalLogAcessoSymBtn.Visible = False
         MediaLogAcessoSymBtn.Visible = False
@@ -737,6 +768,10 @@ Public Class Ferramenta_Cloud
         Else
             MessageBox.Show("Por favor, selecione uma porta.")
         End If
+
+        ' Habilita o botão SelecionarPortaBtn 
+        SelecionarPortaBtn.Enabled = True
+
     End Sub
 
     Private Sub HabilitarServidor2Cbx_CheckedChanged(sender As Object, e As EventArgs) Handles HabilitarServidor2Cbx.CheckedChanged
@@ -896,6 +931,9 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub SHRINKBtn_Click(sender As Object, e As EventArgs) Handles SHRINKBtn.Click
+
+        ' Desabilita o botão SHRINKBtn 
+        SHRINKBtn.Enabled = False
         ' Verifica se há alguma linha selecionada no DataGridView
         If ListadeServidorCloudDtg.SelectedRows.Count > 0 Then
             ' Obtém o nome do banco de dados da linha selecionada
@@ -930,5 +968,7 @@ Public Class Ferramenta_Cloud
         Else
             MessageBox.Show("Por favor, selecione um banco de dados na lista.")
         End If
+        ' Desabilita o botão SHRINKBtn 
+        SHRINKBtn.Enabled = True
     End Sub
 End Class
