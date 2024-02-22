@@ -212,7 +212,7 @@ Partial Class Empresas
         FiltrarBtn.Name = "FiltrarBtn"
         FiltrarBtn.Size = New Size(121, 38)
         FiltrarBtn.TabIndex = 5
-        FiltrarBtn.Text = "Filtrar"
+        FiltrarBtn.Text = "FILTRAR"
         FiltrarBtn.UseVisualStyleBackColor = True
         ' 
         ' ProcurarPortaLbl
