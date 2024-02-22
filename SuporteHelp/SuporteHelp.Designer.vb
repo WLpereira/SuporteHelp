@@ -553,7 +553,7 @@ Partial Class SuporteHelp
         MaximizeBox = False
         Name = "SuporteHelp"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "SuporteHelp"
+        Text = "SuporteHelp_V_1.1"
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
