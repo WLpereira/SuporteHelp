@@ -61,7 +61,6 @@ Public Class Empresas
         End If
     End Sub
 
-    ' Adiciona colunas ao DataGridView EmpresasDgv
     Private Sub AdicionarColunas()
         ' Adicionar colunas apenas se o DataGridView não tiver colunas
         If EmpresasDgv.Columns.Count = 0 Then
@@ -69,6 +68,9 @@ Public Class Empresas
             EmpresasDgv.Columns.Add("ServidorColumn", "Servidor")
             EmpresasDgv.Columns.Add("SenhaSAColumn", "Senha SA")
             EmpresasDgv.Columns.Add("PortaColumn", "Porta")
+
+            ' Ajustar o tamanho das colunas
+            EmpresasDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         End If
     End Sub
 
