@@ -225,24 +225,28 @@ Partial Class Ferramenta_Cloud
         CadastrosToolStripMenuItem.BackColor = Color.Yellow
         CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem, InformaçõesDasEmpresasToolStripMenuItem})
         CadastrosToolStripMenuItem.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        CadastrosToolStripMenuItem.Image = CType(resources.GetObject("CadastrosToolStripMenuItem.Image"), Image)
         CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
-        CadastrosToolStripMenuItem.Size = New Size(135, 25)
+        CadastrosToolStripMenuItem.Size = New Size(151, 25)
         CadastrosToolStripMenuItem.Text = "FERRAMENTAS"
         ' 
         ' GerenciadorDePortaToolStripMenuItem
         ' 
+        GerenciadorDePortaToolStripMenuItem.Image = CType(resources.GetObject("GerenciadorDePortaToolStripMenuItem.Image"), Image)
         GerenciadorDePortaToolStripMenuItem.Name = "GerenciadorDePortaToolStripMenuItem"
         GerenciadorDePortaToolStripMenuItem.Size = New Size(281, 26)
         GerenciadorDePortaToolStripMenuItem.Text = "Gerenciador de Porta"
         ' 
         ' RARToolStripMenuItem
         ' 
+        RARToolStripMenuItem.Image = CType(resources.GetObject("RARToolStripMenuItem.Image"), Image)
         RARToolStripMenuItem.Name = "RARToolStripMenuItem"
         RARToolStripMenuItem.Size = New Size(281, 26)
         RARToolStripMenuItem.Text = "#RAR"
         ' 
         ' InformaçõesDasEmpresasToolStripMenuItem
         ' 
+        InformaçõesDasEmpresasToolStripMenuItem.Image = CType(resources.GetObject("InformaçõesDasEmpresasToolStripMenuItem.Image"), Image)
         InformaçõesDasEmpresasToolStripMenuItem.Name = "InformaçõesDasEmpresasToolStripMenuItem"
         InformaçõesDasEmpresasToolStripMenuItem.Size = New Size(281, 26)
         InformaçõesDasEmpresasToolStripMenuItem.Text = "Informações das Empresas"
@@ -472,6 +476,7 @@ Partial Class Ferramenta_Cloud
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
         ForeColor = SystemColors.ControlText
+        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         MaximizeBox = False

@@ -22,6 +22,7 @@ Partial Class Empresas
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Empresas))
         CadastrarEmpresasGbx = New GroupBox()
         LimparCadastroBtn = New Button()
         CadastrarEmpresaBtn = New Button()
@@ -63,7 +64,7 @@ Partial Class Empresas
         CadastrarEmpresasGbx.ForeColor = Color.Navy
         CadastrarEmpresasGbx.Location = New Point(42, 12)
         CadastrarEmpresasGbx.Name = "CadastrarEmpresasGbx"
-        CadastrarEmpresasGbx.Size = New Size(836, 138)
+        CadastrarEmpresasGbx.Size = New Size(976, 166)
         CadastrarEmpresasGbx.TabIndex = 0
         CadastrarEmpresasGbx.TabStop = False
         CadastrarEmpresasGbx.Text = "Cadastrar Empresa"
@@ -73,7 +74,7 @@ Partial Class Empresas
         LimparCadastroBtn.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
         LimparCadastroBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
         LimparCadastroBtn.ForeColor = Color.White
-        LimparCadastroBtn.Location = New Point(444, 89)
+        LimparCadastroBtn.Location = New Point(498, 107)
         LimparCadastroBtn.Name = "LimparCadastroBtn"
         LimparCadastroBtn.Size = New Size(118, 43)
         LimparCadastroBtn.TabIndex = 9
@@ -84,7 +85,7 @@ Partial Class Empresas
         ' 
         CadastrarEmpresaBtn.BackColor = Color.Yellow
         CadastrarEmpresaBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        CadastrarEmpresaBtn.Location = New Point(283, 89)
+        CadastrarEmpresaBtn.Location = New Point(337, 107)
         CadastrarEmpresaBtn.Name = "CadastrarEmpresaBtn"
         CadastrarEmpresaBtn.Size = New Size(118, 43)
         CadastrarEmpresaBtn.TabIndex = 8
@@ -96,7 +97,7 @@ Partial Class Empresas
         PortaLbl.AutoSize = True
         PortaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         PortaLbl.ForeColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
-        PortaLbl.Location = New Point(657, 34)
+        PortaLbl.Location = New Point(771, 34)
         PortaLbl.Name = "PortaLbl"
         PortaLbl.Size = New Size(51, 21)
         PortaLbl.TabIndex = 7
@@ -107,7 +108,7 @@ Partial Class Empresas
         SenhaSALbl.AutoSize = True
         SenhaSALbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         SenhaSALbl.ForeColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
-        SenhaSALbl.Location = New Point(444, 34)
+        SenhaSALbl.Location = New Point(535, 34)
         SenhaSALbl.Name = "SenhaSALbl"
         SenhaSALbl.Size = New Size(81, 21)
         SenhaSALbl.TabIndex = 6
@@ -118,7 +119,7 @@ Partial Class Empresas
         ServidorEmpresaLbl.AutoSize = True
         ServidorEmpresaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorEmpresaLbl.ForeColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
-        ServidorEmpresaLbl.Location = New Point(237, 34)
+        ServidorEmpresaLbl.Location = New Point(283, 34)
         ServidorEmpresaLbl.Name = "ServidorEmpresaLbl"
         ServidorEmpresaLbl.Size = New Size(75, 21)
         ServidorEmpresaLbl.TabIndex = 5
@@ -138,7 +139,7 @@ Partial Class Empresas
         ' PortaEmpresaTxb
         ' 
         PortaEmpresaTxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        PortaEmpresaTxb.Location = New Point(657, 58)
+        PortaEmpresaTxb.Location = New Point(771, 58)
         PortaEmpresaTxb.Name = "PortaEmpresaTxb"
         PortaEmpresaTxb.Size = New Size(164, 25)
         PortaEmpresaTxb.TabIndex = 3
@@ -146,7 +147,7 @@ Partial Class Empresas
         ' SenhaSATxb
         ' 
         SenhaSATxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaSATxb.Location = New Point(444, 58)
+        SenhaSATxb.Location = New Point(535, 58)
         SenhaSATxb.Name = "SenhaSATxb"
         SenhaSATxb.Size = New Size(164, 25)
         SenhaSATxb.TabIndex = 2
@@ -154,7 +155,7 @@ Partial Class Empresas
         ' ServidorEmpresaTxb
         ' 
         ServidorEmpresaTxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorEmpresaTxb.Location = New Point(237, 58)
+        ServidorEmpresaTxb.Location = New Point(283, 58)
         ServidorEmpresaTxb.Name = "ServidorEmpresaTxb"
         ServidorEmpresaTxb.Size = New Size(164, 25)
         ServidorEmpresaTxb.TabIndex = 1
@@ -164,22 +165,22 @@ Partial Class Empresas
         NomeEmpresaTxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         NomeEmpresaTxb.Location = New Point(6, 58)
         NomeEmpresaTxb.Name = "NomeEmpresaTxb"
-        NomeEmpresaTxb.Size = New Size(199, 25)
+        NomeEmpresaTxb.Size = New Size(228, 25)
         NomeEmpresaTxb.TabIndex = 0
         ' 
         ' EmpresasDgv
         ' 
         EmpresasDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        EmpresasDgv.Location = New Point(42, 256)
+        EmpresasDgv.Location = New Point(42, 284)
         EmpresasDgv.Name = "EmpresasDgv"
         EmpresasDgv.RowTemplate.Height = 25
-        EmpresasDgv.Size = New Size(836, 283)
+        EmpresasDgv.Size = New Size(976, 409)
         EmpresasDgv.TabIndex = 1
         ' 
         ' LimparEmpresasBtn
         ' 
         LimparEmpresasBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        LimparEmpresasBtn.Location = New Point(757, 548)
+        LimparEmpresasBtn.Location = New Point(897, 699)
         LimparEmpresasBtn.Name = "LimparEmpresasBtn"
         LimparEmpresasBtn.Size = New Size(121, 38)
         LimparEmpresasBtn.TabIndex = 2
@@ -189,7 +190,7 @@ Partial Class Empresas
         ' VoltarBtn
         ' 
         VoltarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        VoltarBtn.Location = New Point(42, 548)
+        VoltarBtn.Location = New Point(42, 699)
         VoltarBtn.Name = "VoltarBtn"
         VoltarBtn.Size = New Size(121, 38)
         VoltarBtn.TabIndex = 3
@@ -199,7 +200,7 @@ Partial Class Empresas
         ' FiltrarPortaTxb
         ' 
         FiltrarPortaTxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        FiltrarPortaTxb.Location = New Point(42, 181)
+        FiltrarPortaTxb.Location = New Point(42, 209)
         FiltrarPortaTxb.Name = "FiltrarPortaTxb"
         FiltrarPortaTxb.Size = New Size(199, 25)
         FiltrarPortaTxb.TabIndex = 4
@@ -208,7 +209,7 @@ Partial Class Empresas
         ' 
         FiltrarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         FiltrarBtn.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        FiltrarBtn.Location = New Point(77, 212)
+        FiltrarBtn.Location = New Point(80, 240)
         FiltrarBtn.Name = "FiltrarBtn"
         FiltrarBtn.Size = New Size(121, 38)
         FiltrarBtn.TabIndex = 5
@@ -220,7 +221,7 @@ Partial Class Empresas
         ProcurarPortaLbl.AutoSize = True
         ProcurarPortaLbl.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         ProcurarPortaLbl.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        ProcurarPortaLbl.Location = New Point(67, 153)
+        ProcurarPortaLbl.Location = New Point(71, 181)
         ProcurarPortaLbl.Name = "ProcurarPortaLbl"
         ProcurarPortaLbl.Size = New Size(145, 25)
         ProcurarPortaLbl.TabIndex = 6
@@ -231,7 +232,7 @@ Partial Class Empresas
         CarregarBtn.BackColor = SystemColors.ActiveCaptionText
         CarregarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         CarregarBtn.ForeColor = Color.Orange
-        CarregarBtn.Location = New Point(369, 181)
+        CarregarBtn.Location = New Point(426, 227)
         CarregarBtn.Name = "CarregarBtn"
         CarregarBtn.Size = New Size(188, 56)
         CarregarBtn.TabIndex = 7
@@ -243,7 +244,7 @@ Partial Class Empresas
         ExcluirEmpresaBtn.BackColor = Color.Red
         ExcluirEmpresaBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         ExcluirEmpresaBtn.ForeColor = Color.White
-        ExcluirEmpresaBtn.Location = New Point(690, 203)
+        ExcluirEmpresaBtn.Location = New Point(855, 231)
         ExcluirEmpresaBtn.Name = "ExcluirEmpresaBtn"
         ExcluirEmpresaBtn.Size = New Size(163, 47)
         ExcluirEmpresaBtn.TabIndex = 8
@@ -255,7 +256,7 @@ Partial Class Empresas
         ExcluirBtn.AutoSize = True
         ExcluirBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         ExcluirBtn.ForeColor = Color.Red
-        ExcluirBtn.Location = New Point(710, 179)
+        ExcluirBtn.Location = New Point(875, 207)
         ExcluirBtn.Name = "ExcluirBtn"
         ExcluirBtn.Size = New Size(131, 21)
         ExcluirBtn.TabIndex = 9
@@ -265,7 +266,7 @@ Partial Class Empresas
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(921, 598)
+        ClientSize = New Size(1062, 749)
         Controls.Add(ExcluirBtn)
         Controls.Add(ExcluirEmpresaBtn)
         Controls.Add(CarregarBtn)
@@ -276,6 +277,8 @@ Partial Class Empresas
         Controls.Add(LimparEmpresasBtn)
         Controls.Add(EmpresasDgv)
         Controls.Add(CadastrarEmpresasGbx)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "Empresas"
         StartPosition = FormStartPosition.CenterScreen
