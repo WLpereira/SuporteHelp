@@ -59,6 +59,7 @@ Partial Class Ferramenta_Cloud
         MediaLogAcessoSymBtn = New Button()
         TotalLogAcessoSymBtn = New Button()
         SHRINKBtn = New Button()
+        VerificarDBABtn = New Button()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -166,7 +167,7 @@ Partial Class Ferramenta_Cloud
         ' 
         MostrarTamanhoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         MostrarTamanhoBtn.ForeColor = Color.Red
-        MostrarTamanhoBtn.Location = New Point(17, 610)
+        MostrarTamanhoBtn.Location = New Point(17, 656)
         MostrarTamanhoBtn.Name = "MostrarTamanhoBtn"
         MostrarTamanhoBtn.Size = New Size(184, 48)
         MostrarTamanhoBtn.TabIndex = 42
@@ -175,7 +176,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' progressoPb
         ' 
-        progressoPb.Location = New Point(17, 664)
+        progressoPb.Location = New Point(17, 710)
         progressoPb.Name = "progressoPb"
         progressoPb.Size = New Size(184, 23)
         progressoPb.TabIndex = 43
@@ -189,7 +190,7 @@ Partial Class Ferramenta_Cloud
         ' 
         LogEventoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LogEventoBtn.ForeColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
-        LogEventoBtn.Location = New Point(17, 513)
+        LogEventoBtn.Location = New Point(17, 559)
         LogEventoBtn.Name = "LogEventoBtn"
         LogEventoBtn.Size = New Size(184, 56)
         LogEventoBtn.TabIndex = 44
@@ -254,7 +255,7 @@ Partial Class Ferramenta_Cloud
         ' SelecionarPortaCbx
         ' 
         SelecionarPortaCbx.FormattingEnabled = True
-        SelecionarPortaCbx.Location = New Point(6, 373)
+        SelecionarPortaCbx.Location = New Point(6, 304)
         SelecionarPortaCbx.Name = "SelecionarPortaCbx"
         SelecionarPortaCbx.Size = New Size(210, 23)
         SelecionarPortaCbx.TabIndex = 47
@@ -264,7 +265,7 @@ Partial Class Ferramenta_Cloud
         SelecionePortaLbl.AutoSize = True
         SelecionePortaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         SelecionePortaLbl.ForeColor = Color.Red
-        SelecionePortaLbl.Location = New Point(42, 346)
+        SelecionePortaLbl.Location = New Point(42, 277)
         SelecionePortaLbl.Name = "SelecionePortaLbl"
         SelecionePortaLbl.Size = New Size(135, 21)
         SelecionePortaLbl.TabIndex = 48
@@ -274,7 +275,7 @@ Partial Class Ferramenta_Cloud
         ' 
         SelecionarPortaBtn.BackColor = Color.Gold
         SelecionarPortaBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        SelecionarPortaBtn.Location = New Point(17, 409)
+        SelecionarPortaBtn.Location = New Point(17, 340)
         SelecionarPortaBtn.Name = "SelecionarPortaBtn"
         SelecionarPortaBtn.Size = New Size(184, 59)
         SelecionarPortaBtn.TabIndex = 49
@@ -286,7 +287,7 @@ Partial Class Ferramenta_Cloud
         CarregarListaBtn.BackColor = SystemColors.InfoText
         CarregarListaBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
         CarregarListaBtn.ForeColor = Color.Linen
-        CarregarListaBtn.Location = New Point(17, 280)
+        CarregarListaBtn.Location = New Point(17, 211)
         CarregarListaBtn.Name = "CarregarListaBtn"
         CarregarListaBtn.Size = New Size(184, 59)
         CarregarListaBtn.TabIndex = 50
@@ -438,12 +439,25 @@ Partial Class Ferramenta_Cloud
         SHRINKBtn.UseVisualStyleBackColor = True
         SHRINKBtn.Visible = False
         ' 
+        ' VerificarDBABtn
+        ' 
+        VerificarDBABtn.BackColor = Color.Cyan
+        VerificarDBABtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        VerificarDBABtn.ForeColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
+        VerificarDBABtn.Location = New Point(17, 456)
+        VerificarDBABtn.Name = "VerificarDBABtn"
+        VerificarDBABtn.Size = New Size(184, 63)
+        VerificarDBABtn.TabIndex = 63
+        VerificarDBABtn.Text = "Verificar os últimos processamentos do DBA_Tools"
+        VerificarDBABtn.UseVisualStyleBackColor = False
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Control
         ClientSize = New Size(1062, 749)
+        Controls.Add(VerificarDBABtn)
         Controls.Add(SHRINKBtn)
         Controls.Add(MediaLogAcessoSymBtn)
         Controls.Add(TotalLogAcessoSymBtn)
@@ -527,4 +541,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents TotalLogAcessoSymBtn As Button
     Friend WithEvents SHRINKBtn As Button
     Friend WithEvents InformaçõesDasEmpresasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerificarDBABtn As Button
 End Class

@@ -15,6 +15,7 @@ Public Class Ferramenta_Cloud
     Private dtTodosBancos As New DataTable()
 
     Private Sub ConectarCloudBtn_Click(sender As Object, e As EventArgs) Handles ConectarCloudBtn.Click
+        LimparColunaCloudBtn.Enabled = False
 
         ' Desabilita o botão ConectarCloudBtn 
         ConectarCloudBtn.Enabled = False
@@ -158,6 +159,7 @@ Public Class Ferramenta_Cloud
 
         ' Desabilita o botão ConectarCloudBtn 
         ConectarCloudBtn.Enabled = True
+        LimparColunaCloudBtn.Enabled = True
     End Sub
 
 
@@ -263,7 +265,11 @@ Public Class Ferramenta_Cloud
 
     Private Sub MostrarTamanhoBtn_Click(sender As Object, e As EventArgs) Handles MostrarTamanhoBtn.Click
         'desabilita
+        LimparColunaCloudBtn.Enabled = False
         SHRINKBtn.Visible = False
+        ConectarCloudBtn.Enabled = False
+        VerificarDBABtn.Enabled = False
+        SelecionarPortaBtn.Enabled = False
 
         ' Desabilitar
         TotalLogAcessoSymBtn.Visible = False
@@ -286,6 +292,7 @@ Public Class Ferramenta_Cloud
             ' Iniciar o BackgroundWorker
             BackgroundWorker1.RunWorkerAsync()
         End If
+
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
@@ -388,12 +395,15 @@ Public Class Ferramenta_Cloud
         End If
         'Habilita
         SHRINKBtn.Visible = True
+        LimparColunaCloudBtn.Enabled = True
     End Sub
     Private Sub LogEventoBtn_Click(sender As Object, e As EventArgs) Handles LogEventoBtn.Click
-
+        LimparColunaCloudBtn.Enabled = False
         ' Desabilita o botão LogEventoBtn 
         LogEventoBtn.Enabled = False
-
+        ConectarCloudBtn.Enabled = False
+        VerificarDBABtn.Enabled = False
+        SelecionarPortaBtn.Enabled = False
         ' Habilitar a visualização dos botões TotalLogEventoBtn e MediaLogEventoBtn
         TotalLogEventoBtn.Visible = True
         MediaLogEventoBtn.Visible = True
@@ -501,10 +511,16 @@ Public Class Ferramenta_Cloud
         Else
             MessageBox.Show("Não há bancos de dados para consultar.")
         End If
+
+        LimparColunaCloudBtn.Enabled = True
     End Sub
 
     Private Sub LimparColunaCloudBtn_Click(sender As Object, e As EventArgs) Handles LimparColunaCloudBtn.Click
-
+        'Habilitar
+        ConectarCloudBtn.Enabled = True
+        VerificarDBABtn.Enabled = True
+        ConectarCloudBtn.Enabled = True
+        SelecionarPortaBtn.Enabled = True
         ' Desabilitar o botão LimparColunaCloudBtn novamente
         LimparColunaCloudBtn.Enabled = False
 
@@ -542,7 +558,7 @@ Public Class Ferramenta_Cloud
         ' Desabilitar o botão LogEventoBtn
         LogEventoBtn.Enabled = True
 
-        ' Desabilitar o botão MostraTamanho
+        ' Habilita o botão MostraTamanho
         MostrarTamanhoBtn.Enabled = True
 
         ' Ocultar o ProgressBar
@@ -983,5 +999,68 @@ Public Class Ferramenta_Cloud
         formEmpresas.Show()
     End Sub
 
+    Private Sub VerificarDBABtn_Click(sender As Object, e As EventArgs) Handles VerificarDBABtn.Click
+
+
+
+        ' Verificar se há uma linha selecionada no DataGridView
+        If ListadeServidorCloudDtg.SelectedRows.Count = 0 Then
+            MessageBox.Show("Selecione uma linha para executar a consulta.")
+            Return
+        End If
+        ' Desabilita 
+        LimparColunaCloudBtn.Enabled = False
+        VerificarDBABtn.Enabled = False
+        SelecionarPortaBtn.Enabled = False
+        LogEventoBtn.Enabled = False
+        MostrarTamanhoBtn.Enabled = False
+        ConectarCloudBtn.Enabled = False
+        ' Obter o nome do banco de dados da linha selecionada
+        Dim dbName As String = ListadeServidorCloudDtg.SelectedRows(0).Cells("Nome").Value.ToString()
+
+        ' Verificar se o nome do banco de dados não está vazio
+        If Not String.IsNullOrEmpty(dbName) Then
+            ' Mensagem de depuração: exibir o nome do banco de dados
+            MessageBox.Show("Banco de dados selecionado: " & dbName)
+
+            ' Cria uma string de conexão com o banco de dados selecionado
+            Dim builder As New SqlConnectionStringBuilder()
+            builder.DataSource = ServidorCloudTxb.Text
+            builder.UserID = NomeConectarCloudTxb.Text
+            builder.Password = SenhaCloudTxb.Text
+            builder.InitialCatalog = dbName
+            builder.IntegratedSecurity = False ' desativa a autenticação integrada do Windows
+            Dim connectionString As String = builder.ConnectionString
+
+            ' Montar a consulta SQL
+            Dim query As String = "SELECT TOP 10 Usuario As USUARIO, Computador As COMPUTADOR, RIGHT('00' + RTRIM(DATEPART(D, Data)), 2) + '/' + RIGHT('00' + RTRIM(DATEPART(M, Data)), 2) + '/' + RIGHT('00' + RTRIM(DATEPART(yyyy, Data)), 2) As DataF, " &
+                              "RIGHT('00' + RTRIM(DATEPART(HH, Data)), 2) + ':' + RIGHT('00' + RTRIM(DATEPART(mi, Data)), 2) + ':' + RIGHT('00' + RTRIM(DATEPART(s, Data)), 2) As HoraF, " &
+                              "Descricao, Detalhe FROM LogEvento WHERE Origem = 'pSymDBA_Tools' ORDER BY Data DESC"
+
+            Try
+                ' Estabelecer a conexão com o banco de dados
+                Using connection As New SqlConnection(connectionString) ' Usar connectionString em vez de conexao
+                    connection.Open()
+
+                    ' Criar um adaptador de dados para preencher a tabela com os resultados da consulta
+                    Dim adapter As New SqlDataAdapter(query, connection)
+                    Dim dataTable As New DataTable()
+                    adapter.Fill(dataTable)
+
+                    ' Definir a fonte de dados do DataGridView como a tabela de resultados
+                    ListadeServidorCloudDtg.DataSource = dataTable
+
+                    ' Ajustar o tamanho das colunas para corresponder ao conteúdo
+                    ListadeServidorCloudDtg.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Erro ao executar a consulta: " & ex.Message)
+            End Try
+        End If
+
+        ' Habilita o botão VerificarDBABt 
+        LimparColunaCloudBtn.Enabled = True
+
+    End Sub
 
 End Class
