@@ -4,6 +4,7 @@ Imports System.IO
 Imports DocumentFormat.OpenXml.Drawing.Diagrams
 Imports MahApps.Metro.Controls.Dialogs
 Imports Newtonsoft.Json
+Imports System.Diagnostics
 
 Public Class SuporteHelp
     Public Class DadosConexao
@@ -670,5 +671,16 @@ Public Class SuporteHelp
         Dim Ferramenta_Cloud As New Ferramenta_Cloud()
         Ferramenta_Cloud.Show()
     End Sub
+    Private Sub AtualizarBtn_Click(sender As Object, e As EventArgs) Handles AtualizarBtn.Click
+        ' URL que deseja abrir no navegador padrão
+        Dim url As String = "https://dataplace-my.sharepoint.com/:f:/g/personal/washington_pereira_dataplace_com_br1/Ekx9JaOh8yVLpU5_663daTQBSPz6yWWn044vGezItCe4eg?e=YWxluf"
+
+        ' Abrir a URL no navegador padrão do sistema
+        Process.Start(New ProcessStartInfo With {
+            .FileName = url,
+            .UseShellExecute = True
+        })
+    End Sub
+
 End Class
 
