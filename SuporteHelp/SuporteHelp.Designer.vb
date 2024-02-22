@@ -146,91 +146,91 @@ Partial Class SuporteHelp
         ' 
         ' ValidarEmailToolStripMenuItem
         ' 
-        ValidarEmailToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_mensagem_64
+        ValidarEmailToolStripMenuItem.Image = My.Resources.Resources.icons8_mensagem_64
         ValidarEmailToolStripMenuItem.Name = "ValidarEmailToolStripMenuItem"
         ValidarEmailToolStripMenuItem.Size = New Size(331, 26)
         ValidarEmailToolStripMenuItem.Text = "Validar E-mail"
         ' 
         ' ValidarGtinToolStripMenuItem
         ' 
-        ValidarGtinToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources._3702397_barcode_code_scan_scanner_108737
+        ValidarGtinToolStripMenuItem.Image = My.Resources.Resources._3702397_barcode_code_scan_scanner_108737
         ValidarGtinToolStripMenuItem.Name = "ValidarGtinToolStripMenuItem"
         ValidarGtinToolStripMenuItem.Size = New Size(331, 26)
         ValidarGtinToolStripMenuItem.Text = "Validar Gtin"
         ' 
         ' ProcurarTabelaOuColunaNoBDToolStripMenuItem
         ' 
-        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_servidor_64
+        ProcurarTabelaOuColunaNoBDToolStripMenuItem.Image = My.Resources.Resources.icons8_servidor_64
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Name = "ProcurarTabelaOuColunaNoBDToolStripMenuItem"
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Size = New Size(331, 26)
         ProcurarTabelaOuColunaNoBDToolStripMenuItem.Text = "Procurar Tabela ou Coluna no BD"
         ' 
         ' CompararTabelasToolStripMenuItem
         ' 
-        CompararTabelasToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.tabela
+        CompararTabelasToolStripMenuItem.Image = My.Resources.Resources.tabela
         CompararTabelasToolStripMenuItem.Name = "CompararTabelasToolStripMenuItem"
         CompararTabelasToolStripMenuItem.Size = New Size(331, 26)
         CompararTabelasToolStripMenuItem.Text = "Comparar Tabelas"
         ' 
         ' DescriçãoDasColunasToolStripMenuItem
         ' 
-        DescriçãoDasColunasToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_informações_30
+        DescriçãoDasColunasToolStripMenuItem.Image = My.Resources.Resources.icons8_informações_30
         DescriçãoDasColunasToolStripMenuItem.Name = "DescriçãoDasColunasToolStripMenuItem"
         DescriçãoDasColunasToolStripMenuItem.Size = New Size(331, 26)
         DescriçãoDasColunasToolStripMenuItem.Text = "Descrição das Colunas"
         ' 
         ' VerificarInformaçõesDoBancoToolStripMenuItem
         ' 
-        VerificarInformaçõesDoBancoToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_pesquisar_30
+        VerificarInformaçõesDoBancoToolStripMenuItem.Image = My.Resources.Resources.icons8_pesquisar_30
         VerificarInformaçõesDoBancoToolStripMenuItem.Name = "VerificarInformaçõesDoBancoToolStripMenuItem"
         VerificarInformaçõesDoBancoToolStripMenuItem.Size = New Size(331, 26)
         VerificarInformaçõesDoBancoToolStripMenuItem.Text = "Verificar informações do Banco"
         ' 
         ' CriptoToolStripMenuItem
         ' 
-        CriptoToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_senha_30
+        CriptoToolStripMenuItem.Image = My.Resources.Resources.icons8_senha_30
         CriptoToolStripMenuItem.Name = "CriptoToolStripMenuItem"
         CriptoToolStripMenuItem.Size = New Size(331, 26)
         CriptoToolStripMenuItem.Text = "Cripto"
         ' 
         ' DDClientsToolStripMenuItem
         ' 
-        DDClientsToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_usuário_30
+        DDClientsToolStripMenuItem.Image = My.Resources.Resources.icons8_usuário_30
         DDClientsToolStripMenuItem.Name = "DDClientsToolStripMenuItem"
         DDClientsToolStripMenuItem.Size = New Size(331, 26)
         DDClientsToolStripMenuItem.Text = "DDClients"
         ' 
         ' CloudCreateUserToolStripMenuItem
         ' 
-        CloudCreateUserToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_nuvem_60
+        CloudCreateUserToolStripMenuItem.Image = My.Resources.Resources.icons8_nuvem_60
         CloudCreateUserToolStripMenuItem.Name = "CloudCreateUserToolStripMenuItem"
         CloudCreateUserToolStripMenuItem.Size = New Size(331, 26)
         CloudCreateUserToolStripMenuItem.Text = "CloudCreateUser"
         ' 
         ' LogoToolStripMenuItem
         ' 
-        LogoToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_saída_de_emergência_30
+        LogoToolStripMenuItem.Image = My.Resources.Resources.icons8_saída_de_emergência_30
         LogoToolStripMenuItem.Name = "LogoToolStripMenuItem"
         LogoToolStripMenuItem.Size = New Size(331, 26)
         LogoToolStripMenuItem.Text = "Logoff-Desconectar do ERP"
         ' 
         ' PainelAvaliacoesToolStripMenuItem
         ' 
-        PainelAvaliacoesToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.icons8_sugestão_30
+        PainelAvaliacoesToolStripMenuItem.Image = My.Resources.Resources.icons8_sugestão_30
         PainelAvaliacoesToolStripMenuItem.Name = "PainelAvaliacoesToolStripMenuItem"
         PainelAvaliacoesToolStripMenuItem.Size = New Size(331, 26)
         PainelAvaliacoesToolStripMenuItem.Text = "PainelAvaliacoes"
         ' 
         ' HelpDeskToolStripMenuItem
         ' 
-        HelpDeskToolStripMenuItem.Image = SuporteHelp.My.Resources.Resources.person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_228998
+        HelpDeskToolStripMenuItem.Image = My.Resources.Resources.person_business_call_avatar_support_user_helpdesk_customer_costumer_service_icon_228998
         HelpDeskToolStripMenuItem.Name = "HelpDeskToolStripMenuItem"
         HelpDeskToolStripMenuItem.Size = New Size(331, 26)
         HelpDeskToolStripMenuItem.Text = "HelpDesk"
         ' 
         ' ToolStripMenuItem1
         ' 
-        ToolStripMenuItem1.Image = SuporteHelp.My.Resources.Resources.download_folder_file_icon_219533
+        ToolStripMenuItem1.Image = My.Resources.Resources.download_folder_file_icon_219533
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(331, 26)
         ToolStripMenuItem1.Text = "Pasta de Packs "
@@ -239,7 +239,7 @@ Partial Class SuporteHelp
         ' 
         CloudToolStripMenuItem.BackColor = Color.CornflowerBlue
         CloudToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {FerramentaCloudToolStripMenuItem})
-        CloudToolStripMenuItem.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        CloudToolStripMenuItem.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
         CloudToolStripMenuItem.ForeColor = Color.White
         CloudToolStripMenuItem.Name = "CloudToolStripMenuItem"
         CloudToolStripMenuItem.Size = New Size(67, 25)
@@ -253,7 +253,7 @@ Partial Class SuporteHelp
         ' 
         ' PictureBox2
         ' 
-        PictureBox2.Image = SuporteHelp.My.Resources.Resources.icons8_servidor_64
+        PictureBox2.Image = My.Resources.Resources.icons8_servidor_64
         PictureBox2.Location = New Point(396, 138)
         PictureBox2.Name = "PictureBox2"
         PictureBox2.Size = New Size(96, 69)
@@ -262,7 +262,7 @@ Partial Class SuporteHelp
         ' 
         ' PictureBox1
         ' 
-        PictureBox1.Image = SuporteHelp.My.Resources.Resources.icons8_grupo_de_servidores_100
+        PictureBox1.Image = My.Resources.Resources.icons8_grupo_de_servidores_100
         PictureBox1.Location = New Point(9, 55)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(100, 106)
@@ -308,7 +308,7 @@ Partial Class SuporteHelp
         ' CloudBtn
         ' 
         CloudBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        CloudBtn.Image = SuporteHelp.My.Resources.Resources.icons8_restauração_de_backup_em_nuvem_30
+        CloudBtn.Image = My.Resources.Resources.icons8_restauração_de_backup_em_nuvem_30
         CloudBtn.ImageAlign = ContentAlignment.MiddleLeft
         CloudBtn.Location = New Point(102, 247)
         CloudBtn.Name = "CloudBtn"
@@ -321,7 +321,7 @@ Partial Class SuporteHelp
         ' UsuarioSenhaBtn
         ' 
         UsuarioSenhaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        UsuarioSenhaBtn.Image = SuporteHelp.My.Resources.Resources.icons8_usuário_30
+        UsuarioSenhaBtn.Image = My.Resources.Resources.icons8_usuário_30
         UsuarioSenhaBtn.ImageAlign = ContentAlignment.MiddleLeft
         UsuarioSenhaBtn.Location = New Point(102, 356)
         UsuarioSenhaBtn.Name = "UsuarioSenhaBtn"
@@ -334,7 +334,7 @@ Partial Class SuporteHelp
         ' HomologacaoBtn
         ' 
         HomologacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        HomologacaoBtn.Image = SuporteHelp.My.Resources.Resources.icons8_nota_fiscal_electrónica_30
+        HomologacaoBtn.Image = My.Resources.Resources.icons8_nota_fiscal_electrónica_30
         HomologacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
         HomologacaoBtn.Location = New Point(102, 460)
         HomologacaoBtn.Name = "HomologacaoBtn"
@@ -347,7 +347,7 @@ Partial Class SuporteHelp
         ' ModuloCheckBtn
         ' 
         ModuloCheckBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        ModuloCheckBtn.Image = SuporteHelp.My.Resources.Resources.icons8_delete_key_30
+        ModuloCheckBtn.Image = My.Resources.Resources.icons8_delete_key_30
         ModuloCheckBtn.ImageAlign = ContentAlignment.MiddleLeft
         ModuloCheckBtn.Location = New Point(102, 563)
         ModuloCheckBtn.Name = "ModuloCheckBtn"
@@ -380,7 +380,7 @@ Partial Class SuporteHelp
         ' PesquisaLbl
         ' 
         PesquisaLbl.AutoSize = True
-        PesquisaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        PesquisaLbl.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisaLbl.Location = New Point(613, 102)
         PesquisaLbl.Name = "PesquisaLbl"
         PesquisaLbl.Size = New Size(203, 21)
@@ -439,7 +439,7 @@ Partial Class SuporteHelp
         ' 
         ' GerarRegbtn
         ' 
-        GerarRegbtn.Image = SuporteHelp.My.Resources.Resources.icons8_dsn_30
+        GerarRegbtn.Image = My.Resources.Resources.icons8_dsn_30
         GerarRegbtn.ImageAlign = ContentAlignment.MiddleLeft
         GerarRegbtn.Location = New Point(102, 660)
         GerarRegbtn.Name = "GerarRegbtn"
@@ -460,7 +460,7 @@ Partial Class SuporteHelp
         ' 
         ' SugestaoBtn
         ' 
-        SugestaoBtn.Image = SuporteHelp.My.Resources.Resources.icons8_sugestão_30
+        SugestaoBtn.Image = My.Resources.Resources.icons8_sugestão_30
         SugestaoBtn.ImageAlign = ContentAlignment.MiddleLeft
         SugestaoBtn.Location = New Point(384, 703)
         SugestaoBtn.Name = "SugestaoBtn"
