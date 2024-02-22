@@ -179,7 +179,7 @@ Partial Class Empresas
         ' LimparEmpresasBtn
         ' 
         LimparEmpresasBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        LimparEmpresasBtn.Location = New Point(757, 540)
+        LimparEmpresasBtn.Location = New Point(757, 548)
         LimparEmpresasBtn.Name = "LimparEmpresasBtn"
         LimparEmpresasBtn.Size = New Size(121, 38)
         LimparEmpresasBtn.TabIndex = 2
@@ -189,7 +189,7 @@ Partial Class Empresas
         ' VoltarBtn
         ' 
         VoltarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        VoltarBtn.Location = New Point(42, 540)
+        VoltarBtn.Location = New Point(42, 548)
         VoltarBtn.Name = "VoltarBtn"
         VoltarBtn.Size = New Size(121, 38)
         VoltarBtn.TabIndex = 3
@@ -265,7 +265,7 @@ Partial Class Empresas
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(921, 580)
+        ClientSize = New Size(921, 598)
         Controls.Add(ExcluirBtn)
         Controls.Add(ExcluirEmpresaBtn)
         Controls.Add(CarregarBtn)

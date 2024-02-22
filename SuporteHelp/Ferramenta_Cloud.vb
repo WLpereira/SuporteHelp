@@ -973,7 +973,15 @@ Public Class Ferramenta_Cloud
     End Sub
 
     Private Sub InformaçõesDasEmpresasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformaçõesDasEmpresasToolStripMenuItem.Click
-        Dim Empresas As New Empresas()
-        Empresas.Show()
+        ' Esconde o formulário atual
+        Me.Hide()
+
+        ' Cria uma instância do formulário Empresas
+        Dim formEmpresas As New Empresas()
+
+        ' Exibe o formulário Empresas
+        formEmpresas.Show()
     End Sub
+
+
 End Class

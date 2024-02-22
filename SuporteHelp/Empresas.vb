@@ -98,6 +98,11 @@ Public Class Empresas
                 End If
             Next
         End If
+        NomeEmpresaTxb.Clear()
+        ServidorEmpresaTxb.Clear()
+        SenhaSATxb.Clear()
+        PortaEmpresaTxb.Clear()
+        FiltrarPortaTxb.Clear()
     End Sub
 
     Private Sub ExcluirEmpresaBtn_Click(sender As Object, e As EventArgs) Handles ExcluirEmpresaBtn.Click
@@ -122,6 +127,11 @@ Public Class Empresas
         Else
             MessageBox.Show("Por favor, selecione uma empresa para excluir.")
         End If
+        NomeEmpresaTxb.Clear()
+        ServidorEmpresaTxb.Clear()
+        SenhaSATxb.Clear()
+        PortaEmpresaTxb.Clear()
+        FiltrarPortaTxb.Clear()
     End Sub
 
     Private Sub AtualizarArquivoEmpresas()
@@ -197,5 +207,27 @@ Public Class Empresas
         If Not empresasEncontradas Then
             MessageBox.Show("Não há empresas com a porta especificada.")
         End If
+    End Sub
+
+    Private Sub LimparEmpresasBtn_Click(sender As Object, e As EventArgs) Handles LimparEmpresasBtn.Click
+        ' Chama o método CarregarBtn_Click para carregar as empresas
+        CarregarBtn_Click(sender, e)
+        NomeEmpresaTxb.Clear()
+        ServidorEmpresaTxb.Clear()
+        SenhaSATxb.Clear()
+        PortaEmpresaTxb.Clear()
+        FiltrarPortaTxb.Clear()
+
+    End Sub
+
+    Private Sub VoltarBtn_Click(sender As Object, e As EventArgs) Handles VoltarBtn.Click
+        ' Esconde o formulário atual
+        Me.Hide()
+
+        ' Cria uma instância do formulário Ferramenta_Cloud
+        Dim formFerramentaCloud As New Ferramenta_Cloud()
+
+        ' Exibe o formulário Ferramenta_Cloud
+        formFerramentaCloud.Show()
     End Sub
 End Class
