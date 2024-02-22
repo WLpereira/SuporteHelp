@@ -39,6 +39,9 @@ Partial Class Empresas
         FiltrarPortaTxb = New TextBox()
         FiltrarBtn = New Button()
         ProcurarPortaLbl = New Label()
+        CarregarBtn = New Button()
+        ExcluirEmpresaBtn = New Button()
+        ExcluirBtn = New Label()
         CadastrarEmpresasGbx.SuspendLayout()
         CType(EmpresasDgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -167,7 +170,7 @@ Partial Class Empresas
         ' EmpresasDgv
         ' 
         EmpresasDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        EmpresasDgv.Location = New Point(42, 237)
+        EmpresasDgv.Location = New Point(42, 256)
         EmpresasDgv.Name = "EmpresasDgv"
         EmpresasDgv.RowTemplate.Height = 25
         EmpresasDgv.Size = New Size(836, 283)
@@ -176,7 +179,7 @@ Partial Class Empresas
         ' LimparEmpresasBtn
         ' 
         LimparEmpresasBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        LimparEmpresasBtn.Location = New Point(757, 530)
+        LimparEmpresasBtn.Location = New Point(757, 540)
         LimparEmpresasBtn.Name = "LimparEmpresasBtn"
         LimparEmpresasBtn.Size = New Size(121, 38)
         LimparEmpresasBtn.TabIndex = 2
@@ -186,7 +189,7 @@ Partial Class Empresas
         ' VoltarBtn
         ' 
         VoltarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        VoltarBtn.Location = New Point(42, 530)
+        VoltarBtn.Location = New Point(42, 540)
         VoltarBtn.Name = "VoltarBtn"
         VoltarBtn.Size = New Size(121, 38)
         VoltarBtn.TabIndex = 3
@@ -196,7 +199,7 @@ Partial Class Empresas
         ' FiltrarPortaTxb
         ' 
         FiltrarPortaTxb.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        FiltrarPortaTxb.Location = New Point(44, 204)
+        FiltrarPortaTxb.Location = New Point(42, 181)
         FiltrarPortaTxb.Name = "FiltrarPortaTxb"
         FiltrarPortaTxb.Size = New Size(199, 25)
         FiltrarPortaTxb.TabIndex = 4
@@ -205,7 +208,7 @@ Partial Class Empresas
         ' 
         FiltrarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         FiltrarBtn.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        FiltrarBtn.Location = New Point(266, 193)
+        FiltrarBtn.Location = New Point(77, 212)
         FiltrarBtn.Name = "FiltrarBtn"
         FiltrarBtn.Size = New Size(121, 38)
         FiltrarBtn.TabIndex = 5
@@ -217,17 +220,55 @@ Partial Class Empresas
         ProcurarPortaLbl.AutoSize = True
         ProcurarPortaLbl.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         ProcurarPortaLbl.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        ProcurarPortaLbl.Location = New Point(69, 176)
+        ProcurarPortaLbl.Location = New Point(67, 153)
         ProcurarPortaLbl.Name = "ProcurarPortaLbl"
         ProcurarPortaLbl.Size = New Size(145, 25)
         ProcurarPortaLbl.TabIndex = 6
         ProcurarPortaLbl.Text = "Procurar Porta"
+        ' 
+        ' CarregarBtn
+        ' 
+        CarregarBtn.BackColor = SystemColors.ActiveCaptionText
+        CarregarBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        CarregarBtn.ForeColor = Color.Orange
+        CarregarBtn.Location = New Point(369, 181)
+        CarregarBtn.Name = "CarregarBtn"
+        CarregarBtn.Size = New Size(188, 56)
+        CarregarBtn.TabIndex = 7
+        CarregarBtn.Text = "CARREGAR"
+        CarregarBtn.UseVisualStyleBackColor = False
+        ' 
+        ' ExcluirEmpresaBtn
+        ' 
+        ExcluirEmpresaBtn.BackColor = Color.Red
+        ExcluirEmpresaBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        ExcluirEmpresaBtn.ForeColor = Color.White
+        ExcluirEmpresaBtn.Location = New Point(690, 203)
+        ExcluirEmpresaBtn.Name = "ExcluirEmpresaBtn"
+        ExcluirEmpresaBtn.Size = New Size(163, 47)
+        ExcluirEmpresaBtn.TabIndex = 8
+        ExcluirEmpresaBtn.Text = "EXCLUIR"
+        ExcluirEmpresaBtn.UseVisualStyleBackColor = False
+        ' 
+        ' ExcluirBtn
+        ' 
+        ExcluirBtn.AutoSize = True
+        ExcluirBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ExcluirBtn.ForeColor = Color.Red
+        ExcluirBtn.Location = New Point(710, 179)
+        ExcluirBtn.Name = "ExcluirBtn"
+        ExcluirBtn.Size = New Size(131, 21)
+        ExcluirBtn.TabIndex = 9
+        ExcluirBtn.Text = "Excluir Empresa"
         ' 
         ' Empresas
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(921, 580)
+        Controls.Add(ExcluirBtn)
+        Controls.Add(ExcluirEmpresaBtn)
+        Controls.Add(CarregarBtn)
         Controls.Add(ProcurarPortaLbl)
         Controls.Add(FiltrarBtn)
         Controls.Add(FiltrarPortaTxb)
@@ -263,4 +304,7 @@ Partial Class Empresas
     Friend WithEvents FiltrarPortaTxb As TextBox
     Friend WithEvents FiltrarBtn As Button
     Friend WithEvents ProcurarPortaLbl As Label
+    Friend WithEvents CarregarBtn As Button
+    Friend WithEvents ExcluirEmpresaBtn As Button
+    Friend WithEvents ExcluirBtn As Label
 End Class
