@@ -247,8 +247,9 @@ Partial Class SuporteHelp
         ' 
         ' FerramentaCloudToolStripMenuItem
         ' 
+        FerramentaCloudToolStripMenuItem.Image = CType(resources.GetObject("FerramentaCloudToolStripMenuItem.Image"), Image)
         FerramentaCloudToolStripMenuItem.Name = "FerramentaCloudToolStripMenuItem"
-        FerramentaCloudToolStripMenuItem.Size = New Size(216, 26)
+        FerramentaCloudToolStripMenuItem.Size = New Size(220, 26)
         FerramentaCloudToolStripMenuItem.Text = "Ferramenta Cloud"
         ' 
         ' PictureBox2
