@@ -27,7 +27,7 @@ Public Class SuporteHelp
 
         ' Verifica se o servidor informado não é um dos servidores bloqueados
         Dim servidorMinusculo As String = servidor.ToLower() ' Converter o servidor informado para minúsculas
-        If servidorMinusculo.Contains("dp01.informo.com.br,9797") OrElse servidorMinusculo.Contains("dp01.informo.com.br,9898") OrElse servidorMinusculo.Equals("dp-symdb01") OrElse servidorMinusculo.Equals("dp-symdb") Then
+        If servidorMinusculo.Contains("dp01.informo.com.br,9797") OrElse servidorMinusculo.Contains("dp01.informo.com.br,9898") OrElse servidorMinusculo.Equals("dp-symdb01") OrElse servidorMinusculo.Equals("dp-symdb") OrElse servidorMinusculo.Equals("172.16.1.201") OrElse servidorMinusculo.Equals("172.16.1.200") Then
             MessageBox.Show("Por motivos de segurança, esses servidores não podem ser acessados.")
             Return
         End If
