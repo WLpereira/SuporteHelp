@@ -40,6 +40,10 @@ Public Class Empresas
         Catch ex As Exception
             MessageBox.Show("Erro ao cadastrar empresa: " & ex.Message)
         End Try
+        NomeEmpresaTxb.Clear()
+        ServidorEmpresaTxb.Clear()
+        SenhaSATxb.Clear()
+        PortaEmpresaTxb.Clear()
     End Sub
 
     Private Sub AtualizarDataGridView()
