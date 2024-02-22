@@ -42,6 +42,7 @@ Partial Class Ferramenta_Cloud
         CadastrosToolStripMenuItem = New ToolStripMenuItem()
         GerenciadorDePortaToolStripMenuItem = New ToolStripMenuItem()
         RARToolStripMenuItem = New ToolStripMenuItem()
+        InformaçõesDasEmpresasToolStripMenuItem = New ToolStripMenuItem()
         SelecionarPortaCbx = New ComboBox()
         SelecionePortaLbl = New Label()
         SelecionarPortaBtn = New Button()
@@ -58,7 +59,6 @@ Partial Class Ferramenta_Cloud
         MediaLogAcessoSymBtn = New Button()
         TotalLogAcessoSymBtn = New Button()
         SHRINKBtn = New Button()
-        InformaçõesDasEmpresasToolStripMenuItem = New ToolStripMenuItem()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -240,6 +240,12 @@ Partial Class Ferramenta_Cloud
         RARToolStripMenuItem.Name = "RARToolStripMenuItem"
         RARToolStripMenuItem.Size = New Size(281, 26)
         RARToolStripMenuItem.Text = "#RAR"
+        ' 
+        ' InformaçõesDasEmpresasToolStripMenuItem
+        ' 
+        InformaçõesDasEmpresasToolStripMenuItem.Name = "InformaçõesDasEmpresasToolStripMenuItem"
+        InformaçõesDasEmpresasToolStripMenuItem.Size = New Size(281, 26)
+        InformaçõesDasEmpresasToolStripMenuItem.Text = "Informações das Empresas"
         ' 
         ' SelecionarPortaCbx
         ' 
@@ -427,12 +433,6 @@ Partial Class Ferramenta_Cloud
         SHRINKBtn.TextAlign = ContentAlignment.TopCenter
         SHRINKBtn.UseVisualStyleBackColor = True
         SHRINKBtn.Visible = False
-        ' 
-        ' InformaçõesDasEmpresasToolStripMenuItem
-        ' 
-        InformaçõesDasEmpresasToolStripMenuItem.Name = "InformaçõesDasEmpresasToolStripMenuItem"
-        InformaçõesDasEmpresasToolStripMenuItem.Size = New Size(281, 26)
-        InformaçõesDasEmpresasToolStripMenuItem.Text = "Informações das Empresas"
         ' 
         ' Ferramenta_Cloud
         ' 

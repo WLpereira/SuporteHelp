@@ -971,4 +971,9 @@ Public Class Ferramenta_Cloud
         ' Desabilita o botão SHRINKBtn 
         SHRINKBtn.Enabled = True
     End Sub
+
+    Private Sub InformaçõesDasEmpresasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformaçõesDasEmpresasToolStripMenuItem.Click
+        Dim Empresas As New Empresas()
+        Empresas.Show()
+    End Sub
 End Class
