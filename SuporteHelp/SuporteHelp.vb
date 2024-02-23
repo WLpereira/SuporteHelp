@@ -673,7 +673,7 @@ Public Class SuporteHelp
     End Sub
     Private Sub AtualizarBtn_Click(sender As Object, e As EventArgs) Handles AtualizarBtn.Click
         ' URL que deseja abrir no navegador padrão
-        Dim url As String = "https://1drv.ms/f/s!AiDM3RAPbYSOaz2Up2OpQv_GjO0?e=pgn2c2"
+        Dim url As String = "https://1drv.ms/f/s!AiDM3RAPbYSOcU6jsgWgXBaFnOg?e=kGERia"
 
         ' Abrir a URL no navegador padrão do sistema
         Process.Start(New ProcessStartInfo With {
