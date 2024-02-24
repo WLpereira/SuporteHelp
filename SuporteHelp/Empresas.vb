@@ -173,7 +173,7 @@ Public Class Empresas
         End If
 
         ' Obter a porta especificada para filtrar
-        Dim portaFiltrar As String = FiltrarPortaTxb.Text
+        Dim portaFiltrar As String = FiltrarPortaTxb.Text.Trim() ' Remover espaços em branco
 
         ' Verificar se o campo de texto de porta para filtrar está vazio
         If String.IsNullOrWhiteSpace(portaFiltrar) Then
@@ -188,7 +188,7 @@ Public Class Empresas
         For Each row As DataGridViewRow In EmpresasDgv.Rows
             ' Verificar se a célula da porta não é nula antes de acessar o valor
             If row.Cells("PortaColumn").Value IsNot Nothing Then
-                Dim portaEmpresa As String = row.Cells("PortaColumn").Value.ToString()
+                Dim portaEmpresa As String = row.Cells("PortaColumn").Value.ToString().Trim() ' Remover espaços em branco
 
                 ' Comparar a porta da empresa com a porta especificada para filtrar
                 If portaEmpresa = portaFiltrar Then
@@ -211,11 +211,13 @@ Public Class Empresas
         If Not empresasEncontradas Then
             MessageBox.Show("Não há empresas com a porta especificada.")
         End If
+        FiltrarPortaTxb.Clear()
     End Sub
 
     Private Sub LimparEmpresasBtn_Click(sender As Object, e As EventArgs) Handles LimparEmpresasBtn.Click
         ' Chama o método CarregarBtn_Click para carregar as empresas
         CarregarBtn_Click(sender, e)
+        FiltrarNomeTxt.Clear()
         NomeEmpresaTxb.Clear()
         ServidorEmpresaTxb.Clear()
         SenhaSATxb.Clear()
@@ -233,5 +235,54 @@ Public Class Empresas
 
         ' Exibe o formulário Ferramenta_Cloud
         formFerramentaCloud.Show()
+    End Sub
+
+    Private Sub FiltrarNomeBtn_Click(sender As Object, e As EventArgs) Handles FiltrarNomeBtn.Click
+        ' Verificar se o DataGridView EmpresasDgv não está vazio
+        If EmpresasDgv.Rows.Count = 0 Then
+            MessageBox.Show("Não há empresas para filtrar.")
+            Return
+        End If
+
+        ' Obter o nome para filtrar em minúsculas
+        Dim nomeFiltrar As String = FiltrarNomeTxt.Text.Trim().ToLower() ' Converter para minúsculas e remover espaços em branco
+
+        ' Verificar se o campo de texto para filtrar está vazio
+        If String.IsNullOrWhiteSpace(nomeFiltrar) Then
+            MessageBox.Show("Por favor, insira um nome para filtrar.")
+            Return
+        End If
+
+        ' Limpar as seleções existentes no DataGridView
+        EmpresasDgv.ClearSelection()
+
+        ' Iterar sobre as linhas do DataGridView e exibir apenas as linhas com o nome parecido com o fornecido
+        For Each row As DataGridViewRow In EmpresasDgv.Rows
+            ' Verificar se a célula do nome não é nula antes de acessar o valor
+            If row.Cells("NomeColumn").Value IsNot Nothing Then
+                Dim nomeEmpresa As String = row.Cells("NomeColumn").Value.ToString().Trim().ToLower() ' Converter para minúsculas e remover espaços em branco
+
+                ' Comparar o nome da empresa com o nome especificado para filtrar
+                If nomeEmpresa.Contains(nomeFiltrar) Then
+                    row.Visible = True
+                Else
+                    row.Visible = False
+                End If
+            End If
+        Next
+
+        ' Verificar se pelo menos uma empresa foi encontrada com o nome especificado
+        Dim empresasEncontradas As Boolean = False
+        For Each row As DataGridViewRow In EmpresasDgv.Rows
+            If row.Visible Then
+                empresasEncontradas = True
+                Exit For
+            End If
+        Next
+
+        If Not empresasEncontradas Then
+            MessageBox.Show("Não há empresas com o nome especificado.")
+        End If
+        FiltrarNomeTxt.Clear()
     End Sub
 End Class
