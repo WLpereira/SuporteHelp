@@ -36,7 +36,10 @@ Partial Class Monitor_Servidor
         ServidorokBtn = New Button()
         ErroBtn = New Button()
         ConectadoBtn = New Button()
+        VerificarServidorBtn = New Button()
+        PictureBox1 = New PictureBox()
         CType(MonitorDtv, ComponentModel.ISupportInitialize).BeginInit()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' ConectarMonitorBtn
@@ -44,7 +47,7 @@ Partial Class Monitor_Servidor
         ConectarMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarMonitorBtn.Image = CType(resources.GetObject("ConectarMonitorBtn.Image"), Image)
         ConectarMonitorBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarMonitorBtn.Location = New Point(870, 21)
+        ConectarMonitorBtn.Location = New Point(884, 21)
         ConectarMonitorBtn.Name = "ConectarMonitorBtn"
         ConectarMonitorBtn.Size = New Size(135, 45)
         ConectarMonitorBtn.TabIndex = 38
@@ -55,7 +58,7 @@ Partial Class Monitor_Servidor
         ' SenhaMonitorTxb
         ' 
         SenhaMonitorTxb.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaMonitorTxb.Location = New Point(633, 38)
+        SenhaMonitorTxb.Location = New Point(666, 38)
         SenhaMonitorTxb.Name = "SenhaMonitorTxb"
         SenhaMonitorTxb.Size = New Size(196, 27)
         SenhaMonitorTxb.TabIndex = 37
@@ -63,7 +66,7 @@ Partial Class Monitor_Servidor
         ' NomeConectarMonitorTxb
         ' 
         NomeConectarMonitorTxb.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        NomeConectarMonitorTxb.Location = New Point(358, 39)
+        NomeConectarMonitorTxb.Location = New Point(391, 39)
         NomeConectarMonitorTxb.Name = "NomeConectarMonitorTxb"
         NomeConectarMonitorTxb.Size = New Size(244, 27)
         NomeConectarMonitorTxb.TabIndex = 36
@@ -71,7 +74,7 @@ Partial Class Monitor_Servidor
         ' ServidorMonitorTxb
         ' 
         ServidorMonitorTxb.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorMonitorTxb.Location = New Point(64, 38)
+        ServidorMonitorTxb.Location = New Point(97, 38)
         ServidorMonitorTxb.Name = "ServidorMonitorTxb"
         ServidorMonitorTxb.Size = New Size(260, 27)
         ServidorMonitorTxb.TabIndex = 35
@@ -80,7 +83,8 @@ Partial Class Monitor_Servidor
         ' 
         SenhaConectarLbl.AutoSize = True
         SenhaConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaConectarLbl.Location = New Point(633, 16)
+        SenhaConectarLbl.ForeColor = Color.White
+        SenhaConectarLbl.Location = New Point(666, 16)
         SenhaConectarLbl.Name = "SenhaConectarLbl"
         SenhaConectarLbl.Size = New Size(57, 21)
         SenhaConectarLbl.TabIndex = 34
@@ -90,7 +94,8 @@ Partial Class Monitor_Servidor
         ' 
         UsuarioConectarLbl.AutoSize = True
         UsuarioConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        UsuarioConectarLbl.Location = New Point(358, 15)
+        UsuarioConectarLbl.ForeColor = Color.White
+        UsuarioConectarLbl.Location = New Point(391, 15)
         UsuarioConectarLbl.Name = "UsuarioConectarLbl"
         UsuarioConectarLbl.Size = New Size(69, 21)
         UsuarioConectarLbl.TabIndex = 33
@@ -100,7 +105,8 @@ Partial Class Monitor_Servidor
         ' 
         ServidorConectarLbl.AutoSize = True
         ServidorConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorConectarLbl.Location = New Point(64, 14)
+        ServidorConectarLbl.ForeColor = Color.White
+        ServidorConectarLbl.Location = New Point(97, 14)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
         ServidorConectarLbl.Size = New Size(154, 21)
         ServidorConectarLbl.TabIndex = 32
@@ -108,6 +114,7 @@ Partial Class Monitor_Servidor
         ' 
         ' MonitorDtv
         ' 
+        MonitorDtv.BackgroundColor = Color.DarkSlateGray
         MonitorDtv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         MonitorDtv.Location = New Point(12, 199)
         MonitorDtv.Name = "MonitorDtv"
@@ -117,23 +124,26 @@ Partial Class Monitor_Servidor
         ' 
         ' MatarProcessoBtn
         ' 
+        MatarProcessoBtn.BackColor = Color.Yellow
         MatarProcessoBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        MatarProcessoBtn.Location = New Point(303, 124)
+        MatarProcessoBtn.Location = New Point(243, 124)
         MatarProcessoBtn.Name = "MatarProcessoBtn"
         MatarProcessoBtn.Size = New Size(196, 57)
         MatarProcessoBtn.TabIndex = 40
         MatarProcessoBtn.Text = "KILL Linha Selecionada"
-        MatarProcessoBtn.UseVisualStyleBackColor = True
+        MatarProcessoBtn.UseVisualStyleBackColor = False
         ' 
         ' MatarBloqueadaBtn
         ' 
+        MatarBloqueadaBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         MatarBloqueadaBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        MatarBloqueadaBtn.Location = New Point(64, 124)
+        MatarBloqueadaBtn.ForeColor = Color.Black
+        MatarBloqueadaBtn.Location = New Point(22, 124)
         MatarBloqueadaBtn.Name = "MatarBloqueadaBtn"
         MatarBloqueadaBtn.Size = New Size(196, 57)
         MatarBloqueadaBtn.TabIndex = 41
         MatarBloqueadaBtn.Text = "KILL Sessão Bloqueada"
-        MatarBloqueadaBtn.UseVisualStyleBackColor = True
+        MatarBloqueadaBtn.UseVisualStyleBackColor = False
         ' 
         ' ServidorokBtn
         ' 
@@ -174,11 +184,35 @@ Partial Class Monitor_Servidor
         ConectadoBtn.UseVisualStyleBackColor = False
         ConectadoBtn.Visible = False
         ' 
+        ' VerificarServidorBtn
+        ' 
+        VerificarServidorBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        VerificarServidorBtn.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
+        VerificarServidorBtn.Location = New Point(476, 124)
+        VerificarServidorBtn.Name = "VerificarServidorBtn"
+        VerificarServidorBtn.Size = New Size(163, 57)
+        VerificarServidorBtn.TabIndex = 45
+        VerificarServidorBtn.Text = "VERIFICAR STATUS"
+        VerificarServidorBtn.UseVisualStyleBackColor = True
+        VerificarServidorBtn.Visible = False
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(12, 12)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(66, 64)
+        PictureBox1.TabIndex = 46
+        PictureBox1.TabStop = False
+        ' 
         ' Monitor_Servidor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.ActiveCaptionText
         ClientSize = New Size(1062, 749)
+        Controls.Add(PictureBox1)
+        Controls.Add(VerificarServidorBtn)
         Controls.Add(ConectadoBtn)
         Controls.Add(ErroBtn)
         Controls.Add(ServidorokBtn)
@@ -193,11 +227,13 @@ Partial Class Monitor_Servidor
         Controls.Add(UsuarioConectarLbl)
         Controls.Add(ServidorConectarLbl)
         FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "Monitor_Servidor"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Monitor_Servidor"
         CType(MonitorDtv, ComponentModel.ISupportInitialize).EndInit()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -215,4 +251,6 @@ Partial Class Monitor_Servidor
     Friend WithEvents ServidorokBtn As Button
     Friend WithEvents ErroBtn As Button
     Friend WithEvents ConectadoBtn As Button
+    Friend WithEvents VerificarServidorBtn As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

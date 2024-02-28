@@ -43,6 +43,7 @@ Partial Class Ferramenta_Cloud
         GerenciadorDePortaToolStripMenuItem = New ToolStripMenuItem()
         RARToolStripMenuItem = New ToolStripMenuItem()
         InformaçõesDasEmpresasToolStripMenuItem = New ToolStripMenuItem()
+        MonitorServidorToolStripMenuItem = New ToolStripMenuItem()
         SelecionarPortaCbx = New ComboBox()
         SelecionePortaLbl = New Label()
         SelecionarPortaBtn = New Button()
@@ -60,7 +61,6 @@ Partial Class Ferramenta_Cloud
         TotalLogAcessoSymBtn = New Button()
         SHRINKBtn = New Button()
         VerificarDBABtn = New Button()
-        MonitorServidorToolStripMenuItem = New ToolStripMenuItem()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -252,6 +252,13 @@ Partial Class Ferramenta_Cloud
         InformaçõesDasEmpresasToolStripMenuItem.Name = "InformaçõesDasEmpresasToolStripMenuItem"
         InformaçõesDasEmpresasToolStripMenuItem.Size = New Size(281, 26)
         InformaçõesDasEmpresasToolStripMenuItem.Text = "Informações das Empresas"
+        ' 
+        ' MonitorServidorToolStripMenuItem
+        ' 
+        MonitorServidorToolStripMenuItem.Image = CType(resources.GetObject("MonitorServidorToolStripMenuItem.Image"), Image)
+        MonitorServidorToolStripMenuItem.Name = "MonitorServidorToolStripMenuItem"
+        MonitorServidorToolStripMenuItem.Size = New Size(281, 26)
+        MonitorServidorToolStripMenuItem.Text = "Monitor Servidor"
         ' 
         ' SelecionarPortaCbx
         ' 
@@ -451,12 +458,6 @@ Partial Class Ferramenta_Cloud
         VerificarDBABtn.TabIndex = 63
         VerificarDBABtn.Text = "Verificar os últimos processamentos do DBA_Tools"
         VerificarDBABtn.UseVisualStyleBackColor = False
-        ' 
-        ' MonitorServidorToolStripMenuItem
-        ' 
-        MonitorServidorToolStripMenuItem.Name = "MonitorServidorToolStripMenuItem"
-        MonitorServidorToolStripMenuItem.Size = New Size(281, 26)
-        MonitorServidorToolStripMenuItem.Text = "Monitor Servidor"
         ' 
         ' Ferramenta_Cloud
         ' 

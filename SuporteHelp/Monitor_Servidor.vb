@@ -171,5 +171,34 @@
         ExecutarConsulta(New SqlConnection(connectionString))
     End Sub
 
+    Private Sub VerificarServidorBtn_Click(sender As Object, e As EventArgs) Handles VerificarServidorBtn.Click
+        Dim bloqueioEncontrado As Boolean = False
 
+        ' Verificar se há pelo menos uma linha no DataGridView
+        If MonitorDtv.Rows.Count > 0 Then
+            ' Verificar se a coluna BlockingSessionID existe
+            If MonitorDtv.Columns.Contains("BlockingSessionID") Then
+                ' Iterar sobre as linhas do DataGridView
+                For Each row As DataGridViewRow In MonitorDtv.Rows
+                    ' Verificar se a célula na coluna BlockingSessionID não está vazia e se o valor é diferente de zero
+                    If Not row.IsNewRow AndAlso row.Cells("BlockingSessionID").Value IsNot Nothing AndAlso row.Cells("BlockingSessionID").Value.ToString() <> "0" Then
+                        ' Se houver um bloqueio, definir a variável bloqueioEncontrado como True e sair do loop
+                        bloqueioEncontrado = True
+                        Exit For
+                    End If
+                Next
+            End If
+        End If
+
+        ' Habilitar ou desabilitar os botões com base no resultado da verificação
+        If bloqueioEncontrado Then
+            ' Se houver um bloqueio, habilitar o botão ErroBtn e desabilitar o botão ServidorokBtn
+            ErroBtn.Enabled = True
+            ServidorokBtn.Enabled = False
+        Else
+            ' Se não houver bloqueio, habilitar o botão ServidorokBtn e desabilitar o botão ErroBtn
+            ErroBtn.Enabled = False
+            ServidorokBtn.Enabled = True
+        End If
+    End Sub
 End Class
