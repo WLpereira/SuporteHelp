@@ -1065,4 +1065,14 @@ Public Class Ferramenta_Cloud
 
     End Sub
 
+    Private Sub MonitorServidorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonitorServidorToolStripMenuItem.Click
+        ' Esconde o formulário atual
+        Me.Hide()
+
+        ' Cria uma instância do formulário Empresas
+        Dim Monitor_Servidor As New Monitor_Servidor()
+
+        ' Exibe o formulário Empresas
+        Monitor_Servidor.Show()
+    End Sub
 End Class

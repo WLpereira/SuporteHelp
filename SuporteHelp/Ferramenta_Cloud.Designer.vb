@@ -60,6 +60,7 @@ Partial Class Ferramenta_Cloud
         TotalLogAcessoSymBtn = New Button()
         SHRINKBtn = New Button()
         VerificarDBABtn = New Button()
+        MonitorServidorToolStripMenuItem = New ToolStripMenuItem()
         CType(ListadeServidorCloudDtg, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -224,7 +225,7 @@ Partial Class Ferramenta_Cloud
         ' CadastrosToolStripMenuItem
         ' 
         CadastrosToolStripMenuItem.BackColor = Color.Yellow
-        CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem, InformaçõesDasEmpresasToolStripMenuItem})
+        CadastrosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GerenciadorDePortaToolStripMenuItem, RARToolStripMenuItem, InformaçõesDasEmpresasToolStripMenuItem, MonitorServidorToolStripMenuItem})
         CadastrosToolStripMenuItem.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         CadastrosToolStripMenuItem.Image = CType(resources.GetObject("CadastrosToolStripMenuItem.Image"), Image)
         CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
@@ -451,6 +452,12 @@ Partial Class Ferramenta_Cloud
         VerificarDBABtn.Text = "Verificar os últimos processamentos do DBA_Tools"
         VerificarDBABtn.UseVisualStyleBackColor = False
         ' 
+        ' MonitorServidorToolStripMenuItem
+        ' 
+        MonitorServidorToolStripMenuItem.Name = "MonitorServidorToolStripMenuItem"
+        MonitorServidorToolStripMenuItem.Size = New Size(281, 26)
+        MonitorServidorToolStripMenuItem.Text = "Monitor Servidor"
+        ' 
         ' Ferramenta_Cloud
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -542,4 +549,5 @@ Partial Class Ferramenta_Cloud
     Friend WithEvents SHRINKBtn As Button
     Friend WithEvents InformaçõesDasEmpresasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerificarDBABtn As Button
+    Friend WithEvents MonitorServidorToolStripMenuItem As ToolStripMenuItem
 End Class
