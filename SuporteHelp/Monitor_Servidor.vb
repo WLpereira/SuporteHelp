@@ -51,8 +51,7 @@
 
         ' Habilitar ConectadoBtn
         ConectadoBtn.Visible = True
-        ' Habilitar ServidorokBtn
-        ServidorokBtn.Visible = True
+
     End Sub
 
     ' Evento Tick do temporizador
@@ -171,4 +170,6 @@
         ' Re-executar a consulta para atualizar o DataGridView
         ExecutarConsulta(New SqlConnection(connectionString))
     End Sub
+
+
 End Class
