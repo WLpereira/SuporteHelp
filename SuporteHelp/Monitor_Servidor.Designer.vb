@@ -98,7 +98,7 @@ Partial Class Monitor_Servidor
         ' MonitorDtv
         ' 
         MonitorDtv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        MonitorDtv.Location = New Point(12, 117)
+        MonitorDtv.Location = New Point(42, 126)
         MonitorDtv.Name = "MonitorDtv"
         MonitorDtv.RowTemplate.Height = 25
         MonitorDtv.Size = New Size(734, 246)
@@ -108,7 +108,7 @@ Partial Class Monitor_Servidor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(1062, 749)
         Controls.Add(MonitorDtv)
         Controls.Add(ConectarMonitorBtn)
         Controls.Add(SenhaMonitorTxb)
@@ -117,7 +117,9 @@ Partial Class Monitor_Servidor
         Controls.Add(SenhaConectarLbl)
         Controls.Add(UsuarioConectarLbl)
         Controls.Add(ServidorConectarLbl)
+        MaximizeBox = False
         Name = "Monitor_Servidor"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Monitor_Servidor"
         CType(MonitorDtv, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
