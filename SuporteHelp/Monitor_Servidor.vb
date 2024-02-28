@@ -48,6 +48,11 @@
         Catch ex As Exception
             MessageBox.Show("Erro ao conectar e consultar o banco de dados: " & ex.Message)
         End Try
+
+        ' Habilitar ConectadoBtn
+        ConectadoBtn.Visible = True
+        ' Habilitar ServidorokBtn
+        ServidorokBtn.Visible = True
     End Sub
 
     ' Evento Tick do temporizador
@@ -64,6 +69,11 @@
                 MessageBox.Show("Erro ao consultar o banco de dados: " & ex.Message)
             End Try
         End If
+
+
+
+
+
     End Sub
 
     ' Método para executar a consulta
@@ -107,39 +117,58 @@
     Private Sub MatarProcessoBtn_Click(sender As Object, e As EventArgs) Handles MatarProcessoBtn.Click
         ' Verificar se há uma linha selecionada no DataGridView
         If MonitorDtv.SelectedRows.Count = 0 Then
-            MessageBox.Show("Selecione uma linha para matar o processo.")
+            MessageBox.Show("Selecione uma sessão para encerrar.")
             Return
         End If
 
-        ' Obter o ID da sessão do processo selecionado
-        Dim sessionID As Integer = Convert.ToInt32(MonitorDtv.SelectedRows(0).Cells("SessionID").Value)
+        ' Obter o ID da sessão selecionada
+        Dim sessionID As Integer = CInt(MonitorDtv.SelectedRows(0).Cells("SessionID").Value)
 
-        ' Criar a string de conexão
-        Dim connectionString As String = $"Server={ServidorMonitorTxb.Text};Database=master;User Id={NomeConectarMonitorTxb.Text};Password={SenhaMonitorTxb.Text};"
+        ' Construir o comando KILL
+        Dim killCommand As String = $"KILL {sessionID}"
 
+        ' Executar o comando KILL
+        ExecutarComando(killCommand)
+    End Sub
+
+    Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
+        ' Iterar sobre as linhas do DataGridView para identificar sessões bloqueadas
+        For Each row As DataGridViewRow In MonitorDtv.Rows
+            If Not row.IsNewRow Then
+                Dim blockingSessionID As Integer = If(row.Cells("BlockingSessionID").Value IsNot DBNull.Value, CInt(row.Cells("BlockingSessionID").Value), 0)
+
+                ' Se a sessão estiver bloqueada (ID de sessão de bloqueio diferente de zero), matá-la
+                If blockingSessionID <> 0 Then
+                    Dim sessionID As Integer = CInt(row.Cells("SessionID").Value)
+                    Dim killCommand As String = $"KILL {sessionID}"
+                    ExecutarComando(killCommand)
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Sub ExecutarComando(commandText As String)
         Try
             ' Estabelecer a conexão com o servidor
             Using connection As New SqlConnection(connectionString)
                 connection.Open()
 
-                ' Criar o comando SQL para matar o processo
-                Dim commandText As String = $"KILL {sessionID}"
-                Dim command As New SqlCommand(commandText, connection)
-
-                ' Executar o comando SQL
-                command.ExecuteNonQuery()
-
-                ' Atualizar o DataGridView para refletir as alterações
-                ExecutarConsulta(connection)
+                ' Criar o comando SQL
+                Using command As New SqlCommand(commandText, connection)
+                    ' Executar o comando
+                    command.ExecuteNonQuery()
+                End Using
             End Using
 
-            MessageBox.Show($"Processo com SessionID {sessionID} foi morto com sucesso.")
+            ' Atualizar o DataGridView após matar o processo
+            AtualizarMonitor()
         Catch ex As Exception
-            MessageBox.Show("Erro ao matar o processo: " & ex.Message)
+            MessageBox.Show("Erro ao executar o comando KILL: " & ex.Message)
         End Try
     End Sub
 
-    Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
-
+    Private Sub AtualizarMonitor()
+        ' Re-executar a consulta para atualizar o DataGridView
+        ExecutarConsulta(New SqlConnection(connectionString))
     End Sub
 End Class
