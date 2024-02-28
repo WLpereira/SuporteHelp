@@ -31,6 +31,8 @@ Partial Class Monitor_Servidor
         UsuarioConectarLbl = New Label()
         ServidorConectarLbl = New Label()
         MonitorDtv = New DataGridView()
+        MatarProcessoBtn = New Button()
+        MatarBloqueadaBtn = New Button()
         CType(MonitorDtv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -98,17 +100,39 @@ Partial Class Monitor_Servidor
         ' MonitorDtv
         ' 
         MonitorDtv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        MonitorDtv.Location = New Point(42, 126)
+        MonitorDtv.Location = New Point(64, 199)
         MonitorDtv.Name = "MonitorDtv"
         MonitorDtv.RowTemplate.Height = 25
-        MonitorDtv.Size = New Size(734, 246)
+        MonitorDtv.Size = New Size(941, 451)
         MonitorDtv.TabIndex = 39
+        ' 
+        ' MatarProcessoBtn
+        ' 
+        MatarProcessoBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        MatarProcessoBtn.Location = New Point(156, 122)
+        MatarProcessoBtn.Name = "MatarProcessoBtn"
+        MatarProcessoBtn.Size = New Size(156, 45)
+        MatarProcessoBtn.TabIndex = 40
+        MatarProcessoBtn.Text = "KILL"
+        MatarProcessoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' MatarBloqueadaBtn
+        ' 
+        MatarBloqueadaBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        MatarBloqueadaBtn.Location = New Point(383, 122)
+        MatarBloqueadaBtn.Name = "MatarBloqueadaBtn"
+        MatarBloqueadaBtn.Size = New Size(196, 57)
+        MatarBloqueadaBtn.TabIndex = 41
+        MatarBloqueadaBtn.Text = "KILL Sessão Bloqueada"
+        MatarBloqueadaBtn.UseVisualStyleBackColor = True
         ' 
         ' Monitor_Servidor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1062, 749)
+        Controls.Add(MatarBloqueadaBtn)
+        Controls.Add(MatarProcessoBtn)
         Controls.Add(MonitorDtv)
         Controls.Add(ConectarMonitorBtn)
         Controls.Add(SenhaMonitorTxb)
@@ -134,4 +158,6 @@ Partial Class Monitor_Servidor
     Friend WithEvents UsuarioConectarLbl As Label
     Friend WithEvents ServidorConectarLbl As Label
     Friend WithEvents MonitorDtv As DataGridView
+    Friend WithEvents MatarProcessoBtn As Button
+    Friend WithEvents MatarBloqueadaBtn As Button
 End Class

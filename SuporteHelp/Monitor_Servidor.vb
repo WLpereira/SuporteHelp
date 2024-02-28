@@ -7,7 +7,7 @@
     ' Evento Load do formulário
     Private Sub Monitor_Servidor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Configurar o temporizador
-        timer.Interval = 1000 ' 1000 milissegundos = 1 segundo
+        timer.Interval = 10000 ' 10000 milissegundos = 10 segundo
         timer.Enabled = False ' Iniciar o temporizador desativado
     End Sub
 
@@ -102,5 +102,44 @@
 
         ' Definir a fonte de dados do DataGridView como o DataTable
         MonitorDtv.DataSource = dataTable
+    End Sub
+
+    Private Sub MatarProcessoBtn_Click(sender As Object, e As EventArgs) Handles MatarProcessoBtn.Click
+        ' Verificar se há uma linha selecionada no DataGridView
+        If MonitorDtv.SelectedRows.Count = 0 Then
+            MessageBox.Show("Selecione uma linha para matar o processo.")
+            Return
+        End If
+
+        ' Obter o ID da sessão do processo selecionado
+        Dim sessionID As Integer = Convert.ToInt32(MonitorDtv.SelectedRows(0).Cells("SessionID").Value)
+
+        ' Criar a string de conexão
+        Dim connectionString As String = $"Server={ServidorMonitorTxb.Text};Database=master;User Id={NomeConectarMonitorTxb.Text};Password={SenhaMonitorTxb.Text};"
+
+        Try
+            ' Estabelecer a conexão com o servidor
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+
+                ' Criar o comando SQL para matar o processo
+                Dim commandText As String = $"KILL {sessionID}"
+                Dim command As New SqlCommand(commandText, connection)
+
+                ' Executar o comando SQL
+                command.ExecuteNonQuery()
+
+                ' Atualizar o DataGridView para refletir as alterações
+                ExecutarConsulta(connection)
+            End Using
+
+            MessageBox.Show($"Processo com SessionID {sessionID} foi morto com sucesso.")
+        Catch ex As Exception
+            MessageBox.Show("Erro ao matar o processo: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
+
     End Sub
 End Class
