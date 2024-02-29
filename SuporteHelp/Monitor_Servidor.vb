@@ -226,4 +226,84 @@
         ExecutarConsulta(New SqlConnection(connectionString))
     End Sub
 
+    Private Sub InformacaoPbx_Click(sender As Object, e As EventArgs) Handles InformacaoPbx.Click
+        Try
+            Dim connectionString As String = "your_connection_string_here"
+
+            ' Consulta SQL para obter as informações do servidor
+            Dim commandText As String = "SELECT 'Servidor: ' + convert(nVARCHAR(100), SERVERPROPERTY('SERVERNAME')) + ' (' + " &
+                                     "(SELECT top 1 local_net_address FROM sys.dm_exec_connections WHERE local_net_address IS NOT NULL) + ')' AS SERVIDOR , " &
+                                     "'SO: ' + right(@@VERSION, len(@@VERSION) - charindex('WINDOWS', @@VERSION) +1) AS SO , " &
+                                     "'SGBD: ' + left(@@VERSION, CHARINDEX(convert(nVARCHAR(100), SERVERPROPERTY('productversion')),@@VERSION) + LEN(convert(nVARCHAR(100), SERVERPROPERTY('productversion'))) + 5) AS SGBD , " &
+                                     "'Edição: ' + convert(varchar(128), SERVERPROPERTY ('edition')) AS EDICAO , " &
+                                     "'Atualização: ' + convert(varchar(128), SERVERPROPERTY ('productlevel')) AS ATT , " &
+                                     "'Collation: ' + convert(varchar(128), serverproperty(N'collation')) AS COLLATION , " &
+                                     "'Lingua: ' + @@LANGUAGE AS LINGUA , " &
+                                     "'Tempo em execução: ' + " &
+                                     "(SELECT CONVERT(VARCHAR(10), DATEDIFF(mi, crdate, getdate())/60/24) + ' dias ' + CONVERT(VARCHAR(10), ((DATEDIFF(mi, crdate, getdate())) - (DATEDIFF(mi, crdate, getdate())/60/24)*60*24)/60) + ' horas ' + CONVERT(VARCHAR(10), ((DATEDIFF(mi, crdate, getdate())) - (DATEDIFF(mi, crdate, getdate())/60/24)*60*24) - (((DATEDIFF(mi, crdate, getdate())) - (DATEDIFF(mi, crdate, getdate())/60/24)*60*24)/60)*60) + ' minutos' " &
+                                     "FROM sysdatabases WHERE name = 'tempdb' AS TIMESERVICE , " &
+                                     "'Local Padrão Arquivos: ' + convert(varchar(200), SERVERPROPERTY('InstanceDefaultDataPath')) AS LOCALPADRAO , " &
+                                     "'Arquivo Dados: ' + " &
+                                     "(SELECT TOP 1 physical_name FROM sys.database_files WHERE type_desc = 'ROWS') AS FILEDADOS , " &
+                                     "'Arquivo LOG: ' + " &
+                                     "(SELECT TOP 1 physical_name FROM sys.database_files WHERE type_desc = 'LOG') AS FILELOG , " &
+                                     "(SELECT TOP 1 'Disco do Banco: ' + CONVERT (NVARCHAR(20), " &
+                                     "CAST(CAST(VS.available_bytes AS DECIMAL(19, 2)) / 1024 / 1024 / 1024 AS DECIMAL(10, 2))) + 'GB livre de ' + CONVERT (NVARCHAR(20), " &
+                                     "CAST(CAST(VS.total_bytes AS DECIMAL(19, 2)) / 1024 / 1024 / 1024 AS DECIMAL(10, 2))) + 'GB (' + CONVERT (NVARCHAR(20), " &
+                                     "CAST((CAST(VS.available_bytes AS DECIMAL(19, 2)) / CAST(VS.total_bytes AS DECIMAL(19, 2)) * 100) AS DECIMAL(10, 2))) + '%) ' " &
+                                     "FROM sys.master_files AS MF CROSS APPLY [sys].[dm_os_volume_stats](MF.database_id, MF.file_id) AS VS " &
+                                     "WHERE CAST(VS.available_bytes AS DECIMAL(19, 2)) / CAST(VS.total_bytes AS DECIMAL(19, 2)) * 100 < 100 " &
+                                     "AND LEFT(VS.volume_mount_point, 1) = " &
+                                     "(SELECT TOP 1 LEFT(physical_name, 1) FROM sys.database_files WHERE type_desc = 'ROWS')) AS DISKMDF , " &
+                                     "(SELECT TOP 1 CONVERT (NVARCHAR(20), " &
+                                     "CAST((CAST(VS.available_bytes AS DECIMAL(19, 2)) / CAST(VS.total_bytes AS DECIMAL(19, 2)) * 100) AS DECIMAL(10, 2))) " &
+                                     "FROM sys.master_files AS MF CROSS APPLY [sys].[dm_os_volume_stats](MF.database_id, MF.file_id) AS VS " &
+                                     "WHERE CAST(VS.available_bytes AS DECIMAL(19, 2)) / CAST(VS.total_bytes AS DECIMAL(19, 2)) * 100 < 100 " &
+                                     "AND LEFT(VS.volume_mount_point, 1) = " &
+                                     "(SELECT TOP 1 LEFT(physical_name, 1) FROM sys.database_files WHERE type_desc = 'ROWS')) AS PERDISKMDF , " &
+                                     "'Quantidade CPU: ' + " &
+                                     "(SELECT TOP 1 CONVERT(VARCHAR(10), cpu_count) FROM sys.dm_os_sys_info) AS QTDCPU , " &
+                                     "(SELECT cntr_Value AS User_Connection FROM sys.dm_os_performance_counters WHERE counter_name = 'User Connections') AS User_Connection , " &
+                                     "(SELECT TOP(1) (SQLProcessUtilization + (100 - SystemIdle - SQLProcessUtilization)) AS CPU FROM " &
+                                     "(SELECT record.value('(./Record/@id)[1]', 'int') AS record_id, record.value('(./Record/SchedulerMonitorEvent/SystemHealth/SystemIdle)[1]', 'int') AS [SystemIdle], " &
+                                     "record.value('(./Record/SchedulerMonitorEvent/SystemHealth/ProcessUtilization)[1]', 'int') AS [SQLProcessUtilization], [timestamp] " &
+                                     "FROM (SELECT [timestamp], CONVERT(XML, record) AS [record] FROM sys.dm_os_ring_buffers WHERE ring_buffer_type = N'RING_BUFFER_SCHEDULER_MONITOR' " &
+                                     "AND record LIKE '%<SystemHealth>%') AS x) AS y) AS USOCPU , " &
+                                     "(SELECT cntr_value FROM sys.dm_os_performance_counters WHERE counter_name = 'Page life expectancy' AND object_name like '%Buffer Manager%') AS PLE , " &
+                                     "'Memória Fisica: ' + " &
+                                     "(SELECT TOP 1 CONVERT(VARCHAR(100), physical_memory_kb/1024) FROM sys.dm_os_sys_info) + 'Mb' AS MEMFISICA , " &
+                                     "'Memória Alocada SQL: ' + " &
+                                     "(SELECT CONVERT(VARCHAR(100), committed_target_kb/1024) FROM sys.dm_os_sys_info) + 'Mb' AS MEMSQL , " &
+                                     "(M.total_physical_memory_kb/1024) AS Total_OS_Memory_MB , " &
+                                     "(M.available_physical_memory_kb/1024) AS Available_OS_Memory_MB , " &
+                                     "100*PM.physical_memory_in_use_kb/1024/ " &
+                                     "(SELECT TOP 1 physical_memory_kb/1024 FROM sys.dm_os_sys_info) AS PERCMEMSQL , " &
+                                     "(PM.physical_memory_in_use_kb/1024) AS Memory_used_by_Sqlserver_MB , " &
+                                     "PM.memory_utilization_percentage " &
+                                     "FROM sys.dm_os_process_memory PM " &
+                                     "CROSS JOIN sys.dm_os_sys_memory M"
+
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+
+                Dim command As New SqlCommand(commandText, connection)
+                Dim reader As SqlDataReader = command.ExecuteReader()
+
+                If reader.Read() Then
+                    ' Exibir os resultados em uma nova janela formatada
+                    Dim informacoesForm As New InformacoesServidorForm()
+                    informacoesForm.ServidorLbl.Text = reader("SERVIDOR").ToString()
+                    informacoesForm.SOLbl.Text = reader("SO").ToString()
+                    informacoesForm.SGBDLbl.Text = reader("SGBD").ToString()
+                    ' Adicione mais linhas conforme necessário
+
+                    informacoesForm.ShowDialog()
+                End If
+
+                reader.Close()
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Erro ao recuperar informações do servidor: " & ex.Message)
+        End Try
+    End Sub
 End Class

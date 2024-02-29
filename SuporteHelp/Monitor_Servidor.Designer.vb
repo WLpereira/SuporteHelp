@@ -37,8 +37,10 @@ Partial Class Monitor_Servidor
         ErroBtn = New Button()
         ConectadoBtn = New Button()
         PictureBox1 = New PictureBox()
+        InformacaoPbx = New PictureBox()
         CType(MonitorDtv, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(InformacaoPbx, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' ConectarMonitorBtn
@@ -149,7 +151,7 @@ Partial Class Monitor_Servidor
         ServidorokBtn.BackColor = Color.Lime
         ServidorokBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorokBtn.ForeColor = Color.Black
-        ServidorokBtn.Location = New Point(613, 112)
+        ServidorokBtn.Location = New Point(685, 109)
         ServidorokBtn.Name = "ServidorokBtn"
         ServidorokBtn.Size = New Size(334, 81)
         ServidorokBtn.TabIndex = 42
@@ -162,7 +164,7 @@ Partial Class Monitor_Servidor
         ErroBtn.BackColor = Color.Red
         ErroBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ErroBtn.ForeColor = Color.White
-        ErroBtn.Location = New Point(613, 114)
+        ErroBtn.Location = New Point(685, 111)
         ErroBtn.Name = "ErroBtn"
         ErroBtn.Size = New Size(334, 77)
         ErroBtn.TabIndex = 43
@@ -192,12 +194,22 @@ Partial Class Monitor_Servidor
         PictureBox1.TabIndex = 46
         PictureBox1.TabStop = False
         ' 
+        ' InformacaoPbx
+        ' 
+        InformacaoPbx.Image = CType(resources.GetObject("InformacaoPbx.Image"), Image)
+        InformacaoPbx.Location = New Point(491, 89)
+        InformacaoPbx.Name = "InformacaoPbx"
+        InformacaoPbx.Size = New Size(97, 92)
+        InformacaoPbx.TabIndex = 47
+        InformacaoPbx.TabStop = False
+        ' 
         ' Monitor_Servidor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
         ClientSize = New Size(1062, 749)
+        Controls.Add(InformacaoPbx)
         Controls.Add(PictureBox1)
         Controls.Add(ConectadoBtn)
         Controls.Add(ErroBtn)
@@ -220,6 +232,7 @@ Partial Class Monitor_Servidor
         Text = "Monitor_Servidor"
         CType(MonitorDtv, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(InformacaoPbx, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -238,4 +251,5 @@ Partial Class Monitor_Servidor
     Friend WithEvents ErroBtn As Button
     Friend WithEvents ConectadoBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents InformacaoPbx As PictureBox
 End Class
