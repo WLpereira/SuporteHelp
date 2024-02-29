@@ -83,7 +83,7 @@ Partial Class Monitor_Servidor
         ' 
         SenhaConectarLbl.AutoSize = True
         SenhaConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaConectarLbl.ForeColor = Color.White
+        SenhaConectarLbl.ForeColor = Color.Black
         SenhaConectarLbl.Location = New Point(666, 16)
         SenhaConectarLbl.Name = "SenhaConectarLbl"
         SenhaConectarLbl.Size = New Size(57, 21)
@@ -94,7 +94,7 @@ Partial Class Monitor_Servidor
         ' 
         UsuarioConectarLbl.AutoSize = True
         UsuarioConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        UsuarioConectarLbl.ForeColor = Color.White
+        UsuarioConectarLbl.ForeColor = Color.Black
         UsuarioConectarLbl.Location = New Point(391, 15)
         UsuarioConectarLbl.Name = "UsuarioConectarLbl"
         UsuarioConectarLbl.Size = New Size(69, 21)
@@ -105,7 +105,7 @@ Partial Class Monitor_Servidor
         ' 
         ServidorConectarLbl.AutoSize = True
         ServidorConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorConectarLbl.ForeColor = Color.White
+        ServidorConectarLbl.ForeColor = Color.Black
         ServidorConectarLbl.Location = New Point(97, 14)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
         ServidorConectarLbl.Size = New Size(154, 21)
@@ -114,7 +114,7 @@ Partial Class Monitor_Servidor
         ' 
         ' MonitorDtv
         ' 
-        MonitorDtv.BackgroundColor = Color.DarkSlateGray
+        MonitorDtv.BackgroundColor = SystemColors.MenuBar
         MonitorDtv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         MonitorDtv.Location = New Point(12, 199)
         MonitorDtv.Name = "MonitorDtv"
@@ -209,7 +209,7 @@ Partial Class Monitor_Servidor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = SystemColors.ActiveCaptionText
+        BackColor = Color.Gainsboro
         ClientSize = New Size(1062, 749)
         Controls.Add(PictureBox1)
         Controls.Add(VerificarServidorBtn)
