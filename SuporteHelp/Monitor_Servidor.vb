@@ -78,26 +78,52 @@
     ' Método para executar a consulta
     Private Sub ExecutarConsulta(connection As SqlConnection)
         ' Consulta SQL para obter informações sobre as sessões ativas
-        Dim commandText As String = "SELECT " &
-                                    "    DB_NAME(r.database_id) AS DatabaseName, " &
-                                    "    r.session_id AS SessionID, " &
-                                    "    r.blocking_session_id AS BlockingSessionID, " &
-                                    "    r.wait_type AS WaitType, " &
-                                    "    r.wait_time AS WaitTime_ms, " &
-                                    "    r.last_wait_type AS LastWaitType, " &
-                                    "    r.command AS Command, " &
-                                    "    t.text AS CommandText, " &
-                                    "    r.status AS Status, " &
-                                    "    r.cpu_time AS CPUTime_ms, " &
-                                    "    r.total_elapsed_time AS TotalElapsedTime_ms " &
-                                    "FROM " &
-                                    "    sys.dm_exec_requests r " &
-                                    "CROSS APPLY " &
-                                    "    sys.dm_exec_sql_text(r.sql_handle) t " &
-                                    "WHERE " &
-                                    "    r.database_id > 4 " &
-                                    "    AND r.session_id > 50 " &
-                                    "    AND DB_NAME(r.database_id) IN (SELECT name FROM sys.databases WHERE state_desc = 'ONLINE');"
+        Dim commandText As String = "SELECT B.session_id Sessao, " &
+                                "       D.name Banco, " &
+                                "       B.login_name Usuario, " &
+                                "       B.program_name App, " &
+                                "       B.status Status, " &
+                                "       B.host_name Maquina, " &
+                                "       CASE " &
+                                "           WHEN B.session_id = A.blocking_session_id THEN 'Sim' " &
+                                "           ELSE 'Nao' " &
+                                "       END AS Responsavel, " &
+                                "       A.blocking_session_id Responsalvel, " &
+                                "       F.transaction_begin_time Inicio, " &
+                                "       A.wait_duration_ms Tempo_ms, " &
+                                "       C.command Comando, " &
+                                "       C.cpu_time CPU, " &
+                                "       B.memory_usage MEM " &
+                                "FROM sys.dm_exec_sessions B " &
+                                "LEFT JOIN sys.dm_exec_requests C ON B.session_id = C.session_id " &
+                                "LEFT JOIN sys.databases D ON C.database_id = D.database_id " &
+                                "LEFT JOIN sys.dm_os_waiting_tasks A ON A.session_id = B.session_id " &
+                                "LEFT JOIN SYS.dm_tran_session_transactions E ON A.session_id = E.session_id " &
+                                "LEFT JOIN SYS.dm_tran_active_transactions F ON E.TRANSACTION_ID = F.TRANSACTION_ID " &
+                                "WHERE b.session_id > 50 " &
+                                "  AND b.session_id <> @@SPID " &
+                                "GROUP BY B.session_id, " &
+                                "         D.name, " &
+                                "         B.login_name, " &
+                                "         B.program_name, " &
+                                "         B.status, " &
+                                "         B.host_name, " &
+                                "         F.transaction_begin_time, " &
+                                "         CASE " &
+                                "             WHEN A.session_id = A.blocking_session_id THEN 'Sim' " &
+                                "             ELSE 'Nao' " &
+                                "         END, " &
+                                "         A.blocking_session_id, " &
+                                "         A.wait_duration_ms, " &
+                                "         C.command, " &
+                                "         C.cpu_time, " &
+                                "         B.memory_usage " &
+                                "ORDER BY CASE WHEN A.blocking_session_id IS NOT NULL THEN 0 ELSE 1 END, " &
+                                "         ISNULL(A.wait_duration_ms, 0) DESC, " &
+                                "         CASE WHEN A.session_id = A.blocking_session_id THEN 'Sim' ELSE 'Nao' END DESC, " &
+                                "         A.blocking_session_id, " &
+                                "         b.session_id, " &
+                                "         B.status"
 
         ' Criar o comando SQL
         Dim command As New SqlCommand(commandText, connection)
@@ -121,7 +147,7 @@
         End If
 
         ' Obter o ID da sessão selecionada
-        Dim sessionID As Integer = CInt(MonitorDtv.SelectedRows(0).Cells("SessionID").Value)
+        Dim sessionID As Integer = CInt(MonitorDtv.SelectedRows(0).Cells("Sessao").Value)
 
         ' Construir o comando KILL
         Dim killCommand As String = $"KILL {sessionID}"
@@ -130,21 +156,21 @@
         ExecutarComando(killCommand)
     End Sub
 
-    Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
-        ' Iterar sobre as linhas do DataGridView para identificar sessões bloqueadas
-        For Each row As DataGridViewRow In MonitorDtv.Rows
-            If Not row.IsNewRow Then
-                Dim blockingSessionID As Integer = If(row.Cells("BlockingSessionID").Value IsNot DBNull.Value, CInt(row.Cells("BlockingSessionID").Value), 0)
-
-                ' Se a sessão estiver bloqueada (ID de sessão de bloqueio diferente de zero), matá-la
-                If blockingSessionID <> 0 Then
-                    Dim sessionID As Integer = CInt(row.Cells("SessionID").Value)
-                    Dim killCommand As String = $"KILL {sessionID}"
-                    ExecutarComando(killCommand)
-                End If
-            End If
-        Next
-    End Sub
+    '  Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
+    '      ' Iterar sobre as linhas do DataGridView para identificar sessões bloqueadas
+    '      For Each row As DataGridViewRow In MonitorDtv.Rows
+    '          If Not row.IsNewRow Then
+    '              Dim responsavel As String = row.Cells("Responsavel").Value.ToString()
+    '
+    '              ' Se a sessão estiver bloqueada, matá-la
+    '              If responsavel <> "" Then
+    '                  Dim sessionID As Integer = CInt(row.Cells("Sessao").Value)
+    '                  Dim killCommand As String = $"KILL {sessionID}"
+    '                  ExecutarComando(killCommand)
+    '              End If
+    '          End If
+    '      Next
+    '  End Sub
 
     Private Sub ExecutarComando(commandText As String)
         Try

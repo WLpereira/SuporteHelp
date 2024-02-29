@@ -126,7 +126,7 @@ Partial Class Monitor_Servidor
         ' 
         MatarProcessoBtn.BackColor = Color.Yellow
         MatarProcessoBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        MatarProcessoBtn.Location = New Point(243, 124)
+        MatarProcessoBtn.Location = New Point(220, 124)
         MatarProcessoBtn.Name = "MatarProcessoBtn"
         MatarProcessoBtn.Size = New Size(196, 57)
         MatarProcessoBtn.TabIndex = 40
