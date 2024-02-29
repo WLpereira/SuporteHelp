@@ -45,15 +45,52 @@
                 ' Ativar o temporizador para repetir a consulta
                 timer.Enabled = True
             End Using
+
+            ' Habilitar 
+            ConectadoBtn.Visible = True
+
         Catch ex As Exception
             MessageBox.Show("Erro ao conectar e consultar o banco de dados: " & ex.Message)
         End Try
 
-        ' Habilitar ConectadoBtn
-        ConectadoBtn.Visible = True
-
+        ' Chamar o método para verificar a coluna blocking_session_id Responsalvel
+        VerificarColunaResponsavel()
     End Sub
 
+    ' Método para verificar a coluna blocking_session_id Responsalvel
+    Private Sub VerificarColunaResponsavel()
+        ' Verificar se há linhas no DataGridView
+        If MonitorDtv.Rows.Count > 0 Then
+            ' Inicializar contadores para os valores da coluna
+            Dim valorZeroCount As Integer = 0
+            Dim valorNaoZeroCount As Integer = 0
+
+            ' Percorrer todas as linhas do DataGridView
+            For Each row As DataGridViewRow In MonitorDtv.Rows
+                ' Verificar se a célula não é nula e se o valor da célula não é nulo
+                If row.Cells("Responsalvel") IsNot Nothing AndAlso row.Cells("Responsalvel").Value IsNot Nothing Then
+                    ' Obter o valor da coluna blocking_session_id Responsalvel da linha atual
+                    Dim responsavelValue As String = row.Cells("Responsalvel").Value.ToString()
+
+                    ' Verificar se o valor é diferente de zero ou vazio
+                    If responsavelValue <> "0" AndAlso Not String.IsNullOrWhiteSpace(responsavelValue) Then
+                        valorNaoZeroCount += 1
+                    Else
+                        valorZeroCount += 1
+                    End If
+                End If
+            Next
+
+            ' Habilitar ou desabilitar os botões com base no contador de valores
+            If valorNaoZeroCount > 0 Then
+                ErroBtn.Visible = True
+                ServidorokBtn.Visible = False
+            ElseIf valorZeroCount > 0 Then
+                ErroBtn.Visible = False
+                ServidorokBtn.Visible = True
+            End If
+        End If
+    End Sub
     ' Evento Tick do temporizador
     Private Sub timer_Tick(sender As Object, e As EventArgs) Handles timer.Tick
         ' Verificar se o temporizador está ativado
@@ -68,11 +105,7 @@
                 MessageBox.Show("Erro ao consultar o banco de dados: " & ex.Message)
             End Try
         End If
-
-
-
-
-
+        VerificarColunaResponsavel()
     End Sub
 
     ' Método para executar a consulta
@@ -84,10 +117,6 @@
                                 "       B.program_name App, " &
                                 "       B.status Status, " &
                                 "       B.host_name Maquina, " &
-                                "       CASE " &
-                                "           WHEN B.session_id = A.blocking_session_id THEN 'Sim' " &
-                                "           ELSE 'Nao' " &
-                                "       END AS Responsavel, " &
                                 "       A.blocking_session_id Responsalvel, " &
                                 "       F.transaction_begin_time Inicio, " &
                                 "       A.wait_duration_ms Tempo_ms, " &
@@ -156,21 +185,21 @@
         ExecutarComando(killCommand)
     End Sub
 
-    '  Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
-    '      ' Iterar sobre as linhas do DataGridView para identificar sessões bloqueadas
-    '      For Each row As DataGridViewRow In MonitorDtv.Rows
-    '          If Not row.IsNewRow Then
-    '              Dim responsavel As String = row.Cells("Responsavel").Value.ToString()
-    '
-    '              ' Se a sessão estiver bloqueada, matá-la
-    '              If responsavel <> "" Then
-    '                  Dim sessionID As Integer = CInt(row.Cells("Sessao").Value)
-    '                  Dim killCommand As String = $"KILL {sessionID}"
-    '                  ExecutarComando(killCommand)
-    '              End If
-    '          End If
-    '      Next
-    '  End Sub
+    Private Sub MatarBloqueadaBtn_Click(sender As Object, e As EventArgs) Handles MatarBloqueadaBtn.Click
+        ' Iterar sobre as linhas do DataGridView para identificar sessões bloqueadas
+        For Each row As DataGridViewRow In MonitorDtv.Rows
+            If Not row.IsNewRow Then
+                Dim blockingSessionID As Integer = If(row.Cells("Responsalvel").Value IsNot DBNull.Value, CInt(row.Cells("Responsalvel").Value), 0)
+
+                ' Se o blocking_session_id for diferente de zero, matar o processo
+                If blockingSessionID <> 0 Then
+                    Dim sessionID As Integer = CInt(row.Cells("Sessao").Value)
+                    Dim killCommand As String = $"KILL {sessionID}"
+                    ExecutarComando(killCommand)
+                End If
+            End If
+        Next
+    End Sub
 
     Private Sub ExecutarComando(commandText As String)
         Try
@@ -197,34 +226,4 @@
         ExecutarConsulta(New SqlConnection(connectionString))
     End Sub
 
-    Private Sub VerificarServidorBtn_Click(sender As Object, e As EventArgs) Handles VerificarServidorBtn.Click
-        Dim bloqueioEncontrado As Boolean = False
-
-        ' Verificar se há pelo menos uma linha no DataGridView
-        If MonitorDtv.Rows.Count > 0 Then
-            ' Verificar se a coluna BlockingSessionID existe
-            If MonitorDtv.Columns.Contains("BlockingSessionID") Then
-                ' Iterar sobre as linhas do DataGridView
-                For Each row As DataGridViewRow In MonitorDtv.Rows
-                    ' Verificar se a célula na coluna BlockingSessionID não está vazia e se o valor é diferente de zero
-                    If Not row.IsNewRow AndAlso row.Cells("BlockingSessionID").Value IsNot Nothing AndAlso row.Cells("BlockingSessionID").Value.ToString() <> "0" Then
-                        ' Se houver um bloqueio, definir a variável bloqueioEncontrado como True e sair do loop
-                        bloqueioEncontrado = True
-                        Exit For
-                    End If
-                Next
-            End If
-        End If
-
-        ' Habilitar ou desabilitar os botões com base no resultado da verificação
-        If bloqueioEncontrado Then
-            ' Se houver um bloqueio, habilitar o botão ErroBtn e desabilitar o botão ServidorokBtn
-            ErroBtn.Enabled = True
-            ServidorokBtn.Enabled = False
-        Else
-            ' Se não houver bloqueio, habilitar o botão ServidorokBtn e desabilitar o botão ErroBtn
-            ErroBtn.Enabled = False
-            ServidorokBtn.Enabled = True
-        End If
-    End Sub
 End Class

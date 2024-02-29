@@ -36,7 +36,6 @@ Partial Class Monitor_Servidor
         ServidorokBtn = New Button()
         ErroBtn = New Button()
         ConectadoBtn = New Button()
-        VerificarServidorBtn = New Button()
         PictureBox1 = New PictureBox()
         CType(MonitorDtv, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -148,26 +147,26 @@ Partial Class Monitor_Servidor
         ' ServidorokBtn
         ' 
         ServidorokBtn.BackColor = Color.Lime
-        ServidorokBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        ServidorokBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorokBtn.ForeColor = Color.Black
-        ServidorokBtn.Location = New Point(662, 116)
+        ServidorokBtn.Location = New Point(613, 112)
         ServidorokBtn.Name = "ServidorokBtn"
-        ServidorokBtn.Size = New Size(181, 77)
+        ServidorokBtn.Size = New Size(334, 81)
         ServidorokBtn.TabIndex = 42
-        ServidorokBtn.Text = "            OK            SEM BLOQUEIOS"
+        ServidorokBtn.Text = "                       OK                          SEM BLOQUEIOS"
         ServidorokBtn.UseVisualStyleBackColor = False
         ServidorokBtn.Visible = False
         ' 
         ' ErroBtn
         ' 
         ErroBtn.BackColor = Color.Red
-        ErroBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        ErroBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ErroBtn.ForeColor = Color.White
-        ErroBtn.Location = New Point(849, 116)
+        ErroBtn.Location = New Point(613, 114)
         ErroBtn.Name = "ErroBtn"
-        ErroBtn.Size = New Size(181, 77)
+        ErroBtn.Size = New Size(334, 77)
         ErroBtn.TabIndex = 43
-        ErroBtn.Text = "          ERRO            COM BLOQUEIOS"
+        ErroBtn.Text = "                    ERRO                      COM BLOQUEIOS"
         ErroBtn.UseVisualStyleBackColor = False
         ErroBtn.Visible = False
         ' 
@@ -183,18 +182,6 @@ Partial Class Monitor_Servidor
         ConectadoBtn.Text = " CONECTADO"
         ConectadoBtn.UseVisualStyleBackColor = False
         ConectadoBtn.Visible = False
-        ' 
-        ' VerificarServidorBtn
-        ' 
-        VerificarServidorBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        VerificarServidorBtn.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        VerificarServidorBtn.Location = New Point(476, 124)
-        VerificarServidorBtn.Name = "VerificarServidorBtn"
-        VerificarServidorBtn.Size = New Size(163, 57)
-        VerificarServidorBtn.TabIndex = 45
-        VerificarServidorBtn.Text = "VERIFICAR STATUS"
-        VerificarServidorBtn.UseVisualStyleBackColor = True
-        VerificarServidorBtn.Visible = False
         ' 
         ' PictureBox1
         ' 
@@ -212,7 +199,6 @@ Partial Class Monitor_Servidor
         BackColor = Color.Gainsboro
         ClientSize = New Size(1062, 749)
         Controls.Add(PictureBox1)
-        Controls.Add(VerificarServidorBtn)
         Controls.Add(ConectadoBtn)
         Controls.Add(ErroBtn)
         Controls.Add(ServidorokBtn)
@@ -251,6 +237,5 @@ Partial Class Monitor_Servidor
     Friend WithEvents ServidorokBtn As Button
     Friend WithEvents ErroBtn As Button
     Friend WithEvents ConectadoBtn As Button
-    Friend WithEvents VerificarServidorBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
 End Class
