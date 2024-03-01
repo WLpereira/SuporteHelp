@@ -69,7 +69,7 @@
                                     convert(varchar(128), serverproperty(N'collation')) AS Collation,
                                     @@LANGUAGE AS Lingua,
                                     CONVERT(VARCHAR(100), committed_target_kb/1024) + 'Mb' AS [Memoria Alocada SQL],
-                                    DATEDIFF(DAY, create_date, GETDATE()) AS DiasCriacao
+                                    (SELECT CONVERT(VARCHAR(10), DATEDIFF(mi, crdate, getdate())/60/24) + ' dias ' + CONVERT(VARCHAR(10), ((DATEDIFF(mi, crdate, getdate())) - (DATEDIFF(mi, crdate, getdate())/60/24)*60*24)/60) + ' horas ' + CONVERT(VARCHAR(10), ((DATEDIFF(mi, crdate, getdate())) - (DATEDIFF(mi, crdate, getdate())/60/24)*60*24) - (((DATEDIFF(mi, crdate, getdate())) - (DATEDIFF(mi, crdate, getdate())/60/24)*60*24)/60)*60) + ' minutos' FROM sysdatabases WHERE name = 'tempdb') AS TempoExecucao
                                 FROM 
                                     sys.dm_os_sys_info
                                     CROSS APPLY [sys].[dm_os_volume_stats](1, 1) AS VS
@@ -99,7 +99,7 @@
             Dim collation As String = reader("Collation").ToString()
             Dim lingua As String = reader("Lingua").ToString()
             Dim memoriaAlocadaSQL As String = reader("Memoria Alocada SQL").ToString()
-            Dim diasCriacao As String = reader("DiasCriacao").ToString()
+            Dim tempoExecucao As String = reader("TempoExecucao").ToString()
 
             ' Construir a string de dados
             dados = $"Servidor: {servidor}{Environment.NewLine}"
@@ -111,7 +111,7 @@
             dados &= $"Collation: {collation}{Environment.NewLine}"
             dados &= $"Lingua: {lingua}{Environment.NewLine}"
             dados &= $"Memoria Alocada SQL: {memoriaAlocadaSQL}{Environment.NewLine}"
-            dados &= $"Dias de Criação: {diasCriacao}{Environment.NewLine}"
+            dados &= $"Tempo em execução: {tempoExecucao}{Environment.NewLine}"
         Else
             dados = "Nenhum dado retornado."
         End If
@@ -178,6 +178,8 @@
                 MessageBox.Show("Erro ao consultar o banco de dados: " & ex.Message)
             End Try
         End If
+
+        ' Verificar coluna responsável
         VerificarColunaResponsavel()
     End Sub
 

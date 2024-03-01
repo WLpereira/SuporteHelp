@@ -207,9 +207,9 @@ Partial Class Monitor_Servidor
         ' VoltarMonitorBtn
         ' 
         VoltarMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        VoltarMonitorBtn.Location = New Point(20, 811)
+        VoltarMonitorBtn.Location = New Point(12, 801)
         VoltarMonitorBtn.Name = "VoltarMonitorBtn"
-        VoltarMonitorBtn.Size = New Size(121, 38)
+        VoltarMonitorBtn.Size = New Size(133, 46)
         VoltarMonitorBtn.TabIndex = 49
         VoltarMonitorBtn.Text = "Voltar"
         VoltarMonitorBtn.UseVisualStyleBackColor = True
@@ -217,9 +217,9 @@ Partial Class Monitor_Servidor
         ' SairMonitorBtn
         ' 
         SairMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        SairMonitorBtn.Location = New Point(1019, 811)
+        SairMonitorBtn.Location = New Point(1017, 801)
         SairMonitorBtn.Name = "SairMonitorBtn"
-        SairMonitorBtn.Size = New Size(121, 38)
+        SairMonitorBtn.Size = New Size(133, 46)
         SairMonitorBtn.TabIndex = 50
         SairMonitorBtn.Text = "Sair"
         SairMonitorBtn.UseVisualStyleBackColor = True
