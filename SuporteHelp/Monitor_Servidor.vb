@@ -40,7 +40,7 @@
                 connection.Open()
 
                 ' Executar a consulta inicial
-                ExecutarConsulta(connection)
+                ExecutarConsultaInicial(connection)
 
                 ' Ativar o temporizador para repetir a consulta
                 timer.Enabled = True
@@ -55,6 +55,72 @@
 
         ' Chamar o método para verificar a coluna blocking_session_id Responsalvel
         VerificarColunaResponsavel()
+    End Sub
+
+    Private Sub ExecutarConsultaInicial(connection As SqlConnection)
+        ' Consulta SQL para obter informações do servidor
+        Dim commandText As String = "SELECT
+                                    convert(nVARCHAR(100), SERVERPROPERTY('SERVERNAME')) AS Servidor,
+                                    right(@@VERSION, len(@@VERSION) - charindex('WINDOWS', @@VERSION) +1) AS SO,
+                                    CONVERT(VARCHAR(10), cpu_count) AS QuantidadeCPU,
+                                    CONVERT (NVARCHAR(20), CAST(CAST(VS.available_bytes AS DECIMAL(19, 2)) / 1024 / 1024 / 1024 AS DECIMAL(10, 2))) + 'GB livre de ' + CONVERT (NVARCHAR(20), CAST(CAST(VS.total_bytes AS DECIMAL(19, 2)) / 1024 / 1024 / 1024 AS DECIMAL(10, 2))) + 'GB' AS [Disco do Banco],
+                                    left(@@VERSION, CHARINDEX(convert(nVARCHAR(100), SERVERPROPERTY('productversion')),@@VERSION) + LEN(convert(nVARCHAR(100), SERVERPROPERTY('productversion'))) + 5) AS SGBD,
+                                    convert(varchar(128), SERVERPROPERTY ('edition')) AS Edição,
+                                    convert(varchar(128), serverproperty(N'collation')) AS Collation,
+                                    @@LANGUAGE AS Lingua,
+                                    CONVERT(VARCHAR(100), committed_target_kb/1024) + 'Mb' AS [Memoria Alocada SQL],
+                                    DATEDIFF(DAY, create_date, GETDATE()) AS DiasCriacao
+                                FROM 
+                                    sys.dm_os_sys_info
+                                    CROSS APPLY [sys].[dm_os_volume_stats](1, 1) AS VS
+                                    CROSS JOIN sys.databases"
+
+        ' Criar o comando SQL
+        Dim command As New SqlCommand(commandText, connection)
+
+        ' Executar o comando SQL e obter o leitor de dados
+        Dim reader As SqlDataReader = command.ExecuteReader()
+
+        ' Inicializar uma string para armazenar os dados
+        Dim dados As String = ""
+
+        ' Verificar se há linhas retornadas
+        If reader.HasRows Then
+            ' Ler a primeira linha retornada
+            reader.Read()
+
+            ' Obter os valores das colunas desejadas
+            Dim servidor As String = reader("Servidor").ToString()
+            Dim so As String = reader("SO").ToString()
+            Dim quantidadeCPU As String = reader("QuantidadeCPU").ToString()
+            Dim discoBanco As String = reader("Disco do Banco").ToString()
+            Dim sgbd As String = reader("SGBD").ToString()
+            Dim edicao As String = reader("Edição").ToString()
+            Dim collation As String = reader("Collation").ToString()
+            Dim lingua As String = reader("Lingua").ToString()
+            Dim memoriaAlocadaSQL As String = reader("Memoria Alocada SQL").ToString()
+            Dim diasCriacao As String = reader("DiasCriacao").ToString()
+
+            ' Construir a string de dados
+            dados = $"Servidor: {servidor}{Environment.NewLine}"
+            dados &= $"SO: {so}{Environment.NewLine}"
+            dados &= $"Quantidade CPU: {quantidadeCPU}{Environment.NewLine}"
+            dados &= $"Disco do Banco: {discoBanco}{Environment.NewLine}"
+            dados &= $"SGBD: {sgbd}{Environment.NewLine}"
+            dados &= $"Edição: {edicao}{Environment.NewLine}"
+            dados &= $"Collation: {collation}{Environment.NewLine}"
+            dados &= $"Lingua: {lingua}{Environment.NewLine}"
+            dados &= $"Memoria Alocada SQL: {memoriaAlocadaSQL}{Environment.NewLine}"
+            dados &= $"Dias de Criação: {diasCriacao}{Environment.NewLine}"
+        Else
+            dados = "Nenhum dado retornado."
+        End If
+
+        ' Fechar o leitor de dados
+        reader.Close()
+
+        ' Definir o texto da label como os dados coletados
+        Label1.Text = dados
     End Sub
 
     ' Método para verificar a coluna blocking_session_id Responsalvel
@@ -101,6 +167,13 @@
                     connection.Open()
                     ExecutarConsulta(connection)
                 End Using
+
+                ' Conectar ao servidor e executar a ExecutarConsultaInicial
+                Using connection As New SqlConnection(connectionString)
+                    connection.Open()
+                    ExecutarConsultaInicial(connection)
+                End Using
+
             Catch ex As Exception
                 MessageBox.Show("Erro ao consultar o banco de dados: " & ex.Message)
             End Try
@@ -226,5 +299,19 @@
         ExecutarConsulta(New SqlConnection(connectionString))
     End Sub
 
+    Private Sub SairMonitorBtn_Click(sender As Object, e As EventArgs) Handles SairMonitorBtn.Click
+        Me.Close()
 
+    End Sub
+
+    Private Sub VoltarMonitorBtn_Click(sender As Object, e As EventArgs) Handles VoltarMonitorBtn.Click
+        ' Esconde o formulário atual
+        Me.Hide()
+
+        ' Cria uma instância do formulário Ferramenta_Cloud
+        Dim formFerramentaCloud As New Ferramenta_Cloud()
+
+        ' Exibe o formulário Ferramenta_Cloud
+        formFerramentaCloud.Show()
+    End Sub
 End Class

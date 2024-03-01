@@ -37,6 +37,9 @@ Partial Class Monitor_Servidor
         ErroBtn = New Button()
         ConectadoBtn = New Button()
         PictureBox1 = New PictureBox()
+        Label1 = New Label()
+        VoltarMonitorBtn = New Button()
+        SairMonitorBtn = New Button()
         CType(MonitorDtv, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -46,7 +49,7 @@ Partial Class Monitor_Servidor
         ConectarMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarMonitorBtn.Image = CType(resources.GetObject("ConectarMonitorBtn.Image"), Image)
         ConectarMonitorBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarMonitorBtn.Location = New Point(884, 21)
+        ConectarMonitorBtn.Location = New Point(309, 99)
         ConectarMonitorBtn.Name = "ConectarMonitorBtn"
         ConectarMonitorBtn.Size = New Size(135, 45)
         ConectarMonitorBtn.TabIndex = 38
@@ -57,7 +60,7 @@ Partial Class Monitor_Servidor
         ' SenhaMonitorTxb
         ' 
         SenhaMonitorTxb.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaMonitorTxb.Location = New Point(666, 38)
+        SenhaMonitorTxb.Location = New Point(84, 145)
         SenhaMonitorTxb.Name = "SenhaMonitorTxb"
         SenhaMonitorTxb.Size = New Size(196, 27)
         SenhaMonitorTxb.TabIndex = 37
@@ -65,17 +68,17 @@ Partial Class Monitor_Servidor
         ' NomeConectarMonitorTxb
         ' 
         NomeConectarMonitorTxb.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        NomeConectarMonitorTxb.Location = New Point(391, 39)
+        NomeConectarMonitorTxb.Location = New Point(84, 92)
         NomeConectarMonitorTxb.Name = "NomeConectarMonitorTxb"
-        NomeConectarMonitorTxb.Size = New Size(244, 27)
+        NomeConectarMonitorTxb.Size = New Size(196, 27)
         NomeConectarMonitorTxb.TabIndex = 36
         ' 
         ' ServidorMonitorTxb
         ' 
         ServidorMonitorTxb.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorMonitorTxb.Location = New Point(97, 38)
+        ServidorMonitorTxb.Location = New Point(84, 38)
         ServidorMonitorTxb.Name = "ServidorMonitorTxb"
-        ServidorMonitorTxb.Size = New Size(260, 27)
+        ServidorMonitorTxb.Size = New Size(228, 27)
         ServidorMonitorTxb.TabIndex = 35
         ' 
         ' SenhaConectarLbl
@@ -83,7 +86,7 @@ Partial Class Monitor_Servidor
         SenhaConectarLbl.AutoSize = True
         SenhaConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         SenhaConectarLbl.ForeColor = Color.Black
-        SenhaConectarLbl.Location = New Point(666, 16)
+        SenhaConectarLbl.Location = New Point(84, 123)
         SenhaConectarLbl.Name = "SenhaConectarLbl"
         SenhaConectarLbl.Size = New Size(57, 21)
         SenhaConectarLbl.TabIndex = 34
@@ -94,7 +97,7 @@ Partial Class Monitor_Servidor
         UsuarioConectarLbl.AutoSize = True
         UsuarioConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         UsuarioConectarLbl.ForeColor = Color.Black
-        UsuarioConectarLbl.Location = New Point(391, 15)
+        UsuarioConectarLbl.Location = New Point(84, 68)
         UsuarioConectarLbl.Name = "UsuarioConectarLbl"
         UsuarioConectarLbl.Size = New Size(69, 21)
         UsuarioConectarLbl.TabIndex = 33
@@ -105,7 +108,7 @@ Partial Class Monitor_Servidor
         ServidorConectarLbl.AutoSize = True
         ServidorConectarLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorConectarLbl.ForeColor = Color.Black
-        ServidorConectarLbl.Location = New Point(97, 14)
+        ServidorConectarLbl.Location = New Point(84, 14)
         ServidorConectarLbl.Name = "ServidorConectarLbl"
         ServidorConectarLbl.Size = New Size(154, 21)
         ServidorConectarLbl.TabIndex = 32
@@ -115,17 +118,17 @@ Partial Class Monitor_Servidor
         ' 
         MonitorDtv.BackgroundColor = SystemColors.MenuBar
         MonitorDtv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        MonitorDtv.Location = New Point(12, 199)
+        MonitorDtv.Location = New Point(10, 245)
         MonitorDtv.Name = "MonitorDtv"
         MonitorDtv.RowTemplate.Height = 25
-        MonitorDtv.Size = New Size(1038, 481)
+        MonitorDtv.Size = New Size(1144, 539)
         MonitorDtv.TabIndex = 39
         ' 
         ' MatarProcessoBtn
         ' 
         MatarProcessoBtn.BackColor = Color.Yellow
         MatarProcessoBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        MatarProcessoBtn.Location = New Point(220, 124)
+        MatarProcessoBtn.Location = New Point(208, 185)
         MatarProcessoBtn.Name = "MatarProcessoBtn"
         MatarProcessoBtn.Size = New Size(196, 57)
         MatarProcessoBtn.TabIndex = 40
@@ -137,7 +140,7 @@ Partial Class Monitor_Servidor
         MatarBloqueadaBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         MatarBloqueadaBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
         MatarBloqueadaBtn.ForeColor = Color.Black
-        MatarBloqueadaBtn.Location = New Point(22, 124)
+        MatarBloqueadaBtn.Location = New Point(6, 185)
         MatarBloqueadaBtn.Name = "MatarBloqueadaBtn"
         MatarBloqueadaBtn.Size = New Size(196, 57)
         MatarBloqueadaBtn.TabIndex = 41
@@ -149,9 +152,9 @@ Partial Class Monitor_Servidor
         ServidorokBtn.BackColor = Color.Lime
         ServidorokBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorokBtn.ForeColor = Color.Black
-        ServidorokBtn.Location = New Point(685, 109)
+        ServidorokBtn.Location = New Point(404, 784)
         ServidorokBtn.Name = "ServidorokBtn"
-        ServidorokBtn.Size = New Size(334, 81)
+        ServidorokBtn.Size = New Size(330, 77)
         ServidorokBtn.TabIndex = 42
         ServidorokBtn.Text = "                       OK                          SEM BLOQUEIOS"
         ServidorokBtn.UseVisualStyleBackColor = False
@@ -162,9 +165,9 @@ Partial Class Monitor_Servidor
         ErroBtn.BackColor = Color.Red
         ErroBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ErroBtn.ForeColor = Color.White
-        ErroBtn.Location = New Point(685, 111)
+        ErroBtn.Location = New Point(404, 786)
         ErroBtn.Name = "ErroBtn"
-        ErroBtn.Size = New Size(334, 77)
+        ErroBtn.Size = New Size(330, 73)
         ErroBtn.TabIndex = 43
         ErroBtn.Text = "                    ERRO                      COM BLOQUEIOS"
         ErroBtn.UseVisualStyleBackColor = False
@@ -175,9 +178,9 @@ Partial Class Monitor_Servidor
         ConectadoBtn.BackColor = Color.FromArgb(CByte(0), CByte(0), CByte(192))
         ConectadoBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         ConectadoBtn.ForeColor = Color.White
-        ConectadoBtn.Location = New Point(398, 686)
+        ConectadoBtn.Location = New Point(356, 12)
         ConectadoBtn.Name = "ConectadoBtn"
-        ConectadoBtn.Size = New Size(269, 51)
+        ConectadoBtn.Size = New Size(222, 51)
         ConectadoBtn.TabIndex = 44
         ConectadoBtn.Text = " CONECTADO"
         ConectadoBtn.UseVisualStyleBackColor = False
@@ -192,12 +195,44 @@ Partial Class Monitor_Servidor
         PictureBox1.TabIndex = 46
         PictureBox1.TabStop = False
         ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(613, 20)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(0, 17)
+        Label1.TabIndex = 48
+        ' 
+        ' VoltarMonitorBtn
+        ' 
+        VoltarMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        VoltarMonitorBtn.Location = New Point(20, 811)
+        VoltarMonitorBtn.Name = "VoltarMonitorBtn"
+        VoltarMonitorBtn.Size = New Size(121, 38)
+        VoltarMonitorBtn.TabIndex = 49
+        VoltarMonitorBtn.Text = "Voltar"
+        VoltarMonitorBtn.UseVisualStyleBackColor = True
+        ' 
+        ' SairMonitorBtn
+        ' 
+        SairMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        SairMonitorBtn.Location = New Point(1019, 811)
+        SairMonitorBtn.Name = "SairMonitorBtn"
+        SairMonitorBtn.Size = New Size(121, 38)
+        SairMonitorBtn.TabIndex = 50
+        SairMonitorBtn.Text = "Sair"
+        SairMonitorBtn.UseVisualStyleBackColor = True
+        ' 
         ' Monitor_Servidor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
-        ClientSize = New Size(1062, 749)
+        ClientSize = New Size(1162, 861)
+        Controls.Add(SairMonitorBtn)
+        Controls.Add(VoltarMonitorBtn)
+        Controls.Add(Label1)
         Controls.Add(PictureBox1)
         Controls.Add(ConectadoBtn)
         Controls.Add(ErroBtn)
@@ -238,4 +273,7 @@ Partial Class Monitor_Servidor
     Friend WithEvents ErroBtn As Button
     Friend WithEvents ConectadoBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents VoltarMonitorBtn As Button
+    Friend WithEvents SairMonitorBtn As Button
 End Class
