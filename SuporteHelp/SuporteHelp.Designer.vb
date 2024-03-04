@@ -254,6 +254,7 @@ Partial Class SuporteHelp
         ' 
         ' PictureBox2
         ' 
+        PictureBox2.Anchor = AnchorStyles.Top
         PictureBox2.Image = My.Resources.Resources.icons8_servidor_64
         PictureBox2.Location = New Point(396, 138)
         PictureBox2.Name = "PictureBox2"
@@ -360,6 +361,7 @@ Partial Class SuporteHelp
         ' 
         ' SairHelpBtn
         ' 
+        SairHelpBtn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         SairHelpBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SairHelpBtn.Image = CType(resources.GetObject("SairHelpBtn.Image"), Image)
         SairHelpBtn.ImageAlign = ContentAlignment.MiddleRight
@@ -373,6 +375,7 @@ Partial Class SuporteHelp
         ' 
         ' PesquisaTxb
         ' 
+        PesquisaTxb.Anchor = AnchorStyles.Top
         PesquisaTxb.Location = New Point(498, 134)
         PesquisaTxb.Name = "PesquisaTxb"
         PesquisaTxb.Size = New Size(507, 25)
@@ -380,6 +383,7 @@ Partial Class SuporteHelp
         ' 
         ' PesquisaLbl
         ' 
+        PesquisaLbl.Anchor = AnchorStyles.Top
         PesquisaLbl.AutoSize = True
         PesquisaLbl.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisaLbl.Location = New Point(613, 102)
@@ -390,6 +394,7 @@ Partial Class SuporteHelp
         ' 
         ' PesquisarBtn
         ' 
+        PesquisarBtn.Anchor = AnchorStyles.Top
         PesquisarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarBtn.Image = CType(resources.GetObject("PesquisarBtn.Image"), Image)
         PesquisarBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -403,6 +408,7 @@ Partial Class SuporteHelp
         ' 
         ' LimparBtn
         ' 
+        LimparBtn.Anchor = AnchorStyles.Top
         LimparBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparBtn.Image = CType(resources.GetObject("LimparBtn.Image"), Image)
         LimparBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -416,6 +422,7 @@ Partial Class SuporteHelp
         ' 
         ' ListadeServidorDtg
         ' 
+        ListadeServidorDtg.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ListadeServidorDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         ListadeServidorDtg.Location = New Point(366, 227)
         ListadeServidorDtg.Name = "ListadeServidorDtg"
@@ -427,6 +434,7 @@ Partial Class SuporteHelp
         ' 
         ' ConectarBtn
         ' 
+        ConectarBtn.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         ConectarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarBtn.Image = CType(resources.GetObject("ConectarBtn.Image"), Image)
         ConectarBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -491,6 +499,7 @@ Partial Class SuporteHelp
         ' 
         ' MostrarTamanhoBtn
         ' 
+        MostrarTamanhoBtn.Anchor = AnchorStyles.Top
         MostrarTamanhoBtn.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
         MostrarTamanhoBtn.ForeColor = Color.Red
         MostrarTamanhoBtn.Location = New Point(649, 169)
@@ -502,6 +511,7 @@ Partial Class SuporteHelp
         ' 
         ' AtualizarBtn
         ' 
+        AtualizarBtn.Anchor = AnchorStyles.Bottom
         AtualizarBtn.BackColor = Color.Yellow
         AtualizarBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         AtualizarBtn.Location = New Point(673, 703)
@@ -549,10 +559,8 @@ Partial Class SuporteHelp
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
-        MaximizeBox = False
         Name = "SuporteHelp"
         StartPosition = FormStartPosition.CenterScreen
         Text = "SuporteHelp_V_1.3"
