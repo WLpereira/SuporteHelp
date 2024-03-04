@@ -182,7 +182,7 @@ Partial Class Monitor_Servidor
         ConectadoBtn.BackColor = Color.FromArgb(CByte(0), CByte(0), CByte(192))
         ConectadoBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         ConectadoBtn.ForeColor = Color.White
-        ConectadoBtn.Location = New Point(306, 12)
+        ConectadoBtn.Location = New Point(318, 14)
         ConectadoBtn.Name = "ConectadoBtn"
         ConectadoBtn.Size = New Size(222, 51)
         ConectadoBtn.TabIndex = 44
