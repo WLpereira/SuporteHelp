@@ -22,7 +22,7 @@ Partial Class Descricao_Coluna
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Descricao_Coluna))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Descricao_Coluna))
         SairTabelaColuna = New Button()
         MostarDetalheColunaDGV = New DataGridView()
         DescricaoColunaLbl = New Label()
@@ -54,13 +54,13 @@ Partial Class Descricao_Coluna
         ' 
         ' SairTabelaColuna
         ' 
+        SairTabelaColuna.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         SairTabelaColuna.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         SairTabelaColuna.Image = CType(resources.GetObject("SairTabelaColuna.Image"), Image)
         SairTabelaColuna.ImageAlign = ContentAlignment.MiddleRight
-        SairTabelaColuna.Location = New Point(835, 789)
-        SairTabelaColuna.Margin = New Padding(3, 4, 3, 4)
+        SairTabelaColuna.Location = New Point(731, 592)
         SairTabelaColuna.Name = "SairTabelaColuna"
-        SairTabelaColuna.Size = New Size(135, 51)
+        SairTabelaColuna.Size = New Size(118, 38)
         SairTabelaColuna.TabIndex = 22
         SairTabelaColuna.Text = "SAIR"
         SairTabelaColuna.TextAlign = ContentAlignment.MiddleLeft
@@ -68,33 +68,38 @@ Partial Class Descricao_Coluna
         ' 
         ' MostarDetalheColunaDGV
         ' 
+        MostarDetalheColunaDGV.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         MostarDetalheColunaDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        MostarDetalheColunaDGV.Location = New Point(32, 278)
+        MostarDetalheColunaDGV.Location = New Point(28, 208)
+        MostarDetalheColunaDGV.Margin = New Padding(3, 2, 3, 2)
         MostarDetalheColunaDGV.Name = "MostarDetalheColunaDGV"
         MostarDetalheColunaDGV.RowHeadersWidth = 51
         MostarDetalheColunaDGV.RowTemplate.Height = 29
-        MostarDetalheColunaDGV.Size = New Size(924, 491)
+        MostarDetalheColunaDGV.Size = New Size(808, 368)
         MostarDetalheColunaDGV.TabIndex = 23
         ' 
         ' DescricaoColunaLbl
         ' 
+        DescricaoColunaLbl.Anchor = AnchorStyles.Top
         DescricaoColunaLbl.AutoSize = True
         DescricaoColunaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         DescricaoColunaLbl.ForeColor = Color.Navy
-        DescricaoColunaLbl.Location = New Point(310, 124)
+        DescricaoColunaLbl.Location = New Point(271, 93)
         DescricaoColunaLbl.Name = "DescricaoColunaLbl"
-        DescricaoColunaLbl.Size = New Size(338, 28)
+        DescricaoColunaLbl.Size = New Size(271, 21)
         DescricaoColunaLbl.TabIndex = 24
         DescricaoColunaLbl.Text = "Procurar Informações nas colunas "
         ' 
         ' ConectarBtn
         ' 
+        ConectarBtn.Anchor = AnchorStyles.Top
         ConectarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarBtn.Image = CType(resources.GetObject("ConectarBtn.Image"), Image)
         ConectarBtn.ImageAlign = ContentAlignment.MiddleLeft
-        ConectarBtn.Location = New Point(637, 16)
+        ConectarBtn.Location = New Point(557, 12)
+        ConectarBtn.Margin = New Padding(3, 2, 3, 2)
         ConectarBtn.Name = "ConectarBtn"
-        ConectarBtn.Size = New Size(118, 38)
+        ConectarBtn.Size = New Size(103, 28)
         ConectarBtn.TabIndex = 33
         ConectarBtn.Text = "Conectar"
         ConectarBtn.TextAlign = ContentAlignment.MiddleRight
@@ -102,25 +107,27 @@ Partial Class Descricao_Coluna
         ' 
         ' SenhaColunasTxb
         ' 
-        SenhaColunasTxb.Location = New Point(454, 27)
+        SenhaColunasTxb.Location = New Point(397, 20)
+        SenhaColunasTxb.Margin = New Padding(3, 2, 3, 2)
         SenhaColunasTxb.Name = "SenhaColunasTxb"
-        SenhaColunasTxb.Size = New Size(177, 27)
+        SenhaColunasTxb.Size = New Size(155, 23)
         SenhaColunasTxb.TabIndex = 32
         ' 
         ' NomeConectarColunasTxb
         ' 
-        NomeConectarColunasTxb.Location = New Point(204, 27)
+        NomeConectarColunasTxb.Location = New Point(178, 20)
+        NomeConectarColunasTxb.Margin = New Padding(3, 2, 3, 2)
         NomeConectarColunasTxb.Name = "NomeConectarColunasTxb"
-        NomeConectarColunasTxb.Size = New Size(244, 27)
+        NomeConectarColunasTxb.Size = New Size(214, 23)
         NomeConectarColunasTxb.TabIndex = 31
         ' 
         ' SenhaConectarColunasLbl
         ' 
         SenhaConectarColunasLbl.AutoSize = True
         SenhaConectarColunasLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        SenhaConectarColunasLbl.Location = New Point(454, 7)
+        SenhaConectarColunasLbl.Location = New Point(397, 5)
         SenhaConectarColunasLbl.Name = "SenhaConectarColunasLbl"
-        SenhaConectarColunasLbl.Size = New Size(51, 20)
+        SenhaConectarColunasLbl.Size = New Size(41, 15)
         SenhaConectarColunasLbl.TabIndex = 29
         SenhaConectarColunasLbl.Text = "Senha"
         ' 
@@ -128,9 +135,9 @@ Partial Class Descricao_Coluna
         ' 
         UsuarioConectarColunasLbl.AutoSize = True
         UsuarioConectarColunasLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        UsuarioConectarColunasLbl.Location = New Point(204, 7)
+        UsuarioConectarColunasLbl.Location = New Point(178, 5)
         UsuarioConectarColunasLbl.Name = "UsuarioConectarColunasLbl"
-        UsuarioConectarColunasLbl.Size = New Size(63, 20)
+        UsuarioConectarColunasLbl.Size = New Size(49, 15)
         UsuarioConectarColunasLbl.TabIndex = 28
         UsuarioConectarColunasLbl.Text = "Usuario"
         ' 
@@ -138,44 +145,47 @@ Partial Class Descricao_Coluna
         ' 
         ServidorConectarColunasLbl.AutoSize = True
         ServidorConectarColunasLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        ServidorConectarColunasLbl.Location = New Point(3, 7)
+        ServidorConectarColunasLbl.Location = New Point(3, 5)
         ServidorConectarColunasLbl.Name = "ServidorConectarColunasLbl"
-        ServidorConectarColunasLbl.Size = New Size(142, 20)
+        ServidorConectarColunasLbl.Size = New Size(114, 15)
         ServidorConectarColunasLbl.TabIndex = 27
         ServidorConectarColunasLbl.Text = "Informe o Servidor"
         ' 
         ' ServidorColunasTxb
         ' 
-        ServidorColunasTxb.Location = New Point(3, 27)
+        ServidorColunasTxb.Location = New Point(3, 20)
+        ServidorColunasTxb.Margin = New Padding(3, 2, 3, 2)
         ServidorColunasTxb.Name = "ServidorColunasTxb"
-        ServidorColunasTxb.Size = New Size(195, 27)
+        ServidorColunasTxb.Size = New Size(171, 23)
         ServidorColunasTxb.TabIndex = 30
         ' 
         ' SelecionarBancoColunasTxb
         ' 
+        SelecionarBancoColunasTxb.Anchor = AnchorStyles.Top
         SelecionarBancoColunasTxb.FormattingEnabled = True
-        SelecionarBancoColunasTxb.Location = New Point(784, 27)
+        SelecionarBancoColunasTxb.Location = New Point(686, 20)
+        SelecionarBancoColunasTxb.Margin = New Padding(3, 2, 3, 2)
         SelecionarBancoColunasTxb.Name = "SelecionarBancoColunasTxb"
-        SelecionarBancoColunasTxb.Size = New Size(186, 28)
+        SelecionarBancoColunasTxb.Size = New Size(163, 23)
         SelecionarBancoColunasTxb.TabIndex = 34
         ' 
         ' SelecionarBancoColunas
         ' 
+        SelecionarBancoColunas.Anchor = AnchorStyles.Top
         SelecionarBancoColunas.AutoSize = True
         SelecionarBancoColunas.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         SelecionarBancoColunas.ForeColor = Color.FromArgb(CByte(192), CByte(0), CByte(0))
-        SelecionarBancoColunas.Location = New Point(761, 3)
+        SelecionarBancoColunas.Location = New Point(686, 3)
         SelecionarBancoColunas.Name = "SelecionarBancoColunas"
-        SelecionarBancoColunas.Size = New Size(127, 20)
+        SelecionarBancoColunas.Size = New Size(102, 15)
         SelecionarBancoColunas.TabIndex = 35
         SelecionarBancoColunas.Text = "Selecionar Banco"
         ' 
         ' PesquisarcolunaTxb
         ' 
-        PesquisarcolunaTxb.Location = New Point(32, 195)
-        PesquisarcolunaTxb.Margin = New Padding(3, 4, 3, 4)
+        PesquisarcolunaTxb.Location = New Point(28, 146)
         PesquisarcolunaTxb.Name = "PesquisarcolunaTxb"
-        PesquisarcolunaTxb.Size = New Size(235, 27)
+        PesquisarcolunaTxb.Size = New Size(206, 23)
         PesquisarcolunaTxb.TabIndex = 37
         ' 
         ' LimparColunaBtn
@@ -183,10 +193,9 @@ Partial Class Descricao_Coluna
         LimparColunaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparColunaBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparColunaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparColunaBtn.Location = New Point(152, 229)
-        LimparColunaBtn.Margin = New Padding(3, 4, 3, 4)
+        LimparColunaBtn.Location = New Point(133, 172)
         LimparColunaBtn.Name = "LimparColunaBtn"
-        LimparColunaBtn.Size = New Size(115, 45)
+        LimparColunaBtn.Size = New Size(101, 34)
         LimparColunaBtn.TabIndex = 39
         LimparColunaBtn.Text = "Limpar"
         LimparColunaBtn.TextAlign = ContentAlignment.MiddleRight
@@ -197,10 +206,9 @@ Partial Class Descricao_Coluna
         PesquisarColunaBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarColunaBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarColunaBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarColunaBtn.Location = New Point(32, 229)
-        PesquisarColunaBtn.Margin = New Padding(3, 4, 3, 4)
+        PesquisarColunaBtn.Location = New Point(28, 172)
         PesquisarColunaBtn.Name = "PesquisarColunaBtn"
-        PesquisarColunaBtn.Size = New Size(117, 45)
+        PesquisarColunaBtn.Size = New Size(102, 34)
         PesquisarColunaBtn.TabIndex = 38
         PesquisarColunaBtn.Text = "Pesquisar"
         PesquisarColunaBtn.TextAlign = ContentAlignment.MiddleRight
@@ -209,32 +217,33 @@ Partial Class Descricao_Coluna
         ' ColunaLbl
         ' 
         ColunaLbl.AutoSize = True
-        ColunaLbl.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ColunaLbl.Location = New Point(109, 163)
+        ColunaLbl.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
+        ColunaLbl.Location = New Point(95, 122)
         ColunaLbl.Name = "ColunaLbl"
-        ColunaLbl.Size = New Size(77, 28)
+        ColunaLbl.Size = New Size(64, 21)
         ColunaLbl.TabIndex = 40
         ColunaLbl.Text = "Coluna"
         ' 
         ' Label1
         ' 
+        Label1.Anchor = AnchorStyles.Top
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(420, 163)
+        Label1.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(368, 122)
         Label1.Name = "Label1"
-        Label1.Size = New Size(104, 28)
+        Label1.Size = New Size(84, 21)
         Label1.TabIndex = 43
         Label1.Text = "Descrição"
         ' 
         ' LimparDescricaoBtn
         ' 
+        LimparDescricaoBtn.Anchor = AnchorStyles.Top
         LimparDescricaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparDescricaoBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparDescricaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparDescricaoBtn.Location = New Point(478, 229)
-        LimparDescricaoBtn.Margin = New Padding(3, 4, 3, 4)
+        LimparDescricaoBtn.Location = New Point(418, 172)
         LimparDescricaoBtn.Name = "LimparDescricaoBtn"
-        LimparDescricaoBtn.Size = New Size(115, 45)
+        LimparDescricaoBtn.Size = New Size(101, 34)
         LimparDescricaoBtn.TabIndex = 42
         LimparDescricaoBtn.Text = "Limpar"
         LimparDescricaoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -242,13 +251,13 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarDescricaoBtn
         ' 
+        PesquisarDescricaoBtn.Anchor = AnchorStyles.Top
         PesquisarDescricaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarDescricaoBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarDescricaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarDescricaoBtn.Location = New Point(358, 229)
-        PesquisarDescricaoBtn.Margin = New Padding(3, 4, 3, 4)
+        PesquisarDescricaoBtn.Location = New Point(313, 172)
         PesquisarDescricaoBtn.Name = "PesquisarDescricaoBtn"
-        PesquisarDescricaoBtn.Size = New Size(117, 45)
+        PesquisarDescricaoBtn.Size = New Size(102, 34)
         PesquisarDescricaoBtn.TabIndex = 41
         PesquisarDescricaoBtn.Text = "Pesquisar"
         PesquisarDescricaoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -256,23 +265,24 @@ Partial Class Descricao_Coluna
         ' 
         ' Label2
         ' 
+        Label2.Anchor = AnchorStyles.Top
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Label2.Location = New Point(784, 163)
+        Label2.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
+        Label2.Location = New Point(686, 122)
         Label2.Name = "Label2"
-        Label2.Size = New Size(120, 28)
+        Label2.Size = New Size(98, 21)
         Label2.TabIndex = 46
         Label2.Text = "Informação"
         ' 
         ' LimparInformacaoBtn
         ' 
+        LimparInformacaoBtn.Anchor = AnchorStyles.Top
         LimparInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparInformacaoBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        LimparInformacaoBtn.Location = New Point(840, 229)
-        LimparInformacaoBtn.Margin = New Padding(3, 4, 3, 4)
+        LimparInformacaoBtn.Location = New Point(735, 172)
         LimparInformacaoBtn.Name = "LimparInformacaoBtn"
-        LimparInformacaoBtn.Size = New Size(115, 45)
+        LimparInformacaoBtn.Size = New Size(101, 34)
         LimparInformacaoBtn.TabIndex = 45
         LimparInformacaoBtn.Text = "Limpar"
         LimparInformacaoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -280,13 +290,13 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarInformacaoBtn
         ' 
+        PesquisarInformacaoBtn.Anchor = AnchorStyles.Top
         PesquisarInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarInformacaoBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
-        PesquisarInformacaoBtn.Location = New Point(720, 229)
-        PesquisarInformacaoBtn.Margin = New Padding(3, 4, 3, 4)
+        PesquisarInformacaoBtn.Location = New Point(630, 172)
         PesquisarInformacaoBtn.Name = "PesquisarInformacaoBtn"
-        PesquisarInformacaoBtn.Size = New Size(117, 45)
+        PesquisarInformacaoBtn.Size = New Size(102, 34)
         PesquisarInformacaoBtn.TabIndex = 44
         PesquisarInformacaoBtn.Text = "Pesquisar"
         PesquisarInformacaoBtn.TextAlign = ContentAlignment.MiddleRight
@@ -294,44 +304,45 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarDescricaotxb
         ' 
-        PesquisarDescricaotxb.Location = New Point(358, 195)
-        PesquisarDescricaotxb.Margin = New Padding(3, 4, 3, 4)
+        PesquisarDescricaotxb.Anchor = AnchorStyles.Top
+        PesquisarDescricaotxb.Location = New Point(313, 146)
         PesquisarDescricaotxb.Name = "PesquisarDescricaotxb"
-        PesquisarDescricaotxb.Size = New Size(235, 27)
+        PesquisarDescricaotxb.Size = New Size(206, 23)
         PesquisarDescricaotxb.TabIndex = 47
         ' 
         ' PesquisarInformacaoTxb
         ' 
-        PesquisarInformacaoTxb.Location = New Point(720, 195)
-        PesquisarInformacaoTxb.Margin = New Padding(3, 4, 3, 4)
+        PesquisarInformacaoTxb.Anchor = AnchorStyles.Top
+        PesquisarInformacaoTxb.Location = New Point(630, 146)
         PesquisarInformacaoTxb.Name = "PesquisarInformacaoTxb"
-        PesquisarInformacaoTxb.Size = New Size(235, 27)
+        PesquisarInformacaoTxb.Size = New Size(206, 23)
         PesquisarInformacaoTxb.TabIndex = 48
         ' 
         ' SSSALVOSLbl
         ' 
         SSSALVOSLbl.AutoSize = True
-        SSSALVOSLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        SSSALVOSLbl.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
         SSSALVOSLbl.ForeColor = Color.Red
-        SSSALVOSLbl.Location = New Point(3, 66)
+        SSSALVOSLbl.Location = New Point(3, 50)
         SSSALVOSLbl.Name = "SSSALVOSLbl"
-        SSSALVOSLbl.Size = New Size(239, 20)
+        SSSALVOSLbl.Size = New Size(189, 15)
         SSSALVOSLbl.TabIndex = 54
         SSSALVOSLbl.Text = "SELECIONAR SERVIDOR SALVOS "
         ' 
         ' ExibirServidorDescCbx
         ' 
         ExibirServidorDescCbx.FormattingEnabled = True
-        ExibirServidorDescCbx.Location = New Point(5, 90)
+        ExibirServidorDescCbx.Location = New Point(4, 68)
+        ExibirServidorDescCbx.Margin = New Padding(3, 2, 3, 2)
         ExibirServidorDescCbx.Name = "ExibirServidorDescCbx"
-        ExibirServidorDescCbx.Size = New Size(192, 28)
+        ExibirServidorDescCbx.Size = New Size(168, 23)
         ExibirServidorDescCbx.TabIndex = 53
         ' 
         ' Descricao_Coluna
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(982, 853)
+        ClientSize = New Size(859, 640)
         Controls.Add(SSSALVOSLbl)
         Controls.Add(ExibirServidorDescCbx)
         Controls.Add(PesquisarInformacaoTxb)
@@ -360,7 +371,7 @@ Partial Class Descricao_Coluna
         Controls.Add(SairTabelaColuna)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        MaximizeBox = False
+        Margin = New Padding(3, 2, 3, 2)
         Name = "Descricao_Coluna"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Descricao_Coluna"
