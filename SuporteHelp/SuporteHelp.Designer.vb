@@ -434,7 +434,6 @@ Partial Class SuporteHelp
         ' 
         ' ConectarBtn
         ' 
-        ConectarBtn.Anchor = AnchorStyles.Top
         ConectarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarBtn.Image = CType(resources.GetObject("ConectarBtn.Image"), Image)
         ConectarBtn.ImageAlign = ContentAlignment.MiddleLeft

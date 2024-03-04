@@ -92,7 +92,6 @@ Partial Class Descricao_Coluna
         ' 
         ' ConectarBtn
         ' 
-        ConectarBtn.Anchor = AnchorStyles.Top
         ConectarBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         ConectarBtn.Image = CType(resources.GetObject("ConectarBtn.Image"), Image)
         ConectarBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -161,7 +160,6 @@ Partial Class Descricao_Coluna
         ' 
         ' SelecionarBancoColunasTxb
         ' 
-        SelecionarBancoColunasTxb.Anchor = AnchorStyles.Top
         SelecionarBancoColunasTxb.FormattingEnabled = True
         SelecionarBancoColunasTxb.Location = New Point(686, 20)
         SelecionarBancoColunasTxb.Margin = New Padding(3, 2, 3, 2)
@@ -171,7 +169,6 @@ Partial Class Descricao_Coluna
         ' 
         ' SelecionarBancoColunas
         ' 
-        SelecionarBancoColunas.Anchor = AnchorStyles.Top
         SelecionarBancoColunas.AutoSize = True
         SelecionarBancoColunas.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         SelecionarBancoColunas.ForeColor = Color.FromArgb(CByte(192), CByte(0), CByte(0))
@@ -265,7 +262,7 @@ Partial Class Descricao_Coluna
         ' 
         ' Label2
         ' 
-        Label2.Anchor = AnchorStyles.Top
+        Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
         Label2.Location = New Point(686, 122)
@@ -276,7 +273,7 @@ Partial Class Descricao_Coluna
         ' 
         ' LimparInformacaoBtn
         ' 
-        LimparInformacaoBtn.Anchor = AnchorStyles.Top
+        LimparInformacaoBtn.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         LimparInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LimparInformacaoBtn.Image = My.Resources.Resources.icons8_limpar_filtros_30
         LimparInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -290,7 +287,7 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarInformacaoBtn
         ' 
-        PesquisarInformacaoBtn.Anchor = AnchorStyles.Top
+        PesquisarInformacaoBtn.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         PesquisarInformacaoBtn.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         PesquisarInformacaoBtn.Image = My.Resources.Resources.icons8_pesquisar_30
         PesquisarInformacaoBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -312,7 +309,7 @@ Partial Class Descricao_Coluna
         ' 
         ' PesquisarInformacaoTxb
         ' 
-        PesquisarInformacaoTxb.Anchor = AnchorStyles.Top
+        PesquisarInformacaoTxb.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         PesquisarInformacaoTxb.Location = New Point(630, 146)
         PesquisarInformacaoTxb.Name = "PesquisarInformacaoTxb"
         PesquisarInformacaoTxb.Size = New Size(206, 23)
@@ -321,7 +318,7 @@ Partial Class Descricao_Coluna
         ' SSSALVOSLbl
         ' 
         SSSALVOSLbl.AutoSize = True
-        SSSALVOSLbl.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point)
+        SSSALVOSLbl.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
         SSSALVOSLbl.ForeColor = Color.Red
         SSSALVOSLbl.Location = New Point(3, 50)
         SSSALVOSLbl.Name = "SSSALVOSLbl"
@@ -340,7 +337,7 @@ Partial Class Descricao_Coluna
         ' 
         ' Descricao_Coluna
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(859, 640)
         Controls.Add(SSSALVOSLbl)
