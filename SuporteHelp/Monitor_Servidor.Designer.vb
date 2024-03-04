@@ -204,7 +204,7 @@ Partial Class Monitor_Servidor
         Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(513, 20)
+        Label1.Location = New Point(555, 21)
         Label1.Name = "Label1"
         Label1.Size = New Size(0, 17)
         Label1.TabIndex = 48
