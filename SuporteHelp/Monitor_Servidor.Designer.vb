@@ -116,12 +116,13 @@ Partial Class Monitor_Servidor
         ' 
         ' MonitorDtv
         ' 
+        MonitorDtv.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         MonitorDtv.BackgroundColor = SystemColors.MenuBar
         MonitorDtv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         MonitorDtv.Location = New Point(10, 245)
         MonitorDtv.Name = "MonitorDtv"
         MonitorDtv.RowTemplate.Height = 25
-        MonitorDtv.Size = New Size(1144, 539)
+        MonitorDtv.Size = New Size(1044, 427)
         MonitorDtv.TabIndex = 39
         ' 
         ' MatarProcessoBtn
@@ -149,10 +150,11 @@ Partial Class Monitor_Servidor
         ' 
         ' ServidorokBtn
         ' 
+        ServidorokBtn.Anchor = AnchorStyles.Bottom
         ServidorokBtn.BackColor = Color.Lime
         ServidorokBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ServidorokBtn.ForeColor = Color.Black
-        ServidorokBtn.Location = New Point(404, 784)
+        ServidorokBtn.Location = New Point(354, 672)
         ServidorokBtn.Name = "ServidorokBtn"
         ServidorokBtn.Size = New Size(330, 77)
         ServidorokBtn.TabIndex = 42
@@ -162,10 +164,11 @@ Partial Class Monitor_Servidor
         ' 
         ' ErroBtn
         ' 
+        ErroBtn.Anchor = AnchorStyles.Bottom
         ErroBtn.BackColor = Color.Red
         ErroBtn.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         ErroBtn.ForeColor = Color.White
-        ErroBtn.Location = New Point(404, 786)
+        ErroBtn.Location = New Point(354, 674)
         ErroBtn.Name = "ErroBtn"
         ErroBtn.Size = New Size(330, 73)
         ErroBtn.TabIndex = 43
@@ -175,10 +178,11 @@ Partial Class Monitor_Servidor
         ' 
         ' ConectadoBtn
         ' 
+        ConectadoBtn.Anchor = AnchorStyles.Top
         ConectadoBtn.BackColor = Color.FromArgb(CByte(0), CByte(0), CByte(192))
         ConectadoBtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
         ConectadoBtn.ForeColor = Color.White
-        ConectadoBtn.Location = New Point(356, 12)
+        ConectadoBtn.Location = New Point(306, 12)
         ConectadoBtn.Name = "ConectadoBtn"
         ConectadoBtn.Size = New Size(222, 51)
         ConectadoBtn.TabIndex = 44
@@ -197,17 +201,19 @@ Partial Class Monitor_Servidor
         ' 
         ' Label1
         ' 
+        Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
-        Label1.Location = New Point(613, 20)
+        Label1.Location = New Point(513, 20)
         Label1.Name = "Label1"
         Label1.Size = New Size(0, 17)
         Label1.TabIndex = 48
         ' 
         ' VoltarMonitorBtn
         ' 
+        VoltarMonitorBtn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         VoltarMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        VoltarMonitorBtn.Location = New Point(12, 801)
+        VoltarMonitorBtn.Location = New Point(12, 689)
         VoltarMonitorBtn.Name = "VoltarMonitorBtn"
         VoltarMonitorBtn.Size = New Size(133, 46)
         VoltarMonitorBtn.TabIndex = 49
@@ -216,8 +222,9 @@ Partial Class Monitor_Servidor
         ' 
         ' SairMonitorBtn
         ' 
+        SairMonitorBtn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         SairMonitorBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        SairMonitorBtn.Location = New Point(1017, 801)
+        SairMonitorBtn.Location = New Point(917, 689)
         SairMonitorBtn.Name = "SairMonitorBtn"
         SairMonitorBtn.Size = New Size(133, 46)
         SairMonitorBtn.TabIndex = 50
@@ -229,7 +236,7 @@ Partial Class Monitor_Servidor
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
-        ClientSize = New Size(1162, 861)
+        ClientSize = New Size(1062, 749)
         Controls.Add(SairMonitorBtn)
         Controls.Add(VoltarMonitorBtn)
         Controls.Add(Label1)
@@ -247,9 +254,7 @@ Partial Class Monitor_Servidor
         Controls.Add(SenhaConectarLbl)
         Controls.Add(UsuarioConectarLbl)
         Controls.Add(ServidorConectarLbl)
-        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        MaximizeBox = False
         Name = "Monitor_Servidor"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Monitor_Servidor"
