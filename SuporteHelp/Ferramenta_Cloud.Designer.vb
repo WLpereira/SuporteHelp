@@ -154,6 +154,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' ListadeServidorCloudDtg
         ' 
+        ListadeServidorCloudDtg.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ListadeServidorCloudDtg.BackgroundColor = SystemColors.Control
         ListadeServidorCloudDtg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         ListadeServidorCloudDtg.Location = New Point(222, 211)
@@ -200,6 +201,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' LimparColunaCloudBtn
         ' 
+        LimparColunaCloudBtn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         LimparColunaCloudBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         LimparColunaCloudBtn.Image = CType(resources.GetObject("LimparColunaCloudBtn.Image"), Image)
         LimparColunaCloudBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -379,6 +381,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' TotalLogEventoBtn
         ' 
+        TotalLogEventoBtn.Anchor = AnchorStyles.Bottom
         TotalLogEventoBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         TotalLogEventoBtn.ForeColor = Color.Navy
         TotalLogEventoBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -393,6 +396,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' MediaLogEventoBtn
         ' 
+        MediaLogEventoBtn.Anchor = AnchorStyles.Bottom
         MediaLogEventoBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         MediaLogEventoBtn.ForeColor = Color.Navy
         MediaLogEventoBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -407,6 +411,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' MediaLogAcessoSymBtn
         ' 
+        MediaLogAcessoSymBtn.Anchor = AnchorStyles.Bottom
         MediaLogAcessoSymBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         MediaLogAcessoSymBtn.ForeColor = Color.FromArgb(CByte(192), CByte(0), CByte(0))
         MediaLogAcessoSymBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -421,6 +426,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' TotalLogAcessoSymBtn
         ' 
+        TotalLogAcessoSymBtn.Anchor = AnchorStyles.Bottom
         TotalLogAcessoSymBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         TotalLogAcessoSymBtn.ForeColor = Color.FromArgb(CByte(192), CByte(0), CByte(0))
         TotalLogAcessoSymBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -435,6 +441,7 @@ Partial Class Ferramenta_Cloud
         ' 
         ' SHRINKBtn
         ' 
+        SHRINKBtn.Anchor = AnchorStyles.Bottom
         SHRINKBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point)
         SHRINKBtn.ForeColor = Color.Red
         SHRINKBtn.ImageAlign = ContentAlignment.MiddleLeft
@@ -498,10 +505,8 @@ Partial Class Ferramenta_Cloud
         Controls.Add(ServidorConectarLbl)
         Controls.Add(MenuStrip1)
         ForeColor = SystemColors.ControlText
-        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
-        MaximizeBox = False
         Name = "Ferramenta_Cloud"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Ferramenta_Cloud"
