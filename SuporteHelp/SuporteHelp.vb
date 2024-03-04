@@ -483,23 +483,7 @@ Public Class SuporteHelp
         Process.Start("explorer.exe", Packs)
     End Sub
 
-    Private Sub LogoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoToolStripMenuItem.Click
-        ' Obtém o caminho completo do arquivo Logoff.vbs dentro da pasta da aplicação
-        Dim caminhoArquivo As String = Path.Combine(Application.StartupPath, "Logoff.vbs")
 
-        ' Verifica se o arquivo Logoff.vbs existe
-        If File.Exists(caminhoArquivo) Then
-            Try
-                ' Inicia o processo para executar o arquivo Logoff.vbs
-                Process.Start(caminhoArquivo)
-                MessageBox.Show("O arquivo Logoff.vbs foi executado com sucesso.")
-            Catch ex As Exception
-                MessageBox.Show("Erro ao executar o arquivo Logoff.vbs: " & ex.Message)
-            End Try
-        Else
-            MessageBox.Show("O arquivo Logoff.vbs não foi encontrado na pasta da aplicação.")
-        End If
-    End Sub
 
     Private Sub GerarRegbtn_Click(sender As Object, e As EventArgs) Handles GerarRegbtn.Click
         ' Verifica se foi selecionada uma célula na coluna "Nome"
@@ -681,6 +665,7 @@ Public Class SuporteHelp
             .UseShellExecute = True
         })
     End Sub
+
 
 End Class
 
