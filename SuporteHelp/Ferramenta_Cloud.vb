@@ -802,7 +802,7 @@ Public Class Ferramenta_Cloud
 
         ' Desabilita o botão LogEventoBtn quando o checkbox é desmarcado
         LogEventoBtn.Enabled = Not HabilitarServidor2Cbx.Checked
-        VerificarDBABtn.Enabled = Not HabilitarServidor2Cbx.Checked
+        ' VerificarDBABtn.Enabled = Not HabilitarServidor2Cbx.Checked
 
         ' Desabilita o botão MostrarTamanhoBtn quando o checkbox é desmarcado
         MostrarTamanhoBtn.Enabled = Not HabilitarServidor2Cbx.Checked
